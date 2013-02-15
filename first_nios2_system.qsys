@@ -84,11 +84,11 @@
          type = "int";
       }
    }
-   element led_pio.s1
+   element sdram.s1
    {
       datum baseAddress
       {
-         value = "16781344";
+         value = "8388608";
          type = "long";
       }
    }
@@ -100,19 +100,19 @@
          type = "long";
       }
    }
+   element led_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "16781344";
+         type = "long";
+      }
+   }
    element sys_clk_timer.s1
    {
       datum baseAddress
       {
          value = "16781312";
-         type = "long";
-      }
-   }
-   element sdram.s1
-   {
-      datum baseAddress
-      {
-         value = "8388608";
          type = "long";
       }
    }
@@ -160,7 +160,7 @@
  <parameter name="projectName" value="hello_world.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1360941976300" />
+ <parameter name="timeStamp" value="1360937809684" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
@@ -261,7 +261,7 @@
   <parameter name="setting_interruptControllerType" value="Internal" />
   <parameter name="setting_branchPredictionType" value="Automatic" />
   <parameter name="setting_bhtPtrSz" value="8" />
-  <parameter name="muldiv_multiplierType" value="LogicElementsFast" />
+  <parameter name="muldiv_multiplierType" value="EmbeddedMulFast" />
   <parameter name="mpu_minInstRegionSize" value="12" />
   <parameter name="mpu_minDataRegionSize" value="12" />
   <parameter name="mmu_uitlbNumEntries" value="4" />

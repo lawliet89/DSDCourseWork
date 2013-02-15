@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <systemtable>
+  <columns>
+   <connections preferredWidth="127" />
+   <irq preferredWidth="34" />
+  </columns>
+ </systemtable>
+ <clocktable>
+  <columns>
+   <clockname preferredWidth="450" />
+   <clocksource preferredWidth="450" />
+   <frequency preferredWidth="445" />
+  </columns>
+ </clocktable>
+ <window width="1936" height="1096" x="-8" y="-8" />
+ <library
+   expandedCategories="Library/Memories and Memory Controllers/On-Chip,Library/PLL,Library/Peripherals,Project,Library/Qsys Interconnect,Library/Peripherals/Microcontroller Peripherals,Library,Library/Memories and Memory Controllers,Library/SLS,Library/Microcontroller Peripherals,Library/Verification,Library/Qsys Interconnect/Memory-Mapped" />
+ <hdlexample language="VERILOG" />
+ <generation path="_PROJECT_NAME_" block_symbol_file="1" synthesis="1" />
+</preferences>

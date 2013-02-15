@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP3C16F484) Path("H:/DSD/de0/") File("hello_world.sof") MfrSpec(OpMask(1));
+		Device PartName(EP3C16F484) Path("H:/DSD/DSDCourseWork/") File("hello_world.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

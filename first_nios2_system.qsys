@@ -92,14 +92,6 @@
          type = "long";
       }
    }
-   element sys_clk_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "16781312";
-         type = "long";
-      }
-   }
    element onchip_mem.s1
    {
       datum baseAddress
@@ -113,6 +105,14 @@
       datum baseAddress
       {
          value = "16781344";
+         type = "long";
+      }
+   }
+   element sys_clk_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "16781312";
          type = "long";
       }
    }
@@ -160,7 +160,7 @@
  <parameter name="projectName" value="hello_world.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1360935369950" />
+ <parameter name="timeStamp" value="1360937809684" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />

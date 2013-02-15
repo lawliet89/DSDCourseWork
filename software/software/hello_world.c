@@ -24,11 +24,12 @@
 #include <string.h>
 #include <unistd.h>
 
-#define DIMENSION 3 // Dimension for the matrix to be defined
+#define DIMENSION 20 // Dimension for the matrix to be defined
 
 float determinant(float *matrix, int dimension);
 float getAt(float *m, int i, int j, int dimension);
 void putAt(float *m, int i, int j, int dimension, float value);
+void randomMatrix(float *matrix, int dimension);
 
 float determinant(float *matrix, int dimension){
 	int i, j, p;
@@ -85,35 +86,45 @@ void putAt(float *m, int i, int j, int dimension, float value){
 	*(m + i*dimension + j) = value;
 }
 
+void randomMatrix(float *matrix, int dimension){
+	int i, j;
+	float no;
+	char buffer[11];
+	alt_putstr("[");
+	for (i = 0; i < dimension; i++){
+		for (j = 0; j < dimension; j++){
+			no = ((float) (rand()%20))/10-1;
+			*(matrix+i*dimension+j) = no;
+			gcvt(no, 10, buffer);
+			alt_putstr(buffer);
+			alt_putstr(" ");
+		}
+		alt_putstr(";\n");
+	}
+	alt_putstr("]\n");
+}
+
 int main(){
 	float det = 0.f;
+	int i;
 	char buffer[11];
 	char buf[11];
-	int i;
-	float matrix[DIMENSION][DIMENSION] = {
-			{25, 5, 1},
-			{64, 8, 1},
-			{144, 12, 1}};
 	clock_t exec_t1, exec_t2;
-
+	float matrix[DIMENSION][DIMENSION];
 	alt_putstr("Hello from Nios II!\n");
+	randomMatrix( (float *) matrix, DIMENSION);
+
 	exec_t1 = times(NULL); // get system time before starting the process
-
-
-
-	for (i = 0; i < 10000; i++)
-	{
+	for (i = 0; i < 100; i++){
 		det = determinant( (float *) matrix, DIMENSION);
 
 	}
+	exec_t2 = times(NULL); // get system time after finishing the process
+	gcvt(((double)exec_t2-(double)exec_t1) / alt_ticks_per_second(), 10, buf);
 	gcvt(det, 10, buffer);
 	alt_putstr(buffer);
 	alt_putstr("\n");
-	exec_t2 = times(NULL); // get system time after finishing the process
-	gcvt(((double)exec_t2-(double)exec_t1) / alt_ticks_per_second(), 10, buf);
 	alt_putstr(" proc time = "); alt_putstr(buf); alt_putstr(" seconds \n");
-
-
 
 	/* Event loop never exits. */
 	while (1);

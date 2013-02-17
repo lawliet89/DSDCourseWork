@@ -1,0 +1,132 @@
+/*
+ * "Hello World" example.
+ *
+ * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
+ * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example
+ * designs. It runs with or without the MicroC/OS-II RTOS and requires a STDOUT
+ * device in your system's hardware.
+ * The memory footprint of this hosted application is ~69 kbytes by default
+ * using the standard reference design.
+ *
+ * For a reduced footprint version of this template, and an explanation of how
+ * to reduce the memory footprint for a given application, see the
+ * "small_hello_world" template.
+ *
+ */
+
+#include "stdlib.h"
+#include "sys/alt_stdio.h"
+#include <sys/alt_alarm.h>
+#include "sys/times.h"
+#include "alt_types.h"
+#include "system.h"
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
+#define DIMENSION 20 // Dimension for the matrix to be defined
+
+float determinant(float *matrix, int dimension);
+float getAt(float *m, int i, int j, int dimension);
+void putAt(float *m, int i, int j, int dimension, float value);
+void randomMatrix(float *matrix, int dimension);
+
+float determinant(float *matrix, int dimension){
+	int i, j, p;
+	float a, result;
+	float *m;
+
+	// Let us copy the matrix first
+	m = (float *) malloc( sizeof(float)*dimension*dimension );
+	memcpy(m, matrix, sizeof(float)*dimension*dimension );
+
+	// First step: perform LU Decomposition using Doolittle's Method
+	// This algorithm will return, in the same matrix, a lower unit triangular matrix
+	// (i.e. diagonals one)
+	// and an upper trangular matrix
+	// https://vismor.com/documents/network_analysis/matrix_algorithms/S4.SS2.php
+
+	for (i = 0; i < dimension; i++){
+		for (j = 0; j < i; j++){
+			a = getAt(m, i, j, dimension);
+			for (p = 0; p < j; p++){
+				a -= getAt(m, i, p, dimension) * getAt(m, p, j, dimension);
+			}
+			putAt(m, i, j, dimension, a/getAt(m, j, j, dimension));
+		}
+		for (j = i; j < dimension; j++){
+			a = getAt(m, i, j, dimension);
+			for (p = 0; p < i; p++){
+				a -= getAt(m, i, p, dimension) * getAt(m, p, j, dimension);
+			}
+			putAt(m, i, j, dimension, a);
+		}
+	}
+
+	// Second step is to find the determinant.
+	// Because the lower triangle is a unit triangular matrix
+	// the determinant is simply a product of all the upper triangle diagonal
+	// which in this case is exactly the diagonal of m
+	result = 1;
+	for (i = 0; i < dimension; i++)
+		result *= getAt(m, i, i, dimension);
+
+	free(m);
+
+	return result;
+}
+
+// Based on i and j, and a float pointer, get the value at row i column j
+float getAt(float *m, int i, int j, int dimension){
+	return *(m + i*dimension + j);
+}
+
+// Based on i and j, and a float pointer, put the value at row i column j
+void putAt(float *m, int i, int j, int dimension, float value){
+	*(m + i*dimension + j) = value;
+}
+
+void randomMatrix(float *matrix, int dimension){
+	int i, j, no;
+	char buffer[11];
+	alt_putstr("[");
+	for (i = 0; i < dimension; i++){
+		for (j = 0; j < dimension; j++){
+			no = (rand()%10)-10;
+			*(matrix+i*dimension+j) = no;
+			gcvt(no, 10, buffer);
+			alt_putstr(buffer);
+			alt_putstr(" ");
+		}
+		alt_putstr(";\n");
+	}
+	alt_putstr("]");
+}
+
+int main(){
+	float det = 0.f;
+	char buffer[11];
+	char buf[11];
+	int i;
+	float matrix[DIMENSION][DIMENSION];
+	alt_putstr("Hello from Nios II!\n");
+	randomMatrix( (float *) matrix, DIMENSION);
+
+	exec_t1 = times(NULL); // get system time before starting the process
+	//for (i = 0; i < 10000; i++){
+		det = determinant( (float *) matrix, DIMENSION);
+
+	//}
+	gcvt(det, 10, buffer);
+	alt_putstr(buffer);
+	alt_putstr("\n");
+	exec_t2 = times(NULL); // get system time after finishing the process
+	gcvt(((double)exec_t2-(double)exec_t1) / alt_ticks_per_second(), 10, buf);
+	alt_putstr(" proc time = "); alt_putstr(buf); alt_putstr(" seconds \n");
+
+	/* Event loop never exits. */
+	while (1);
+
+	return 0;
+}
+

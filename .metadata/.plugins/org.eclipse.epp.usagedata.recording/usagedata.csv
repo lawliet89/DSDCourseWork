@@ -1,0 +1,51 @@
+what,kind,bundleId,bundleVersion,description,time
+started,bundle,org.eclipse.mylyn.bugzilla.ui,3.4.2.v20100909-0100-e3x,"org.eclipse.mylyn.bugzilla.ui",1361104032757
+started,bundle,org.eclipse.mylyn.commons.net,3.4.1.v20100625-2100-e3x,"org.eclipse.mylyn.commons.net",1361104032757
+started,bundle,org.eclipse.mylyn.commons.ui,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.commons.ui",1361104032758
+started,bundle,org.eclipse.mylyn.context.core,3.4.1.v20100909-0100-e3x,"org.eclipse.mylyn.context.core",1361104032759
+started,bundle,org.eclipse.mylyn.context.ui,3.4.1.v20100909-0100-e3x,"org.eclipse.mylyn.context.ui",1361104032760
+started,bundle,org.eclipse.mylyn.monitor.ui,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.monitor.ui",1361104032760
+started,bundle,org.eclipse.mylyn.tasks.ui,3.4.2.v20100902-0100-e3x,"org.eclipse.mylyn.tasks.ui",1361104032761
+started,bundle,org.eclipse.mylyn.team.ui,3.4.2.v20100909-0100-e3x,"org.eclipse.mylyn.team.ui",1361104032761
+started,bundle,org.eclipse.search,3.6.0.v20100520-0800,"org.eclipse.search",1361104032762
+started,bundle,org.eclipse.team.core,3.5.100.R36x_v20100825-0800,"org.eclipse.team.core",1361104032770
+started,bundle,org.eclipse.team.cvs.core,3.3.300.I20100526-0800,"org.eclipse.team.cvs.core",1361104032771
+started,bundle,org.eclipse.team.cvs.ui,3.3.301.R36x_v20100825-0800,"org.eclipse.team.cvs.ui",1361104032772
+started,bundle,org.eclipse.team.ui,3.5.101.R36x_v20100825-0800,"org.eclipse.team.ui",1361104032772
+started,bundle,org.eclipse.ui,3.6.1.M20100826-1330,"org.eclipse.ui",1361104032773
+started,bundle,org.eclipse.ui.console,3.5.0.v20100526,"org.eclipse.ui.console",1361104032773
+started,bundle,org.eclipse.ui.editors,3.6.1.r361_v20100825-0800,"org.eclipse.ui.editors",1361104032773
+started,bundle,org.eclipse.ui.forms,3.5.2.r36_v20100702,"org.eclipse.ui.forms",1361104032774
+started,bundle,org.eclipse.ui.ide,3.6.1.M20100825-0800,"org.eclipse.ui.ide",1361104032775
+started,bundle,org.eclipse.ui.navigator,3.5.0.I20100601-0800,"org.eclipse.ui.navigator",1361104032776
+started,bundle,org.eclipse.ui.navigator.resources,3.4.201.M20100707-0800,"org.eclipse.ui.navigator.resources",1361104032776
+started,bundle,org.eclipse.ui.net,1.2.100.I20100505-1245,"org.eclipse.ui.net",1361104032777
+started,bundle,org.eclipse.ui.views,3.5.0.I20100527-0800,"org.eclipse.ui.views",1361104032777
+started,bundle,org.eclipse.ui.workbench,3.6.1.M20100826-1330,"org.eclipse.ui.workbench",1361104032778
+started,bundle,org.eclipse.ui.workbench.texteditor,3.6.1.r361_v20100714-0800,"org.eclipse.ui.workbench.texteditor",1361104032779
+started,bundle,org.eclipse.update.configurator,3.3.100.v20100512,"org.eclipse.update.configurator",1361104032779
+started,bundle,org.eclipse.update.core,3.2.402.R36x_v20100629,"org.eclipse.update.core",1361104032779
+started,bundle,org.eclipse.update.scheduler,3.2.300.v20100512,"org.eclipse.update.scheduler",1361104032780
+started,bundle,com.altera.sbtgui.integration,12.0.0.178,"com.altera.sbtgui.integration",1361104032780
+started,bundle,com.altera.sbtgui.project,12.0.0.178,"com.altera.sbtgui.project",1361104032781
+started,bundle,com.altera.systemconsole,12.0.0.178,"com.altera.systemconsole",1361104032781
+started,bundle,com.altera.systemconsole.designs.plugin,12.0.0.178,"com.altera.systemconsole.designs.plugin",1361104032781
+started,bundle,com.altera.systemconsole.scripting,12.0.0.178,"com.altera.systemconsole.scripting",1361104032781
+started,bundle,com.altera.utilities,12.0.0.178,"com.altera.utilities",1361104032782
+os,sysinfo,,,"win32",1361104032784
+arch,sysinfo,,,"x86",1361104032784
+ws,sysinfo,,,"win32",1361104032784
+locale,sysinfo,,,"en_SG",1361104032784
+processors,sysinfo,,,"8",1361104032784
+java.runtime.name,sysinfo,,,"Java(TM) SE Runtime Environment",1361104032784
+java.runtime.version,sysinfo,,,"1.6.0_23-b05",1361104032784
+java.specification.name,sysinfo,,,"Java Platform API Specification",1361104032784
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1361104032784
+java.specification.version,sysinfo,,,"1.6",1361104032784
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1361104032784
+java.version,sysinfo,,,"1.6.0_23",1361104032784
+java.vm.info,sysinfo,,,"mixed mode",1361104032784
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1361104032784
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1361104032784
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1361104032784
+java.vm.specification.version,sysinfo,,,"1.0",1361104032784

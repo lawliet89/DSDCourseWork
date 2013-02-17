@@ -1,0 +1,69 @@
+// Copyright (C) 1991-2012 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// PROGRAM		"Quartus II 64-Bit"
+// VERSION		"Version 12.0 Build 178 05/31/2012 SJ Full Version"
+// CREATED		"Fri Feb 15 10:41:08 2013"
+
+module hello_world(
+	iCLK_50,
+	oDRAM_CAS_N,
+	oDRAM_CKE,
+	oDRAM_CS_N,
+	oDRAM_RAS_N,
+	oDRAM_WE_N,
+	oDRAM_CLK,
+	DRAM_DQ,
+	oDRAM_A,
+	oDRAM_BA,
+	oDRAM_DQM,
+	oLEDG
+);
+
+
+input wire	iCLK_50;
+output wire	oDRAM_CAS_N;
+output wire	oDRAM_CKE;
+output wire	oDRAM_CS_N;
+output wire	oDRAM_RAS_N;
+output wire	oDRAM_WE_N;
+output wire	oDRAM_CLK;
+inout wire	[15:0] DRAM_DQ;
+output wire	[11:0] oDRAM_A;
+output wire	[1:0] oDRAM_BA;
+output wire	[1:0] oDRAM_DQM;
+output wire	[7:0] oLEDG;
+
+
+
+
+
+
+first_nios2_system	b2v_inst(
+	.clk_clk(iCLK_50),
+	
+	
+	
+	
+	
+	
+	
+	.led_pio_external_connection_export(oLEDG)
+	
+	
+	
+	);
+
+
+endmodule

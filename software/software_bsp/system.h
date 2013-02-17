@@ -2,9 +2,9 @@
  * system.h - SOPC Builder system and BSP software package information
  *
  * Machine generated for CPU 'cpu' in SOPC Builder design 'first_nios2_system'
- * SOPC Builder design path: H:/DSD/DSDCourseWork/first_nios2_system.sopcinfo
+ * SOPC Builder design path: ../../first_nios2_system.sopcinfo
  *
- * Generated: Fri Feb 15 16:13:29 GMT 2013
+ * Generated: Sun Feb 17 17:53:55 GMT 2013
  */
 
 /*
@@ -119,6 +119,16 @@
 
 
 /*
+ * Custom instruction macros
+ *
+ */
+
+#define ALT_CI_FP_ALU_0(n,A,B) __builtin_custom_inii(ALT_CI_FP_ALU_0_N+(n&ALT_CI_FP_ALU_0_N_MASK),(A),(B))
+#define ALT_CI_FP_ALU_0_N 0x0
+#define ALT_CI_FP_ALU_0_N_MASK ((1<<2)-1)
+
+
+/*
  * Define for each module class mastered by the CPU
  *
  */
@@ -129,6 +139,7 @@
 #define __ALTERA_AVALON_SYSID_QSYS
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_QSYS
+#define __FP_ALU
 
 
 /*
@@ -299,7 +310,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1360937854
+#define SYSID_TIMESTAMP 1361123166
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */

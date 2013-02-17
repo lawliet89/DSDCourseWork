@@ -1,5 +1,7 @@
-#Fri Feb 15 14:27:46 GMT 2013
+#Sun Feb 17 17:41:36 GMT 2013
 newSoftwareExampleWizardPage.defaultLocation=H\:\\DSD\\DSDCourseWork\\software\\software
 newSoftwareExampleWizardPage.sopcinfoFile=H\:\\DSD\\DSDCourseWork\\first_nios2_system.sopcinfo
 eclipse.preferences.version=1
+newBspWizardPage.defaultLocation=H\:\\DSD\\DSDCourseWork\\software\\software_bsp
+newBspWizardPage.sopcinfoFile=H\:\\DSD\\DSDCourseWork\\first_nios2_system.sopcinfo
 newSoftwareExampleWizardPage2.newBspLocation=H\:\\DSD\\DSDCourseWork\\software\\software_bsp

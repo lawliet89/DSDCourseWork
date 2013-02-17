@@ -97,6 +97,7 @@
 <definedSymbol symbol="ALT_NO_INSTRUCTION_EMULATION=1"/>
 <definedSymbol symbol="ALT_SINGLE_THREADED=1"/>
 <definedSymbol symbol="ALT_NO_C_PLUS_PLUS=1"/>
+<definedSymbol symbol="ALT_USE_SMALL_DRIVERS=1"/>
 </collector>
 </instance>
 <instance id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.880393220;preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.880393220.;cdt.managedbuild.tool.gnu.c.compiler.cygwin.base.1137312767;cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.1807776281">
@@ -188,6 +189,7 @@
 <definedSymbol symbol="ALT_NO_INSTRUCTION_EMULATION=1"/>
 <definedSymbol symbol="ALT_SINGLE_THREADED=1"/>
 <definedSymbol symbol="ALT_NO_C_PLUS_PLUS=1"/>
+<definedSymbol symbol="ALT_USE_SMALL_DRIVERS=1"/>
 </collector>
 </instance>
 </scannerInfo>

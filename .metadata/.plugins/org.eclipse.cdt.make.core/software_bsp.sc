@@ -2,7 +2,7 @@
 <?scdStore version="2"?>
 
 <scannerInfo id="org.eclipse.cdt.make.core.discoveredScannerInfo">
-<instance id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.689215859;preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.689215859.;cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.base.1164779746;cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin.2089470736">
+<instance id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.2061426896;preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.2061426896.;cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.base.1820741457;cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin.1027890908">
 <collector id="org.eclipse.cdt.make.core.PerProjectSICollector">
 <definedSymbol symbol="__cplusplus=1"/>
 <definedSymbol symbol="__STDC_HOSTED__=1"/>
@@ -91,7 +91,7 @@
 <definedSymbol symbol="__unix=1"/>
 </collector>
 </instance>
-<instance id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.689215859;preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.689215859.;cdt.managedbuild.tool.gnu.c.compiler.cygwin.base.897927895;cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.1874417534">
+<instance id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.2061426896;preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.2061426896.;cdt.managedbuild.tool.gnu.c.compiler.cygwin.base.417350437;cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.178780728">
 <collector id="org.eclipse.cdt.make.core.PerProjectSICollector">
 <definedSymbol symbol="__STDC_HOSTED__=1"/>
 <definedSymbol symbol="__GNUC__=3"/>

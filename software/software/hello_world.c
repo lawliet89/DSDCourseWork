@@ -24,6 +24,12 @@
 #include <string.h>
 #include <unistd.h>
 
+#define ALT_CI_FP_ALU_FP(n,A,B) __builtin_custom_fnff(ALT_CI_FP_ALU_0_N+(n&ALT_CI_FP_ALU_0_N_MASK),(A),(B))
+#define fp_add(A,B) ALT_CI_FP_ALU_FP(0,(A),(B))
+#define fp_sub(A,B) ALT_CI_FP_ALU_FP(1,(A),(B))
+#define fp_mul(A,B) ALT_CI_FP_ALU_FP(2,(A),(B))
+#define fp_div(A,B) ALT_CI_FP_ALU_FP(3,(A),(B))
+
 #define DIMENSION 20 // Dimension for the matrix to be defined
 
 float determinant(float *matrix, int dimension);
@@ -50,14 +56,14 @@ float determinant(float *matrix, int dimension){
 		for (j = 0; j < i; j++){
 			a = getAt(m, i, j, dimension);
 			for (p = 0; p < j; p++){
-				a -= getAt(m, i, p, dimension) * getAt(m, p, j, dimension);
+				a = fp_sub(a, fp_mul( getAt(m, i, p, dimension), getAt(m, p, j, dimension)) );
 			}
 			putAt(m, i, j, dimension, a/getAt(m, j, j, dimension));
 		}
 		for (j = i; j < dimension; j++){
 			a = getAt(m, i, j, dimension);
 			for (p = 0; p < i; p++){
-				a -= getAt(m, i, p, dimension) * getAt(m, p, j, dimension);
+				a = fp_sub(a, fp_mul( getAt(m, i, p, dimension) , getAt(m, p, j, dimension)));
 			}
 			putAt(m, i, j, dimension, a);
 		}
@@ -69,7 +75,7 @@ float determinant(float *matrix, int dimension){
 	// which in this case is exactly the diagonal of m
 	result = 1;
 	for (i = 0; i < dimension; i++)
-		result *= getAt(m, i, i, dimension);
+		result = fp_mul(result, getAt(m, i, i, dimension));
 
 	free(m);
 

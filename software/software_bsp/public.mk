@@ -87,11 +87,11 @@ ACDS_VERSION := 12.0
 
 # Quartus Generated JDI File. Required for resolving node instance ID's with 
 # design component names. 
-JDI_FILE := H:/DSD/DSDCourseWork/hello_world.jdi
+JDI_FILE := $(ABS_BSP_ROOT_DIR)/../../hello_world.jdi
 
 # Qsys--generated SOPCINFO file. Required for resolving node instance ID's with 
 # design component names. 
-SOPCINFO_FILE := H:/DSD/DSDCourseWork/first_nios2_system.sopcinfo
+SOPCINFO_FILE := $(ABS_BSP_ROOT_DIR)/../../first_nios2_system.sopcinfo
 
 # Big-Endian operation. 
 # setting BIG_ENDIAN is false
@@ -156,9 +156,9 @@ SOPC_SYSID_FLAG += --sidp=0x1001038
 ELF_PATCH_FLAG  += --sidp 0x1001038
 
 # The SOPC Timestamp 
-# setting SOPC_TIMESTAMP is 1360937854
-SOPC_SYSID_FLAG += --timestamp=1360937854
-ELF_PATCH_FLAG  += --timestamp 1360937854
+# setting SOPC_TIMESTAMP is 1361123166
+SOPC_SYSID_FLAG += --timestamp=1361123166
+ELF_PATCH_FLAG  += --timestamp 1361123166
 
 # Small-footprint (polled mode) driver none 
 # setting altera_avalon_jtag_uart_driver.enable_small_driver is false
@@ -219,7 +219,8 @@ ALT_CPPFLAGS += -DALT_NO_INSTRUCTION_EMULATION
 # access routines) to fail. You can define a symbol provided by each driver to 
 # prevent it from being removed. If true, adds -DALT_USE_SMALL_DRIVERS to 
 # ALT_CPPFLAGS in public.mk. none 
-# setting hal.enable_reduced_device_drivers is 0
+# setting hal.enable_reduced_device_drivers is 1
+ALT_CPPFLAGS += -DALT_USE_SMALL_DRIVERS
 
 # Turns on HAL runtime stack checking feature. Enabling this setting causes 
 # additional code to be placed into each subroutine call to generate an 

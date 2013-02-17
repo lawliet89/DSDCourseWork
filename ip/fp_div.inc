@@ -23,7 +23,6 @@ FUNCTION fp_div
 )
 
 RETURNS (
-	division_by_zero,
 	nan,
 	overflow,
 	result[31..0],

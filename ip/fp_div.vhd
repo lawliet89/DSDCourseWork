@@ -33,11 +33,11 @@
 --applicable agreement for further details.
 
 
---altfp_div CBX_AUTO_BLACKBOX="ALL" DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone III" OPTIMIZE="SPEED" PIPELINE=14 REDUCED_FUNCTIONALITY="NO" WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab division_by_zero nan overflow result underflow zero
+--altfp_div CBX_AUTO_BLACKBOX="ALL" DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone III" OPTIMIZE="SPEED" PIPELINE=14 REDUCED_FUNCTIONALITY="NO" WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab nan overflow result underflow zero
 --VERSION_BEGIN 12.0 cbx_altbarrel_shift 2012:05:31:20:08:02:SJ cbx_altfp_div 2012:05:31:20:08:02:SJ cbx_altsyncram 2012:05:31:20:08:02:SJ cbx_cycloneii 2012:05:31:20:08:02:SJ cbx_lpm_abs 2012:05:31:20:08:02:SJ cbx_lpm_add_sub 2012:05:31:20:08:02:SJ cbx_lpm_compare 2012:05:31:20:08:02:SJ cbx_lpm_decode 2012:05:31:20:08:02:SJ cbx_lpm_divide 2012:05:31:20:08:02:SJ cbx_lpm_mult 2012:05:31:20:08:02:SJ cbx_lpm_mux 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ cbx_padd 2012:05:31:20:08:02:SJ cbx_stratix 2012:05:31:20:08:02:SJ cbx_stratixii 2012:05:31:20:08:02:SJ cbx_stratixiii 2012:05:31:20:08:02:SJ cbx_stratixv 2012:05:31:20:08:02:SJ cbx_util_mgl 2012:05:31:20:08:02:SJ  VERSION_END
 
 
---altfp_div_pst CBX_AUTO_BLACKBOX="ALL" DEVICE_FAMILY="Cyclone III" FILE_NAME="fp_div.vhd:a" PIPELINE=14 WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab division_by_zero nan overflow result underflow zero
+--altfp_div_pst CBX_AUTO_BLACKBOX="ALL" DEVICE_FAMILY="Cyclone III" FILE_NAME="fp_div.vhd:a" PIPELINE=14 WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab nan overflow result underflow zero
 --VERSION_BEGIN 12.0 cbx_altbarrel_shift 2012:05:31:20:08:02:SJ cbx_altfp_div 2012:05:31:20:08:02:SJ cbx_altsyncram 2012:05:31:20:08:02:SJ cbx_cycloneii 2012:05:31:20:08:02:SJ cbx_lpm_abs 2012:05:31:20:08:02:SJ cbx_lpm_add_sub 2012:05:31:20:08:02:SJ cbx_lpm_compare 2012:05:31:20:08:02:SJ cbx_lpm_decode 2012:05:31:20:08:02:SJ cbx_lpm_divide 2012:05:31:20:08:02:SJ cbx_lpm_mult 2012:05:31:20:08:02:SJ cbx_lpm_mux 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ cbx_padd 2012:05:31:20:08:02:SJ cbx_stratix 2012:05:31:20:08:02:SJ cbx_stratixii 2012:05:31:20:08:02:SJ cbx_stratixiii 2012:05:31:20:08:02:SJ cbx_stratixv 2012:05:31:20:08:02:SJ cbx_util_mgl 2012:05:31:20:08:02:SJ  VERSION_END
 
  LIBRARY altera_mf;
@@ -46,11 +46,11 @@
  LIBRARY lpm;
  USE lpm.all;
 
---synthesis_resources = altsyncram 1 lpm_add_sub 4 lpm_compare 1 lpm_mult 5 mux21 74 reg 876 
+--synthesis_resources = altsyncram 1 lpm_add_sub 4 lpm_compare 1 lpm_mult 5 mux21 74 reg 875 
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_div_altfp_div_pst_caj IS 
+ ENTITY  fp_div_altfp_div_pst_ejh IS 
 	 PORT 
 	 ( 
 		 aclr	:	IN  STD_LOGIC := '0';
@@ -58,16 +58,15 @@
 		 clock	:	IN  STD_LOGIC;
 		 dataa	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 datab	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
-		 division_by_zero	:	OUT  STD_LOGIC;
 		 nan	:	OUT  STD_LOGIC;
 		 overflow	:	OUT  STD_LOGIC;
 		 result	:	OUT  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 underflow	:	OUT  STD_LOGIC;
 		 zero	:	OUT  STD_LOGIC
 	 ); 
- END fp_div_altfp_div_pst_caj;
+ END fp_div_altfp_div_pst_ejh;
 
- ARCHITECTURE RTL OF fp_div_altfp_div_pst_caj IS
+ ARCHITECTURE RTL OF fp_div_altfp_div_pst_ejh IS
 
 	 SIGNAL  wire_altsyncram3_q_a	:	STD_LOGIC_VECTOR (8 DOWNTO 0);
 	 SIGNAL	 a_is_infinity_dffe_0	:	STD_LOGIC
@@ -307,11 +306,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 divbyzero_pipe_dffe_12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 divbyzero_pipe_dffe_13	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -1498,7 +1492,6 @@
 	bias_addition_overf_w <= wire_bias_addition_overflow;
 	bias_addition_w <= wire_bias_addition_result(7 DOWNTO 0);
 	both_exp_zeros <= both_exp_zeros_dffe;
-	division_by_zero <= divbyzero_pipe_dffe_13;
 	e0_dffe1_wo <= e0_w;
 	e0_w <= wire_altsyncram3_q_a;
 	e1_w <= ( e1_dffe_1 & e1_dffe_perf_3 & wire_b1_prod_w_lg_w_result_range357w358w);
@@ -2112,14 +2105,6 @@
 		IF (aclr = '1') THEN divbyzero_pipe_dffe_12 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN divbyzero_pipe_dffe_12 <= divbyzero_pipe_dffe_11;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN divbyzero_pipe_dffe_13 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN divbyzero_pipe_dffe_13 <= divbyzero_pipe_dffe_12;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -3179,13 +3164,13 @@
 	wire_select_bias_2a_dataout <= value_zero_w WHEN both_exp_zeros = '1'  ELSE select_bias_out_w;
 	wire_select_biasa_dataout <= value_normal_w WHEN frac_a_smaller_dffe1_wo = '1'  ELSE value_add_one_w;
 
- END RTL; --fp_div_altfp_div_pst_caj
+ END RTL; --fp_div_altfp_div_pst_ejh
 
---synthesis_resources = altsyncram 1 lpm_add_sub 4 lpm_compare 1 lpm_mult 5 mux21 74 reg 876 
+--synthesis_resources = altsyncram 1 lpm_add_sub 4 lpm_compare 1 lpm_mult 5 mux21 74 reg 875 
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_div_altfp_div_3sm IS 
+ ENTITY  fp_div_altfp_div_55l IS 
 	 PORT 
 	 ( 
 		 aclr	:	IN  STD_LOGIC := '0';
@@ -3193,24 +3178,22 @@
 		 clock	:	IN  STD_LOGIC;
 		 dataa	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 datab	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
-		 division_by_zero	:	OUT  STD_LOGIC;
 		 nan	:	OUT  STD_LOGIC;
 		 overflow	:	OUT  STD_LOGIC;
 		 result	:	OUT  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 underflow	:	OUT  STD_LOGIC;
 		 zero	:	OUT  STD_LOGIC
 	 ); 
- END fp_div_altfp_div_3sm;
+ END fp_div_altfp_div_55l;
 
- ARCHITECTURE RTL OF fp_div_altfp_div_3sm IS
+ ARCHITECTURE RTL OF fp_div_altfp_div_55l IS
 
-	 SIGNAL  wire_altfp_div_pst1_division_by_zero	:	STD_LOGIC;
 	 SIGNAL  wire_altfp_div_pst1_nan	:	STD_LOGIC;
 	 SIGNAL  wire_altfp_div_pst1_overflow	:	STD_LOGIC;
 	 SIGNAL  wire_altfp_div_pst1_result	:	STD_LOGIC_VECTOR (31 DOWNTO 0);
 	 SIGNAL  wire_altfp_div_pst1_underflow	:	STD_LOGIC;
 	 SIGNAL  wire_altfp_div_pst1_zero	:	STD_LOGIC;
-	 COMPONENT  fp_div_altfp_div_pst_caj
+	 COMPONENT  fp_div_altfp_div_pst_ejh
 	 PORT
 	 ( 
 		aclr	:	IN  STD_LOGIC := '0';
@@ -3218,7 +3201,6 @@
 		clock	:	IN  STD_LOGIC;
 		dataa	:	IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
 		datab	:	IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
-		division_by_zero	:	OUT  STD_LOGIC;
 		nan	:	OUT  STD_LOGIC;
 		overflow	:	OUT  STD_LOGIC;
 		result	:	OUT  STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -3228,20 +3210,18 @@
 	 END COMPONENT;
  BEGIN
 
-	division_by_zero <= wire_altfp_div_pst1_division_by_zero;
 	nan <= wire_altfp_div_pst1_nan;
 	overflow <= wire_altfp_div_pst1_overflow;
 	result <= wire_altfp_div_pst1_result;
 	underflow <= wire_altfp_div_pst1_underflow;
 	zero <= wire_altfp_div_pst1_zero;
-	altfp_div_pst1 :  fp_div_altfp_div_pst_caj
+	altfp_div_pst1 :  fp_div_altfp_div_pst_ejh
 	  PORT MAP ( 
 		aclr => aclr,
 		clk_en => clk_en,
 		clock => clock,
 		dataa => dataa,
 		datab => datab,
-		division_by_zero => wire_altfp_div_pst1_division_by_zero,
 		nan => wire_altfp_div_pst1_nan,
 		overflow => wire_altfp_div_pst1_overflow,
 		result => wire_altfp_div_pst1_result,
@@ -3249,7 +3229,7 @@
 		zero => wire_altfp_div_pst1_zero
 	  );
 
- END RTL; --fp_div_altfp_div_3sm
+ END RTL; --fp_div_altfp_div_55l
 --VALID FILE
 
 
@@ -3264,7 +3244,6 @@ ENTITY fp_div IS
 		clock		: IN STD_LOGIC ;
 		dataa		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		datab		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
-		division_by_zero		: OUT STD_LOGIC ;
 		nan		: OUT STD_LOGIC ;
 		overflow		: OUT STD_LOGIC ;
 		result		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -3281,11 +3260,10 @@ ARCHITECTURE RTL OF fp_div IS
 	SIGNAL sub_wire2	: STD_LOGIC ;
 	SIGNAL sub_wire3	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL sub_wire4	: STD_LOGIC ;
-	SIGNAL sub_wire5	: STD_LOGIC ;
 
 
 
-	COMPONENT fp_div_altfp_div_3sm
+	COMPONENT fp_div_altfp_div_55l
 	PORT (
 			clk_en	: IN STD_LOGIC ;
 			clock	: IN STD_LOGIC ;
@@ -3296,7 +3274,6 @@ ARCHITECTURE RTL OF fp_div IS
 			nan	: OUT STD_LOGIC ;
 			result	: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
 			aclr	: IN STD_LOGIC ;
-			division_by_zero	: OUT STD_LOGIC ;
 			underflow	: OUT STD_LOGIC 
 	);
 	END COMPONENT;
@@ -3306,10 +3283,9 @@ BEGIN
 	zero    <= sub_wire1;
 	nan    <= sub_wire2;
 	result    <= sub_wire3(31 DOWNTO 0);
-	division_by_zero    <= sub_wire4;
-	underflow    <= sub_wire5;
+	underflow    <= sub_wire4;
 
-	fp_div_altfp_div_3sm_component : fp_div_altfp_div_3sm
+	fp_div_altfp_div_55l_component : fp_div_altfp_div_55l
 	PORT MAP (
 		clk_en => clk_en,
 		clock => clock,
@@ -3320,8 +3296,7 @@ BEGIN
 		zero => sub_wire1,
 		nan => sub_wire2,
 		result => sub_wire3,
-		division_by_zero => sub_wire4,
-		underflow => sub_wire5
+		underflow => sub_wire4
 	);
 
 
@@ -3346,7 +3321,6 @@ END RTL;
 -- Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
 -- Retrieval info: USED_PORT: dataa 0 0 32 0 INPUT NODEFVAL "dataa[31..0]"
 -- Retrieval info: USED_PORT: datab 0 0 32 0 INPUT NODEFVAL "datab[31..0]"
--- Retrieval info: USED_PORT: division_by_zero 0 0 0 0 OUTPUT NODEFVAL "division_by_zero"
 -- Retrieval info: USED_PORT: nan 0 0 0 0 OUTPUT NODEFVAL "nan"
 -- Retrieval info: USED_PORT: overflow 0 0 0 0 OUTPUT NODEFVAL "overflow"
 -- Retrieval info: USED_PORT: result 0 0 32 0 OUTPUT NODEFVAL "result[31..0]"
@@ -3357,7 +3331,6 @@ END RTL;
 -- Retrieval info: CONNECT: @clock 0 0 0 0 clock 0 0 0 0
 -- Retrieval info: CONNECT: @dataa 0 0 32 0 dataa 0 0 32 0
 -- Retrieval info: CONNECT: @datab 0 0 32 0 datab 0 0 32 0
--- Retrieval info: CONNECT: division_by_zero 0 0 0 0 @division_by_zero 0 0 0 0
 -- Retrieval info: CONNECT: nan 0 0 0 0 @nan 0 0 0 0
 -- Retrieval info: CONNECT: overflow 0 0 0 0 @overflow 0 0 0 0
 -- Retrieval info: CONNECT: result 0 0 32 0 @result 0 0 32 0
@@ -3366,6 +3339,6 @@ END RTL;
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.vhd TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.inc TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.bsf TRUE FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.bsf TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div_inst.vhd TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div_syn.v TRUE

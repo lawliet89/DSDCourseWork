@@ -33,14 +33,14 @@
 //applicable agreement for further details.
 
 
-//altfp_div DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone III" OPTIMIZE="SPEED" PIPELINE=14 REDUCED_FUNCTIONALITY="NO" WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab division_by_zero nan overflow result underflow zero
+//altfp_div DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone III" OPTIMIZE="SPEED" PIPELINE=14 REDUCED_FUNCTIONALITY="NO" WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab nan overflow result underflow zero
 //VERSION_BEGIN 12.0 cbx_altbarrel_shift 2012:05:31:20:08:02:SJ cbx_altfp_div 2012:05:31:20:08:02:SJ cbx_altsyncram 2012:05:31:20:08:02:SJ cbx_cycloneii 2012:05:31:20:08:02:SJ cbx_lpm_abs 2012:05:31:20:08:02:SJ cbx_lpm_add_sub 2012:05:31:20:08:02:SJ cbx_lpm_compare 2012:05:31:20:08:02:SJ cbx_lpm_decode 2012:05:31:20:08:02:SJ cbx_lpm_divide 2012:05:31:20:08:02:SJ cbx_lpm_mult 2012:05:31:20:08:02:SJ cbx_lpm_mux 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ cbx_padd 2012:05:31:20:08:02:SJ cbx_stratix 2012:05:31:20:08:02:SJ cbx_stratixii 2012:05:31:20:08:02:SJ cbx_stratixiii 2012:05:31:20:08:02:SJ cbx_stratixv 2012:05:31:20:08:02:SJ cbx_util_mgl 2012:05:31:20:08:02:SJ  VERSION_END
 // synthesis VERILOG_INPUT_VERSION VERILOG_2001
 // altera message_off 10463
 
 
 
-//altfp_div_pst DEVICE_FAMILY="Cyclone III" FILE_NAME="fp_div_syn.v:a" PIPELINE=14 WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab division_by_zero nan overflow result underflow zero
+//altfp_div_pst DEVICE_FAMILY="Cyclone III" FILE_NAME="fp_div_syn.v:a" PIPELINE=14 WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab nan overflow result underflow zero
 //VERSION_BEGIN 12.0 cbx_altbarrel_shift 2012:05:31:20:08:02:SJ cbx_altfp_div 2012:05:31:20:08:02:SJ cbx_altsyncram 2012:05:31:20:08:02:SJ cbx_cycloneii 2012:05:31:20:08:02:SJ cbx_lpm_abs 2012:05:31:20:08:02:SJ cbx_lpm_add_sub 2012:05:31:20:08:02:SJ cbx_lpm_compare 2012:05:31:20:08:02:SJ cbx_lpm_decode 2012:05:31:20:08:02:SJ cbx_lpm_divide 2012:05:31:20:08:02:SJ cbx_lpm_mult 2012:05:31:20:08:02:SJ cbx_lpm_mux 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ cbx_padd 2012:05:31:20:08:02:SJ cbx_stratix 2012:05:31:20:08:02:SJ cbx_stratixii 2012:05:31:20:08:02:SJ cbx_stratixiii 2012:05:31:20:08:02:SJ cbx_stratixv 2012:05:31:20:08:02:SJ cbx_util_mgl 2012:05:31:20:08:02:SJ  VERSION_END
 
 
@@ -3080,7 +3080,7 @@ module  fp_div_mult123
 		w1155w = {dffe149, dffe148, dffe147, dffe146, dffe145, dffe144, dffe143, dffe142, dffe141, dffe140, dffe139, dffe138, dffe137, dffe136, dffe135, dffe134, dffe133, dffe132, dffe131, dffe130, dffe129, dffe128, dffe127, dffe126, dffe125, dffe124, dffe123, dffe122, dffe121, dffe120, dffe119, dffe118, dffe117, dffe116, dffe115, dffe114, dffe113, dffe112, dffe111, dffe110, dffe109, dffe108, dffe107, dffe106, dffe105, dffe104, dffe103, dffe102, dffe101, dffe100, dffe99, dffe98};
 endmodule //fp_div_mult123
 
-//synthesis_resources = dsp_9bit 16 lut 194 M9K 1 mux21 74 reg 999 
+//synthesis_resources = dsp_9bit 16 lut 194 M9K 1 mux21 74 reg 998 
 //synopsys translate_off
 `timescale 1 ps / 1 ps
 //synopsys translate_on
@@ -3091,7 +3091,6 @@ module  fp_div_altfp_div_pst
 	clock,
 	dataa,
 	datab,
-	division_by_zero,
 	nan,
 	overflow,
 	result,
@@ -3102,7 +3101,6 @@ module  fp_div_altfp_div_pst
 	input   clock;
 	input   [31:0]  dataa;
 	input   [31:0]  datab;
-	output   division_by_zero;
 	output   nan;
 	output   overflow;
 	output   [31:0]  result;
@@ -3165,7 +3163,6 @@ module  fp_div_altfp_div_pst
 	reg	divbyzero_pipe_dffe_10;
 	reg	divbyzero_pipe_dffe_11;
 	reg	divbyzero_pipe_dffe_12;
-	reg	divbyzero_pipe_dffe_13;
 	reg	divbyzero_pipe_dffe_2;
 	reg	divbyzero_pipe_dffe_3;
 	reg	divbyzero_pipe_dffe_4;
@@ -3728,13 +3725,6 @@ module  fp_div_altfp_div_pst
 	always @ ( posedge clock or  posedge aclr)
 		if (aclr == 1'b1) divbyzero_pipe_dffe_12 <= 1'b0;
 		else if  (clk_en == 1'b1)   divbyzero_pipe_dffe_12 <= divbyzero_pipe_dffe_11;
-	// synopsys translate_off
-	initial
-		divbyzero_pipe_dffe_13 = 0;
-	// synopsys translate_on
-	always @ ( posedge clock or  posedge aclr)
-		if (aclr == 1'b1) divbyzero_pipe_dffe_13 <= 1'b0;
-		else if  (clk_en == 1'b1)   divbyzero_pipe_dffe_13 <= divbyzero_pipe_dffe_12;
 	// synopsys translate_off
 	initial
 		divbyzero_pipe_dffe_2 = 0;
@@ -4652,7 +4642,6 @@ module  fp_div_altfp_div_pst
 		bias_addition_overf_w = wire_bias_addition_overflow,
 		bias_addition_w = wire_bias_addition_result[7:0],
 		both_exp_zeros = both_exp_zeros_dffe,
-		division_by_zero = divbyzero_pipe_dffe_13,
 		e0_dffe1_wo = e0_w,
 		e0_w = wire_altsyncram3_q_a,
 		e1_w = {e1_dffe_1, e1_dffe_perf_3, (~ wire_b1_prod_result[33:17])},
@@ -4709,7 +4698,7 @@ module  fp_div_altfp_div_pst
 		zero_dffe_wo = zero_dffe;
 endmodule //fp_div_altfp_div_pst
 
-//synthesis_resources = dsp_9bit 16 lut 194 M9K 1 mux21 74 reg 999 
+//synthesis_resources = dsp_9bit 16 lut 194 M9K 1 mux21 74 reg 998 
 //synopsys translate_off
 `timescale 1 ps / 1 ps
 //synopsys translate_on
@@ -4720,7 +4709,6 @@ module  fp_div_altfp_div
 	clock,
 	dataa,
 	datab,
-	division_by_zero,
 	nan,
 	overflow,
 	result,
@@ -4731,7 +4719,6 @@ module  fp_div_altfp_div
 	input   clock;
 	input   [31:0]  dataa;
 	input   [31:0]  datab;
-	output   division_by_zero;
 	output   nan;
 	output   overflow;
 	output   [31:0]  result;
@@ -4746,7 +4733,6 @@ module  fp_div_altfp_div
 // synopsys translate_on
 `endif
 
-	wire  wire_altfp_div_pst1_division_by_zero;
 	wire  wire_altfp_div_pst1_nan;
 	wire  wire_altfp_div_pst1_overflow;
 	wire  [31:0]   wire_altfp_div_pst1_result;
@@ -4760,14 +4746,12 @@ module  fp_div_altfp_div
 	.clock(clock),
 	.dataa(dataa),
 	.datab(datab),
-	.division_by_zero(wire_altfp_div_pst1_division_by_zero),
 	.nan(wire_altfp_div_pst1_nan),
 	.overflow(wire_altfp_div_pst1_overflow),
 	.result(wire_altfp_div_pst1_result),
 	.underflow(wire_altfp_div_pst1_underflow),
 	.zero(wire_altfp_div_pst1_zero));
 	assign
-		division_by_zero = wire_altfp_div_pst1_division_by_zero,
 		nan = wire_altfp_div_pst1_nan,
 		overflow = wire_altfp_div_pst1_overflow,
 		result = wire_altfp_div_pst1_result,
@@ -4786,7 +4770,6 @@ module fp_div (
 	clock,
 	dataa,
 	datab,
-	division_by_zero,
 	nan,
 	overflow,
 	result,
@@ -4798,7 +4781,6 @@ module fp_div (
 	input	  clock;
 	input	[31:0]  dataa;
 	input	[31:0]  datab;
-	output	  division_by_zero;
 	output	  nan;
 	output	  overflow;
 	output	[31:0]  result;
@@ -4810,13 +4792,11 @@ module fp_div (
 	wire  sub_wire2;
 	wire [31:0] sub_wire3;
 	wire  sub_wire4;
-	wire  sub_wire5;
 	wire  overflow = sub_wire0;
 	wire  zero = sub_wire1;
 	wire  nan = sub_wire2;
 	wire [31:0] result = sub_wire3[31:0];
-	wire  division_by_zero = sub_wire4;
-	wire  underflow = sub_wire5;
+	wire  underflow = sub_wire4;
 
 	fp_div_altfp_div	fp_div_altfp_div_component (
 				.clk_en (clk_en),
@@ -4828,8 +4808,7 @@ module fp_div (
 				.zero (sub_wire1),
 				.nan (sub_wire2),
 				.result (sub_wire3),
-				.division_by_zero (sub_wire4),
-				.underflow (sub_wire5));
+				.underflow (sub_wire4));
 
 endmodule
 
@@ -4851,7 +4830,6 @@ endmodule
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
 // Retrieval info: USED_PORT: dataa 0 0 32 0 INPUT NODEFVAL "dataa[31..0]"
 // Retrieval info: USED_PORT: datab 0 0 32 0 INPUT NODEFVAL "datab[31..0]"
-// Retrieval info: USED_PORT: division_by_zero 0 0 0 0 OUTPUT NODEFVAL "division_by_zero"
 // Retrieval info: USED_PORT: nan 0 0 0 0 OUTPUT NODEFVAL "nan"
 // Retrieval info: USED_PORT: overflow 0 0 0 0 OUTPUT NODEFVAL "overflow"
 // Retrieval info: USED_PORT: result 0 0 32 0 OUTPUT NODEFVAL "result[31..0]"
@@ -4862,7 +4840,6 @@ endmodule
 // Retrieval info: CONNECT: @clock 0 0 0 0 clock 0 0 0 0
 // Retrieval info: CONNECT: @dataa 0 0 32 0 dataa 0 0 32 0
 // Retrieval info: CONNECT: @datab 0 0 32 0 datab 0 0 32 0
-// Retrieval info: CONNECT: division_by_zero 0 0 0 0 @division_by_zero 0 0 0 0
 // Retrieval info: CONNECT: nan 0 0 0 0 @nan 0 0 0 0
 // Retrieval info: CONNECT: overflow 0 0 0 0 @overflow 0 0 0 0
 // Retrieval info: CONNECT: result 0 0 32 0 @result 0 0 32 0
@@ -4871,6 +4848,6 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.vhd TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.inc TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.cmp TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.bsf TRUE FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.bsf TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL fp_div_inst.vhd TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL fp_div_syn.v TRUE

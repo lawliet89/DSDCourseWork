@@ -106,6 +106,7 @@ set_location_assignment PIN_A3 -to DRAM_A[1]
 set_location_assignment PIN_C4 -to DRAM_A[0]
 set_location_assignment PIN_B8 -to DRAM_DQM[1]
 set_location_assignment PIN_E7 -to DRAM_DQM[0]
+set_global_assignment -name VHDL_FILE ip/fp_alu.vhd
 set_global_assignment -name QIP_FILE first_nios2_system/synthesis/first_nios2_system.qip
 set_global_assignment -name VERILOG_FILE hello_world.v
 set_global_assignment -name SDC_FILE hw_dev_tutorial.sdc
@@ -114,7 +115,6 @@ set_global_assignment -name QIP_FILE ip/fp_mult.qip
 set_global_assignment -name QIP_FILE ip/fp_div.qip
 set_global_assignment -name QIP_FILE ip/three_input_bus_mux.qip
 set_global_assignment -name QIP_FILE ip/four_input_bus_mux.qip
-set_global_assignment -name BDF_FILE ip/fp_alu.bdf
 set_global_assignment -name QIP_FILE ip/fp_alu_counter.qip
 set_global_assignment -name QIP_FILE ip/four_input_4bit_mux.qip
 set_global_assignment -name QIP_FILE ip/const_13.qip

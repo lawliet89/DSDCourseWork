@@ -96,6 +96,8 @@ void randomMatrix(float *matrix, int dimension){
 	int i, j;
 	float no;
 	char buffer[11];
+	// Seed
+	srand(times(NULL));
 	alt_putstr("[");
 	for (i = 0; i < dimension; i++){
 		for (j = 0; j < dimension; j++){

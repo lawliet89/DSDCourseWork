@@ -1,5 +1,5 @@
 Assembler report for hello_world
-Fri Feb 22 10:29:16 2013
+Fri Feb 22 12:24:02 2013
 Quartus II 64-Bit Version 12.0 Build 178 05/31/2012 SJ Full Version
 
 
@@ -39,7 +39,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri Feb 22 10:29:16 2013 ;
+; Assembler Status      ; Successful - Fri Feb 22 12:24:02 2013 ;
 ; Revision Name         ; hello_world                           ;
 ; Top-level Entity Name ; hello_world                           ;
 ; Family                ; Cyclone III                           ;
@@ -107,7 +107,7 @@ applicable agreement for further details.
 +----------------+-----------------------------------------------+
 ; Device         ; EP3C16F484C6                                  ;
 ; JTAG usercode  ; 0xFFFFFFFF                                    ;
-; Checksum       ; 0x0048EF28                                    ;
+; Checksum       ; 0x004A56D4                                    ;
 +----------------+-----------------------------------------------+
 
 
@@ -118,7 +118,7 @@ applicable agreement for further details.
 +--------------------+-------------------------------------------+
 ; Device             ; EPCS4                                     ;
 ; JTAG usercode      ; 0x00000000                                ;
-; Checksum           ; 0x056E8652                                ;
+; Checksum           ; 0x056B95E9                                ;
 ; Compression Ratio  ; 2                                         ;
 +--------------------+-------------------------------------------+
 
@@ -129,14 +129,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 12.0 Build 178 05/31/2012 SJ Full Version
-    Info: Processing started: Fri Feb 22 10:29:09 2013
+    Info: Processing started: Fri Feb 22 12:23:57 2013
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off hello_world -c hello_world
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 394 megabytes
-    Info: Processing ended: Fri Feb 22 10:29:16 2013
-    Info: Elapsed time: 00:00:07
+    Info: Peak virtual memory: 398 megabytes
+    Info: Processing ended: Fri Feb 22 12:24:03 2013
+    Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:03
 
 

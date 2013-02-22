@@ -12609,31 +12609,28 @@ address => readdata[18].DATAIN
 address => readdata[17].DATAIN
 address => readdata[16].DATAIN
 address => readdata[14].DATAIN
-address => readdata[10].DATAIN
+address => readdata[12].DATAIN
 address => readdata[9].DATAIN
+address => readdata[8].DATAIN
 address => readdata[7].DATAIN
-address => readdata[6].DATAIN
 address => readdata[5].DATAIN
 address => readdata[4].DATAIN
-address => readdata[3].DATAIN
-address => readdata[2].DATAIN
-address => readdata[1].DATAIN
 address => readdata[0].DATAIN
 clock => ~NO_FANOUT~
 reset_n => ~NO_FANOUT~
 readdata[0] <= address.DB_MAX_OUTPUT_PORT_TYPE
-readdata[1] <= address.DB_MAX_OUTPUT_PORT_TYPE
-readdata[2] <= address.DB_MAX_OUTPUT_PORT_TYPE
-readdata[3] <= address.DB_MAX_OUTPUT_PORT_TYPE
+readdata[1] <= <GND>
+readdata[2] <= <GND>
+readdata[3] <= <GND>
 readdata[4] <= address.DB_MAX_OUTPUT_PORT_TYPE
 readdata[5] <= address.DB_MAX_OUTPUT_PORT_TYPE
-readdata[6] <= address.DB_MAX_OUTPUT_PORT_TYPE
+readdata[6] <= <GND>
 readdata[7] <= address.DB_MAX_OUTPUT_PORT_TYPE
-readdata[8] <= <GND>
+readdata[8] <= address.DB_MAX_OUTPUT_PORT_TYPE
 readdata[9] <= address.DB_MAX_OUTPUT_PORT_TYPE
-readdata[10] <= address.DB_MAX_OUTPUT_PORT_TYPE
+readdata[10] <= <GND>
 readdata[11] <= <GND>
-readdata[12] <= <GND>
+readdata[12] <= address.DB_MAX_OUTPUT_PORT_TYPE
 readdata[13] <= <GND>
 readdata[14] <= address.DB_MAX_OUTPUT_PORT_TYPE
 readdata[15] <= <GND>
@@ -13243,7 +13240,113 @@ fref <= <GND>
 icdrclk <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0
+clk => clk.IN1
+clk_en => clk_en.IN1
+start => start.IN1
+reset => reset.IN1
+dataa[0] => dataa[0].IN1
+dataa[1] => dataa[1].IN1
+dataa[2] => dataa[2].IN1
+dataa[3] => dataa[3].IN1
+dataa[4] => dataa[4].IN1
+dataa[5] => dataa[5].IN1
+dataa[6] => dataa[6].IN1
+dataa[7] => dataa[7].IN1
+dataa[8] => dataa[8].IN1
+dataa[9] => dataa[9].IN1
+dataa[10] => dataa[10].IN1
+dataa[11] => dataa[11].IN1
+dataa[12] => dataa[12].IN1
+dataa[13] => dataa[13].IN1
+dataa[14] => dataa[14].IN1
+dataa[15] => dataa[15].IN1
+dataa[16] => dataa[16].IN1
+dataa[17] => dataa[17].IN1
+dataa[18] => dataa[18].IN1
+dataa[19] => dataa[19].IN1
+dataa[20] => dataa[20].IN1
+dataa[21] => dataa[21].IN1
+dataa[22] => dataa[22].IN1
+dataa[23] => dataa[23].IN1
+dataa[24] => dataa[24].IN1
+dataa[25] => dataa[25].IN1
+dataa[26] => dataa[26].IN1
+dataa[27] => dataa[27].IN1
+dataa[28] => dataa[28].IN1
+dataa[29] => dataa[29].IN1
+dataa[30] => dataa[30].IN1
+dataa[31] => dataa[31].IN1
+datab[0] => datab[0].IN1
+datab[1] => datab[1].IN1
+datab[2] => datab[2].IN1
+datab[3] => datab[3].IN1
+datab[4] => datab[4].IN1
+datab[5] => datab[5].IN1
+datab[6] => datab[6].IN1
+datab[7] => datab[7].IN1
+datab[8] => datab[8].IN1
+datab[9] => datab[9].IN1
+datab[10] => datab[10].IN1
+datab[11] => datab[11].IN1
+datab[12] => datab[12].IN1
+datab[13] => datab[13].IN1
+datab[14] => datab[14].IN1
+datab[15] => datab[15].IN1
+datab[16] => datab[16].IN1
+datab[17] => datab[17].IN1
+datab[18] => datab[18].IN1
+datab[19] => datab[19].IN1
+datab[20] => datab[20].IN1
+datab[21] => datab[21].IN1
+datab[22] => datab[22].IN1
+datab[23] => datab[23].IN1
+datab[24] => datab[24].IN1
+datab[25] => datab[25].IN1
+datab[26] => datab[26].IN1
+datab[27] => datab[27].IN1
+datab[28] => datab[28].IN1
+datab[29] => datab[29].IN1
+datab[30] => datab[30].IN1
+datab[31] => datab[31].IN1
+n[0] => n[0].IN1
+n[1] => n[1].IN1
+done <= done~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[0] <= result[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[1] <= result[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[2] <= result[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[3] <= result[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[4] <= result[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[5] <= result[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[6] <= result[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[7] <= result[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[8] <= result[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[9] <= result[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[10] <= result[10]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[11] <= result[11]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[12] <= result[12]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[13] <= result[13]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[14] <= result[14]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[15] <= result[15]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[16] <= result[16]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[17] <= result[17]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[18] <= result[18]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[19] <= result[19]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[20] <= result[20]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[21] <= result[21]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[22] <= result[22]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[23] <= result[23]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[24] <= result[24]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[25] <= result[25]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[26] <= result[26]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[27] <= result[27]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[28] <= result[28]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[29] <= result[29]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[30] <= result[30]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+result[31] <= result[31]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance
 clk => fp_add:b2v_inst.clock
 clk => fp_mult:b2v_inst1.clock
 clk => fp_div:b2v_inst2.clock
@@ -13489,7 +13592,7 @@ result[30] <= four_input_bus_mux:b2v_inst6.result[30]
 result[31] <= four_input_bus_mux:b2v_inst6.result[31]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst
 aclr => fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component.aclr
 add_sub => fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component.add_sub
 clk_en => fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component.clk_en
@@ -13596,7 +13699,7 @@ underflow <= fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component.underfl
 zero <= fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component.zero
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component
 aclr => fp_add_altbarrel_shift_q3e:lbarrel_shift.aclr
 aclr => zero_man_sign_dffe27.ACLR
 aclr => zero_man_sign_dffe23.ACLR
@@ -15767,7 +15870,7 @@ underflow <= underflow_flag_dffe5.DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero_flag_n_dffe5.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altbarrel_shift_q3e:lbarrel_shift
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altbarrel_shift_q3e:lbarrel_shift
 aclr => sbit_piper1d[0].ACLR
 aclr => sbit_piper1d[1].ACLR
 aclr => sbit_piper1d[2].ACLR
@@ -16154,7 +16257,7 @@ result[24] <= sbit_piper1d[24].DB_MAX_OUTPUT_PORT_TYPE
 result[25] <= sbit_piper1d[25].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altbarrel_shift_07g:rbarrel_shift
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altbarrel_shift_07g:rbarrel_shift
 aclr => sel_pipec4r1d.ACLR
 aclr => sel_pipec3r1d.ACLR
 aclr => sbit_piper1d[0].ACLR
@@ -16472,7 +16575,7 @@ result[24] <= wire_rbarrel_shift_w903w.DB_MAX_OUTPUT_PORT_TYPE
 result[25] <= wire_rbarrel_shift_w903w.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt
 aclr => pipeline_q_dffe[0].ACLR
 aclr => pipeline_q_dffe[1].ACLR
 aclr => pipeline_q_dffe[2].ACLR
@@ -16527,7 +16630,7 @@ q[3] <= pipeline_q_dffe[3].DB_MAX_OUTPUT_PORT_TYPE
 q[4] <= pipeline_q_dffe[4].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7
 data[0] => fp_add_altpriority_encoder_bv7:altpriority_encoder9.data[0]
 data[1] => fp_add_altpriority_encoder_bv7:altpriority_encoder9.data[1]
 data[2] => fp_add_altpriority_encoder_bv7:altpriority_encoder9.data[2]
@@ -16550,7 +16653,7 @@ q[2] <= wire_altpriority_encoder10_w_lg_w_lg_zero922w923w.DB_MAX_OUTPUT_PORT_TYP
 q[3] <= fp_add_altpriority_encoder_be8:altpriority_encoder10.zero
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10
 data[0] => fp_add_altpriority_encoder_6e8:altpriority_encoder11.data[0]
 data[1] => fp_add_altpriority_encoder_6e8:altpriority_encoder11.data[1]
 data[2] => fp_add_altpriority_encoder_6e8:altpriority_encoder11.data[2]
@@ -16565,7 +16668,7 @@ q[2] <= fp_add_altpriority_encoder_6e8:altpriority_encoder12.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder11
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder11
 data[0] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[0]
 data[1] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[1]
 data[2] => fp_add_altpriority_encoder_3e8:altpriority_encoder14.data[0]
@@ -16575,7 +16678,7 @@ q[1] <= fp_add_altpriority_encoder_3e8:altpriority_encoder14.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder13
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder13
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16583,7 +16686,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder14
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder14
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16591,7 +16694,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder12
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder12
 data[0] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[0]
 data[1] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[1]
 data[2] => fp_add_altpriority_encoder_3e8:altpriority_encoder14.data[0]
@@ -16601,7 +16704,7 @@ q[1] <= fp_add_altpriority_encoder_3e8:altpriority_encoder14.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder13
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder13
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16609,7 +16712,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder14
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_be8:altpriority_encoder10|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder14
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16617,7 +16720,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9
 data[0] => fp_add_altpriority_encoder_6v7:altpriority_encoder15.data[0]
 data[1] => fp_add_altpriority_encoder_6v7:altpriority_encoder15.data[1]
 data[2] => fp_add_altpriority_encoder_6v7:altpriority_encoder15.data[2]
@@ -16631,7 +16734,7 @@ q[1] <= wire_altpriority_encoder16_w_lg_w_lg_zero957w958w.DB_MAX_OUTPUT_PORT_TYP
 q[2] <= fp_add_altpriority_encoder_6e8:altpriority_encoder16.zero
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6v7:altpriority_encoder15
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6v7:altpriority_encoder15
 data[0] => fp_add_altpriority_encoder_3v7:altpriority_encoder17.data[0]
 data[1] => fp_add_altpriority_encoder_3v7:altpriority_encoder17.data[1]
 data[2] => fp_add_altpriority_encoder_3e8:altpriority_encoder18.data[0]
@@ -16640,13 +16743,13 @@ q[0] <= wire_altpriority_encoder18_w_lg_w_lg_zero966w967w.DB_MAX_OUTPUT_PORT_TYP
 q[1] <= fp_add_altpriority_encoder_3e8:altpriority_encoder18.zero
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6v7:altpriority_encoder15|fp_add_altpriority_encoder_3v7:altpriority_encoder17
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6v7:altpriority_encoder15|fp_add_altpriority_encoder_3v7:altpriority_encoder17
 data[0] => ~NO_FANOUT~
 data[1] => q[0].DATAIN
 q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6v7:altpriority_encoder15|fp_add_altpriority_encoder_3e8:altpriority_encoder18
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6v7:altpriority_encoder15|fp_add_altpriority_encoder_3e8:altpriority_encoder18
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16654,7 +16757,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6e8:altpriority_encoder16
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6e8:altpriority_encoder16
 data[0] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[0]
 data[1] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[1]
 data[2] => fp_add_altpriority_encoder_3e8:altpriority_encoder14.data[0]
@@ -16664,7 +16767,7 @@ q[1] <= fp_add_altpriority_encoder_3e8:altpriority_encoder14.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6e8:altpriority_encoder16|fp_add_altpriority_encoder_3e8:altpriority_encoder13
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6e8:altpriority_encoder16|fp_add_altpriority_encoder_3e8:altpriority_encoder13
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16672,7 +16775,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6e8:altpriority_encoder16|fp_add_altpriority_encoder_3e8:altpriority_encoder14
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_uv8:altpriority_encoder7|fp_add_altpriority_encoder_bv7:altpriority_encoder9|fp_add_altpriority_encoder_6e8:altpriority_encoder16|fp_add_altpriority_encoder_3e8:altpriority_encoder14
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16680,7 +16783,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8
 data[0] => fp_add_altpriority_encoder_be8:altpriority_encoder19.data[0]
 data[1] => fp_add_altpriority_encoder_be8:altpriority_encoder19.data[1]
 data[2] => fp_add_altpriority_encoder_be8:altpriority_encoder19.data[2]
@@ -16704,7 +16807,7 @@ q[3] <= fp_add_altpriority_encoder_be8:altpriority_encoder20.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19
 data[0] => fp_add_altpriority_encoder_6e8:altpriority_encoder11.data[0]
 data[1] => fp_add_altpriority_encoder_6e8:altpriority_encoder11.data[1]
 data[2] => fp_add_altpriority_encoder_6e8:altpriority_encoder11.data[2]
@@ -16719,7 +16822,7 @@ q[2] <= fp_add_altpriority_encoder_6e8:altpriority_encoder12.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder11
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder11
 data[0] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[0]
 data[1] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[1]
 data[2] => fp_add_altpriority_encoder_3e8:altpriority_encoder14.data[0]
@@ -16729,7 +16832,7 @@ q[1] <= fp_add_altpriority_encoder_3e8:altpriority_encoder14.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder13
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder13
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16737,7 +16840,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder14
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder14
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16745,7 +16848,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder12
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder12
 data[0] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[0]
 data[1] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[1]
 data[2] => fp_add_altpriority_encoder_3e8:altpriority_encoder14.data[0]
@@ -16755,7 +16858,7 @@ q[1] <= fp_add_altpriority_encoder_3e8:altpriority_encoder14.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder13
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder13
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16763,7 +16866,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder14
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder19|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder14
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16771,7 +16874,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20
 data[0] => fp_add_altpriority_encoder_6e8:altpriority_encoder11.data[0]
 data[1] => fp_add_altpriority_encoder_6e8:altpriority_encoder11.data[1]
 data[2] => fp_add_altpriority_encoder_6e8:altpriority_encoder11.data[2]
@@ -16786,7 +16889,7 @@ q[2] <= fp_add_altpriority_encoder_6e8:altpriority_encoder12.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder11
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder11
 data[0] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[0]
 data[1] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[1]
 data[2] => fp_add_altpriority_encoder_3e8:altpriority_encoder14.data[0]
@@ -16796,7 +16899,7 @@ q[1] <= fp_add_altpriority_encoder_3e8:altpriority_encoder14.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder13
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder13
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16804,7 +16907,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder14
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder11|fp_add_altpriority_encoder_3e8:altpriority_encoder14
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16812,7 +16915,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder12
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder12
 data[0] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[0]
 data[1] => fp_add_altpriority_encoder_3e8:altpriority_encoder13.data[1]
 data[2] => fp_add_altpriority_encoder_3e8:altpriority_encoder14.data[0]
@@ -16822,7 +16925,7 @@ q[1] <= fp_add_altpriority_encoder_3e8:altpriority_encoder14.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder13
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder13
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16830,7 +16933,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder14
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_ou8:leading_zeroes_cnt|fp_add_altpriority_encoder_ue9:altpriority_encoder8|fp_add_altpriority_encoder_be8:altpriority_encoder20|fp_add_altpriority_encoder_6e8:altpriority_encoder12|fp_add_altpriority_encoder_3e8:altpriority_encoder14
 data[0] => zero.IN0
 data[1] => zero.IN1
 data[1] => q[0].DATAIN
@@ -16838,7 +16941,7 @@ q[0] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt
 aclr => pipeline_q_dffe[0].ACLR
 aclr => pipeline_q_dffe[1].ACLR
 aclr => pipeline_q_dffe[2].ACLR
@@ -16893,7 +16996,7 @@ q[3] <= pipeline_q_dffe[3].DB_MAX_OUTPUT_PORT_TYPE
 q[4] <= pipeline_q_dffe[4].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21
 data[0] => fp_add_altpriority_encoder_vh8:altpriority_encoder23.data[0]
 data[1] => fp_add_altpriority_encoder_vh8:altpriority_encoder23.data[1]
 data[2] => fp_add_altpriority_encoder_vh8:altpriority_encoder23.data[2]
@@ -16917,7 +17020,7 @@ q[3] <= fp_add_altpriority_encoder_vh8:altpriority_encoder23.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23
 data[0] => fp_add_altpriority_encoder_qh8:altpriority_encoder25.data[0]
 data[1] => fp_add_altpriority_encoder_qh8:altpriority_encoder25.data[1]
 data[2] => fp_add_altpriority_encoder_qh8:altpriority_encoder25.data[2]
@@ -16932,7 +17035,7 @@ q[2] <= fp_add_altpriority_encoder_qh8:altpriority_encoder25.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder25
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder25
 data[0] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[0]
 data[1] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[1]
 data[2] => fp_add_altpriority_encoder_nh8:altpriority_encoder28.data[0]
@@ -16942,7 +17045,7 @@ q[1] <= fp_add_altpriority_encoder_nh8:altpriority_encoder27.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder27
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder27
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -16950,7 +17053,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder28
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder28
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -16958,7 +17061,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder26
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder26
 data[0] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[0]
 data[1] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[1]
 data[2] => fp_add_altpriority_encoder_nh8:altpriority_encoder28.data[0]
@@ -16968,7 +17071,7 @@ q[1] <= fp_add_altpriority_encoder_nh8:altpriority_encoder27.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder27
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder27
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -16976,7 +17079,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder28
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder23|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder28
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -16984,7 +17087,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24
 data[0] => fp_add_altpriority_encoder_qh8:altpriority_encoder25.data[0]
 data[1] => fp_add_altpriority_encoder_qh8:altpriority_encoder25.data[1]
 data[2] => fp_add_altpriority_encoder_qh8:altpriority_encoder25.data[2]
@@ -16999,7 +17102,7 @@ q[2] <= fp_add_altpriority_encoder_qh8:altpriority_encoder25.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder25
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder25
 data[0] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[0]
 data[1] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[1]
 data[2] => fp_add_altpriority_encoder_nh8:altpriority_encoder28.data[0]
@@ -17009,7 +17112,7 @@ q[1] <= fp_add_altpriority_encoder_nh8:altpriority_encoder27.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder27
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder27
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -17017,7 +17120,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder28
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder28
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -17025,7 +17128,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder26
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder26
 data[0] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[0]
 data[1] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[1]
 data[2] => fp_add_altpriority_encoder_nh8:altpriority_encoder28.data[0]
@@ -17035,7 +17138,7 @@ q[1] <= fp_add_altpriority_encoder_nh8:altpriority_encoder27.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder27
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder27
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -17043,7 +17146,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder28
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_ii9:altpriority_encoder21|fp_add_altpriority_encoder_vh8:altpriority_encoder24|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder28
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -17051,7 +17154,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22
 data[0] => fp_add_altpriority_encoder_vh8:altpriority_encoder29.data[0]
 data[1] => fp_add_altpriority_encoder_vh8:altpriority_encoder29.data[1]
 data[2] => fp_add_altpriority_encoder_vh8:altpriority_encoder29.data[2]
@@ -17074,7 +17177,7 @@ q[2] <= wire_altpriority_encoder29_w_lg_w_lg_zero1037w1038w.DB_MAX_OUTPUT_PORT_T
 q[3] <= fp_add_altpriority_encoder_vh8:altpriority_encoder29.zero
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29
 data[0] => fp_add_altpriority_encoder_qh8:altpriority_encoder25.data[0]
 data[1] => fp_add_altpriority_encoder_qh8:altpriority_encoder25.data[1]
 data[2] => fp_add_altpriority_encoder_qh8:altpriority_encoder25.data[2]
@@ -17089,7 +17192,7 @@ q[2] <= fp_add_altpriority_encoder_qh8:altpriority_encoder25.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder25
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder25
 data[0] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[0]
 data[1] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[1]
 data[2] => fp_add_altpriority_encoder_nh8:altpriority_encoder28.data[0]
@@ -17099,7 +17202,7 @@ q[1] <= fp_add_altpriority_encoder_nh8:altpriority_encoder27.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder27
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder27
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -17107,7 +17210,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder28
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder25|fp_add_altpriority_encoder_nh8:altpriority_encoder28
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -17115,7 +17218,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder26
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder26
 data[0] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[0]
 data[1] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[1]
 data[2] => fp_add_altpriority_encoder_nh8:altpriority_encoder28.data[0]
@@ -17125,7 +17228,7 @@ q[1] <= fp_add_altpriority_encoder_nh8:altpriority_encoder27.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder27
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder27
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -17133,7 +17236,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder28
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_vh8:altpriority_encoder29|fp_add_altpriority_encoder_qh8:altpriority_encoder26|fp_add_altpriority_encoder_nh8:altpriority_encoder28
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -17141,7 +17244,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30
 data[0] => fp_add_altpriority_encoder_qh8:altpriority_encoder31.data[0]
 data[1] => fp_add_altpriority_encoder_qh8:altpriority_encoder31.data[1]
 data[2] => fp_add_altpriority_encoder_qh8:altpriority_encoder31.data[2]
@@ -17155,7 +17258,7 @@ q[1] <= wire_altpriority_encoder31_w_lg_w_lg_zero1046w1047w.DB_MAX_OUTPUT_PORT_T
 q[2] <= fp_add_altpriority_encoder_qh8:altpriority_encoder31.zero
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_qh8:altpriority_encoder31
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_qh8:altpriority_encoder31
 data[0] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[0]
 data[1] => fp_add_altpriority_encoder_nh8:altpriority_encoder27.data[1]
 data[2] => fp_add_altpriority_encoder_nh8:altpriority_encoder28.data[0]
@@ -17165,7 +17268,7 @@ q[1] <= fp_add_altpriority_encoder_nh8:altpriority_encoder27.zero
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_qh8:altpriority_encoder31|fp_add_altpriority_encoder_nh8:altpriority_encoder27
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_qh8:altpriority_encoder31|fp_add_altpriority_encoder_nh8:altpriority_encoder27
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -17173,7 +17276,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_qh8:altpriority_encoder31|fp_add_altpriority_encoder_nh8:altpriority_encoder28
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_qh8:altpriority_encoder31|fp_add_altpriority_encoder_nh8:altpriority_encoder28
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -17181,7 +17284,7 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_q28:altpriority_encoder32
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_q28:altpriority_encoder32
 data[0] => fp_add_altpriority_encoder_nh8:altpriority_encoder33.data[0]
 data[1] => fp_add_altpriority_encoder_nh8:altpriority_encoder33.data[1]
 data[2] => fp_add_altpriority_encoder_n28:altpriority_encoder34.data[0]
@@ -17190,7 +17293,7 @@ q[0] <= wire_altpriority_encoder33_w_lg_w_lg_zero1055w1056w.DB_MAX_OUTPUT_PORT_T
 q[1] <= fp_add_altpriority_encoder_nh8:altpriority_encoder33.zero
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_q28:altpriority_encoder32|fp_add_altpriority_encoder_nh8:altpriority_encoder33
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_q28:altpriority_encoder32|fp_add_altpriority_encoder_nh8:altpriority_encoder33
 data[0] => zero.IN0
 data[0] => q[0].DATAIN
 data[1] => zero.IN1
@@ -17198,13 +17301,13 @@ q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_q28:altpriority_encoder32|fp_add_altpriority_encoder_n28:altpriority_encoder34
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|fp_add_altpriority_encoder_cna:trailing_zeros_cnt|fp_add_altpriority_encoder_i39:altpriority_encoder22|fp_add_altpriority_encoder_v28:altpriority_encoder30|fp_add_altpriority_encoder_q28:altpriority_encoder32|fp_add_altpriority_encoder_n28:altpriority_encoder34
 data[0] => q[0].DATAIN
 data[1] => ~NO_FANOUT~
 q[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub1
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub1
 dataa[0] => add_sub_l0j:auto_generated.dataa[0]
 dataa[1] => add_sub_l0j:auto_generated.dataa[1]
 dataa[2] => add_sub_l0j:auto_generated.dataa[2]
@@ -17241,7 +17344,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub1|add_sub_l0j:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub1|add_sub_l0j:auto_generated
 aclr => lcell_ffa[8].IN0
 clken => lcell_ffa[8].ENA
 clken => lcell_ffa[7].ENA
@@ -17290,7 +17393,7 @@ result[7] <= lcell_ffa[7].DB_MAX_OUTPUT_PORT_TYPE
 result[8] <= lcell_ffa[8].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub2
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub2
 dataa[0] => add_sub_l0j:auto_generated.dataa[0]
 dataa[1] => add_sub_l0j:auto_generated.dataa[1]
 dataa[2] => add_sub_l0j:auto_generated.dataa[2]
@@ -17327,7 +17430,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub2|add_sub_l0j:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub2|add_sub_l0j:auto_generated
 aclr => lcell_ffa[8].IN0
 clken => lcell_ffa[8].ENA
 clken => lcell_ffa[7].ENA
@@ -17376,7 +17479,7 @@ result[7] <= lcell_ffa[7].DB_MAX_OUTPUT_PORT_TYPE
 result[8] <= lcell_ffa[8].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub3
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub3
 dataa[0] => add_sub_9bg:auto_generated.dataa[0]
 dataa[1] => add_sub_9bg:auto_generated.dataa[1]
 dataa[2] => add_sub_9bg:auto_generated.dataa[2]
@@ -17404,7 +17507,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub3|add_sub_9bg:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub3|add_sub_9bg:auto_generated
 dataa[0] => op_1.IN11
 dataa[1] => op_1.IN9
 dataa[2] => op_1.IN7
@@ -17425,7 +17528,7 @@ result[4] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 result[5] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub4
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub4
 dataa[0] => add_sub_bag:auto_generated.dataa[0]
 dataa[1] => add_sub_bag:auto_generated.dataa[1]
 dataa[2] => add_sub_bag:auto_generated.dataa[2]
@@ -17462,7 +17565,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub4|add_sub_bag:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub4|add_sub_bag:auto_generated
 dataa[0] => op_1.IN16
 dataa[1] => op_1.IN14
 dataa[2] => op_1.IN12
@@ -17492,7 +17595,7 @@ result[7] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 result[8] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub5
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub5
 dataa[0] => add_sub_kvi:auto_generated.dataa[0]
 dataa[1] => add_sub_kvi:auto_generated.dataa[1]
 dataa[2] => add_sub_kvi:auto_generated.dataa[2]
@@ -17529,7 +17632,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub5|add_sub_kvi:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub5|add_sub_kvi:auto_generated
 aclr => lcell_ffa[8].IN0
 clken => lcell_ffa[8].ENA
 clken => lcell_ffa[7].ENA
@@ -17578,7 +17681,7 @@ result[7] <= lcell_ffa[7].DB_MAX_OUTPUT_PORT_TYPE
 result[8] <= lcell_ffa[8].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub6
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub6
 dataa[0] => add_sub_bag:auto_generated.dataa[0]
 dataa[1] => add_sub_bag:auto_generated.dataa[1]
 dataa[2] => add_sub_bag:auto_generated.dataa[2]
@@ -17615,7 +17718,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub6|add_sub_bag:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:add_sub6|add_sub_bag:auto_generated
 dataa[0] => op_1.IN16
 dataa[1] => op_1.IN14
 dataa[2] => op_1.IN12
@@ -17645,7 +17748,7 @@ result[7] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 result[8] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_lower
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_lower
 dataa[0] => add_sub_40l:auto_generated.dataa[0]
 dataa[1] => add_sub_40l:auto_generated.dataa[1]
 dataa[2] => add_sub_40l:auto_generated.dataa[2]
@@ -17697,7 +17800,7 @@ cout <= add_sub_40l:auto_generated.cout
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_lower|add_sub_40l:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_lower|add_sub_40l:auto_generated
 aclr => add_sub_cell_ffa[13].IN0
 aclr => add_sub_regra[0].IN0
 aclr => cout_sum_regra[1].IN0
@@ -17816,7 +17919,7 @@ result[12] <= pad_cell_ffa[12].DB_MAX_OUTPUT_PORT_TYPE
 result[13] <= pad_cell_ffa[13].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_upper0
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_upper0
 dataa[0] => add_sub_9hk:auto_generated.dataa[0]
 dataa[1] => add_sub_9hk:auto_generated.dataa[1]
 dataa[2] => add_sub_9hk:auto_generated.dataa[2]
@@ -17868,7 +17971,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_upper0|add_sub_9hk:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_upper0|add_sub_9hk:auto_generated
 aclr => add_sub_cell_ffa[13].IN0
 aclr => add_sub_regra[0].IN0
 aclr => inter_regrs_cin_ffa[0].IN0
@@ -17981,7 +18084,7 @@ result[12] <= pad_cell_ffa[12].DB_MAX_OUTPUT_PORT_TYPE
 result[13] <= pad_cell_ffa[13].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_upper1
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_upper1
 dataa[0] => add_sub_9hk:auto_generated.dataa[0]
 dataa[1] => add_sub_9hk:auto_generated.dataa[1]
 dataa[2] => add_sub_9hk:auto_generated.dataa[2]
@@ -18033,7 +18136,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_upper1|add_sub_9hk:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_2comp_res_upper1|add_sub_9hk:auto_generated
 aclr => add_sub_cell_ffa[13].IN0
 aclr => add_sub_regra[0].IN0
 aclr => inter_regrs_cin_ffa[0].IN0
@@ -18146,7 +18249,7 @@ result[12] <= pad_cell_ffa[12].DB_MAX_OUTPUT_PORT_TYPE
 result[13] <= pad_cell_ffa[13].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_lower
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_lower
 dataa[0] => add_sub_40l:auto_generated.dataa[0]
 dataa[1] => add_sub_40l:auto_generated.dataa[1]
 dataa[2] => add_sub_40l:auto_generated.dataa[2]
@@ -18198,7 +18301,7 @@ cout <= add_sub_40l:auto_generated.cout
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_lower|add_sub_40l:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_lower|add_sub_40l:auto_generated
 aclr => add_sub_cell_ffa[13].IN0
 aclr => add_sub_regra[0].IN0
 aclr => cout_sum_regra[1].IN0
@@ -18317,7 +18420,7 @@ result[12] <= pad_cell_ffa[12].DB_MAX_OUTPUT_PORT_TYPE
 result[13] <= pad_cell_ffa[13].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_upper0
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_upper0
 dataa[0] => add_sub_9hk:auto_generated.dataa[0]
 dataa[1] => add_sub_9hk:auto_generated.dataa[1]
 dataa[2] => add_sub_9hk:auto_generated.dataa[2]
@@ -18369,7 +18472,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_upper0|add_sub_9hk:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_upper0|add_sub_9hk:auto_generated
 aclr => add_sub_cell_ffa[13].IN0
 aclr => add_sub_regra[0].IN0
 aclr => inter_regrs_cin_ffa[0].IN0
@@ -18482,7 +18585,7 @@ result[12] <= pad_cell_ffa[12].DB_MAX_OUTPUT_PORT_TYPE
 result[13] <= pad_cell_ffa[13].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_upper1
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_upper1
 dataa[0] => add_sub_9hk:auto_generated.dataa[0]
 dataa[1] => add_sub_9hk:auto_generated.dataa[1]
 dataa[2] => add_sub_9hk:auto_generated.dataa[2]
@@ -18534,7 +18637,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_upper1|add_sub_9hk:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_add_sub_upper1|add_sub_9hk:auto_generated
 aclr => add_sub_cell_ffa[13].IN0
 aclr => add_sub_regra[0].IN0
 aclr => inter_regrs_cin_ffa[0].IN0
@@ -18647,7 +18750,7 @@ result[12] <= pad_cell_ffa[12].DB_MAX_OUTPUT_PORT_TYPE
 result[13] <= pad_cell_ffa[13].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_res_rounding_add_sub_lower
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_res_rounding_add_sub_lower
 dataa[0] => add_sub_hqg:auto_generated.dataa[0]
 dataa[1] => add_sub_hqg:auto_generated.dataa[1]
 dataa[2] => add_sub_hqg:auto_generated.dataa[2]
@@ -18696,7 +18799,7 @@ cout <= add_sub_hqg:auto_generated.cout
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_res_rounding_add_sub_lower|add_sub_hqg:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_res_rounding_add_sub_lower|add_sub_hqg:auto_generated
 cout <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => op_1.IN26
 dataa[1] => op_1.IN24
@@ -18739,7 +18842,7 @@ result[11] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 result[12] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_res_rounding_add_sub_upper1
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_res_rounding_add_sub_upper1
 dataa[0] => add_sub_q2h:auto_generated.dataa[0]
 dataa[1] => add_sub_q2h:auto_generated.dataa[1]
 dataa[2] => add_sub_q2h:auto_generated.dataa[2]
@@ -18788,7 +18891,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_res_rounding_add_sub_upper1|add_sub_q2h:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_add_sub:man_res_rounding_add_sub_upper1|add_sub_q2h:auto_generated
 cin => op_1.IN26
 cin => op_1.IN27
 dataa[0] => op_1.IN24
@@ -18832,7 +18935,7 @@ result[11] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 result[12] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_compare:trailing_zeros_limit_comparator
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_compare:trailing_zeros_limit_comparator
 dataa[0] => cmpr_uph:auto_generated.dataa[0]
 dataa[1] => cmpr_uph:auto_generated.dataa[1]
 dataa[2] => cmpr_uph:auto_generated.dataa[2]
@@ -18856,7 +18959,7 @@ aneb <= <GND>
 ageb <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_compare:trailing_zeros_limit_comparator|cmpr_uph:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_add:b2v_inst|fp_add_altfp_add_sub_e6o:fp_add_altfp_add_sub_e6o_component|lpm_compare:trailing_zeros_limit_comparator|cmpr_uph:auto_generated
 agb <= agb_int.DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => op_1.IN12
 dataa[1] => op_1.IN10
@@ -18872,7 +18975,7 @@ datab[4] => op_1.IN3
 datab[5] => datab_int[5].IN0
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1
 aclr => fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component.aclr
 clk_en => fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component.clk_en
 clock => fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component.clock
@@ -18978,7 +19081,7 @@ underflow <= fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component.underflow
 zero <= fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component.zero
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component
 aclr => lpm_add_sub:exp_add_adder.aclr
 aclr => zero_ff.ACLR
 aclr => underflow_ff.ACLR
@@ -20053,7 +20156,7 @@ underflow <= underflow_ff.DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero_ff.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_add_adder
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_add_adder
 dataa[0] => add_sub_tji:auto_generated.dataa[0]
 dataa[1] => add_sub_tji:auto_generated.dataa[1]
 dataa[2] => add_sub_tji:auto_generated.dataa[2]
@@ -20090,7 +20193,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_add_adder|add_sub_tji:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_add_adder|add_sub_tji:auto_generated
 aclr => pipeline_dffe[8].IN0
 cin => op_1.IN18
 cin => op_1.IN19
@@ -20141,7 +20244,7 @@ result[7] <= pipeline_dffe[7].DB_MAX_OUTPUT_PORT_TYPE
 result[8] <= pipeline_dffe[8].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_adj_adder
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_adj_adder
 dataa[0] => add_sub_94h:auto_generated.dataa[0]
 dataa[1] => add_sub_94h:auto_generated.dataa[1]
 dataa[2] => add_sub_94h:auto_generated.dataa[2]
@@ -20181,7 +20284,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_adj_adder|add_sub_94h:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_adj_adder|add_sub_94h:auto_generated
 cin => op_1.IN20
 cin => op_1.IN21
 dataa[0] => op_1.IN18
@@ -20216,7 +20319,7 @@ result[8] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 result[9] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_bias_subtr
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_bias_subtr
 dataa[0] => add_sub_njg:auto_generated.dataa[0]
 dataa[1] => add_sub_njg:auto_generated.dataa[1]
 dataa[2] => add_sub_njg:auto_generated.dataa[2]
@@ -20256,7 +20359,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_bias_subtr|add_sub_njg:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:exp_bias_subtr|add_sub_njg:auto_generated
 dataa[0] => op_1.IN19
 dataa[1] => op_1.IN17
 dataa[2] => op_1.IN15
@@ -20289,7 +20392,7 @@ result[8] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 result[9] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:man_round_adder
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:man_round_adder
 dataa[0] => add_sub_lpg:auto_generated.dataa[0]
 dataa[1] => add_sub_lpg:auto_generated.dataa[1]
 dataa[2] => add_sub_lpg:auto_generated.dataa[2]
@@ -20374,7 +20477,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:man_round_adder|add_sub_lpg:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_add_sub:man_round_adder|add_sub_lpg:auto_generated
 dataa[0] => op_1.IN48
 dataa[1] => op_1.IN46
 dataa[2] => op_1.IN44
@@ -20452,7 +20555,7 @@ result[23] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 result[24] <= op_1.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_mult:man_product2_mult
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_mult:man_product2_mult
 dataa[0] => mult_eit:auto_generated.dataa[0]
 dataa[1] => mult_eit:auto_generated.dataa[1]
 dataa[2] => mult_eit:auto_generated.dataa[2]
@@ -20555,7 +20658,7 @@ result[46] <= mult_eit:auto_generated.result[46]
 result[47] <= mult_eit:auto_generated.result[47]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_mult:man_product2_mult|mult_eit:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_mult:b2v_inst1|fp_mult_altfp_mult_mkr:fp_mult_altfp_mult_mkr_component|lpm_mult:man_product2_mult|mult_eit:auto_generated
 aclr => dffe10.IN0
 aclr => dffe100.IN0
 aclr => dffe101.IN0
@@ -21239,35 +21342,35 @@ result[46] <= dffe173.DB_MAX_OUTPUT_PORT_TYPE
 result[47] <= dffe176.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|const_13:b2v_inst10
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|const_13:b2v_inst10
 result[0] <= lpm_constant:LPM_CONSTANT_component.result[0]
 result[1] <= lpm_constant:LPM_CONSTANT_component.result[1]
 result[2] <= lpm_constant:LPM_CONSTANT_component.result[2]
 result[3] <= lpm_constant:LPM_CONSTANT_component.result[3]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|const_13:b2v_inst10|lpm_constant:LPM_CONSTANT_component
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|const_13:b2v_inst10|lpm_constant:LPM_CONSTANT_component
 result[0] <= <VCC>
 result[1] <= <GND>
 result[2] <= <VCC>
 result[3] <= <VCC>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|const_10:b2v_inst11
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|const_10:b2v_inst11
 result[0] <= lpm_constant:LPM_CONSTANT_component.result[0]
 result[1] <= lpm_constant:LPM_CONSTANT_component.result[1]
 result[2] <= lpm_constant:LPM_CONSTANT_component.result[2]
 result[3] <= lpm_constant:LPM_CONSTANT_component.result[3]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|const_10:b2v_inst11|lpm_constant:LPM_CONSTANT_component
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|const_10:b2v_inst11|lpm_constant:LPM_CONSTANT_component
 result[0] <= <GND>
 result[1] <= <VCC>
 result[2] <= <GND>
 result[3] <= <VCC>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2
 aclr => fp_div_altfp_div_55l:fp_div_altfp_div_55l_component.aclr
 clk_en => fp_div_altfp_div_55l:fp_div_altfp_div_55l_component.clk_en
 clock => fp_div_altfp_div_55l:fp_div_altfp_div_55l_component.clock
@@ -21373,7 +21476,7 @@ underflow <= fp_div_altfp_div_55l:fp_div_altfp_div_55l_component.underflow
 zero <= fp_div_altfp_div_55l:fp_div_altfp_div_55l_component.zero
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component
 aclr => fp_div_altfp_div_pst_ejh:altfp_div_pst1.aclr
 clk_en => fp_div_altfp_div_pst_ejh:altfp_div_pst1.clk_en
 clock => fp_div_altfp_div_pst_ejh:altfp_div_pst1.clock
@@ -21479,7 +21582,7 @@ underflow <= fp_div_altfp_div_pst_ejh:altfp_div_pst1.underflow
 zero <= fp_div_altfp_div_pst_ejh:altfp_div_pst1.zero
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1
 aclr => lpm_add_sub:bias_addition.aclr
 aclr => zero_pipe_dffe_9.ACLR
 aclr => zero_pipe_dffe_8.ACLR
@@ -24042,7 +24145,7 @@ underflow <= underflow_dffe_11.DB_MAX_OUTPUT_PORT_TYPE
 zero <= zero_dffe.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|altsyncram:altsyncram3
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|altsyncram:altsyncram3
 wren_a => ~NO_FANOUT~
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -24094,7 +24197,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|altsyncram:altsyncram3|altsyncram_mlk3:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|altsyncram:altsyncram3|altsyncram_mlk3:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -24205,7 +24308,7 @@ q_a[7] <= ram_block1a7.PORTADATAOUT
 q_a[8] <= ram_block1a8.PORTADATAOUT
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:bias_addition
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:bias_addition
 dataa[0] => add_sub_rni:auto_generated.dataa[0]
 dataa[1] => add_sub_rni:auto_generated.dataa[1]
 dataa[2] => add_sub_rni:auto_generated.dataa[2]
@@ -24242,7 +24345,7 @@ cout <= <GND>
 overflow <= add_sub_rni:auto_generated.overflow
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:bias_addition|add_sub_rni:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:bias_addition|add_sub_rni:auto_generated
 aclr => pipeline_dffe[8].IN0
 aclr => overflow_dffe[8].IN0
 clken => pipeline_dffe[8].ENA
@@ -24314,7 +24417,7 @@ result[7] <= pipeline_dffe[7].DB_MAX_OUTPUT_PORT_TYPE
 result[8] <= pipeline_dffe[8].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:exp_sub
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:exp_sub
 dataa[0] => add_sub_8sh:auto_generated.dataa[0]
 dataa[1] => add_sub_8sh:auto_generated.dataa[1]
 dataa[2] => add_sub_8sh:auto_generated.dataa[2]
@@ -24351,7 +24454,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:exp_sub|add_sub_8sh:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:exp_sub|add_sub_8sh:auto_generated
 aclr => pipeline_dffe[8].IN0
 clken => pipeline_dffe[8].ENA
 clken => pipeline_dffe[7].ENA
@@ -24400,7 +24503,7 @@ result[7] <= pipeline_dffe[7].DB_MAX_OUTPUT_PORT_TYPE
 result[8] <= pipeline_dffe[8].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:quotient_process
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:quotient_process
 dataa[0] => add_sub_fei:auto_generated.dataa[0]
 dataa[1] => add_sub_fei:auto_generated.dataa[1]
 dataa[2] => add_sub_fei:auto_generated.dataa[2]
@@ -24503,7 +24606,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:quotient_process|add_sub_fei:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:quotient_process|add_sub_fei:auto_generated
 aclr => pipeline_dffe[30].IN0
 cin => op_1.IN62
 cin => op_1.IN63
@@ -24664,7 +24767,7 @@ result[29] <= pipeline_dffe[29].DB_MAX_OUTPUT_PORT_TYPE
 result[30] <= pipeline_dffe[30].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:remainder_sub_0
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:remainder_sub_0
 dataa[0] => add_sub_n4i:auto_generated.dataa[0]
 dataa[1] => add_sub_n4i:auto_generated.dataa[1]
 dataa[2] => add_sub_n4i:auto_generated.dataa[2]
@@ -24824,7 +24927,7 @@ cout <= <GND>
 overflow <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:remainder_sub_0|add_sub_n4i:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_add_sub:remainder_sub_0|add_sub_n4i:auto_generated
 aclr => pipeline_dffe[49].IN0
 clken => pipeline_dffe[49].ENA
 clken => pipeline_dffe[48].ENA
@@ -25078,7 +25181,7 @@ result[48] <= pipeline_dffe[48].DB_MAX_OUTPUT_PORT_TYPE
 result[49] <= pipeline_dffe[49].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_compare:cmpr2
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_compare:cmpr2
 dataa[0] => cmpr_l2i:auto_generated.dataa[0]
 dataa[1] => cmpr_l2i:auto_generated.dataa[1]
 dataa[2] => cmpr_l2i:auto_generated.dataa[2]
@@ -25136,7 +25239,7 @@ aneb <= <GND>
 ageb <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_compare:cmpr2|cmpr_l2i:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_compare:cmpr2|cmpr_l2i:auto_generated
 alb <= alb_int.DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => op_1.IN45
 dataa[1] => op_1.IN43
@@ -25186,7 +25289,7 @@ datab[21] => op_1.IN4
 datab[22] => op_1.IN2
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:a1_prod
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:a1_prod
 dataa[0] => mult_4it:auto_generated.dataa[0]
 dataa[1] => mult_4it:auto_generated.dataa[1]
 dataa[2] => mult_4it:auto_generated.dataa[2]
@@ -25263,7 +25366,7 @@ result[33] <= mult_4it:auto_generated.result[33]
 result[34] <= mult_4it:auto_generated.result[34]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:a1_prod|mult_4it:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:a1_prod|mult_4it:auto_generated
 aclr => dffe10.IN0
 aclr => dffe11.IN0
 aclr => dffe12.IN0
@@ -25466,7 +25569,7 @@ result[33] <= dffe38.DB_MAX_OUTPUT_PORT_TYPE
 result[34] <= dffe39.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:b1_prod
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:b1_prod
 dataa[0] => mult_2it:auto_generated.dataa[0]
 dataa[1] => mult_2it:auto_generated.dataa[1]
 dataa[2] => mult_2it:auto_generated.dataa[2]
@@ -25541,7 +25644,7 @@ result[32] <= mult_2it:auto_generated.result[32]
 result[33] <= mult_2it:auto_generated.result[33]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:b1_prod|mult_2it:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:b1_prod|mult_2it:auto_generated
 aclr => dffe10.IN0
 aclr => dffe11.IN0
 aclr => dffe12.IN0
@@ -25739,7 +25842,7 @@ result[32] <= dffe37.DB_MAX_OUTPUT_PORT_TYPE
 result[33] <= dffe38.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:q_partial_0
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:q_partial_0
 dataa[0] => mult_9it:auto_generated.dataa[0]
 dataa[1] => mult_9it:auto_generated.dataa[1]
 dataa[2] => mult_9it:auto_generated.dataa[2]
@@ -25814,7 +25917,7 @@ result[32] <= mult_9it:auto_generated.result[32]
 result[33] <= mult_9it:auto_generated.result[33]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:q_partial_0|mult_9it:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:q_partial_0|mult_9it:auto_generated
 aclr => mac_out2.ACLR
 clken => mac_out2.ENA
 clock => mac_out2.CLK
@@ -25888,7 +25991,7 @@ result[32] <= mac_out2.DATAOUT32
 result[33] <= mac_out2.DATAOUT33
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:q_partial_1
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:q_partial_1
 dataa[0] => mult_9it:auto_generated.dataa[0]
 dataa[1] => mult_9it:auto_generated.dataa[1]
 dataa[2] => mult_9it:auto_generated.dataa[2]
@@ -25963,7 +26066,7 @@ result[32] <= mult_9it:auto_generated.result[32]
 result[33] <= mult_9it:auto_generated.result[33]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:q_partial_1|mult_9it:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:q_partial_1|mult_9it:auto_generated
 aclr => mac_out2.ACLR
 clken => mac_out2.ENA
 clock => mac_out2.CLK
@@ -26037,7 +26140,7 @@ result[32] <= mac_out2.DATAOUT32
 result[33] <= mac_out2.DATAOUT33
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:remainder_mult_0
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:remainder_mult_0
 dataa[0] => mult_ait:auto_generated.dataa[0]
 dataa[1] => mult_ait:auto_generated.dataa[1]
 dataa[2] => mult_ait:auto_generated.dataa[2]
@@ -26146,7 +26249,7 @@ result[49] <= mult_ait:auto_generated.result[49]
 result[50] <= mult_ait:auto_generated.result[50]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:remainder_mult_0|mult_ait:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_div:b2v_inst2|fp_div_altfp_div_55l:fp_div_altfp_div_55l_component|fp_div_altfp_div_pst_ejh:altfp_div_pst1|lpm_mult:remainder_mult_0|mult_ait:auto_generated
 aclr => dffe10.IN0
 aclr => dffe11.IN0
 aclr => dffe12.IN0
@@ -26436,7 +26539,7 @@ result[49] <= dffe54.DB_MAX_OUTPUT_PORT_TYPE
 result[50] <= dffe55.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|four_input_bus_mux:b2v_inst6
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|four_input_bus_mux:b2v_inst6
 data0x[0] => LPM_MUX:LPM_MUX_component.DATA[0][0]
 data0x[1] => LPM_MUX:LPM_MUX_component.DATA[0][1]
 data0x[2] => LPM_MUX:LPM_MUX_component.DATA[0][2]
@@ -26601,7 +26704,7 @@ result[30] <= LPM_MUX:LPM_MUX_component.RESULT[30]
 result[31] <= LPM_MUX:LPM_MUX_component.RESULT[31]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|four_input_bus_mux:b2v_inst6|LPM_MUX:LPM_MUX_component
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|four_input_bus_mux:b2v_inst6|LPM_MUX:LPM_MUX_component
 data[0][0] => mux_08e:auto_generated.data[0]
 data[0][1] => mux_08e:auto_generated.data[1]
 data[0][2] => mux_08e:auto_generated.data[2]
@@ -26769,7 +26872,7 @@ result[30] <= mux_08e:auto_generated.result[30]
 result[31] <= mux_08e:auto_generated.result[31]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|four_input_bus_mux:b2v_inst6|LPM_MUX:LPM_MUX_component|mux_08e:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|four_input_bus_mux:b2v_inst6|LPM_MUX:LPM_MUX_component|mux_08e:auto_generated
 data[0] => _.IN0
 data[0] => _.IN0
 data[1] => _.IN0
@@ -27316,7 +27419,7 @@ sel[1] => _.IN0
 sel[1] => _.IN0
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_alu_counter:b2v_inst7
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_alu_counter:b2v_inst7
 aclr => lpm_counter:LPM_COUNTER_component.aclr
 clk_en => lpm_counter:LPM_COUNTER_component.clk_en
 clock => lpm_counter:LPM_COUNTER_component.clock
@@ -27331,7 +27434,7 @@ q[2] <= lpm_counter:LPM_COUNTER_component.q[2]
 q[3] <= lpm_counter:LPM_COUNTER_component.q[3]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_alu_counter:b2v_inst7|lpm_counter:LPM_COUNTER_component
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_alu_counter:b2v_inst7|lpm_counter:LPM_COUNTER_component
 clock => cntr_f0k:auto_generated.clock
 clk_en => cntr_f0k:auto_generated.clk_en
 cnt_en => ~NO_FANOUT~
@@ -27372,7 +27475,7 @@ eq[14] <= <GND>
 eq[15] <= <GND>
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|fp_alu_counter:b2v_inst7|lpm_counter:LPM_COUNTER_component|cntr_f0k:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|fp_alu_counter:b2v_inst7|lpm_counter:LPM_COUNTER_component|cntr_f0k:auto_generated
 aclr => counter_reg_bit[3].IN0
 clk_en => counter_reg_bit[3].IN0
 clock => counter_reg_bit[3].CLK
@@ -27391,7 +27494,7 @@ sload => _.IN1
 sload => counter_reg_bit[3].IN1
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|four_input_4bit_mux:b2v_inst9
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|four_input_4bit_mux:b2v_inst9
 data0x[0] => LPM_MUX:LPM_MUX_component.DATA[0][0]
 data0x[1] => LPM_MUX:LPM_MUX_component.DATA[0][1]
 data0x[2] => LPM_MUX:LPM_MUX_component.DATA[0][2]
@@ -27416,7 +27519,7 @@ result[2] <= LPM_MUX:LPM_MUX_component.RESULT[2]
 result[3] <= LPM_MUX:LPM_MUX_component.RESULT[3]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|four_input_4bit_mux:b2v_inst9|LPM_MUX:LPM_MUX_component
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|four_input_4bit_mux:b2v_inst9|LPM_MUX:LPM_MUX_component
 data[0][0] => mux_f6e:auto_generated.data[0]
 data[0][1] => mux_f6e:auto_generated.data[1]
 data[0][2] => mux_f6e:auto_generated.data[2]
@@ -27444,7 +27547,7 @@ result[2] <= mux_f6e:auto_generated.result[2]
 result[3] <= mux_f6e:auto_generated.result[3]
 
 
-|hello_world|first_nios2_system:b2v_inst|fp_alu:fp_alu_0|four_input_4bit_mux:b2v_inst9|LPM_MUX:LPM_MUX_component|mux_f6e:auto_generated
+|hello_world|first_nios2_system:b2v_inst|fp_alu_improved:fp_alu_0|fp_alu:improved_instance|four_input_4bit_mux:b2v_inst9|LPM_MUX:LPM_MUX_component|mux_f6e:auto_generated
 data[0] => _.IN0
 data[0] => _.IN0
 data[1] => _.IN0

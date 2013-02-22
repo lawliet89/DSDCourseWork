@@ -1,0 +1,13 @@
+module fp_alu_improved(
+	clk,
+	clk_en,
+	start,
+	reset,
+	dataa,
+	datab,
+	n,
+	done,
+	result
+);
+
+endmodule

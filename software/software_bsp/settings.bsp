@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Feb 17, 2013 6:20:17 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1361125217136</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Feb 22, 2013 10:31:15 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1361529075707</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>H:\DSD\DSDCourseWork\software\software_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\first_nios2_system.sopcinfo</SopcDesignFile>
@@ -869,14 +869,20 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>pll</slaveDescriptor>
+                <addressRange>0x01001040 - 0x0100104F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x01001030 - 0x01001037</addressRange>
+                <addressRange>0x01001050 - 0x01001057</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid</slaveDescriptor>
-                <addressRange>0x01001038 - 0x0100103F</addressRange>
+                <addressRange>0x01001058 - 0x0100105F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>

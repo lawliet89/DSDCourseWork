@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'first_nios2_system'
  * SOPC Builder design path: ../../first_nios2_system.sopcinfo
  *
- * Generated: Sun Feb 17 17:53:55 GMT 2013
+ * Generated: Fri Feb 22 10:31:24 GMT 2013
  */
 
 /*
@@ -139,6 +139,7 @@
 #define __ALTERA_AVALON_SYSID_QSYS
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_QSYS
+#define __ALTPLL
 #define __FP_ALU
 
 
@@ -158,19 +159,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart"
-#define ALT_STDERR_BASE 0x1001030
+#define ALT_STDERR_BASE 0x1001050
 #define ALT_STDERR_DEV jtag_uart
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart"
-#define ALT_STDIN_BASE 0x1001030
+#define ALT_STDIN_BASE 0x1001050
 #define ALT_STDIN_DEV jtag_uart
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart"
-#define ALT_STDOUT_BASE 0x1001030
+#define ALT_STDOUT_BASE 0x1001050
 #define ALT_STDOUT_DEV jtag_uart
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -194,7 +195,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart altera_avalon_jtag_uart
-#define JTAG_UART_BASE 0x1001030
+#define JTAG_UART_BASE 0x1001050
 #define JTAG_UART_IRQ 16
 #define JTAG_UART_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_NAME "/dev/jtag_uart"
@@ -231,6 +232,20 @@
 #define LED_PIO_RESET_VALUE 0x0
 #define LED_PIO_SPAN 16
 #define LED_PIO_TYPE "altera_avalon_pio"
+
+
+/*
+ * pll configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_pll altpll
+#define PLL_BASE 0x1001040
+#define PLL_IRQ -1
+#define PLL_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define PLL_NAME "/dev/pll"
+#define PLL_SPAN 16
+#define PLL_TYPE "altpll"
 
 
 /*
@@ -304,13 +319,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid altera_avalon_sysid_qsys
-#define SYSID_BASE 0x1001038
+#define SYSID_BASE 0x1001058
 #define SYSID_ID 0
 #define SYSID_IRQ -1
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1361123166
+#define SYSID_TIMESTAMP 1361528575
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */

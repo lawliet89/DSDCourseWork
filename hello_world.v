@@ -48,7 +48,8 @@ output wire	[7:0] LEDG;
 wire	SYNTHESIZED_WIRE_0;
 assign	SYNTHESIZED_WIRE_0 = 1;
 
-assign DRAM_CLK = CLOCK_50;
+wire PLL_external_clk;
+assign DRAM_CLK = PLL_external_clk;
 
 first_nios2_system	b2v_inst(
 	.clk_clk(CLOCK_50),
@@ -62,8 +63,8 @@ first_nios2_system	b2v_inst(
 	.sdram_wire_dq                      (DRAM_DQ),                      //                            .dq
 	.sdram_wire_dqm                     (DRAM_DQM),                     //                            .dqm
 	.sdram_wire_ras_n                   (DRAM_RAS_N),                   //                            .ras_n
-	.sdram_wire_we_n                    (DRAM_WE_N)                     //                            .we_n
-	
+	.sdram_wire_we_n                    (DRAM_WE_N),                     //                            .we_n
+	.pll_external_clk_clk               (PLL_external_clk)             //            pll_external_clk.clk
 	);
 
 

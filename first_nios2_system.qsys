@@ -16,7 +16,7 @@
    {
       datum baseAddress
       {
-         value = "16781360";
+         value = "16781392";
          type = "long";
       }
    }
@@ -32,7 +32,7 @@
    {
       datum baseAddress
       {
-         value = "16781368";
+         value = "16781400";
          type = "long";
       }
    }
@@ -92,11 +92,11 @@
          type = "int";
       }
    }
-   element sdram.s1
+   element pll.pll_slave
    {
       datum baseAddress
       {
-         value = "8388608";
+         value = "16781376";
          type = "long";
       }
    }
@@ -108,19 +108,27 @@
          type = "long";
       }
    }
-   element led_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "16781344";
-         type = "long";
-      }
-   }
    element sys_clk_timer.s1
    {
       datum baseAddress
       {
          value = "16781312";
+         type = "long";
+      }
+   }
+   element sdram.s1
+   {
+      datum baseAddress
+      {
+         value = "8388608";
+         type = "long";
+      }
+   }
+   element led_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "16781344";
          type = "long";
       }
    }
@@ -168,7 +176,7 @@
  <parameter name="projectName" value="hello_world.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1361123153395" />
+ <parameter name="timeStamp" value="1361528488511" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
@@ -179,7 +187,22 @@
    type="conduit"
    dir="end" />
  <interface name="sdram_wire" internal="sdram.wire" type="conduit" dir="end" />
- <interface name="pll_external_clk" internal="pll.c0" />
+ <interface name="pll_external_clk" internal="pll.c0" type="clock" dir="start" />
+ <interface
+   name="pll_areset_conduit"
+   internal="pll.areset_conduit"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pll_locked_conduit"
+   internal="pll.locked_conduit"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pll_phasedone_conduit"
+   internal="pll.phasedone_conduit"
+   type="conduit"
+   dir="end" />
  <module kind="clock_source" version="12.0" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -299,8 +322,8 @@
   <parameter name="tightlyCoupledInstructionMaster1AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster2AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster3AddrWidth" value="1" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='cpu.jtag_debug_module' start='0x1000800' end='0x1001000' /></address-map>]]></parameter>
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='cpu.jtag_debug_module' start='0x1000800' end='0x1001000' /><slave name='sys_clk_timer.s1' start='0x1001000' end='0x1001020' /><slave name='led_pio.s1' start='0x1001020' end='0x1001030' /><slave name='jtag_uart.avalon_jtag_slave' start='0x1001030' end='0x1001038' /><slave name='sysid.control_slave' start='0x1001038' end='0x1001040' /></address-map>]]></parameter>
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='cpu.jtag_debug_module' start='0x1000800' end='0x1001000' /><slave name='pll.pll_slave' start='0x1001040' end='0x1001050' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='cpu.jtag_debug_module' start='0x1000800' end='0x1001000' /><slave name='sys_clk_timer.s1' start='0x1001000' end='0x1001020' /><slave name='led_pio.s1' start='0x1001020' end='0x1001030' /><slave name='pll.pll_slave' start='0x1001040' end='0x1001050' /><slave name='jtag_uart.avalon_jtag_slave' start='0x1001050' end='0x1001058' /><slave name='sysid.control_slave' start='0x1001058' end='0x1001060' /></address-map>]]></parameter>
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="deviceFamilyName" value="Cyclone III" />
   <parameter name="internalIrqMaskSystemInfo" value="65538" />
@@ -401,7 +424,7 @@
   <parameter name="registerDataIn" value="true" />
   <parameter name="rowWidth" value="12" />
  </module>
- <module kind="altpll" version="12.0" enabled="0" name="pll">
+ <module kind="altpll" version="12.0" enabled="1" name="pll">
   <parameter name="HIDDEN_CUSTOM_ELABORATION">altpll_avalon_elaboration</parameter>
   <parameter name="HIDDEN_CUSTOM_POST_EDIT">altpll_avalon_post_edit</parameter>
   <parameter name="INTENDED_DEVICE_FAMILY" value="Cyclone II" />
@@ -613,7 +636,7 @@
    start="cpu.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01001030" />
+  <parameter name="baseAddress" value="0x01001050" />
  </connection>
  <connection
    kind="reset"
@@ -635,7 +658,7 @@
    start="cpu.data_master"
    end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01001038" />
+  <parameter name="baseAddress" value="0x01001058" />
  </connection>
  <connection kind="clock" version="12.0" start="clk_0.clk" end="led_pio.clk" />
  <connection
@@ -691,5 +714,21 @@
   <parameter name="CIName" value="fp_alu_0" />
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.0"
+   start="cpu.data_master"
+   end="pll.pll_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x01001040" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.0"
+   start="cpu.instruction_master"
+   end="pll.pll_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x01001040" />
  </connection>
 </system>

@@ -33,7 +33,7 @@
 --applicable agreement for further details.
 
 
---altfp_add_sub CBX_AUTO_BLACKBOX="ALL" DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone III" DIRECTION="VARIABLE" OPTIMIZE="SPEED" PIPELINE=14 REDUCED_FUNCTIONALITY="NO" WIDTH_EXP=8 WIDTH_MAN=23 aclr add_sub clk_en clock dataa datab nan overflow result underflow zero
+--altfp_add_sub CBX_AUTO_BLACKBOX="ALL" DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone III" DIRECTION="VARIABLE" OPTIMIZE="SPEED" PIPELINE=7 REDUCED_FUNCTIONALITY="NO" WIDTH_EXP=8 WIDTH_MAN=23 aclr add_sub clk_en clock dataa datab nan result zero
 --VERSION_BEGIN 12.0 cbx_altbarrel_shift 2012:05:31:20:08:02:SJ cbx_altfp_add_sub 2012:05:31:20:08:02:SJ cbx_altpriority_encoder 2012:05:31:20:08:02:SJ cbx_cycloneii 2012:05:31:20:08:02:SJ cbx_lpm_add_sub 2012:05:31:20:08:02:SJ cbx_lpm_compare 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ cbx_stratix 2012:05:31:20:08:02:SJ cbx_stratixii 2012:05:31:20:08:02:SJ  VERSION_END
 
 
@@ -68,179 +68,179 @@
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range688w701w702w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range688w697w698w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range709w722w723w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range709w718w719w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range731w744w745w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range731w740w741w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range753w766w767w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range753w762w763w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range775w788w789w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range775w784w785w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range688w693w694w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range709w714w715w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range731w736w737w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range753w758w759w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range775w780w781w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range688w701w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range688w697w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range709w722w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range709w718w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range731w744w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range731w740w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range753w766w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range753w762w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range775w788w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range775w784w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_dir_w_range685w700w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_dir_w_range707w721w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_dir_w_range728w743w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_dir_w_range750w765w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_dir_w_range772w787w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range688w693w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range709w714w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range731w736w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range753w758w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range775w780w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range688w701w702w703w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range709w722w723w724w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range731w744w745w746w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range753w766w767w768w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range775w788w789w790w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w704w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w725w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w747w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w769w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w791w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range685w698w699w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range685w694w695w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range706w719w720w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range706w715w716w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range728w741w742w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range728w737w738w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range750w763w764w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range750w759w760w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range772w785w786w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range772w781w782w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range685w690w691w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range706w711w712w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range728w733w734w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range750w755w756w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range772w777w778w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range685w698w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range685w694w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range706w719w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range706w715w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range728w741w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range728w737w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range750w763w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range750w759w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range772w785w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range772w781w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_dir_w_range682w697w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_dir_w_range704w718w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_dir_w_range725w740w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_dir_w_range747w762w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_dir_w_range769w784w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range685w690w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range706w711w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range728w733w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range750w755w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_sel_w_range772w777w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range685w698w699w700w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range706w719w720w721w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range728w741w742w743w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range750w763w764w765w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range772w785w786w787w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w701w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w722w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w744w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w766w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w788w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  dir_w :	STD_LOGIC_VECTOR (5 DOWNTO 0);
 	 SIGNAL  direction_w :	STD_LOGIC;
 	 SIGNAL  pad_w :	STD_LOGIC_VECTOR (15 DOWNTO 0);
 	 SIGNAL  sbit_w :	STD_LOGIC_VECTOR (155 DOWNTO 0);
 	 SIGNAL  sel_w :	STD_LOGIC_VECTOR (4 DOWNTO 0);
 	 SIGNAL  smux_w :	STD_LOGIC_VECTOR (129 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w693w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  wire_lbarrel_shift_w696w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w699w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w714w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  wire_lbarrel_shift_w717w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w720w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w736w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  wire_lbarrel_shift_w739w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w742w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w758w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  wire_lbarrel_shift_w761w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w764w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w780w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  wire_lbarrel_shift_w783w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w786w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_dir_w_range685w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_dir_w_range707w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_dir_w_range728w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_dir_w_range750w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_dir_w_range772w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_sbit_w_range748w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_sbit_w_range770w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_sbit_w_range683w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_sbit_w_range706w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_sbit_w_range726w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_sel_w_range688w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_sel_w_range709w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_sel_w_range731w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_sel_w_range753w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_sel_w_range775w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_lbarrel_shift_w_smux_w_range779w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_dir_w_range682w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_dir_w_range704w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_dir_w_range725w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_dir_w_range747w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_dir_w_range769w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_sbit_w_range745w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_sbit_w_range767w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_sbit_w_range680w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_sbit_w_range703w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_sbit_w_range723w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_sel_w_range685w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_sel_w_range706w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_sel_w_range728w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_sel_w_range750w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_sel_w_range772w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_lbarrel_shift_w_smux_w_range776w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
  BEGIN
 
 	loop0 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range688w701w702w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range688w701w(0) AND wire_lbarrel_shift_w699w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range685w698w699w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range685w698w(0) AND wire_lbarrel_shift_w696w(i);
 	END GENERATE loop0;
 	loop1 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range688w697w698w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range688w697w(0) AND wire_lbarrel_shift_w696w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range685w694w695w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range685w694w(0) AND wire_lbarrel_shift_w693w(i);
 	END GENERATE loop1;
 	loop2 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range709w722w723w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range709w722w(0) AND wire_lbarrel_shift_w720w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range706w719w720w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range706w719w(0) AND wire_lbarrel_shift_w717w(i);
 	END GENERATE loop2;
 	loop3 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range709w718w719w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range709w718w(0) AND wire_lbarrel_shift_w717w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range706w715w716w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range706w715w(0) AND wire_lbarrel_shift_w714w(i);
 	END GENERATE loop3;
 	loop4 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range731w744w745w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range731w744w(0) AND wire_lbarrel_shift_w742w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range728w741w742w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range728w741w(0) AND wire_lbarrel_shift_w739w(i);
 	END GENERATE loop4;
 	loop5 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range731w740w741w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range731w740w(0) AND wire_lbarrel_shift_w739w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range728w737w738w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range728w737w(0) AND wire_lbarrel_shift_w736w(i);
 	END GENERATE loop5;
 	loop6 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range753w766w767w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range753w766w(0) AND wire_lbarrel_shift_w764w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range750w763w764w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range750w763w(0) AND wire_lbarrel_shift_w761w(i);
 	END GENERATE loop6;
 	loop7 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range753w762w763w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range753w762w(0) AND wire_lbarrel_shift_w761w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range750w759w760w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range750w759w(0) AND wire_lbarrel_shift_w758w(i);
 	END GENERATE loop7;
 	loop8 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range775w788w789w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range775w788w(0) AND wire_lbarrel_shift_w786w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range772w785w786w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range772w785w(0) AND wire_lbarrel_shift_w783w(i);
 	END GENERATE loop8;
 	loop9 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range775w784w785w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range775w784w(0) AND wire_lbarrel_shift_w783w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range772w781w782w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range772w781w(0) AND wire_lbarrel_shift_w780w(i);
 	END GENERATE loop9;
 	loop10 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range688w693w694w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range688w693w(0) AND wire_lbarrel_shift_w_sbit_w_range683w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range685w690w691w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range685w690w(0) AND wire_lbarrel_shift_w_sbit_w_range680w(i);
 	END GENERATE loop10;
 	loop11 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range709w714w715w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range709w714w(0) AND wire_lbarrel_shift_w_sbit_w_range706w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range706w711w712w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range706w711w(0) AND wire_lbarrel_shift_w_sbit_w_range703w(i);
 	END GENERATE loop11;
 	loop12 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range731w736w737w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range731w736w(0) AND wire_lbarrel_shift_w_sbit_w_range726w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range728w733w734w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range728w733w(0) AND wire_lbarrel_shift_w_sbit_w_range723w(i);
 	END GENERATE loop12;
 	loop13 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range753w758w759w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range753w758w(0) AND wire_lbarrel_shift_w_sbit_w_range748w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range750w755w756w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range750w755w(0) AND wire_lbarrel_shift_w_sbit_w_range745w(i);
 	END GENERATE loop13;
 	loop14 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range775w780w781w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range775w780w(0) AND wire_lbarrel_shift_w_sbit_w_range770w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range772w777w778w(i) <= wire_lbarrel_shift_w_lg_w_sel_w_range772w777w(0) AND wire_lbarrel_shift_w_sbit_w_range767w(i);
 	END GENERATE loop14;
-	wire_lbarrel_shift_w_lg_w_sel_w_range688w701w(0) <= wire_lbarrel_shift_w_sel_w_range688w(0) AND wire_lbarrel_shift_w_lg_w_dir_w_range685w700w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range688w697w(0) <= wire_lbarrel_shift_w_sel_w_range688w(0) AND wire_lbarrel_shift_w_dir_w_range685w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range709w722w(0) <= wire_lbarrel_shift_w_sel_w_range709w(0) AND wire_lbarrel_shift_w_lg_w_dir_w_range707w721w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range709w718w(0) <= wire_lbarrel_shift_w_sel_w_range709w(0) AND wire_lbarrel_shift_w_dir_w_range707w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range731w744w(0) <= wire_lbarrel_shift_w_sel_w_range731w(0) AND wire_lbarrel_shift_w_lg_w_dir_w_range728w743w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range731w740w(0) <= wire_lbarrel_shift_w_sel_w_range731w(0) AND wire_lbarrel_shift_w_dir_w_range728w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range753w766w(0) <= wire_lbarrel_shift_w_sel_w_range753w(0) AND wire_lbarrel_shift_w_lg_w_dir_w_range750w765w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range753w762w(0) <= wire_lbarrel_shift_w_sel_w_range753w(0) AND wire_lbarrel_shift_w_dir_w_range750w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range775w788w(0) <= wire_lbarrel_shift_w_sel_w_range775w(0) AND wire_lbarrel_shift_w_lg_w_dir_w_range772w787w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range775w784w(0) <= wire_lbarrel_shift_w_sel_w_range775w(0) AND wire_lbarrel_shift_w_dir_w_range772w(0);
-	wire_lbarrel_shift_w_lg_w_dir_w_range685w700w(0) <= NOT wire_lbarrel_shift_w_dir_w_range685w(0);
-	wire_lbarrel_shift_w_lg_w_dir_w_range707w721w(0) <= NOT wire_lbarrel_shift_w_dir_w_range707w(0);
-	wire_lbarrel_shift_w_lg_w_dir_w_range728w743w(0) <= NOT wire_lbarrel_shift_w_dir_w_range728w(0);
-	wire_lbarrel_shift_w_lg_w_dir_w_range750w765w(0) <= NOT wire_lbarrel_shift_w_dir_w_range750w(0);
-	wire_lbarrel_shift_w_lg_w_dir_w_range772w787w(0) <= NOT wire_lbarrel_shift_w_dir_w_range772w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range688w693w(0) <= NOT wire_lbarrel_shift_w_sel_w_range688w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range709w714w(0) <= NOT wire_lbarrel_shift_w_sel_w_range709w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range731w736w(0) <= NOT wire_lbarrel_shift_w_sel_w_range731w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range753w758w(0) <= NOT wire_lbarrel_shift_w_sel_w_range753w(0);
-	wire_lbarrel_shift_w_lg_w_sel_w_range775w780w(0) <= NOT wire_lbarrel_shift_w_sel_w_range775w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range685w698w(0) <= wire_lbarrel_shift_w_sel_w_range685w(0) AND wire_lbarrel_shift_w_lg_w_dir_w_range682w697w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range685w694w(0) <= wire_lbarrel_shift_w_sel_w_range685w(0) AND wire_lbarrel_shift_w_dir_w_range682w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range706w719w(0) <= wire_lbarrel_shift_w_sel_w_range706w(0) AND wire_lbarrel_shift_w_lg_w_dir_w_range704w718w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range706w715w(0) <= wire_lbarrel_shift_w_sel_w_range706w(0) AND wire_lbarrel_shift_w_dir_w_range704w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range728w741w(0) <= wire_lbarrel_shift_w_sel_w_range728w(0) AND wire_lbarrel_shift_w_lg_w_dir_w_range725w740w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range728w737w(0) <= wire_lbarrel_shift_w_sel_w_range728w(0) AND wire_lbarrel_shift_w_dir_w_range725w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range750w763w(0) <= wire_lbarrel_shift_w_sel_w_range750w(0) AND wire_lbarrel_shift_w_lg_w_dir_w_range747w762w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range750w759w(0) <= wire_lbarrel_shift_w_sel_w_range750w(0) AND wire_lbarrel_shift_w_dir_w_range747w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range772w785w(0) <= wire_lbarrel_shift_w_sel_w_range772w(0) AND wire_lbarrel_shift_w_lg_w_dir_w_range769w784w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range772w781w(0) <= wire_lbarrel_shift_w_sel_w_range772w(0) AND wire_lbarrel_shift_w_dir_w_range769w(0);
+	wire_lbarrel_shift_w_lg_w_dir_w_range682w697w(0) <= NOT wire_lbarrel_shift_w_dir_w_range682w(0);
+	wire_lbarrel_shift_w_lg_w_dir_w_range704w718w(0) <= NOT wire_lbarrel_shift_w_dir_w_range704w(0);
+	wire_lbarrel_shift_w_lg_w_dir_w_range725w740w(0) <= NOT wire_lbarrel_shift_w_dir_w_range725w(0);
+	wire_lbarrel_shift_w_lg_w_dir_w_range747w762w(0) <= NOT wire_lbarrel_shift_w_dir_w_range747w(0);
+	wire_lbarrel_shift_w_lg_w_dir_w_range769w784w(0) <= NOT wire_lbarrel_shift_w_dir_w_range769w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range685w690w(0) <= NOT wire_lbarrel_shift_w_sel_w_range685w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range706w711w(0) <= NOT wire_lbarrel_shift_w_sel_w_range706w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range728w733w(0) <= NOT wire_lbarrel_shift_w_sel_w_range728w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range750w755w(0) <= NOT wire_lbarrel_shift_w_sel_w_range750w(0);
+	wire_lbarrel_shift_w_lg_w_sel_w_range772w777w(0) <= NOT wire_lbarrel_shift_w_sel_w_range772w(0);
 	loop15 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range688w701w702w703w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range688w701w702w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range688w697w698w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range685w698w699w700w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range685w698w699w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range685w694w695w(i);
 	END GENERATE loop15;
 	loop16 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range709w722w723w724w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range709w722w723w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range709w718w719w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range706w719w720w721w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range706w719w720w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range706w715w716w(i);
 	END GENERATE loop16;
 	loop17 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range731w744w745w746w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range731w744w745w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range731w740w741w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range728w741w742w743w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range728w741w742w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range728w737w738w(i);
 	END GENERATE loop17;
 	loop18 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range753w766w767w768w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range753w766w767w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range753w762w763w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range750w763w764w765w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range750w763w764w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range750w759w760w(i);
 	END GENERATE loop18;
 	loop19 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range775w788w789w790w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range775w788w789w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range775w784w785w(i);
+		wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range772w785w786w787w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range772w785w786w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range772w781w782w(i);
 	END GENERATE loop19;
 	loop20 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w704w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range688w701w702w703w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range688w693w694w(i);
+		wire_lbarrel_shift_w701w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range685w698w699w700w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range685w690w691w(i);
 	END GENERATE loop20;
 	loop21 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w725w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range709w722w723w724w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range709w714w715w(i);
+		wire_lbarrel_shift_w722w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range706w719w720w721w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range706w711w712w(i);
 	END GENERATE loop21;
 	loop22 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w747w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range731w744w745w746w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range731w736w737w(i);
+		wire_lbarrel_shift_w744w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range728w741w742w743w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range728w733w734w(i);
 	END GENERATE loop22;
 	loop23 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w769w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range753w766w767w768w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range753w758w759w(i);
+		wire_lbarrel_shift_w766w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range750w763w764w765w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range750w755w756w(i);
 	END GENERATE loop23;
 	loop24 : FOR i IN 0 TO 25 GENERATE 
-		wire_lbarrel_shift_w791w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range775w788w789w790w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range775w780w781w(i);
+		wire_lbarrel_shift_w788w(i) <= wire_lbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range772w785w786w787w(i) OR wire_lbarrel_shift_w_lg_w_lg_w_sel_w_range772w777w778w(i);
 	END GENERATE loop24;
 	dir_w <= ( dir_pipe(0) & dir_w(3 DOWNTO 0) & direction_w);
 	direction_w <= '0';
@@ -248,33 +248,33 @@
 	result <= sbit_w(155 DOWNTO 130);
 	sbit_w <= ( sbit_piper1d & smux_w(103 DOWNTO 0) & data);
 	sel_w <= ( distance(4 DOWNTO 0));
-	smux_w <= ( wire_lbarrel_shift_w791w & wire_lbarrel_shift_w769w & wire_lbarrel_shift_w747w & wire_lbarrel_shift_w725w & wire_lbarrel_shift_w704w);
-	wire_lbarrel_shift_w696w <= ( pad_w(0) & sbit_w(25 DOWNTO 1));
-	wire_lbarrel_shift_w699w <= ( sbit_w(24 DOWNTO 0) & pad_w(0));
-	wire_lbarrel_shift_w717w <= ( pad_w(1 DOWNTO 0) & sbit_w(51 DOWNTO 28));
-	wire_lbarrel_shift_w720w <= ( sbit_w(49 DOWNTO 26) & pad_w(1 DOWNTO 0));
-	wire_lbarrel_shift_w739w <= ( pad_w(3 DOWNTO 0) & sbit_w(77 DOWNTO 56));
-	wire_lbarrel_shift_w742w <= ( sbit_w(73 DOWNTO 52) & pad_w(3 DOWNTO 0));
-	wire_lbarrel_shift_w761w <= ( pad_w(7 DOWNTO 0) & sbit_w(103 DOWNTO 86));
-	wire_lbarrel_shift_w764w <= ( sbit_w(95 DOWNTO 78) & pad_w(7 DOWNTO 0));
-	wire_lbarrel_shift_w783w <= ( pad_w(15 DOWNTO 0) & sbit_w(129 DOWNTO 120));
-	wire_lbarrel_shift_w786w <= ( sbit_w(113 DOWNTO 104) & pad_w(15 DOWNTO 0));
-	wire_lbarrel_shift_w_dir_w_range685w(0) <= dir_w(0);
-	wire_lbarrel_shift_w_dir_w_range707w(0) <= dir_w(1);
-	wire_lbarrel_shift_w_dir_w_range728w(0) <= dir_w(2);
-	wire_lbarrel_shift_w_dir_w_range750w(0) <= dir_w(3);
-	wire_lbarrel_shift_w_dir_w_range772w(0) <= dir_w(4);
-	wire_lbarrel_shift_w_sbit_w_range748w <= sbit_w(103 DOWNTO 78);
-	wire_lbarrel_shift_w_sbit_w_range770w <= sbit_w(129 DOWNTO 104);
-	wire_lbarrel_shift_w_sbit_w_range683w <= sbit_w(25 DOWNTO 0);
-	wire_lbarrel_shift_w_sbit_w_range706w <= sbit_w(51 DOWNTO 26);
-	wire_lbarrel_shift_w_sbit_w_range726w <= sbit_w(77 DOWNTO 52);
-	wire_lbarrel_shift_w_sel_w_range688w(0) <= sel_w(0);
-	wire_lbarrel_shift_w_sel_w_range709w(0) <= sel_w(1);
-	wire_lbarrel_shift_w_sel_w_range731w(0) <= sel_w(2);
-	wire_lbarrel_shift_w_sel_w_range753w(0) <= sel_w(3);
-	wire_lbarrel_shift_w_sel_w_range775w(0) <= sel_w(4);
-	wire_lbarrel_shift_w_smux_w_range779w <= smux_w(129 DOWNTO 104);
+	smux_w <= ( wire_lbarrel_shift_w788w & wire_lbarrel_shift_w766w & wire_lbarrel_shift_w744w & wire_lbarrel_shift_w722w & wire_lbarrel_shift_w701w);
+	wire_lbarrel_shift_w693w <= ( pad_w(0) & sbit_w(25 DOWNTO 1));
+	wire_lbarrel_shift_w696w <= ( sbit_w(24 DOWNTO 0) & pad_w(0));
+	wire_lbarrel_shift_w714w <= ( pad_w(1 DOWNTO 0) & sbit_w(51 DOWNTO 28));
+	wire_lbarrel_shift_w717w <= ( sbit_w(49 DOWNTO 26) & pad_w(1 DOWNTO 0));
+	wire_lbarrel_shift_w736w <= ( pad_w(3 DOWNTO 0) & sbit_w(77 DOWNTO 56));
+	wire_lbarrel_shift_w739w <= ( sbit_w(73 DOWNTO 52) & pad_w(3 DOWNTO 0));
+	wire_lbarrel_shift_w758w <= ( pad_w(7 DOWNTO 0) & sbit_w(103 DOWNTO 86));
+	wire_lbarrel_shift_w761w <= ( sbit_w(95 DOWNTO 78) & pad_w(7 DOWNTO 0));
+	wire_lbarrel_shift_w780w <= ( pad_w(15 DOWNTO 0) & sbit_w(129 DOWNTO 120));
+	wire_lbarrel_shift_w783w <= ( sbit_w(113 DOWNTO 104) & pad_w(15 DOWNTO 0));
+	wire_lbarrel_shift_w_dir_w_range682w(0) <= dir_w(0);
+	wire_lbarrel_shift_w_dir_w_range704w(0) <= dir_w(1);
+	wire_lbarrel_shift_w_dir_w_range725w(0) <= dir_w(2);
+	wire_lbarrel_shift_w_dir_w_range747w(0) <= dir_w(3);
+	wire_lbarrel_shift_w_dir_w_range769w(0) <= dir_w(4);
+	wire_lbarrel_shift_w_sbit_w_range745w <= sbit_w(103 DOWNTO 78);
+	wire_lbarrel_shift_w_sbit_w_range767w <= sbit_w(129 DOWNTO 104);
+	wire_lbarrel_shift_w_sbit_w_range680w <= sbit_w(25 DOWNTO 0);
+	wire_lbarrel_shift_w_sbit_w_range703w <= sbit_w(51 DOWNTO 26);
+	wire_lbarrel_shift_w_sbit_w_range723w <= sbit_w(77 DOWNTO 52);
+	wire_lbarrel_shift_w_sel_w_range685w(0) <= sel_w(0);
+	wire_lbarrel_shift_w_sel_w_range706w(0) <= sel_w(1);
+	wire_lbarrel_shift_w_sel_w_range728w(0) <= sel_w(2);
+	wire_lbarrel_shift_w_sel_w_range750w(0) <= sel_w(3);
+	wire_lbarrel_shift_w_sel_w_range772w(0) <= sel_w(4);
+	wire_lbarrel_shift_w_smux_w_range776w <= smux_w(129 DOWNTO 104);
 	PROCESS (clock, aclr)
 	BEGIN
 		IF (aclr = '1') THEN dir_pipe <= (OTHERS => '0');
@@ -287,7 +287,7 @@
 	BEGIN
 		IF (aclr = '1') THEN sbit_piper1d <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sbit_piper1d <= wire_lbarrel_shift_w_smux_w_range779w;
+			IF (clk_en = '1') THEN sbit_piper1d <= wire_lbarrel_shift_w_smux_w_range776w;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -295,295 +295,238 @@
  END RTL; --fp_add_altbarrel_shift_q3e
 
 
---altbarrel_shift CBX_AUTO_BLACKBOX="ALL" DEVICE_FAMILY="Cyclone III" PIPELINE=1 REGISTER_OUTPUT="NO" SHIFTDIR="RIGHT" WIDTH=26 WIDTHDIST=5 aclr clk_en clock data distance result
+--altbarrel_shift CBX_AUTO_BLACKBOX="ALL" DEVICE_FAMILY="Cyclone III" SHIFTDIR="RIGHT" WIDTH=26 WIDTHDIST=5 data distance result
 --VERSION_BEGIN 12.0 cbx_altbarrel_shift 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ  VERSION_END
 
---synthesis_resources = reg 29 
+--synthesis_resources = 
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_add_altbarrel_shift_07g IS 
+ ENTITY  fp_add_altbarrel_shift_fkb IS 
 	 PORT 
 	 ( 
-		 aclr	:	IN  STD_LOGIC := '0';
-		 clk_en	:	IN  STD_LOGIC := '1';
-		 clock	:	IN  STD_LOGIC := '0';
 		 data	:	IN  STD_LOGIC_VECTOR (25 DOWNTO 0);
 		 distance	:	IN  STD_LOGIC_VECTOR (4 DOWNTO 0);
 		 result	:	OUT  STD_LOGIC_VECTOR (25 DOWNTO 0)
 	 ); 
- END fp_add_altbarrel_shift_07g;
+ END fp_add_altbarrel_shift_fkb;
 
- ARCHITECTURE RTL OF fp_add_altbarrel_shift_07g IS
+ ARCHITECTURE RTL OF fp_add_altbarrel_shift_fkb IS
 
-	 SIGNAL	 dir_pipe	:	STD_LOGIC_VECTOR(0 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sbit_piper1d	:	STD_LOGIC_VECTOR(25 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sel_pipec3r1d	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sel_pipec4r1d	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range803w816w817w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range803w812w813w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range824w837w838w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range824w833w834w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range846w859w860w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range846w855w856w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range869w881w882w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range869w877w878w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range888w900w901w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range888w896w897w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range803w808w809w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range824w829w830w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range846w851w852w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range869w873w874w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range888w892w893w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range803w816w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range803w812w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range824w837w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range824w833w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range846w859w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range846w855w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range869w881w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range869w877w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range888w900w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range888w896w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_dir_w_range800w815w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_dir_w_range822w836w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_dir_w_range843w858w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_dir_w_range867w880w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_dir_w_range886w899w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range803w808w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range824w829w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range846w851w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range869w873w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range888w892w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range803w816w817w818w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range824w837w838w839w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range846w859w860w861w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range869w881w882w883w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range888w900w901w902w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w819w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w840w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w862w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w884w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w903w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range799w812w813w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range799w808w809w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range820w833w834w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range820w829w830w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range842w855w856w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range842w851w852w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range864w877w878w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range864w873w874w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range886w899w900w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range886w895w896w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range799w804w805w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range820w825w826w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range842w847w848w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range864w869w870w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range886w891w892w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range799w812w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range799w808w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range820w833w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range820w829w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range842w855w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range842w851w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range864w877w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range864w873w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range886w899w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range886w895w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_dir_w_range796w811w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_dir_w_range818w832w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_dir_w_range839w854w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_dir_w_range861w876w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_dir_w_range883w898w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range799w804w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range820w825w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range842w847w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range864w869w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_sel_w_range886w891w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range799w812w813w814w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range820w833w834w835w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range842w855w856w857w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range864w877w878w879w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range886w899w900w901w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w815w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w836w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w858w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w880w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w902w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  dir_w :	STD_LOGIC_VECTOR (5 DOWNTO 0);
 	 SIGNAL  direction_w :	STD_LOGIC;
 	 SIGNAL  pad_w :	STD_LOGIC_VECTOR (15 DOWNTO 0);
 	 SIGNAL  sbit_w :	STD_LOGIC_VECTOR (155 DOWNTO 0);
 	 SIGNAL  sel_w :	STD_LOGIC_VECTOR (4 DOWNTO 0);
 	 SIGNAL  smux_w :	STD_LOGIC_VECTOR (129 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w811w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w814w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w832w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w835w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w854w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w857w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w876w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w879w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w895w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w898w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_dir_w_range800w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_dir_w_range822w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_dir_w_range843w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_dir_w_range867w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_dir_w_range886w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_sbit_w_range863w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_sbit_w_range885w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_sbit_w_range798w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_sbit_w_range821w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_sbit_w_range841w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_sel_w_range803w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_sel_w_range824w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_sel_w_range846w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_sel_w_range869w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_sel_w_range888w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_rbarrel_shift_w_smux_w_range850w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w807w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w810w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w828w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w831w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w850w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w853w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w872w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w875w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w894w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w897w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_dir_w_range796w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_dir_w_range818w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_dir_w_range839w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_dir_w_range861w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_dir_w_range883w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_sbit_w_range859w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_sbit_w_range881w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_sbit_w_range794w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_sbit_w_range817w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_sbit_w_range837w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_sel_w_range799w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_sel_w_range820w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_sel_w_range842w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_sel_w_range864w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_rbarrel_shift_w_sel_w_range886w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
  BEGIN
 
 	loop25 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range803w816w817w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range803w816w(0) AND wire_rbarrel_shift_w814w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range799w812w813w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range799w812w(0) AND wire_rbarrel_shift_w810w(i);
 	END GENERATE loop25;
 	loop26 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range803w812w813w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range803w812w(0) AND wire_rbarrel_shift_w811w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range799w808w809w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range799w808w(0) AND wire_rbarrel_shift_w807w(i);
 	END GENERATE loop26;
 	loop27 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range824w837w838w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range824w837w(0) AND wire_rbarrel_shift_w835w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range820w833w834w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range820w833w(0) AND wire_rbarrel_shift_w831w(i);
 	END GENERATE loop27;
 	loop28 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range824w833w834w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range824w833w(0) AND wire_rbarrel_shift_w832w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range820w829w830w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range820w829w(0) AND wire_rbarrel_shift_w828w(i);
 	END GENERATE loop28;
 	loop29 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range846w859w860w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range846w859w(0) AND wire_rbarrel_shift_w857w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range842w855w856w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range842w855w(0) AND wire_rbarrel_shift_w853w(i);
 	END GENERATE loop29;
 	loop30 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range846w855w856w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range846w855w(0) AND wire_rbarrel_shift_w854w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range842w851w852w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range842w851w(0) AND wire_rbarrel_shift_w850w(i);
 	END GENERATE loop30;
 	loop31 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range869w881w882w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range869w881w(0) AND wire_rbarrel_shift_w879w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range864w877w878w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range864w877w(0) AND wire_rbarrel_shift_w875w(i);
 	END GENERATE loop31;
 	loop32 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range869w877w878w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range869w877w(0) AND wire_rbarrel_shift_w876w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range864w873w874w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range864w873w(0) AND wire_rbarrel_shift_w872w(i);
 	END GENERATE loop32;
 	loop33 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range888w900w901w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range888w900w(0) AND wire_rbarrel_shift_w898w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range886w899w900w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range886w899w(0) AND wire_rbarrel_shift_w897w(i);
 	END GENERATE loop33;
 	loop34 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range888w896w897w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range888w896w(0) AND wire_rbarrel_shift_w895w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range886w895w896w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range886w895w(0) AND wire_rbarrel_shift_w894w(i);
 	END GENERATE loop34;
 	loop35 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range803w808w809w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range803w808w(0) AND wire_rbarrel_shift_w_sbit_w_range798w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range799w804w805w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range799w804w(0) AND wire_rbarrel_shift_w_sbit_w_range794w(i);
 	END GENERATE loop35;
 	loop36 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range824w829w830w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range824w829w(0) AND wire_rbarrel_shift_w_sbit_w_range821w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range820w825w826w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range820w825w(0) AND wire_rbarrel_shift_w_sbit_w_range817w(i);
 	END GENERATE loop36;
 	loop37 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range846w851w852w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range846w851w(0) AND wire_rbarrel_shift_w_sbit_w_range841w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range842w847w848w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range842w847w(0) AND wire_rbarrel_shift_w_sbit_w_range837w(i);
 	END GENERATE loop37;
 	loop38 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range869w873w874w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range869w873w(0) AND wire_rbarrel_shift_w_sbit_w_range863w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range864w869w870w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range864w869w(0) AND wire_rbarrel_shift_w_sbit_w_range859w(i);
 	END GENERATE loop38;
 	loop39 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range888w892w893w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range888w892w(0) AND wire_rbarrel_shift_w_sbit_w_range885w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range886w891w892w(i) <= wire_rbarrel_shift_w_lg_w_sel_w_range886w891w(0) AND wire_rbarrel_shift_w_sbit_w_range881w(i);
 	END GENERATE loop39;
-	wire_rbarrel_shift_w_lg_w_sel_w_range803w816w(0) <= wire_rbarrel_shift_w_sel_w_range803w(0) AND wire_rbarrel_shift_w_lg_w_dir_w_range800w815w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range803w812w(0) <= wire_rbarrel_shift_w_sel_w_range803w(0) AND wire_rbarrel_shift_w_dir_w_range800w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range824w837w(0) <= wire_rbarrel_shift_w_sel_w_range824w(0) AND wire_rbarrel_shift_w_lg_w_dir_w_range822w836w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range824w833w(0) <= wire_rbarrel_shift_w_sel_w_range824w(0) AND wire_rbarrel_shift_w_dir_w_range822w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range846w859w(0) <= wire_rbarrel_shift_w_sel_w_range846w(0) AND wire_rbarrel_shift_w_lg_w_dir_w_range843w858w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range846w855w(0) <= wire_rbarrel_shift_w_sel_w_range846w(0) AND wire_rbarrel_shift_w_dir_w_range843w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range869w881w(0) <= wire_rbarrel_shift_w_sel_w_range869w(0) AND wire_rbarrel_shift_w_lg_w_dir_w_range867w880w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range869w877w(0) <= wire_rbarrel_shift_w_sel_w_range869w(0) AND wire_rbarrel_shift_w_dir_w_range867w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range888w900w(0) <= wire_rbarrel_shift_w_sel_w_range888w(0) AND wire_rbarrel_shift_w_lg_w_dir_w_range886w899w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range888w896w(0) <= wire_rbarrel_shift_w_sel_w_range888w(0) AND wire_rbarrel_shift_w_dir_w_range886w(0);
-	wire_rbarrel_shift_w_lg_w_dir_w_range800w815w(0) <= NOT wire_rbarrel_shift_w_dir_w_range800w(0);
-	wire_rbarrel_shift_w_lg_w_dir_w_range822w836w(0) <= NOT wire_rbarrel_shift_w_dir_w_range822w(0);
-	wire_rbarrel_shift_w_lg_w_dir_w_range843w858w(0) <= NOT wire_rbarrel_shift_w_dir_w_range843w(0);
-	wire_rbarrel_shift_w_lg_w_dir_w_range867w880w(0) <= NOT wire_rbarrel_shift_w_dir_w_range867w(0);
-	wire_rbarrel_shift_w_lg_w_dir_w_range886w899w(0) <= NOT wire_rbarrel_shift_w_dir_w_range886w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range803w808w(0) <= NOT wire_rbarrel_shift_w_sel_w_range803w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range824w829w(0) <= NOT wire_rbarrel_shift_w_sel_w_range824w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range846w851w(0) <= NOT wire_rbarrel_shift_w_sel_w_range846w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range869w873w(0) <= NOT wire_rbarrel_shift_w_sel_w_range869w(0);
-	wire_rbarrel_shift_w_lg_w_sel_w_range888w892w(0) <= NOT wire_rbarrel_shift_w_sel_w_range888w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range799w812w(0) <= wire_rbarrel_shift_w_sel_w_range799w(0) AND wire_rbarrel_shift_w_lg_w_dir_w_range796w811w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range799w808w(0) <= wire_rbarrel_shift_w_sel_w_range799w(0) AND wire_rbarrel_shift_w_dir_w_range796w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range820w833w(0) <= wire_rbarrel_shift_w_sel_w_range820w(0) AND wire_rbarrel_shift_w_lg_w_dir_w_range818w832w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range820w829w(0) <= wire_rbarrel_shift_w_sel_w_range820w(0) AND wire_rbarrel_shift_w_dir_w_range818w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range842w855w(0) <= wire_rbarrel_shift_w_sel_w_range842w(0) AND wire_rbarrel_shift_w_lg_w_dir_w_range839w854w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range842w851w(0) <= wire_rbarrel_shift_w_sel_w_range842w(0) AND wire_rbarrel_shift_w_dir_w_range839w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range864w877w(0) <= wire_rbarrel_shift_w_sel_w_range864w(0) AND wire_rbarrel_shift_w_lg_w_dir_w_range861w876w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range864w873w(0) <= wire_rbarrel_shift_w_sel_w_range864w(0) AND wire_rbarrel_shift_w_dir_w_range861w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range886w899w(0) <= wire_rbarrel_shift_w_sel_w_range886w(0) AND wire_rbarrel_shift_w_lg_w_dir_w_range883w898w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range886w895w(0) <= wire_rbarrel_shift_w_sel_w_range886w(0) AND wire_rbarrel_shift_w_dir_w_range883w(0);
+	wire_rbarrel_shift_w_lg_w_dir_w_range796w811w(0) <= NOT wire_rbarrel_shift_w_dir_w_range796w(0);
+	wire_rbarrel_shift_w_lg_w_dir_w_range818w832w(0) <= NOT wire_rbarrel_shift_w_dir_w_range818w(0);
+	wire_rbarrel_shift_w_lg_w_dir_w_range839w854w(0) <= NOT wire_rbarrel_shift_w_dir_w_range839w(0);
+	wire_rbarrel_shift_w_lg_w_dir_w_range861w876w(0) <= NOT wire_rbarrel_shift_w_dir_w_range861w(0);
+	wire_rbarrel_shift_w_lg_w_dir_w_range883w898w(0) <= NOT wire_rbarrel_shift_w_dir_w_range883w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range799w804w(0) <= NOT wire_rbarrel_shift_w_sel_w_range799w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range820w825w(0) <= NOT wire_rbarrel_shift_w_sel_w_range820w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range842w847w(0) <= NOT wire_rbarrel_shift_w_sel_w_range842w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range864w869w(0) <= NOT wire_rbarrel_shift_w_sel_w_range864w(0);
+	wire_rbarrel_shift_w_lg_w_sel_w_range886w891w(0) <= NOT wire_rbarrel_shift_w_sel_w_range886w(0);
 	loop40 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range803w816w817w818w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range803w816w817w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range803w812w813w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range799w812w813w814w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range799w812w813w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range799w808w809w(i);
 	END GENERATE loop40;
 	loop41 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range824w837w838w839w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range824w837w838w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range824w833w834w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range820w833w834w835w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range820w833w834w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range820w829w830w(i);
 	END GENERATE loop41;
 	loop42 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range846w859w860w861w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range846w859w860w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range846w855w856w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range842w855w856w857w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range842w855w856w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range842w851w852w(i);
 	END GENERATE loop42;
 	loop43 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range869w881w882w883w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range869w881w882w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range869w877w878w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range864w877w878w879w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range864w877w878w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range864w873w874w(i);
 	END GENERATE loop43;
 	loop44 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range888w900w901w902w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range888w900w901w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range888w896w897w(i);
+		wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range886w899w900w901w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range886w899w900w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range886w895w896w(i);
 	END GENERATE loop44;
 	loop45 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w819w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range803w816w817w818w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range803w808w809w(i);
+		wire_rbarrel_shift_w815w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range799w812w813w814w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range799w804w805w(i);
 	END GENERATE loop45;
 	loop46 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w840w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range824w837w838w839w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range824w829w830w(i);
+		wire_rbarrel_shift_w836w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range820w833w834w835w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range820w825w826w(i);
 	END GENERATE loop46;
 	loop47 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w862w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range846w859w860w861w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range846w851w852w(i);
+		wire_rbarrel_shift_w858w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range842w855w856w857w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range842w847w848w(i);
 	END GENERATE loop47;
 	loop48 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w884w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range869w881w882w883w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range869w873w874w(i);
+		wire_rbarrel_shift_w880w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range864w877w878w879w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range864w869w870w(i);
 	END GENERATE loop48;
 	loop49 : FOR i IN 0 TO 25 GENERATE 
-		wire_rbarrel_shift_w903w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range888w900w901w902w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range888w892w893w(i);
+		wire_rbarrel_shift_w902w(i) <= wire_rbarrel_shift_w_lg_w_lg_w_lg_w_sel_w_range886w899w900w901w(i) OR wire_rbarrel_shift_w_lg_w_lg_w_sel_w_range886w891w892w(i);
 	END GENERATE loop49;
-	dir_w <= ( dir_w(4 DOWNTO 3) & dir_pipe(0) & dir_w(1 DOWNTO 0) & direction_w);
+	dir_w <= ( dir_w(4 DOWNTO 0) & direction_w);
 	direction_w <= '1';
 	pad_w <= (OTHERS => '0');
 	result <= sbit_w(155 DOWNTO 130);
-	sbit_w <= ( smux_w(129 DOWNTO 78) & sbit_piper1d & smux_w(51 DOWNTO 0) & data);
-	sel_w <= ( sel_pipec4r1d & sel_pipec3r1d & distance(2 DOWNTO 0));
-	smux_w <= ( wire_rbarrel_shift_w903w & wire_rbarrel_shift_w884w & wire_rbarrel_shift_w862w & wire_rbarrel_shift_w840w & wire_rbarrel_shift_w819w);
-	wire_rbarrel_shift_w811w <= ( pad_w(0) & sbit_w(25 DOWNTO 1));
-	wire_rbarrel_shift_w814w <= ( sbit_w(24 DOWNTO 0) & pad_w(0));
-	wire_rbarrel_shift_w832w <= ( pad_w(1 DOWNTO 0) & sbit_w(51 DOWNTO 28));
-	wire_rbarrel_shift_w835w <= ( sbit_w(49 DOWNTO 26) & pad_w(1 DOWNTO 0));
-	wire_rbarrel_shift_w854w <= ( pad_w(3 DOWNTO 0) & sbit_w(77 DOWNTO 56));
-	wire_rbarrel_shift_w857w <= ( sbit_w(73 DOWNTO 52) & pad_w(3 DOWNTO 0));
-	wire_rbarrel_shift_w876w <= ( pad_w(7 DOWNTO 0) & sbit_w(103 DOWNTO 86));
-	wire_rbarrel_shift_w879w <= ( sbit_w(95 DOWNTO 78) & pad_w(7 DOWNTO 0));
-	wire_rbarrel_shift_w895w <= ( pad_w(15 DOWNTO 0) & sbit_w(129 DOWNTO 120));
-	wire_rbarrel_shift_w898w <= ( sbit_w(113 DOWNTO 104) & pad_w(15 DOWNTO 0));
-	wire_rbarrel_shift_w_dir_w_range800w(0) <= dir_w(0);
-	wire_rbarrel_shift_w_dir_w_range822w(0) <= dir_w(1);
-	wire_rbarrel_shift_w_dir_w_range843w(0) <= dir_w(2);
-	wire_rbarrel_shift_w_dir_w_range867w(0) <= dir_w(3);
-	wire_rbarrel_shift_w_dir_w_range886w(0) <= dir_w(4);
-	wire_rbarrel_shift_w_sbit_w_range863w <= sbit_w(103 DOWNTO 78);
-	wire_rbarrel_shift_w_sbit_w_range885w <= sbit_w(129 DOWNTO 104);
-	wire_rbarrel_shift_w_sbit_w_range798w <= sbit_w(25 DOWNTO 0);
-	wire_rbarrel_shift_w_sbit_w_range821w <= sbit_w(51 DOWNTO 26);
-	wire_rbarrel_shift_w_sbit_w_range841w <= sbit_w(77 DOWNTO 52);
-	wire_rbarrel_shift_w_sel_w_range803w(0) <= sel_w(0);
-	wire_rbarrel_shift_w_sel_w_range824w(0) <= sel_w(1);
-	wire_rbarrel_shift_w_sel_w_range846w(0) <= sel_w(2);
-	wire_rbarrel_shift_w_sel_w_range869w(0) <= sel_w(3);
-	wire_rbarrel_shift_w_sel_w_range888w(0) <= sel_w(4);
-	wire_rbarrel_shift_w_smux_w_range850w <= smux_w(77 DOWNTO 52);
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN dir_pipe <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN dir_pipe(0) <= ( dir_w(2));
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sbit_piper1d <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sbit_piper1d <= wire_rbarrel_shift_w_smux_w_range850w;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sel_pipec3r1d <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sel_pipec3r1d <= distance(3);
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sel_pipec4r1d <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sel_pipec4r1d <= distance(4);
-			END IF;
-		END IF;
-	END PROCESS;
+	sbit_w <= ( smux_w(129 DOWNTO 0) & data);
+	sel_w <= ( distance(4 DOWNTO 0));
+	smux_w <= ( wire_rbarrel_shift_w902w & wire_rbarrel_shift_w880w & wire_rbarrel_shift_w858w & wire_rbarrel_shift_w836w & wire_rbarrel_shift_w815w);
+	wire_rbarrel_shift_w807w <= ( pad_w(0) & sbit_w(25 DOWNTO 1));
+	wire_rbarrel_shift_w810w <= ( sbit_w(24 DOWNTO 0) & pad_w(0));
+	wire_rbarrel_shift_w828w <= ( pad_w(1 DOWNTO 0) & sbit_w(51 DOWNTO 28));
+	wire_rbarrel_shift_w831w <= ( sbit_w(49 DOWNTO 26) & pad_w(1 DOWNTO 0));
+	wire_rbarrel_shift_w850w <= ( pad_w(3 DOWNTO 0) & sbit_w(77 DOWNTO 56));
+	wire_rbarrel_shift_w853w <= ( sbit_w(73 DOWNTO 52) & pad_w(3 DOWNTO 0));
+	wire_rbarrel_shift_w872w <= ( pad_w(7 DOWNTO 0) & sbit_w(103 DOWNTO 86));
+	wire_rbarrel_shift_w875w <= ( sbit_w(95 DOWNTO 78) & pad_w(7 DOWNTO 0));
+	wire_rbarrel_shift_w894w <= ( pad_w(15 DOWNTO 0) & sbit_w(129 DOWNTO 120));
+	wire_rbarrel_shift_w897w <= ( sbit_w(113 DOWNTO 104) & pad_w(15 DOWNTO 0));
+	wire_rbarrel_shift_w_dir_w_range796w(0) <= dir_w(0);
+	wire_rbarrel_shift_w_dir_w_range818w(0) <= dir_w(1);
+	wire_rbarrel_shift_w_dir_w_range839w(0) <= dir_w(2);
+	wire_rbarrel_shift_w_dir_w_range861w(0) <= dir_w(3);
+	wire_rbarrel_shift_w_dir_w_range883w(0) <= dir_w(4);
+	wire_rbarrel_shift_w_sbit_w_range859w <= sbit_w(103 DOWNTO 78);
+	wire_rbarrel_shift_w_sbit_w_range881w <= sbit_w(129 DOWNTO 104);
+	wire_rbarrel_shift_w_sbit_w_range794w <= sbit_w(25 DOWNTO 0);
+	wire_rbarrel_shift_w_sbit_w_range817w <= sbit_w(51 DOWNTO 26);
+	wire_rbarrel_shift_w_sbit_w_range837w <= sbit_w(77 DOWNTO 52);
+	wire_rbarrel_shift_w_sel_w_range799w(0) <= sel_w(0);
+	wire_rbarrel_shift_w_sel_w_range820w(0) <= sel_w(1);
+	wire_rbarrel_shift_w_sel_w_range842w(0) <= sel_w(2);
+	wire_rbarrel_shift_w_sel_w_range864w(0) <= sel_w(3);
+	wire_rbarrel_shift_w_sel_w_range886w(0) <= sel_w(4);
 
- END RTL; --fp_add_altbarrel_shift_07g
+ END RTL; --fp_add_altbarrel_shift_fkb
 
 
---altpriority_encoder CBX_AUTO_BLACKBOX="ALL" PIPELINE=1 WIDTH=32 WIDTHAD=5 aclr clk_en clock data q
+--altpriority_encoder CBX_AUTO_BLACKBOX="ALL" WIDTH=32 WIDTHAD=5 data q
 --VERSION_BEGIN 12.0 cbx_altpriority_encoder 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ  VERSION_END
 
 
---altpriority_encoder CBX_AUTO_BLACKBOX="ALL" LSB_PRIORITY="NO" PIPELINE=0 WIDTH=16 WIDTHAD=4 data q
+--altpriority_encoder CBX_AUTO_BLACKBOX="ALL" LSB_PRIORITY="NO" WIDTH=16 WIDTHAD=4 data q
 --VERSION_BEGIN 12.0 cbx_altpriority_encoder 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ  VERSION_END
 
 
@@ -637,10 +580,10 @@
 
 	 SIGNAL  wire_altpriority_encoder13_q	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder13_zero	:	STD_LOGIC;
-	 SIGNAL  wire_altpriority_encoder14_w_lg_w_lg_zero939w940w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder14_w_lg_zero941w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder14_w_lg_w_lg_zero937w938w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder14_w_lg_zero939w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder14_w_lg_w_lg_zero941w942w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder14_w_lg_zero937w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder14_w_lg_w_lg_zero939w940w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder14_q	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder14_zero	:	STD_LOGIC;
 	 COMPONENT  fp_add_altpriority_encoder_3e8
@@ -653,7 +596,7 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder14_w_lg_zero939w & wire_altpriority_encoder14_w_lg_w_lg_zero941w942w);
+	q <= ( wire_altpriority_encoder14_w_lg_zero937w & wire_altpriority_encoder14_w_lg_w_lg_zero939w940w);
 	zero <= (wire_altpriority_encoder13_zero AND wire_altpriority_encoder14_zero);
 	altpriority_encoder13 :  fp_add_altpriority_encoder_3e8
 	  PORT MAP ( 
@@ -661,10 +604,10 @@
 		q => wire_altpriority_encoder13_q,
 		zero => wire_altpriority_encoder13_zero
 	  );
-	wire_altpriority_encoder14_w_lg_w_lg_zero939w940w(0) <= wire_altpriority_encoder14_w_lg_zero939w(0) AND wire_altpriority_encoder14_q(0);
-	wire_altpriority_encoder14_w_lg_zero941w(0) <= wire_altpriority_encoder14_zero AND wire_altpriority_encoder13_q(0);
-	wire_altpriority_encoder14_w_lg_zero939w(0) <= NOT wire_altpriority_encoder14_zero;
-	wire_altpriority_encoder14_w_lg_w_lg_zero941w942w(0) <= wire_altpriority_encoder14_w_lg_zero941w(0) OR wire_altpriority_encoder14_w_lg_w_lg_zero939w940w(0);
+	wire_altpriority_encoder14_w_lg_w_lg_zero937w938w(0) <= wire_altpriority_encoder14_w_lg_zero937w(0) AND wire_altpriority_encoder14_q(0);
+	wire_altpriority_encoder14_w_lg_zero939w(0) <= wire_altpriority_encoder14_zero AND wire_altpriority_encoder13_q(0);
+	wire_altpriority_encoder14_w_lg_zero937w(0) <= NOT wire_altpriority_encoder14_zero;
+	wire_altpriority_encoder14_w_lg_w_lg_zero939w940w(0) <= wire_altpriority_encoder14_w_lg_zero939w(0) OR wire_altpriority_encoder14_w_lg_w_lg_zero937w938w(0);
 	altpriority_encoder14 :  fp_add_altpriority_encoder_3e8
 	  PORT MAP ( 
 		data => data(3 DOWNTO 2),
@@ -691,10 +634,10 @@
 
 	 SIGNAL  wire_altpriority_encoder11_q	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder11_zero	:	STD_LOGIC;
+	 SIGNAL  wire_altpriority_encoder12_w_lg_w_lg_zero927w928w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder12_w_lg_zero929w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder12_w_lg_zero927w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder12_w_lg_w_lg_zero929w930w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder12_w_lg_zero931w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder12_w_lg_zero929w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder12_w_lg_w_lg_zero931w932w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder12_q	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder12_zero	:	STD_LOGIC;
 	 COMPONENT  fp_add_altpriority_encoder_6e8
@@ -707,7 +650,7 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder12_w_lg_zero929w & wire_altpriority_encoder12_w_lg_w_lg_zero931w932w);
+	q <= ( wire_altpriority_encoder12_w_lg_zero927w & wire_altpriority_encoder12_w_lg_w_lg_zero929w930w);
 	zero <= (wire_altpriority_encoder11_zero AND wire_altpriority_encoder12_zero);
 	altpriority_encoder11 :  fp_add_altpriority_encoder_6e8
 	  PORT MAP ( 
@@ -716,14 +659,14 @@
 		zero => wire_altpriority_encoder11_zero
 	  );
 	loop50 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder12_w_lg_w_lg_zero929w930w(i) <= wire_altpriority_encoder12_w_lg_zero929w(0) AND wire_altpriority_encoder12_q(i);
+		wire_altpriority_encoder12_w_lg_w_lg_zero927w928w(i) <= wire_altpriority_encoder12_w_lg_zero927w(0) AND wire_altpriority_encoder12_q(i);
 	END GENERATE loop50;
 	loop51 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder12_w_lg_zero931w(i) <= wire_altpriority_encoder12_zero AND wire_altpriority_encoder11_q(i);
+		wire_altpriority_encoder12_w_lg_zero929w(i) <= wire_altpriority_encoder12_zero AND wire_altpriority_encoder11_q(i);
 	END GENERATE loop51;
-	wire_altpriority_encoder12_w_lg_zero929w(0) <= NOT wire_altpriority_encoder12_zero;
+	wire_altpriority_encoder12_w_lg_zero927w(0) <= NOT wire_altpriority_encoder12_zero;
 	loop52 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder12_w_lg_w_lg_zero931w932w(i) <= wire_altpriority_encoder12_w_lg_zero931w(i) OR wire_altpriority_encoder12_w_lg_w_lg_zero929w930w(i);
+		wire_altpriority_encoder12_w_lg_w_lg_zero929w930w(i) <= wire_altpriority_encoder12_w_lg_zero929w(i) OR wire_altpriority_encoder12_w_lg_w_lg_zero927w928w(i);
 	END GENERATE loop52;
 	altpriority_encoder12 :  fp_add_altpriority_encoder_6e8
 	  PORT MAP ( 
@@ -781,10 +724,10 @@
  ARCHITECTURE RTL OF fp_add_altpriority_encoder_6v7 IS
 
 	 SIGNAL  wire_altpriority_encoder17_q	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder18_w_lg_w_lg_zero964w965w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder18_w_lg_zero966w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder18_w_lg_w_lg_zero962w963w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder18_w_lg_zero964w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder18_w_lg_w_lg_zero966w967w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder18_w_lg_zero962w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder18_w_lg_w_lg_zero964w965w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder18_q	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder18_zero	:	STD_LOGIC;
 	 COMPONENT  fp_add_altpriority_encoder_3v7
@@ -804,16 +747,16 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder18_w_lg_zero964w & wire_altpriority_encoder18_w_lg_w_lg_zero966w967w);
+	q <= ( wire_altpriority_encoder18_w_lg_zero962w & wire_altpriority_encoder18_w_lg_w_lg_zero964w965w);
 	altpriority_encoder17 :  fp_add_altpriority_encoder_3v7
 	  PORT MAP ( 
 		data => data(1 DOWNTO 0),
 		q => wire_altpriority_encoder17_q
 	  );
-	wire_altpriority_encoder18_w_lg_w_lg_zero964w965w(0) <= wire_altpriority_encoder18_w_lg_zero964w(0) AND wire_altpriority_encoder18_q(0);
-	wire_altpriority_encoder18_w_lg_zero966w(0) <= wire_altpriority_encoder18_zero AND wire_altpriority_encoder17_q(0);
-	wire_altpriority_encoder18_w_lg_zero964w(0) <= NOT wire_altpriority_encoder18_zero;
-	wire_altpriority_encoder18_w_lg_w_lg_zero966w967w(0) <= wire_altpriority_encoder18_w_lg_zero966w(0) OR wire_altpriority_encoder18_w_lg_w_lg_zero964w965w(0);
+	wire_altpriority_encoder18_w_lg_w_lg_zero962w963w(0) <= wire_altpriority_encoder18_w_lg_zero962w(0) AND wire_altpriority_encoder18_q(0);
+	wire_altpriority_encoder18_w_lg_zero964w(0) <= wire_altpriority_encoder18_zero AND wire_altpriority_encoder17_q(0);
+	wire_altpriority_encoder18_w_lg_zero962w(0) <= NOT wire_altpriority_encoder18_zero;
+	wire_altpriority_encoder18_w_lg_w_lg_zero964w965w(0) <= wire_altpriority_encoder18_w_lg_zero964w(0) OR wire_altpriority_encoder18_w_lg_w_lg_zero962w963w(0);
 	altpriority_encoder18 :  fp_add_altpriority_encoder_3e8
 	  PORT MAP ( 
 		data => data(3 DOWNTO 2),
@@ -838,10 +781,10 @@
  ARCHITECTURE RTL OF fp_add_altpriority_encoder_bv7 IS
 
 	 SIGNAL  wire_altpriority_encoder15_q	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder16_w_lg_w_lg_zero953w954w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder16_w_lg_zero955w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder16_w_lg_zero953w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder16_w_lg_w_lg_zero955w956w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder16_w_lg_zero957w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder16_w_lg_zero955w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder16_w_lg_w_lg_zero957w958w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder16_q	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder16_zero	:	STD_LOGIC;
 	 COMPONENT  fp_add_altpriority_encoder_6v7
@@ -861,21 +804,21 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder16_w_lg_zero955w & wire_altpriority_encoder16_w_lg_w_lg_zero957w958w);
+	q <= ( wire_altpriority_encoder16_w_lg_zero953w & wire_altpriority_encoder16_w_lg_w_lg_zero955w956w);
 	altpriority_encoder15 :  fp_add_altpriority_encoder_6v7
 	  PORT MAP ( 
 		data => data(3 DOWNTO 0),
 		q => wire_altpriority_encoder15_q
 	  );
 	loop53 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder16_w_lg_w_lg_zero955w956w(i) <= wire_altpriority_encoder16_w_lg_zero955w(0) AND wire_altpriority_encoder16_q(i);
+		wire_altpriority_encoder16_w_lg_w_lg_zero953w954w(i) <= wire_altpriority_encoder16_w_lg_zero953w(0) AND wire_altpriority_encoder16_q(i);
 	END GENERATE loop53;
 	loop54 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder16_w_lg_zero957w(i) <= wire_altpriority_encoder16_zero AND wire_altpriority_encoder15_q(i);
+		wire_altpriority_encoder16_w_lg_zero955w(i) <= wire_altpriority_encoder16_zero AND wire_altpriority_encoder15_q(i);
 	END GENERATE loop54;
-	wire_altpriority_encoder16_w_lg_zero955w(0) <= NOT wire_altpriority_encoder16_zero;
+	wire_altpriority_encoder16_w_lg_zero953w(0) <= NOT wire_altpriority_encoder16_zero;
 	loop55 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder16_w_lg_w_lg_zero957w958w(i) <= wire_altpriority_encoder16_w_lg_zero957w(i) OR wire_altpriority_encoder16_w_lg_w_lg_zero955w956w(i);
+		wire_altpriority_encoder16_w_lg_w_lg_zero955w956w(i) <= wire_altpriority_encoder16_w_lg_zero955w(i) OR wire_altpriority_encoder16_w_lg_w_lg_zero953w954w(i);
 	END GENERATE loop55;
 	altpriority_encoder16 :  fp_add_altpriority_encoder_6e8
 	  PORT MAP ( 
@@ -890,20 +833,20 @@
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_add_altpriority_encoder_uv8 IS 
+ ENTITY  fp_add_altpriority_encoder_r08 IS 
 	 PORT 
 	 ( 
 		 data	:	IN  STD_LOGIC_VECTOR (15 DOWNTO 0);
 		 q	:	OUT  STD_LOGIC_VECTOR (3 DOWNTO 0)
 	 ); 
- END fp_add_altpriority_encoder_uv8;
+ END fp_add_altpriority_encoder_r08;
 
- ARCHITECTURE RTL OF fp_add_altpriority_encoder_uv8 IS
+ ARCHITECTURE RTL OF fp_add_altpriority_encoder_r08 IS
 
+	 SIGNAL  wire_altpriority_encoder10_w_lg_w_lg_zero918w919w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder10_w_lg_zero920w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder10_w_lg_zero918w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder10_w_lg_w_lg_zero920w921w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder10_w_lg_zero922w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder10_w_lg_zero920w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder10_w_lg_w_lg_zero922w923w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder10_q	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder10_zero	:	STD_LOGIC;
 	 SIGNAL  wire_altpriority_encoder9_q	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -924,16 +867,16 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder10_w_lg_zero920w & wire_altpriority_encoder10_w_lg_w_lg_zero922w923w);
+	q <= ( wire_altpriority_encoder10_w_lg_zero918w & wire_altpriority_encoder10_w_lg_w_lg_zero920w921w);
 	loop56 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder10_w_lg_w_lg_zero920w921w(i) <= wire_altpriority_encoder10_w_lg_zero920w(0) AND wire_altpriority_encoder10_q(i);
+		wire_altpriority_encoder10_w_lg_w_lg_zero918w919w(i) <= wire_altpriority_encoder10_w_lg_zero918w(0) AND wire_altpriority_encoder10_q(i);
 	END GENERATE loop56;
 	loop57 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder10_w_lg_zero922w(i) <= wire_altpriority_encoder10_zero AND wire_altpriority_encoder9_q(i);
+		wire_altpriority_encoder10_w_lg_zero920w(i) <= wire_altpriority_encoder10_zero AND wire_altpriority_encoder9_q(i);
 	END GENERATE loop57;
-	wire_altpriority_encoder10_w_lg_zero920w(0) <= NOT wire_altpriority_encoder10_zero;
+	wire_altpriority_encoder10_w_lg_zero918w(0) <= NOT wire_altpriority_encoder10_zero;
 	loop58 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder10_w_lg_w_lg_zero922w923w(i) <= wire_altpriority_encoder10_w_lg_zero922w(i) OR wire_altpriority_encoder10_w_lg_w_lg_zero920w921w(i);
+		wire_altpriority_encoder10_w_lg_w_lg_zero920w921w(i) <= wire_altpriority_encoder10_w_lg_zero920w(i) OR wire_altpriority_encoder10_w_lg_w_lg_zero918w919w(i);
 	END GENERATE loop58;
 	altpriority_encoder10 :  fp_add_altpriority_encoder_be8
 	  PORT MAP ( 
@@ -947,33 +890,33 @@
 		q => wire_altpriority_encoder9_q
 	  );
 
- END RTL; --fp_add_altpriority_encoder_uv8
+ END RTL; --fp_add_altpriority_encoder_r08
 
 
---altpriority_encoder CBX_AUTO_BLACKBOX="ALL" LSB_PRIORITY="NO" PIPELINE=0 WIDTH=16 WIDTHAD=4 data q zero
+--altpriority_encoder CBX_AUTO_BLACKBOX="ALL" LSB_PRIORITY="NO" WIDTH=16 WIDTHAD=4 data q zero
 --VERSION_BEGIN 12.0 cbx_altpriority_encoder 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ  VERSION_END
 
 --synthesis_resources = 
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_add_altpriority_encoder_ue9 IS 
+ ENTITY  fp_add_altpriority_encoder_rf8 IS 
 	 PORT 
 	 ( 
 		 data	:	IN  STD_LOGIC_VECTOR (15 DOWNTO 0);
 		 q	:	OUT  STD_LOGIC_VECTOR (3 DOWNTO 0);
 		 zero	:	OUT  STD_LOGIC
 	 ); 
- END fp_add_altpriority_encoder_ue9;
+ END fp_add_altpriority_encoder_rf8;
 
- ARCHITECTURE RTL OF fp_add_altpriority_encoder_ue9 IS
+ ARCHITECTURE RTL OF fp_add_altpriority_encoder_rf8 IS
 
 	 SIGNAL  wire_altpriority_encoder19_q	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder19_zero	:	STD_LOGIC;
+	 SIGNAL  wire_altpriority_encoder20_w_lg_w_lg_zero974w975w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder20_w_lg_zero976w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder20_w_lg_zero974w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder20_w_lg_w_lg_zero976w977w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder20_w_lg_zero978w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder20_w_lg_zero976w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder20_w_lg_w_lg_zero978w979w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder20_q	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder20_zero	:	STD_LOGIC;
 	 COMPONENT  fp_add_altpriority_encoder_be8
@@ -986,7 +929,7 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder20_w_lg_zero976w & wire_altpriority_encoder20_w_lg_w_lg_zero978w979w);
+	q <= ( wire_altpriority_encoder20_w_lg_zero974w & wire_altpriority_encoder20_w_lg_w_lg_zero976w977w);
 	zero <= (wire_altpriority_encoder19_zero AND wire_altpriority_encoder20_zero);
 	altpriority_encoder19 :  fp_add_altpriority_encoder_be8
 	  PORT MAP ( 
@@ -995,14 +938,14 @@
 		zero => wire_altpriority_encoder19_zero
 	  );
 	loop59 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder20_w_lg_w_lg_zero976w977w(i) <= wire_altpriority_encoder20_w_lg_zero976w(0) AND wire_altpriority_encoder20_q(i);
+		wire_altpriority_encoder20_w_lg_w_lg_zero974w975w(i) <= wire_altpriority_encoder20_w_lg_zero974w(0) AND wire_altpriority_encoder20_q(i);
 	END GENERATE loop59;
 	loop60 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder20_w_lg_zero978w(i) <= wire_altpriority_encoder20_zero AND wire_altpriority_encoder19_q(i);
+		wire_altpriority_encoder20_w_lg_zero976w(i) <= wire_altpriority_encoder20_zero AND wire_altpriority_encoder19_q(i);
 	END GENERATE loop60;
-	wire_altpriority_encoder20_w_lg_zero976w(0) <= NOT wire_altpriority_encoder20_zero;
+	wire_altpriority_encoder20_w_lg_zero974w(0) <= NOT wire_altpriority_encoder20_zero;
 	loop61 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder20_w_lg_w_lg_zero978w979w(i) <= wire_altpriority_encoder20_w_lg_zero978w(i) OR wire_altpriority_encoder20_w_lg_w_lg_zero976w977w(i);
+		wire_altpriority_encoder20_w_lg_w_lg_zero976w977w(i) <= wire_altpriority_encoder20_w_lg_zero976w(i) OR wire_altpriority_encoder20_w_lg_w_lg_zero974w975w(i);
 	END GENERATE loop61;
 	altpriority_encoder20 :  fp_add_altpriority_encoder_be8
 	  PORT MAP ( 
@@ -1011,46 +954,37 @@
 		zero => wire_altpriority_encoder20_zero
 	  );
 
- END RTL; --fp_add_altpriority_encoder_ue9
+ END RTL; --fp_add_altpriority_encoder_rf8
 
---synthesis_resources = reg 5 
+--synthesis_resources = 
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_add_altpriority_encoder_ou8 IS 
+ ENTITY  fp_add_altpriority_encoder_qb6 IS 
 	 PORT 
 	 ( 
-		 aclr	:	IN  STD_LOGIC := '0';
-		 clk_en	:	IN  STD_LOGIC := '1';
-		 clock	:	IN  STD_LOGIC := '0';
 		 data	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 q	:	OUT  STD_LOGIC_VECTOR (4 DOWNTO 0)
 	 ); 
- END fp_add_altpriority_encoder_ou8;
+ END fp_add_altpriority_encoder_qb6;
 
- ARCHITECTURE RTL OF fp_add_altpriority_encoder_ou8 IS
+ ARCHITECTURE RTL OF fp_add_altpriority_encoder_qb6 IS
 
 	 SIGNAL  wire_altpriority_encoder7_q	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder8_w_lg_w_lg_zero910w911w	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder8_w_lg_zero912w	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder8_w_lg_zero910w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder8_w_lg_w_lg_zero912w913w	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder8_w_lg_w_lg_zero909w910w	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder8_w_lg_zero911w	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder8_w_lg_zero909w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder8_w_lg_w_lg_zero911w912w	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder8_q	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder8_zero	:	STD_LOGIC;
-	 SIGNAL	 pipeline_q_dffe	:	STD_LOGIC_VECTOR(4 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL  tmp_q_wire :	STD_LOGIC_VECTOR (4 DOWNTO 0);
-	 COMPONENT  fp_add_altpriority_encoder_uv8
+	 COMPONENT  fp_add_altpriority_encoder_r08
 	 PORT
 	 ( 
 		data	:	IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 		q	:	OUT  STD_LOGIC_VECTOR(3 DOWNTO 0)
 	 ); 
 	 END COMPONENT;
-	 COMPONENT  fp_add_altpriority_encoder_ue9
+	 COMPONENT  fp_add_altpriority_encoder_rf8
 	 PORT
 	 ( 
 		data	:	IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -1060,46 +994,37 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= pipeline_q_dffe;
-	tmp_q_wire <= ( wire_altpriority_encoder8_w_lg_zero910w & wire_altpriority_encoder8_w_lg_w_lg_zero912w913w);
-	altpriority_encoder7 :  fp_add_altpriority_encoder_uv8
+	q <= ( wire_altpriority_encoder8_w_lg_zero909w & wire_altpriority_encoder8_w_lg_w_lg_zero911w912w);
+	altpriority_encoder7 :  fp_add_altpriority_encoder_r08
 	  PORT MAP ( 
 		data => data(15 DOWNTO 0),
 		q => wire_altpriority_encoder7_q
 	  );
 	loop62 : FOR i IN 0 TO 3 GENERATE 
-		wire_altpriority_encoder8_w_lg_w_lg_zero910w911w(i) <= wire_altpriority_encoder8_w_lg_zero910w(0) AND wire_altpriority_encoder8_q(i);
+		wire_altpriority_encoder8_w_lg_w_lg_zero909w910w(i) <= wire_altpriority_encoder8_w_lg_zero909w(0) AND wire_altpriority_encoder8_q(i);
 	END GENERATE loop62;
 	loop63 : FOR i IN 0 TO 3 GENERATE 
-		wire_altpriority_encoder8_w_lg_zero912w(i) <= wire_altpriority_encoder8_zero AND wire_altpriority_encoder7_q(i);
+		wire_altpriority_encoder8_w_lg_zero911w(i) <= wire_altpriority_encoder8_zero AND wire_altpriority_encoder7_q(i);
 	END GENERATE loop63;
-	wire_altpriority_encoder8_w_lg_zero910w(0) <= NOT wire_altpriority_encoder8_zero;
+	wire_altpriority_encoder8_w_lg_zero909w(0) <= NOT wire_altpriority_encoder8_zero;
 	loop64 : FOR i IN 0 TO 3 GENERATE 
-		wire_altpriority_encoder8_w_lg_w_lg_zero912w913w(i) <= wire_altpriority_encoder8_w_lg_zero912w(i) OR wire_altpriority_encoder8_w_lg_w_lg_zero910w911w(i);
+		wire_altpriority_encoder8_w_lg_w_lg_zero911w912w(i) <= wire_altpriority_encoder8_w_lg_zero911w(i) OR wire_altpriority_encoder8_w_lg_w_lg_zero909w910w(i);
 	END GENERATE loop64;
-	altpriority_encoder8 :  fp_add_altpriority_encoder_ue9
+	altpriority_encoder8 :  fp_add_altpriority_encoder_rf8
 	  PORT MAP ( 
 		data => data(31 DOWNTO 16),
 		q => wire_altpriority_encoder8_q,
 		zero => wire_altpriority_encoder8_zero
 	  );
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN pipeline_q_dffe <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN pipeline_q_dffe <= tmp_q_wire;
-			END IF;
-		END IF;
-	END PROCESS;
 
- END RTL; --fp_add_altpriority_encoder_ou8
+ END RTL; --fp_add_altpriority_encoder_qb6
 
 
---altpriority_encoder CBX_AUTO_BLACKBOX="ALL" LSB_PRIORITY="YES" PIPELINE=1 WIDTH=32 WIDTHAD=5 aclr clk_en clock data q
+--altpriority_encoder CBX_AUTO_BLACKBOX="ALL" LSB_PRIORITY="YES" WIDTH=32 WIDTHAD=5 data q
 --VERSION_BEGIN 12.0 cbx_altpriority_encoder 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ  VERSION_END
 
 
---altpriority_encoder CBX_AUTO_BLACKBOX="ALL" LSB_PRIORITY="YES" PIPELINE=0 WIDTH=16 WIDTHAD=4 data q zero
+--altpriority_encoder CBX_AUTO_BLACKBOX="ALL" LSB_PRIORITY="YES" WIDTH=16 WIDTHAD=4 data q zero
 --VERSION_BEGIN 12.0 cbx_altpriority_encoder 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ  VERSION_END
 
 
@@ -1129,14 +1054,14 @@
 
  ARCHITECTURE RTL OF fp_add_altpriority_encoder_nh8 IS
 
-	 SIGNAL  wire_altpriority_encoder27_w_lg_w_data_range1026w1028w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder27_w_data_range1026w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder27_w_lg_w_data_range1021w1023w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder27_w_data_range1021w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
  BEGIN
 
-	wire_altpriority_encoder27_w_lg_w_data_range1026w1028w(0) <= NOT wire_altpriority_encoder27_w_data_range1026w(0);
-	q <= ( wire_altpriority_encoder27_w_lg_w_data_range1026w1028w);
+	wire_altpriority_encoder27_w_lg_w_data_range1021w1023w(0) <= NOT wire_altpriority_encoder27_w_data_range1021w(0);
+	q <= ( wire_altpriority_encoder27_w_lg_w_data_range1021w1023w);
 	zero <= (NOT (data(0) OR data(1)));
-	wire_altpriority_encoder27_w_data_range1026w(0) <= data(0);
+	wire_altpriority_encoder27_w_data_range1021w(0) <= data(0);
 
  END RTL; --fp_add_altpriority_encoder_nh8
 
@@ -1155,10 +1080,10 @@
 
  ARCHITECTURE RTL OF fp_add_altpriority_encoder_qh8 IS
 
-	 SIGNAL  wire_altpriority_encoder27_w_lg_w_lg_zero1018w1019w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder27_w_lg_zero1020w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder27_w_lg_zero1018w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder27_w_lg_w_lg_zero1020w1021w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder27_w_lg_w_lg_zero1013w1014w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder27_w_lg_zero1015w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder27_w_lg_zero1013w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder27_w_lg_w_lg_zero1015w1016w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder27_q	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder27_zero	:	STD_LOGIC;
 	 SIGNAL  wire_altpriority_encoder28_q	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
@@ -1173,12 +1098,12 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder27_zero & wire_altpriority_encoder27_w_lg_w_lg_zero1020w1021w);
+	q <= ( wire_altpriority_encoder27_zero & wire_altpriority_encoder27_w_lg_w_lg_zero1015w1016w);
 	zero <= (wire_altpriority_encoder27_zero AND wire_altpriority_encoder28_zero);
-	wire_altpriority_encoder27_w_lg_w_lg_zero1018w1019w(0) <= wire_altpriority_encoder27_w_lg_zero1018w(0) AND wire_altpriority_encoder27_q(0);
-	wire_altpriority_encoder27_w_lg_zero1020w(0) <= wire_altpriority_encoder27_zero AND wire_altpriority_encoder28_q(0);
-	wire_altpriority_encoder27_w_lg_zero1018w(0) <= NOT wire_altpriority_encoder27_zero;
-	wire_altpriority_encoder27_w_lg_w_lg_zero1020w1021w(0) <= wire_altpriority_encoder27_w_lg_zero1020w(0) OR wire_altpriority_encoder27_w_lg_w_lg_zero1018w1019w(0);
+	wire_altpriority_encoder27_w_lg_w_lg_zero1013w1014w(0) <= wire_altpriority_encoder27_w_lg_zero1013w(0) AND wire_altpriority_encoder27_q(0);
+	wire_altpriority_encoder27_w_lg_zero1015w(0) <= wire_altpriority_encoder27_zero AND wire_altpriority_encoder28_q(0);
+	wire_altpriority_encoder27_w_lg_zero1013w(0) <= NOT wire_altpriority_encoder27_zero;
+	wire_altpriority_encoder27_w_lg_w_lg_zero1015w1016w(0) <= wire_altpriority_encoder27_w_lg_zero1015w(0) OR wire_altpriority_encoder27_w_lg_w_lg_zero1013w1014w(0);
 	altpriority_encoder27 :  fp_add_altpriority_encoder_nh8
 	  PORT MAP ( 
 		data => data(1 DOWNTO 0),
@@ -1209,10 +1134,10 @@
 
  ARCHITECTURE RTL OF fp_add_altpriority_encoder_vh8 IS
 
-	 SIGNAL  wire_altpriority_encoder25_w_lg_w_lg_zero1008w1009w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder25_w_lg_zero1010w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder25_w_lg_zero1008w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder25_w_lg_w_lg_zero1010w1011w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder25_w_lg_w_lg_zero1003w1004w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder25_w_lg_zero1005w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder25_w_lg_zero1003w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder25_w_lg_w_lg_zero1005w1006w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder25_q	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder25_zero	:	STD_LOGIC;
 	 SIGNAL  wire_altpriority_encoder26_q	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -1227,17 +1152,17 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder25_zero & wire_altpriority_encoder25_w_lg_w_lg_zero1010w1011w);
+	q <= ( wire_altpriority_encoder25_zero & wire_altpriority_encoder25_w_lg_w_lg_zero1005w1006w);
 	zero <= (wire_altpriority_encoder25_zero AND wire_altpriority_encoder26_zero);
 	loop65 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder25_w_lg_w_lg_zero1008w1009w(i) <= wire_altpriority_encoder25_w_lg_zero1008w(0) AND wire_altpriority_encoder25_q(i);
+		wire_altpriority_encoder25_w_lg_w_lg_zero1003w1004w(i) <= wire_altpriority_encoder25_w_lg_zero1003w(0) AND wire_altpriority_encoder25_q(i);
 	END GENERATE loop65;
 	loop66 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder25_w_lg_zero1010w(i) <= wire_altpriority_encoder25_zero AND wire_altpriority_encoder26_q(i);
+		wire_altpriority_encoder25_w_lg_zero1005w(i) <= wire_altpriority_encoder25_zero AND wire_altpriority_encoder26_q(i);
 	END GENERATE loop66;
-	wire_altpriority_encoder25_w_lg_zero1008w(0) <= NOT wire_altpriority_encoder25_zero;
+	wire_altpriority_encoder25_w_lg_zero1003w(0) <= NOT wire_altpriority_encoder25_zero;
 	loop67 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder25_w_lg_w_lg_zero1010w1011w(i) <= wire_altpriority_encoder25_w_lg_zero1010w(i) OR wire_altpriority_encoder25_w_lg_w_lg_zero1008w1009w(i);
+		wire_altpriority_encoder25_w_lg_w_lg_zero1005w1006w(i) <= wire_altpriority_encoder25_w_lg_zero1005w(i) OR wire_altpriority_encoder25_w_lg_w_lg_zero1003w1004w(i);
 	END GENERATE loop67;
 	altpriority_encoder25 :  fp_add_altpriority_encoder_qh8
 	  PORT MAP ( 
@@ -1258,21 +1183,21 @@
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_add_altpriority_encoder_ii9 IS 
+ ENTITY  fp_add_altpriority_encoder_fj8 IS 
 	 PORT 
 	 ( 
 		 data	:	IN  STD_LOGIC_VECTOR (15 DOWNTO 0);
 		 q	:	OUT  STD_LOGIC_VECTOR (3 DOWNTO 0);
 		 zero	:	OUT  STD_LOGIC
 	 ); 
- END fp_add_altpriority_encoder_ii9;
+ END fp_add_altpriority_encoder_fj8;
 
- ARCHITECTURE RTL OF fp_add_altpriority_encoder_ii9 IS
+ ARCHITECTURE RTL OF fp_add_altpriority_encoder_fj8 IS
 
-	 SIGNAL  wire_altpriority_encoder23_w_lg_w_lg_zero998w999w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder23_w_lg_zero1000w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder23_w_lg_zero998w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder23_w_lg_w_lg_zero1000w1001w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder23_w_lg_w_lg_zero993w994w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder23_w_lg_zero995w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder23_w_lg_zero993w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder23_w_lg_w_lg_zero995w996w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder23_q	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder23_zero	:	STD_LOGIC;
 	 SIGNAL  wire_altpriority_encoder24_q	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -1287,17 +1212,17 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder23_zero & wire_altpriority_encoder23_w_lg_w_lg_zero1000w1001w);
+	q <= ( wire_altpriority_encoder23_zero & wire_altpriority_encoder23_w_lg_w_lg_zero995w996w);
 	zero <= (wire_altpriority_encoder23_zero AND wire_altpriority_encoder24_zero);
 	loop68 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder23_w_lg_w_lg_zero998w999w(i) <= wire_altpriority_encoder23_w_lg_zero998w(0) AND wire_altpriority_encoder23_q(i);
+		wire_altpriority_encoder23_w_lg_w_lg_zero993w994w(i) <= wire_altpriority_encoder23_w_lg_zero993w(0) AND wire_altpriority_encoder23_q(i);
 	END GENERATE loop68;
 	loop69 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder23_w_lg_zero1000w(i) <= wire_altpriority_encoder23_zero AND wire_altpriority_encoder24_q(i);
+		wire_altpriority_encoder23_w_lg_zero995w(i) <= wire_altpriority_encoder23_zero AND wire_altpriority_encoder24_q(i);
 	END GENERATE loop69;
-	wire_altpriority_encoder23_w_lg_zero998w(0) <= NOT wire_altpriority_encoder23_zero;
+	wire_altpriority_encoder23_w_lg_zero993w(0) <= NOT wire_altpriority_encoder23_zero;
 	loop70 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder23_w_lg_w_lg_zero1000w1001w(i) <= wire_altpriority_encoder23_w_lg_zero1000w(i) OR wire_altpriority_encoder23_w_lg_w_lg_zero998w999w(i);
+		wire_altpriority_encoder23_w_lg_w_lg_zero995w996w(i) <= wire_altpriority_encoder23_w_lg_zero995w(i) OR wire_altpriority_encoder23_w_lg_w_lg_zero993w994w(i);
 	END GENERATE loop70;
 	altpriority_encoder23 :  fp_add_altpriority_encoder_vh8
 	  PORT MAP ( 
@@ -1312,10 +1237,10 @@
 		zero => wire_altpriority_encoder24_zero
 	  );
 
- END RTL; --fp_add_altpriority_encoder_ii9
+ END RTL; --fp_add_altpriority_encoder_fj8
 
 
---altpriority_encoder CBX_AUTO_BLACKBOX="ALL" LSB_PRIORITY="YES" PIPELINE=0 WIDTH=16 WIDTHAD=4 data q
+--altpriority_encoder CBX_AUTO_BLACKBOX="ALL" LSB_PRIORITY="YES" WIDTH=16 WIDTHAD=4 data q
 --VERSION_BEGIN 12.0 cbx_altpriority_encoder 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ  VERSION_END
 
 
@@ -1344,13 +1269,13 @@
 
  ARCHITECTURE RTL OF fp_add_altpriority_encoder_n28 IS
 
-	 SIGNAL  wire_altpriority_encoder34_w_lg_w_data_range1060w1062w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder34_w_data_range1060w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder34_w_lg_w_data_range1055w1057w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder34_w_data_range1055w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
  BEGIN
 
-	wire_altpriority_encoder34_w_lg_w_data_range1060w1062w(0) <= NOT wire_altpriority_encoder34_w_data_range1060w(0);
-	q <= ( wire_altpriority_encoder34_w_lg_w_data_range1060w1062w);
-	wire_altpriority_encoder34_w_data_range1060w(0) <= data(0);
+	wire_altpriority_encoder34_w_lg_w_data_range1055w1057w(0) <= NOT wire_altpriority_encoder34_w_data_range1055w(0);
+	q <= ( wire_altpriority_encoder34_w_lg_w_data_range1055w1057w);
+	wire_altpriority_encoder34_w_data_range1055w(0) <= data(0);
 
  END RTL; --fp_add_altpriority_encoder_n28
 
@@ -1368,10 +1293,10 @@
 
  ARCHITECTURE RTL OF fp_add_altpriority_encoder_q28 IS
 
-	 SIGNAL  wire_altpriority_encoder33_w_lg_w_lg_zero1053w1054w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder33_w_lg_zero1055w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder33_w_lg_zero1053w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder33_w_lg_w_lg_zero1055w1056w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder33_w_lg_w_lg_zero1048w1049w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder33_w_lg_zero1050w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder33_w_lg_zero1048w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder33_w_lg_w_lg_zero1050w1051w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder33_q	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder33_zero	:	STD_LOGIC;
 	 SIGNAL  wire_altpriority_encoder34_q	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
@@ -1392,11 +1317,11 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder33_zero & wire_altpriority_encoder33_w_lg_w_lg_zero1055w1056w);
-	wire_altpriority_encoder33_w_lg_w_lg_zero1053w1054w(0) <= wire_altpriority_encoder33_w_lg_zero1053w(0) AND wire_altpriority_encoder33_q(0);
-	wire_altpriority_encoder33_w_lg_zero1055w(0) <= wire_altpriority_encoder33_zero AND wire_altpriority_encoder34_q(0);
-	wire_altpriority_encoder33_w_lg_zero1053w(0) <= NOT wire_altpriority_encoder33_zero;
-	wire_altpriority_encoder33_w_lg_w_lg_zero1055w1056w(0) <= wire_altpriority_encoder33_w_lg_zero1055w(0) OR wire_altpriority_encoder33_w_lg_w_lg_zero1053w1054w(0);
+	q <= ( wire_altpriority_encoder33_zero & wire_altpriority_encoder33_w_lg_w_lg_zero1050w1051w);
+	wire_altpriority_encoder33_w_lg_w_lg_zero1048w1049w(0) <= wire_altpriority_encoder33_w_lg_zero1048w(0) AND wire_altpriority_encoder33_q(0);
+	wire_altpriority_encoder33_w_lg_zero1050w(0) <= wire_altpriority_encoder33_zero AND wire_altpriority_encoder34_q(0);
+	wire_altpriority_encoder33_w_lg_zero1048w(0) <= NOT wire_altpriority_encoder33_zero;
+	wire_altpriority_encoder33_w_lg_w_lg_zero1050w1051w(0) <= wire_altpriority_encoder33_w_lg_zero1050w(0) OR wire_altpriority_encoder33_w_lg_w_lg_zero1048w1049w(0);
 	altpriority_encoder33 :  fp_add_altpriority_encoder_nh8
 	  PORT MAP ( 
 		data => data(1 DOWNTO 0),
@@ -1425,10 +1350,10 @@
 
  ARCHITECTURE RTL OF fp_add_altpriority_encoder_v28 IS
 
-	 SIGNAL  wire_altpriority_encoder31_w_lg_w_lg_zero1044w1045w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder31_w_lg_zero1046w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder31_w_lg_zero1044w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder31_w_lg_w_lg_zero1046w1047w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder31_w_lg_w_lg_zero1039w1040w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder31_w_lg_zero1041w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder31_w_lg_zero1039w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder31_w_lg_w_lg_zero1041w1042w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder31_q	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder31_zero	:	STD_LOGIC;
 	 SIGNAL  wire_altpriority_encoder32_q	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -1449,16 +1374,16 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder31_zero & wire_altpriority_encoder31_w_lg_w_lg_zero1046w1047w);
+	q <= ( wire_altpriority_encoder31_zero & wire_altpriority_encoder31_w_lg_w_lg_zero1041w1042w);
 	loop71 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder31_w_lg_w_lg_zero1044w1045w(i) <= wire_altpriority_encoder31_w_lg_zero1044w(0) AND wire_altpriority_encoder31_q(i);
+		wire_altpriority_encoder31_w_lg_w_lg_zero1039w1040w(i) <= wire_altpriority_encoder31_w_lg_zero1039w(0) AND wire_altpriority_encoder31_q(i);
 	END GENERATE loop71;
 	loop72 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder31_w_lg_zero1046w(i) <= wire_altpriority_encoder31_zero AND wire_altpriority_encoder32_q(i);
+		wire_altpriority_encoder31_w_lg_zero1041w(i) <= wire_altpriority_encoder31_zero AND wire_altpriority_encoder32_q(i);
 	END GENERATE loop72;
-	wire_altpriority_encoder31_w_lg_zero1044w(0) <= NOT wire_altpriority_encoder31_zero;
+	wire_altpriority_encoder31_w_lg_zero1039w(0) <= NOT wire_altpriority_encoder31_zero;
 	loop73 : FOR i IN 0 TO 1 GENERATE 
-		wire_altpriority_encoder31_w_lg_w_lg_zero1046w1047w(i) <= wire_altpriority_encoder31_w_lg_zero1046w(i) OR wire_altpriority_encoder31_w_lg_w_lg_zero1044w1045w(i);
+		wire_altpriority_encoder31_w_lg_w_lg_zero1041w1042w(i) <= wire_altpriority_encoder31_w_lg_zero1041w(i) OR wire_altpriority_encoder31_w_lg_w_lg_zero1039w1040w(i);
 	END GENERATE loop73;
 	altpriority_encoder31 :  fp_add_altpriority_encoder_qh8
 	  PORT MAP ( 
@@ -1478,20 +1403,20 @@
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_add_altpriority_encoder_i39 IS 
+ ENTITY  fp_add_altpriority_encoder_f48 IS 
 	 PORT 
 	 ( 
 		 data	:	IN  STD_LOGIC_VECTOR (15 DOWNTO 0);
 		 q	:	OUT  STD_LOGIC_VECTOR (3 DOWNTO 0)
 	 ); 
- END fp_add_altpriority_encoder_i39;
+ END fp_add_altpriority_encoder_f48;
 
- ARCHITECTURE RTL OF fp_add_altpriority_encoder_i39 IS
+ ARCHITECTURE RTL OF fp_add_altpriority_encoder_f48 IS
 
-	 SIGNAL  wire_altpriority_encoder29_w_lg_w_lg_zero1035w1036w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder29_w_lg_zero1037w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder29_w_lg_zero1035w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder29_w_lg_w_lg_zero1037w1038w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder29_w_lg_w_lg_zero1030w1031w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder29_w_lg_zero1032w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder29_w_lg_zero1030w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder29_w_lg_w_lg_zero1032w1033w	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder29_q	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder29_zero	:	STD_LOGIC;
 	 SIGNAL  wire_altpriority_encoder30_q	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -1512,16 +1437,16 @@
 	 END COMPONENT;
  BEGIN
 
-	q <= ( wire_altpriority_encoder29_zero & wire_altpriority_encoder29_w_lg_w_lg_zero1037w1038w);
+	q <= ( wire_altpriority_encoder29_zero & wire_altpriority_encoder29_w_lg_w_lg_zero1032w1033w);
 	loop74 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder29_w_lg_w_lg_zero1035w1036w(i) <= wire_altpriority_encoder29_w_lg_zero1035w(0) AND wire_altpriority_encoder29_q(i);
+		wire_altpriority_encoder29_w_lg_w_lg_zero1030w1031w(i) <= wire_altpriority_encoder29_w_lg_zero1030w(0) AND wire_altpriority_encoder29_q(i);
 	END GENERATE loop74;
 	loop75 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder29_w_lg_zero1037w(i) <= wire_altpriority_encoder29_zero AND wire_altpriority_encoder30_q(i);
+		wire_altpriority_encoder29_w_lg_zero1032w(i) <= wire_altpriority_encoder29_zero AND wire_altpriority_encoder30_q(i);
 	END GENERATE loop75;
-	wire_altpriority_encoder29_w_lg_zero1035w(0) <= NOT wire_altpriority_encoder29_zero;
+	wire_altpriority_encoder29_w_lg_zero1030w(0) <= NOT wire_altpriority_encoder29_zero;
 	loop76 : FOR i IN 0 TO 2 GENERATE 
-		wire_altpriority_encoder29_w_lg_w_lg_zero1037w1038w(i) <= wire_altpriority_encoder29_w_lg_zero1037w(i) OR wire_altpriority_encoder29_w_lg_w_lg_zero1035w1036w(i);
+		wire_altpriority_encoder29_w_lg_w_lg_zero1032w1033w(i) <= wire_altpriority_encoder29_w_lg_zero1032w(i) OR wire_altpriority_encoder29_w_lg_w_lg_zero1030w1031w(i);
 	END GENERATE loop76;
 	altpriority_encoder29 :  fp_add_altpriority_encoder_vh8
 	  PORT MAP ( 
@@ -1535,40 +1460,30 @@
 		q => wire_altpriority_encoder30_q
 	  );
 
- END RTL; --fp_add_altpriority_encoder_i39
+ END RTL; --fp_add_altpriority_encoder_f48
 
---synthesis_resources = reg 5 
+--synthesis_resources = 
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_add_altpriority_encoder_cna IS 
+ ENTITY  fp_add_altpriority_encoder_e48 IS 
 	 PORT 
 	 ( 
-		 aclr	:	IN  STD_LOGIC := '0';
-		 clk_en	:	IN  STD_LOGIC := '1';
-		 clock	:	IN  STD_LOGIC := '0';
 		 data	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 q	:	OUT  STD_LOGIC_VECTOR (4 DOWNTO 0)
 	 ); 
- END fp_add_altpriority_encoder_cna;
+ END fp_add_altpriority_encoder_e48;
 
- ARCHITECTURE RTL OF fp_add_altpriority_encoder_cna IS
+ ARCHITECTURE RTL OF fp_add_altpriority_encoder_e48 IS
 
+	 SIGNAL  wire_altpriority_encoder21_w_lg_w_lg_zero984w985w	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder21_w_lg_zero986w	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
+	 SIGNAL  wire_altpriority_encoder21_w_lg_zero984w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder21_w_lg_w_lg_zero986w987w	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder21_w_lg_zero988w	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder21_w_lg_zero986w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_altpriority_encoder21_w_lg_w_lg_zero988w989w	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder21_q	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
 	 SIGNAL  wire_altpriority_encoder21_zero	:	STD_LOGIC;
 	 SIGNAL  wire_altpriority_encoder22_q	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
-	 SIGNAL	 pipeline_q_dffe	:	STD_LOGIC_VECTOR(4 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL  wire_trailing_zeros_cnt_w_lg_tmp_q_wire994w	:	STD_LOGIC_VECTOR (4 DOWNTO 0);
-	 SIGNAL  tmp_q_wire :	STD_LOGIC_VECTOR (4 DOWNTO 0);
-	 COMPONENT  fp_add_altpriority_encoder_ii9
+	 COMPONENT  fp_add_altpriority_encoder_fj8
 	 PORT
 	 ( 
 		data	:	IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -1576,7 +1491,7 @@
 		zero	:	OUT  STD_LOGIC
 	 ); 
 	 END COMPONENT;
-	 COMPONENT  fp_add_altpriority_encoder_i39
+	 COMPONENT  fp_add_altpriority_encoder_f48
 	 PORT
 	 ( 
 		data	:	IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -1585,51 +1500,39 @@
 	 END COMPONENT;
  BEGIN
 
-	loop77 : FOR i IN 0 TO 4 GENERATE 
-		wire_trailing_zeros_cnt_w_lg_tmp_q_wire994w(i) <= NOT tmp_q_wire(i);
+	q <= ( wire_altpriority_encoder21_zero & wire_altpriority_encoder21_w_lg_w_lg_zero986w987w);
+	loop77 : FOR i IN 0 TO 3 GENERATE 
+		wire_altpriority_encoder21_w_lg_w_lg_zero984w985w(i) <= wire_altpriority_encoder21_w_lg_zero984w(0) AND wire_altpriority_encoder21_q(i);
 	END GENERATE loop77;
-	q <= (NOT pipeline_q_dffe);
-	tmp_q_wire <= ( wire_altpriority_encoder21_zero & wire_altpriority_encoder21_w_lg_w_lg_zero988w989w);
 	loop78 : FOR i IN 0 TO 3 GENERATE 
-		wire_altpriority_encoder21_w_lg_w_lg_zero986w987w(i) <= wire_altpriority_encoder21_w_lg_zero986w(0) AND wire_altpriority_encoder21_q(i);
+		wire_altpriority_encoder21_w_lg_zero986w(i) <= wire_altpriority_encoder21_zero AND wire_altpriority_encoder22_q(i);
 	END GENERATE loop78;
+	wire_altpriority_encoder21_w_lg_zero984w(0) <= NOT wire_altpriority_encoder21_zero;
 	loop79 : FOR i IN 0 TO 3 GENERATE 
-		wire_altpriority_encoder21_w_lg_zero988w(i) <= wire_altpriority_encoder21_zero AND wire_altpriority_encoder22_q(i);
+		wire_altpriority_encoder21_w_lg_w_lg_zero986w987w(i) <= wire_altpriority_encoder21_w_lg_zero986w(i) OR wire_altpriority_encoder21_w_lg_w_lg_zero984w985w(i);
 	END GENERATE loop79;
-	wire_altpriority_encoder21_w_lg_zero986w(0) <= NOT wire_altpriority_encoder21_zero;
-	loop80 : FOR i IN 0 TO 3 GENERATE 
-		wire_altpriority_encoder21_w_lg_w_lg_zero988w989w(i) <= wire_altpriority_encoder21_w_lg_zero988w(i) OR wire_altpriority_encoder21_w_lg_w_lg_zero986w987w(i);
-	END GENERATE loop80;
-	altpriority_encoder21 :  fp_add_altpriority_encoder_ii9
+	altpriority_encoder21 :  fp_add_altpriority_encoder_fj8
 	  PORT MAP ( 
 		data => data(15 DOWNTO 0),
 		q => wire_altpriority_encoder21_q,
 		zero => wire_altpriority_encoder21_zero
 	  );
-	altpriority_encoder22 :  fp_add_altpriority_encoder_i39
+	altpriority_encoder22 :  fp_add_altpriority_encoder_f48
 	  PORT MAP ( 
 		data => data(31 DOWNTO 16),
 		q => wire_altpriority_encoder22_q
 	  );
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN pipeline_q_dffe <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN pipeline_q_dffe <= wire_trailing_zeros_cnt_w_lg_tmp_q_wire994w;
-			END IF;
-		END IF;
-	END PROCESS;
 
- END RTL; --fp_add_altpriority_encoder_cna
+ END RTL; --fp_add_altpriority_encoder_e48
 
  LIBRARY lpm;
  USE lpm.all;
 
---synthesis_resources = lpm_add_sub 14 lpm_compare 1 reg 724 
+--synthesis_resources = lpm_add_sub 14 lpm_compare 1 reg 285 
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_add_altfp_add_sub_e6o IS 
+ ENTITY  fp_add_altfp_add_sub_m8m IS 
 	 PORT 
 	 ( 
 		 aclr	:	IN  STD_LOGIC := '0';
@@ -1639,14 +1542,12 @@
 		 dataa	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 datab	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 nan	:	OUT  STD_LOGIC;
-		 overflow	:	OUT  STD_LOGIC;
 		 result	:	OUT  STD_LOGIC_VECTOR (31 DOWNTO 0);
-		 underflow	:	OUT  STD_LOGIC;
 		 zero	:	OUT  STD_LOGIC
 	 ); 
- END fp_add_altfp_add_sub_e6o;
+ END fp_add_altfp_add_sub_m8m;
 
- ARCHITECTURE RTL OF fp_add_altfp_add_sub_e6o IS
+ ARCHITECTURE RTL OF fp_add_altfp_add_sub_m8m IS
 
 	 SIGNAL  wire_lbarrel_shift_result	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  wire_rbarrel_shift_data	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
@@ -1660,122 +1561,7 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 add_sub_dffe12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 add_sub_dffe13	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 add_sub_dffe14	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 add_sub_dffe25	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_dataa_exp_dffe12	:	STD_LOGIC_VECTOR(8 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_dataa_exp_dffe13	:	STD_LOGIC_VECTOR(8 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_dataa_exp_dffe14	:	STD_LOGIC_VECTOR(8 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_dataa_man_dffe12	:	STD_LOGIC_VECTOR(23 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_dataa_man_dffe13	:	STD_LOGIC_VECTOR(23 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_dataa_man_dffe14	:	STD_LOGIC_VECTOR(23 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_dataa_sign_dffe12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_dataa_sign_dffe13	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_dataa_sign_dffe14	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_datab_exp_dffe12	:	STD_LOGIC_VECTOR(8 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_datab_exp_dffe13	:	STD_LOGIC_VECTOR(8 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_datab_exp_dffe14	:	STD_LOGIC_VECTOR(8 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_datab_man_dffe12	:	STD_LOGIC_VECTOR(23 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_datab_man_dffe13	:	STD_LOGIC_VECTOR(23 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_datab_man_dffe14	:	STD_LOGIC_VECTOR(23 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_datab_sign_dffe12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_datab_sign_dffe13	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 aligned_datab_sign_dffe14	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 both_inputs_are_infinite_dffe1	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 both_inputs_are_infinite_dffe25	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -1791,11 +1577,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 dataa_sign_dffe1	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 dataa_sign_dffe25	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -1820,32 +1601,7 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 denormal_res_dffe41	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 exp_adj_dffe21	:	STD_LOGIC_VECTOR(1 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_adj_dffe23	:	STD_LOGIC_VECTOR(1 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_amb_mux_dffe13	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_amb_mux_dffe14	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_intermediate_res_dffe41	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
 	 -- synopsys translate_off
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
@@ -1861,21 +1617,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 exp_res_dffe21	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_res_dffe23	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_res_dffe25	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_res_dffe27	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
 	 -- synopsys translate_off
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
@@ -1905,21 +1646,6 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 infinite_output_sign_dffe23	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 infinite_output_sign_dffe25	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 infinite_output_sign_dffe27	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 infinite_output_sign_dffe3	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -1935,11 +1661,6 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 infinite_output_sign_dffe41	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 infinite_res_dffe3	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -1950,27 +1671,12 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 infinite_res_dffe41	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 infinity_magnitude_sub_dffe2	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 infinity_magnitude_sub_dffe21	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 infinity_magnitude_sub_dffe23	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 infinity_magnitude_sub_dffe27	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -1990,51 +1696,6 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 infinity_magnitude_sub_dffe41	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_dataa_infinite_dffe12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_dataa_infinite_dffe13	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_dataa_infinite_dffe14	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_dataa_nan_dffe12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_datab_infinite_dffe12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_datab_infinite_dffe13	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_datab_infinite_dffe14	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_datab_nan_dffe12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 input_is_infinite_dffe1	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -2046,21 +1707,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 input_is_infinite_dffe21	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_is_infinite_dffe23	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_is_infinite_dffe25	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_is_infinite_dffe27	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -2080,22 +1726,7 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 input_is_infinite_dffe41	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 input_is_nan_dffe1	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_is_nan_dffe13	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_is_nan_dffe14	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -2106,21 +1737,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 input_is_nan_dffe21	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_is_nan_dffe23	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_is_nan_dffe25	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 input_is_nan_dffe27	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -2140,37 +1756,12 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 input_is_nan_dffe41	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 man_add_sub_res_mag_dffe21	:	STD_LOGIC_VECTOR(25 DOWNTO 0)
 	 -- synopsys translate_off
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 man_add_sub_res_mag_dffe23	:	STD_LOGIC_VECTOR(25 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 man_add_sub_res_mag_dffe27	:	STD_LOGIC_VECTOR(27 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 man_add_sub_res_sign_dffe21	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 man_add_sub_res_sign_dffe23	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 man_add_sub_res_sign_dffe27	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -2210,26 +1801,6 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 man_res_is_not_zero_dffe41	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 man_res_not_zero_dffe23	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 man_res_rounding_add_sub_result_reg	:	STD_LOGIC_VECTOR(25 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 man_smaller_dffe13	:	STD_LOGIC_VECTOR(23 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 nan_flag_dffe5	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -2240,17 +1811,7 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 overflow_flag_dffe5	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 round_bit_dffe21	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 round_bit_dffe23	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -2268,16 +1829,6 @@
 	 SIGNAL	 rounded_res_infinity_dffe4	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 rshift_distance_dffe13	:	STD_LOGIC_VECTOR(4 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 rshift_distance_dffe14	:	STD_LOGIC_VECTOR(4 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 sign_dffe31	:	STD_LOGIC
@@ -2300,11 +1851,6 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 sign_res_dffe41	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 sticky_bit_dffe1	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -2320,32 +1866,12 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 sticky_bit_dffe23	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sticky_bit_dffe25	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sticky_bit_dffe27	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 sticky_bit_dffe3	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 sticky_bit_dffe31	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 underflow_flag_dffe5	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -2361,16 +1887,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 zero_man_sign_dffe21	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 zero_man_sign_dffe23	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 zero_man_sign_dffe27	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -2420,14 +1936,13 @@
 	 SIGNAL  wire_w_lg_w_lg_exp_amb_mux_dffe15_wo316w324w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_exp_amb_mux_dffe15_wo316w331w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_exp_amb_mux_dffe15_wo316w317w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
-	 SIGNAL  wire_w_lg_w_lg_exp_amb_mux_w276w279w	:	STD_LOGIC_VECTOR (23 DOWNTO 0);
-	 SIGNAL  wire_w_lg_w_lg_exp_amb_mux_w276w277w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
+	 SIGNAL  wire_w_lg_w_lg_exp_amb_mux_w275w278w	:	STD_LOGIC_VECTOR (23 DOWNTO 0);
+	 SIGNAL  wire_w_lg_w_lg_exp_amb_mux_w275w276w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_force_infinity_w643w653w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_force_infinity_w643w662w	:	STD_LOGIC_VECTOR (22 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_force_infinity_w643w668w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_force_nan_w644w656w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_force_nan_w644w665w	:	STD_LOGIC_VECTOR (22 DOWNTO 0);
-	 SIGNAL  wire_w_lg_w_lg_force_nan_w644w673w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_input_dataa_denormal_dffe11_wo233w243w	:	STD_LOGIC_VECTOR (22 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_input_dataa_denormal_dffe11_wo233w234w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_input_dataa_infinite_dffe11_wo246w247w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
@@ -2436,7 +1951,7 @@
 	 SIGNAL  wire_w_lg_w_lg_input_datab_infinite_dffe11_wo265w266w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_input_datab_infinite_dffe15_wo339w340w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_lg_man_res_not_zero_dffe26_wo517w518w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w293w	:	STD_LOGIC_VECTOR (4 DOWNTO 0);
+	 SIGNAL  wire_w292w	:	STD_LOGIC_VECTOR (4 DOWNTO 0);
 	 SIGNAL  wire_w411w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w397w	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 SIGNAL  wire_w426w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
@@ -2449,8 +1964,8 @@
 	 SIGNAL  wire_w_lg_exp_amb_mux_dffe15_wo330w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  wire_w_lg_exp_amb_mux_dffe15_wo323w	:	STD_LOGIC_VECTOR (25 DOWNTO 0);
 	 SIGNAL  wire_w_lg_exp_amb_mux_dffe15_wo314w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
-	 SIGNAL  wire_w_lg_exp_amb_mux_w280w	:	STD_LOGIC_VECTOR (23 DOWNTO 0);
-	 SIGNAL  wire_w_lg_exp_amb_mux_w274w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
+	 SIGNAL  wire_w_lg_exp_amb_mux_w279w	:	STD_LOGIC_VECTOR (23 DOWNTO 0);
+	 SIGNAL  wire_w_lg_exp_amb_mux_w273w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
 	 SIGNAL  wire_w_lg_force_infinity_w654w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
 	 SIGNAL  wire_w_lg_force_infinity_w663w	:	STD_LOGIC_VECTOR (22 DOWNTO 0);
 	 SIGNAL  wire_w_lg_force_nan_w657w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -2473,7 +1988,7 @@
 	 SIGNAL  wire_w_lg_w_datab_range80w85w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_exp_a_all_one_w_range84w220w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_exp_b_all_one_w_range86w226w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_lg_w_exp_diff_abs_exceed_max_w_range290w294w	:	STD_LOGIC_VECTOR (4 DOWNTO 0);
+	 SIGNAL  wire_w_lg_w_exp_diff_abs_exceed_max_w_range289w293w	:	STD_LOGIC_VECTOR (4 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_exp_res_max_w_range554w556w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_exp_res_max_w_range557w558w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_exp_res_max_w_range559w560w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
@@ -2503,7 +2018,7 @@
 	 SIGNAL  wire_w_lg_datab_sign_dffe1_wo348w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_denormal_result_w572w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_exp_amb_mux_dffe15_wo316w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_lg_exp_amb_mux_w276w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_w_lg_exp_amb_mux_w275w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_force_infinity_w643w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_force_nan_w644w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_force_zero_w642w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
@@ -2514,14 +2029,13 @@
 	 SIGNAL  wire_w_lg_input_datab_infinite_dffe11_wo265w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_input_datab_infinite_dffe15_wo339w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_input_datab_zero_dffe11_wo264w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_lg_input_is_infinite_dffe4_wo672w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_man_res_is_not_zero_dffe4_wo641w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_man_res_not_zero_dffe26_wo517w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_need_complement_dffe22_wo387w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_sticky_bit_dffe1_wo357w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_lg_zero_flag_n_dffe5_wo677w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_w_lg_zero_flag_n_dffe5_wo674w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_exp_adjustment2_add_sub_w_range525w574w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_lg_w_exp_diff_abs_exceed_max_w_range290w292w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_w_lg_w_exp_diff_abs_exceed_max_w_range289w291w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_man_a_not_zero_w_range215w219w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range401w404w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w396w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
@@ -2592,8 +2106,8 @@
 	 SIGNAL  wire_w_lg_w_datab_range126w127w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_datab_range132w133w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_datab_range138w139w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_lg_w_exp_diff_abs_exceed_max_w_range283w286w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_lg_w_exp_diff_abs_exceed_max_w_range287w289w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_w_lg_w_exp_diff_abs_exceed_max_w_range282w285w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_w_lg_w_exp_diff_abs_exceed_max_w_range286w288w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_exp_res_not_zero_w_range530w533w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_exp_res_not_zero_w_range534w536w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_lg_w_exp_res_not_zero_w_range537w539w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
@@ -3058,9 +2572,6 @@
 	 SIGNAL  need_complement_dffe22_wo :	STD_LOGIC;
 	 SIGNAL  need_complement_dffe2_wi :	STD_LOGIC;
 	 SIGNAL  need_complement_dffe2_wo :	STD_LOGIC;
-	 SIGNAL  overflow_flag_dffe5_wi :	STD_LOGIC;
-	 SIGNAL  overflow_flag_dffe5_wo :	STD_LOGIC;
-	 SIGNAL  overflow_flag_w :	STD_LOGIC;
 	 SIGNAL  pos_sign_bit_ext :	STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 SIGNAL  priority_encoder_1pads_w :	STD_LOGIC_VECTOR (3 DOWNTO 0);
 	 SIGNAL  round_bit_dffe21_wi :	STD_LOGIC;
@@ -3132,9 +2643,6 @@
 	 SIGNAL  sticky_bit_dffe3_wo :	STD_LOGIC;
 	 SIGNAL  sticky_bit_w :	STD_LOGIC;
 	 SIGNAL  trailing_zeros_limit_w :	STD_LOGIC_VECTOR (5 DOWNTO 0);
-	 SIGNAL  underflow_flag_dffe5_wi :	STD_LOGIC;
-	 SIGNAL  underflow_flag_dffe5_wo :	STD_LOGIC;
-	 SIGNAL  underflow_flag_w :	STD_LOGIC;
 	 SIGNAL  zero_flag_n_dffe5_wi :	STD_LOGIC;
 	 SIGNAL  zero_flag_n_dffe5_wo :	STD_LOGIC;
 	 SIGNAL  zero_flag_n_w :	STD_LOGIC;
@@ -3238,7 +2746,7 @@
 	 SIGNAL  wire_w_exp_adjustment2_add_sub_w_range571w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
 	 SIGNAL  wire_w_exp_adjustment2_add_sub_w_range550w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_exp_adjustment2_add_sub_w_range525w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_exp_amb_w_range275w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
+	 SIGNAL  wire_w_exp_amb_w_range274w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
 	 SIGNAL  wire_w_exp_b_all_one_w_range9w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_exp_b_all_one_w_range26w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_exp_b_all_one_w_range36w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
@@ -3254,13 +2762,13 @@
 	 SIGNAL  wire_w_exp_b_not_zero_w_range52w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_exp_b_not_zero_w_range62w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_exp_b_not_zero_w_range72w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_exp_bma_w_range273w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
-	 SIGNAL  wire_w_exp_diff_abs_exceed_max_w_range283w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_exp_diff_abs_exceed_max_w_range287w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_exp_diff_abs_exceed_max_w_range290w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_exp_diff_abs_w_range291w	:	STD_LOGIC_VECTOR (4 DOWNTO 0);
-	 SIGNAL  wire_w_exp_diff_abs_w_range285w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_w_exp_diff_abs_w_range288w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_w_exp_bma_w_range272w	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
+	 SIGNAL  wire_w_exp_diff_abs_exceed_max_w_range282w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_w_exp_diff_abs_exceed_max_w_range286w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_w_exp_diff_abs_exceed_max_w_range289w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_w_exp_diff_abs_w_range290w	:	STD_LOGIC_VECTOR (4 DOWNTO 0);
+	 SIGNAL  wire_w_exp_diff_abs_w_range284w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_w_exp_diff_abs_w_range287w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_exp_res_max_w_range554w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_exp_res_max_w_range557w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_w_exp_res_max_w_range559w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
@@ -3405,33 +2913,24 @@
 		result	:	OUT  STD_LOGIC_VECTOR(25 DOWNTO 0)
 	 ); 
 	 END COMPONENT;
-	 COMPONENT  fp_add_altbarrel_shift_07g
+	 COMPONENT  fp_add_altbarrel_shift_fkb
 	 PORT
 	 ( 
-		aclr	:	IN  STD_LOGIC := '0';
-		clk_en	:	IN  STD_LOGIC := '1';
-		clock	:	IN  STD_LOGIC := '0';
 		data	:	IN  STD_LOGIC_VECTOR(25 DOWNTO 0);
 		distance	:	IN  STD_LOGIC_VECTOR(4 DOWNTO 0);
 		result	:	OUT  STD_LOGIC_VECTOR(25 DOWNTO 0)
 	 ); 
 	 END COMPONENT;
-	 COMPONENT  fp_add_altpriority_encoder_ou8
+	 COMPONENT  fp_add_altpriority_encoder_qb6
 	 PORT
 	 ( 
-		aclr	:	IN  STD_LOGIC := '0';
-		clk_en	:	IN  STD_LOGIC := '1';
-		clock	:	IN  STD_LOGIC := '0';
 		data	:	IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
 		q	:	OUT  STD_LOGIC_VECTOR(4 DOWNTO 0)
 	 ); 
 	 END COMPONENT;
-	 COMPONENT  fp_add_altpriority_encoder_cna
+	 COMPONENT  fp_add_altpriority_encoder_e48
 	 PORT
 	 ( 
-		aclr	:	IN  STD_LOGIC := '0';
-		clk_en	:	IN  STD_LOGIC := '1';
-		clock	:	IN  STD_LOGIC := '0';
 		data	:	IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
 		q	:	OUT  STD_LOGIC_VECTOR(4 DOWNTO 0)
 	 ); 
@@ -3493,113 +2992,112 @@
 	wire_w267w(0) <= wire_w_lg_w_lg_input_datab_infinite_dffe11_wo265w266w(0) AND wire_w_lg_input_datab_zero_dffe11_wo264w(0);
 	wire_w_lg_w411w421w(0) <= wire_w411w(0) AND sticky_bit_dffe27_wo;
 	wire_w_lg_w_lg_dataa_sign_dffe1_wo342w343w(0) <= wire_w_lg_dataa_sign_dffe1_wo342w(0) AND add_sub_dffe1_wo;
-	loop81 : FOR i IN 0 TO 7 GENERATE 
+	loop80 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_w_lg_w_lg_force_zero_w648w649w650w(i) <= wire_w_lg_w_lg_force_zero_w648w649w(0) AND exp_res_dffe4_wo(i);
-	END GENERATE loop81;
-	loop82 : FOR i IN 0 TO 22 GENERATE 
+	END GENERATE loop80;
+	loop81 : FOR i IN 0 TO 22 GENERATE 
 		wire_w_lg_w_lg_w_lg_force_zero_w648w649w659w(i) <= wire_w_lg_w_lg_force_zero_w648w649w(0) AND man_res_dffe4_wo(i);
-	END GENERATE loop82;
+	END GENERATE loop81;
 	wire_w_lg_w_lg_dataa_sign_dffe1_wo345w349w(0) <= wire_w_lg_dataa_sign_dffe1_wo345w(0) AND wire_w_lg_datab_sign_dffe1_wo348w(0);
 	wire_w_lg_w_lg_dataa_sign_dffe1_wo345w346w(0) <= wire_w_lg_dataa_sign_dffe1_wo345w(0) AND datab_sign_dffe1_wo;
-	loop83 : FOR i IN 0 TO 7 GENERATE 
+	loop82 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_w_lg_denormal_result_w572w573w(i) <= wire_w_lg_denormal_result_w572w(0) AND wire_w_exp_adjustment2_add_sub_w_range571w(i);
+	END GENERATE loop82;
+	loop83 : FOR i IN 0 TO 25 GENERATE 
+		wire_w_lg_w_lg_exp_amb_mux_dffe15_wo316w324w(i) <= wire_w_lg_exp_amb_mux_dffe15_wo316w(0) AND aligned_dataa_man_dffe15_w(i);
 	END GENERATE loop83;
 	loop84 : FOR i IN 0 TO 25 GENERATE 
-		wire_w_lg_w_lg_exp_amb_mux_dffe15_wo316w324w(i) <= wire_w_lg_exp_amb_mux_dffe15_wo316w(0) AND aligned_dataa_man_dffe15_w(i);
-	END GENERATE loop84;
-	loop85 : FOR i IN 0 TO 25 GENERATE 
 		wire_w_lg_w_lg_exp_amb_mux_dffe15_wo316w331w(i) <= wire_w_lg_exp_amb_mux_dffe15_wo316w(0) AND wire_rbarrel_shift_result(i);
-	END GENERATE loop85;
-	loop86 : FOR i IN 0 TO 7 GENERATE 
+	END GENERATE loop84;
+	loop85 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_w_lg_exp_amb_mux_dffe15_wo316w317w(i) <= wire_w_lg_exp_amb_mux_dffe15_wo316w(0) AND wire_w_aligned_dataa_exp_dffe15_wo_range315w(i);
+	END GENERATE loop85;
+	loop86 : FOR i IN 0 TO 23 GENERATE 
+		wire_w_lg_w_lg_exp_amb_mux_w275w278w(i) <= wire_w_lg_exp_amb_mux_w275w(0) AND aligned_datab_man_dffe12_wo(i);
 	END GENERATE loop86;
-	loop87 : FOR i IN 0 TO 23 GENERATE 
-		wire_w_lg_w_lg_exp_amb_mux_w276w279w(i) <= wire_w_lg_exp_amb_mux_w276w(0) AND aligned_datab_man_dffe12_wo(i);
+	loop87 : FOR i IN 0 TO 7 GENERATE 
+		wire_w_lg_w_lg_exp_amb_mux_w275w276w(i) <= wire_w_lg_exp_amb_mux_w275w(0) AND wire_w_exp_amb_w_range274w(i);
 	END GENERATE loop87;
 	loop88 : FOR i IN 0 TO 7 GENERATE 
-		wire_w_lg_w_lg_exp_amb_mux_w276w277w(i) <= wire_w_lg_exp_amb_mux_w276w(0) AND wire_w_exp_amb_w_range275w(i);
-	END GENERATE loop88;
-	loop89 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_w_lg_force_infinity_w643w653w(i) <= wire_w_lg_force_infinity_w643w(0) AND wire_w_lg_w_lg_w_lg_force_zero_w648w651w652w(i);
-	END GENERATE loop89;
-	loop90 : FOR i IN 0 TO 22 GENERATE 
+	END GENERATE loop88;
+	loop89 : FOR i IN 0 TO 22 GENERATE 
 		wire_w_lg_w_lg_force_infinity_w643w662w(i) <= wire_w_lg_force_infinity_w643w(0) AND wire_w_lg_w_lg_w_lg_force_zero_w648w660w661w(i);
-	END GENERATE loop90;
+	END GENERATE loop89;
 	wire_w_lg_w_lg_force_infinity_w643w668w(0) <= wire_w_lg_force_infinity_w643w(0) AND sign_res_dffe4_wo;
-	loop91 : FOR i IN 0 TO 7 GENERATE 
+	loop90 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_w_lg_force_nan_w644w656w(i) <= wire_w_lg_force_nan_w644w(0) AND wire_w_lg_w_lg_force_infinity_w654w655w(i);
+	END GENERATE loop90;
+	loop91 : FOR i IN 0 TO 22 GENERATE 
+		wire_w_lg_w_lg_force_nan_w644w665w(i) <= wire_w_lg_force_nan_w644w(0) AND wire_w_lg_w_lg_force_infinity_w663w664w(i);
 	END GENERATE loop91;
 	loop92 : FOR i IN 0 TO 22 GENERATE 
-		wire_w_lg_w_lg_force_nan_w644w665w(i) <= wire_w_lg_force_nan_w644w(0) AND wire_w_lg_w_lg_force_infinity_w663w664w(i);
-	END GENERATE loop92;
-	wire_w_lg_w_lg_force_nan_w644w673w(0) <= wire_w_lg_force_nan_w644w(0) AND force_infinity_w;
-	loop93 : FOR i IN 0 TO 22 GENERATE 
 		wire_w_lg_w_lg_input_dataa_denormal_dffe11_wo233w243w(i) <= wire_w_lg_input_dataa_denormal_dffe11_wo233w(0) AND wire_w_dataa_dffe11_wo_range242w(i);
-	END GENERATE loop93;
-	loop94 : FOR i IN 0 TO 7 GENERATE 
+	END GENERATE loop92;
+	loop93 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_w_lg_input_dataa_denormal_dffe11_wo233w234w(i) <= wire_w_lg_input_dataa_denormal_dffe11_wo233w(0) AND wire_w_dataa_dffe11_wo_range232w(i);
-	END GENERATE loop94;
+	END GENERATE loop93;
 	wire_w_lg_w_lg_input_dataa_infinite_dffe11_wo246w247w(0) <= wire_w_lg_input_dataa_infinite_dffe11_wo246w(0) AND wire_w_lg_input_dataa_denormal_dffe11_wo233w(0);
-	loop95 : FOR i IN 0 TO 22 GENERATE 
+	loop94 : FOR i IN 0 TO 22 GENERATE 
 		wire_w_lg_w_lg_input_datab_denormal_dffe11_wo252w262w(i) <= wire_w_lg_input_datab_denormal_dffe11_wo252w(0) AND wire_w_datab_dffe11_wo_range261w(i);
-	END GENERATE loop95;
-	loop96 : FOR i IN 0 TO 7 GENERATE 
+	END GENERATE loop94;
+	loop95 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_w_lg_input_datab_denormal_dffe11_wo252w253w(i) <= wire_w_lg_input_datab_denormal_dffe11_wo252w(0) AND wire_w_datab_dffe11_wo_range251w(i);
-	END GENERATE loop96;
+	END GENERATE loop95;
 	wire_w_lg_w_lg_input_datab_infinite_dffe11_wo265w266w(0) <= wire_w_lg_input_datab_infinite_dffe11_wo265w(0) AND wire_w_lg_input_datab_denormal_dffe11_wo252w(0);
 	wire_w_lg_w_lg_input_datab_infinite_dffe15_wo339w340w(0) <= wire_w_lg_input_datab_infinite_dffe15_wo339w(0) AND aligned_dataa_sign_dffe15_wo;
 	wire_w_lg_w_lg_man_res_not_zero_dffe26_wo517w518w(0) <= wire_w_lg_man_res_not_zero_dffe26_wo517w(0) AND zero_man_sign_dffe26_wo;
-	loop97 : FOR i IN 0 TO 4 GENERATE 
-		wire_w293w(i) <= wire_w_lg_w_exp_diff_abs_exceed_max_w_range290w292w(0) AND wire_w_exp_diff_abs_w_range291w(i);
-	END GENERATE loop97;
+	loop96 : FOR i IN 0 TO 4 GENERATE 
+		wire_w292w(i) <= wire_w_lg_w_exp_diff_abs_exceed_max_w_range289w291w(0) AND wire_w_exp_diff_abs_w_range290w(i);
+	END GENERATE loop96;
 	wire_w411w(0) <= wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w396w(0) AND wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range401w404w(0);
-	loop98 : FOR i IN 0 TO 1 GENERATE 
+	loop97 : FOR i IN 0 TO 1 GENERATE 
 		wire_w397w(i) <= wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w396w(0) AND exp_adjust_by_add1(i);
-	END GENERATE loop98;
-	loop99 : FOR i IN 0 TO 25 GENERATE 
+	END GENERATE loop97;
+	loop98 : FOR i IN 0 TO 25 GENERATE 
 		wire_w426w(i) <= wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w396w(0) AND wire_w_man_add_sub_res_mag_dffe27_wo_range425w(i);
-	END GENERATE loop99;
-	loop100 : FOR i IN 0 TO 27 GENERATE 
+	END GENERATE loop98;
+	loop99 : FOR i IN 0 TO 27 GENERATE 
 		wire_w_lg_w_lg_w_man_add_sub_w_range386w389w392w(i) <= wire_w_lg_w_man_add_sub_w_range386w389w(0) AND man_add_sub_w(i);
-	END GENERATE loop100;
-	loop101 : FOR i IN 0 TO 22 GENERATE 
+	END GENERATE loop99;
+	loop100 : FOR i IN 0 TO 22 GENERATE 
 		wire_w601w(i) <= wire_w_lg_w_man_res_rounding_add_sub_w_range599w600w(0) AND wire_w_man_res_rounding_add_sub_w_range598w(i);
-	END GENERATE loop101;
-	loop102 : FOR i IN 0 TO 7 GENERATE 
+	END GENERATE loop100;
+	loop101 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_w_lg_force_zero_w648w651w(i) <= wire_w_lg_force_zero_w648w(0) AND exp_all_zeros_w(i);
-	END GENERATE loop102;
-	loop103 : FOR i IN 0 TO 22 GENERATE 
+	END GENERATE loop101;
+	loop102 : FOR i IN 0 TO 22 GENERATE 
 		wire_w_lg_w_lg_force_zero_w648w660w(i) <= wire_w_lg_force_zero_w648w(0) AND man_all_zeros_w(i);
-	END GENERATE loop103;
+	END GENERATE loop102;
 	wire_w_lg_dataa_sign_dffe1_wo351w(0) <= dataa_sign_dffe1_wo AND wire_w_lg_datab_sign_dffe1_wo348w(0);
 	wire_w_lg_dataa_sign_dffe1_wo342w(0) <= dataa_sign_dffe1_wo AND datab_sign_dffe1_wo;
-	loop104 : FOR i IN 0 TO 25 GENERATE 
+	loop103 : FOR i IN 0 TO 25 GENERATE 
 		wire_w_lg_exp_amb_mux_dffe15_wo330w(i) <= exp_amb_mux_dffe15_wo AND aligned_datab_man_dffe15_w(i);
-	END GENERATE loop104;
-	loop105 : FOR i IN 0 TO 25 GENERATE 
+	END GENERATE loop103;
+	loop104 : FOR i IN 0 TO 25 GENERATE 
 		wire_w_lg_exp_amb_mux_dffe15_wo323w(i) <= exp_amb_mux_dffe15_wo AND wire_rbarrel_shift_result(i);
-	END GENERATE loop105;
-	loop106 : FOR i IN 0 TO 7 GENERATE 
+	END GENERATE loop104;
+	loop105 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_exp_amb_mux_dffe15_wo314w(i) <= exp_amb_mux_dffe15_wo AND wire_w_aligned_datab_exp_dffe15_wo_range313w(i);
+	END GENERATE loop105;
+	loop106 : FOR i IN 0 TO 23 GENERATE 
+		wire_w_lg_exp_amb_mux_w279w(i) <= exp_amb_mux_w AND aligned_dataa_man_dffe12_wo(i);
 	END GENERATE loop106;
-	loop107 : FOR i IN 0 TO 23 GENERATE 
-		wire_w_lg_exp_amb_mux_w280w(i) <= exp_amb_mux_w AND aligned_dataa_man_dffe12_wo(i);
+	loop107 : FOR i IN 0 TO 7 GENERATE 
+		wire_w_lg_exp_amb_mux_w273w(i) <= exp_amb_mux_w AND wire_w_exp_bma_w_range272w(i);
 	END GENERATE loop107;
 	loop108 : FOR i IN 0 TO 7 GENERATE 
-		wire_w_lg_exp_amb_mux_w274w(i) <= exp_amb_mux_w AND wire_w_exp_bma_w_range273w(i);
-	END GENERATE loop108;
-	loop109 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_force_infinity_w654w(i) <= force_infinity_w AND exp_all_ones_w(i);
-	END GENERATE loop109;
-	loop110 : FOR i IN 0 TO 22 GENERATE 
+	END GENERATE loop108;
+	loop109 : FOR i IN 0 TO 22 GENERATE 
 		wire_w_lg_force_infinity_w663w(i) <= force_infinity_w AND man_all_zeros_w(i);
-	END GENERATE loop110;
-	loop111 : FOR i IN 0 TO 7 GENERATE 
+	END GENERATE loop109;
+	loop110 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_force_nan_w657w(i) <= force_nan_w AND exp_all_ones_w(i);
-	END GENERATE loop111;
-	loop112 : FOR i IN 0 TO 22 GENERATE 
+	END GENERATE loop110;
+	loop111 : FOR i IN 0 TO 22 GENERATE 
 		wire_w_lg_force_nan_w666w(i) <= force_nan_w AND man_nan_w(i);
-	END GENERATE loop112;
+	END GENERATE loop111;
 	wire_w_lg_input_datab_infinite_dffe15_wo338w(0) <= input_datab_infinite_dffe15_wo AND wire_w_lg_w_lg_aligned_datab_sign_dffe15_wo336w337w(0);
 	wire_w_lg_need_complement_dffe22_wo390w(0) <= need_complement_dffe22_wo AND wire_w_lg_w_man_add_sub_w_range386w389w(0);
 	wire_w_lg_w_dataa_range17w23w(0) <= wire_w_dataa_range17w(0) AND wire_w_exp_a_all_one_w_range7w(0);
@@ -3618,9 +3116,9 @@
 	wire_w_lg_w_datab_range80w85w(0) <= wire_w_datab_range80w(0) AND wire_w_exp_b_all_one_w_range76w(0);
 	wire_w_lg_w_exp_a_all_one_w_range84w220w(0) <= wire_w_exp_a_all_one_w_range84w(0) AND wire_w_lg_w_man_a_not_zero_w_range215w219w(0);
 	wire_w_lg_w_exp_b_all_one_w_range86w226w(0) <= wire_w_exp_b_all_one_w_range86w(0) AND wire_w_lg_w_man_b_not_zero_w_range218w225w(0);
-	loop113 : FOR i IN 0 TO 4 GENERATE 
-		wire_w_lg_w_exp_diff_abs_exceed_max_w_range290w294w(i) <= wire_w_exp_diff_abs_exceed_max_w_range290w(0) AND exp_diff_abs_max_w(i);
-	END GENERATE loop113;
+	loop112 : FOR i IN 0 TO 4 GENERATE 
+		wire_w_lg_w_exp_diff_abs_exceed_max_w_range289w293w(i) <= wire_w_exp_diff_abs_exceed_max_w_range289w(0) AND exp_diff_abs_max_w(i);
+	END GENERATE loop112;
 	wire_w_lg_w_exp_res_max_w_range554w556w(0) <= wire_w_exp_res_max_w_range554w(0) AND wire_w_exp_adjustment2_add_sub_w_range532w(0);
 	wire_w_lg_w_exp_res_max_w_range557w558w(0) <= wire_w_exp_res_max_w_range557w(0) AND wire_w_exp_adjustment2_add_sub_w_range535w(0);
 	wire_w_lg_w_exp_res_max_w_range559w560w(0) <= wire_w_exp_res_max_w_range559w(0) AND wire_w_exp_adjustment2_add_sub_w_range538w(0);
@@ -3637,18 +3135,18 @@
 	wire_w_lg_w_exp_rounded_res_max_w_range631w633w(0) <= wire_w_exp_rounded_res_max_w_range631w(0) AND wire_w_exp_rounded_res_w_range632w(0);
 	wire_w_lg_w_exp_rounded_res_max_w_range634w636w(0) <= wire_w_exp_rounded_res_max_w_range634w(0) AND wire_w_exp_rounded_res_w_range635w(0);
 	wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w405w(0) <= wire_w_man_add_sub_res_mag_dffe27_wo_range395w(0) AND wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range401w404w(0);
-	loop114 : FOR i IN 0 TO 1 GENERATE 
+	loop113 : FOR i IN 0 TO 1 GENERATE 
 		wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w398w(i) <= wire_w_man_add_sub_res_mag_dffe27_wo_range395w(0) AND exp_adjust_by_add2(i);
-	END GENERATE loop114;
-	loop115 : FOR i IN 0 TO 25 GENERATE 
+	END GENERATE loop113;
+	loop114 : FOR i IN 0 TO 25 GENERATE 
 		wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w428w(i) <= wire_w_man_add_sub_res_mag_dffe27_wo_range395w(0) AND wire_w_man_add_sub_res_mag_dffe27_wo_range427w(i);
-	END GENERATE loop115;
-	loop116 : FOR i IN 0 TO 27 GENERATE 
+	END GENERATE loop114;
+	loop115 : FOR i IN 0 TO 27 GENERATE 
 		wire_w_lg_w_man_add_sub_w_range386w393w(i) <= wire_w_man_add_sub_w_range386w(0) AND man_2comp_res_w(i);
-	END GENERATE loop116;
-	loop117 : FOR i IN 0 TO 22 GENERATE 
+	END GENERATE loop115;
+	loop116 : FOR i IN 0 TO 22 GENERATE 
 		wire_w_lg_w_man_res_rounding_add_sub_w_range599w603w(i) <= wire_w_man_res_rounding_add_sub_w_range599w(0) AND wire_w_man_res_rounding_add_sub_w_range602w(i);
-	END GENERATE loop117;
+	END GENERATE loop116;
 	wire_w_lg_w_lg_force_zero_w648w649w(0) <= NOT wire_w_lg_force_zero_w648w(0);
 	wire_w_lg_w_lg_aligned_datab_sign_dffe15_wo336w337w(0) <= NOT wire_w_lg_aligned_datab_sign_dffe15_wo336w(0);
 	wire_w_lg_add_sub_dffe1_wo344w(0) <= NOT add_sub_dffe1_wo;
@@ -3658,7 +3156,7 @@
 	wire_w_lg_datab_sign_dffe1_wo348w(0) <= NOT datab_sign_dffe1_wo;
 	wire_w_lg_denormal_result_w572w(0) <= NOT denormal_result_w;
 	wire_w_lg_exp_amb_mux_dffe15_wo316w(0) <= NOT exp_amb_mux_dffe15_wo;
-	wire_w_lg_exp_amb_mux_w276w(0) <= NOT exp_amb_mux_w;
+	wire_w_lg_exp_amb_mux_w275w(0) <= NOT exp_amb_mux_w;
 	wire_w_lg_force_infinity_w643w(0) <= NOT force_infinity_w;
 	wire_w_lg_force_nan_w644w(0) <= NOT force_nan_w;
 	wire_w_lg_force_zero_w642w(0) <= NOT force_zero_w;
@@ -3669,32 +3167,31 @@
 	wire_w_lg_input_datab_infinite_dffe11_wo265w(0) <= NOT input_datab_infinite_dffe11_wo;
 	wire_w_lg_input_datab_infinite_dffe15_wo339w(0) <= NOT input_datab_infinite_dffe15_wo;
 	wire_w_lg_input_datab_zero_dffe11_wo264w(0) <= NOT input_datab_zero_dffe11_wo;
-	wire_w_lg_input_is_infinite_dffe4_wo672w(0) <= NOT input_is_infinite_dffe4_wo;
 	wire_w_lg_man_res_is_not_zero_dffe4_wo641w(0) <= NOT man_res_is_not_zero_dffe4_wo;
 	wire_w_lg_man_res_not_zero_dffe26_wo517w(0) <= NOT man_res_not_zero_dffe26_wo;
 	wire_w_lg_need_complement_dffe22_wo387w(0) <= NOT need_complement_dffe22_wo;
 	wire_w_lg_sticky_bit_dffe1_wo357w(0) <= NOT sticky_bit_dffe1_wo;
-	wire_w_lg_zero_flag_n_dffe5_wo677w(0) <= NOT zero_flag_n_dffe5_wo;
+	wire_w_lg_zero_flag_n_dffe5_wo674w(0) <= NOT zero_flag_n_dffe5_wo;
 	wire_w_lg_w_exp_adjustment2_add_sub_w_range525w574w(0) <= NOT wire_w_exp_adjustment2_add_sub_w_range525w(0);
-	wire_w_lg_w_exp_diff_abs_exceed_max_w_range290w292w(0) <= NOT wire_w_exp_diff_abs_exceed_max_w_range290w(0);
+	wire_w_lg_w_exp_diff_abs_exceed_max_w_range289w291w(0) <= NOT wire_w_exp_diff_abs_exceed_max_w_range289w(0);
 	wire_w_lg_w_man_a_not_zero_w_range215w219w(0) <= NOT wire_w_man_a_not_zero_w_range215w(0);
 	wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range401w404w(0) <= NOT wire_w_man_add_sub_res_mag_dffe27_wo_range401w(0);
 	wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w396w(0) <= NOT wire_w_man_add_sub_res_mag_dffe27_wo_range395w(0);
 	wire_w_lg_w_man_add_sub_w_range386w389w(0) <= NOT wire_w_man_add_sub_w_range386w(0);
 	wire_w_lg_w_man_b_not_zero_w_range218w225w(0) <= NOT wire_w_man_b_not_zero_w_range218w(0);
 	wire_w_lg_w_man_res_rounding_add_sub_w_range599w600w(0) <= NOT wire_w_man_res_rounding_add_sub_w_range599w(0);
-	loop118 : FOR i IN 0 TO 7 GENERATE 
+	loop117 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_w_lg_w_lg_force_zero_w648w651w652w(i) <= wire_w_lg_w_lg_force_zero_w648w651w(i) OR wire_w_lg_w_lg_w_lg_force_zero_w648w649w650w(i);
-	END GENERATE loop118;
-	loop119 : FOR i IN 0 TO 22 GENERATE 
+	END GENERATE loop117;
+	loop118 : FOR i IN 0 TO 22 GENERATE 
 		wire_w_lg_w_lg_w_lg_force_zero_w648w660w661w(i) <= wire_w_lg_w_lg_force_zero_w648w660w(i) OR wire_w_lg_w_lg_w_lg_force_zero_w648w649w659w(i);
-	END GENERATE loop119;
-	loop120 : FOR i IN 0 TO 7 GENERATE 
+	END GENERATE loop118;
+	loop119 : FOR i IN 0 TO 7 GENERATE 
 		wire_w_lg_w_lg_force_infinity_w654w655w(i) <= wire_w_lg_force_infinity_w654w(i) OR wire_w_lg_w_lg_force_infinity_w643w653w(i);
-	END GENERATE loop120;
-	loop121 : FOR i IN 0 TO 22 GENERATE 
+	END GENERATE loop119;
+	loop120 : FOR i IN 0 TO 22 GENERATE 
 		wire_w_lg_w_lg_force_infinity_w663w664w(i) <= wire_w_lg_force_infinity_w663w(i) OR wire_w_lg_w_lg_force_infinity_w643w662w(i);
-	END GENERATE loop121;
+	END GENERATE loop120;
 	wire_w_lg_force_zero_w648w(0) <= force_zero_w OR denormal_flag_w;
 	wire_w_lg_sticky_bit_dffe27_wo416w(0) <= sticky_bit_dffe27_wo OR wire_w_man_add_sub_res_mag_dffe27_wo_range410w(0);
 	wire_w_lg_w_dataa_range141w142w(0) <= wire_w_dataa_range141w(0) OR wire_w_man_a_not_zero_w_range137w(0);
@@ -3755,8 +3252,8 @@
 	wire_w_lg_w_datab_range126w127w(0) <= wire_w_datab_range126w(0) OR wire_w_man_b_not_zero_w_range122w(0);
 	wire_w_lg_w_datab_range132w133w(0) <= wire_w_datab_range132w(0) OR wire_w_man_b_not_zero_w_range128w(0);
 	wire_w_lg_w_datab_range138w139w(0) <= wire_w_datab_range138w(0) OR wire_w_man_b_not_zero_w_range134w(0);
-	wire_w_lg_w_exp_diff_abs_exceed_max_w_range283w286w(0) <= wire_w_exp_diff_abs_exceed_max_w_range283w(0) OR wire_w_exp_diff_abs_w_range285w(0);
-	wire_w_lg_w_exp_diff_abs_exceed_max_w_range287w289w(0) <= wire_w_exp_diff_abs_exceed_max_w_range287w(0) OR wire_w_exp_diff_abs_w_range288w(0);
+	wire_w_lg_w_exp_diff_abs_exceed_max_w_range282w285w(0) <= wire_w_exp_diff_abs_exceed_max_w_range282w(0) OR wire_w_exp_diff_abs_w_range284w(0);
+	wire_w_lg_w_exp_diff_abs_exceed_max_w_range286w288w(0) <= wire_w_exp_diff_abs_exceed_max_w_range286w(0) OR wire_w_exp_diff_abs_w_range287w(0);
 	wire_w_lg_w_exp_res_not_zero_w_range530w533w(0) <= wire_w_exp_res_not_zero_w_range530w(0) OR wire_w_exp_adjustment2_add_sub_w_range532w(0);
 	wire_w_lg_w_exp_res_not_zero_w_range534w536w(0) <= wire_w_exp_res_not_zero_w_range534w(0) OR wire_w_exp_adjustment2_add_sub_w_range535w(0);
 	wire_w_lg_w_exp_res_not_zero_w_range537w539w(0) <= wire_w_exp_res_not_zero_w_range537w(0) OR wire_w_exp_adjustment2_add_sub_w_range538w(0);
@@ -3793,72 +3290,72 @@
 	add_sub_dffe11_wi <= add_sub;
 	add_sub_dffe11_wo <= add_sub_dffe11_wi;
 	add_sub_dffe12_wi <= add_sub_dffe11_wo;
-	add_sub_dffe12_wo <= add_sub_dffe12;
+	add_sub_dffe12_wo <= add_sub_dffe12_wi;
 	add_sub_dffe13_wi <= add_sub_dffe12_wo;
-	add_sub_dffe13_wo <= add_sub_dffe13;
+	add_sub_dffe13_wo <= add_sub_dffe13_wi;
 	add_sub_dffe14_wi <= add_sub_dffe13_wo;
-	add_sub_dffe14_wo <= add_sub_dffe14;
+	add_sub_dffe14_wo <= add_sub_dffe14_wi;
 	add_sub_dffe15_wi <= add_sub_dffe14_wo;
 	add_sub_dffe15_wo <= add_sub_dffe15_wi;
 	add_sub_dffe1_wi <= add_sub_dffe15_wo;
 	add_sub_dffe1_wo <= add_sub_dffe1;
 	add_sub_dffe25_wi <= add_sub_w2;
-	add_sub_dffe25_wo <= add_sub_dffe25;
+	add_sub_dffe25_wo <= add_sub_dffe25_wi;
 	add_sub_w2 <= ((((wire_w_lg_dataa_sign_dffe1_wo351w(0) AND wire_w_lg_add_sub_dffe1_wo344w(0)) OR wire_w_lg_w_lg_w_lg_dataa_sign_dffe1_wo345w349w350w(0)) OR (wire_w_lg_w_lg_dataa_sign_dffe1_wo345w346w(0) AND wire_w_lg_add_sub_dffe1_wo344w(0))) OR wire_w_lg_w_lg_dataa_sign_dffe1_wo342w343w(0));
 	adder_upper_w <= man_intermediate_res_w(25 DOWNTO 13);
 	aligned_dataa_exp_dffe12_wi <= aligned_dataa_exp_w;
-	aligned_dataa_exp_dffe12_wo <= aligned_dataa_exp_dffe12;
+	aligned_dataa_exp_dffe12_wo <= aligned_dataa_exp_dffe12_wi;
 	aligned_dataa_exp_dffe13_wi <= aligned_dataa_exp_dffe12_wo;
-	aligned_dataa_exp_dffe13_wo <= aligned_dataa_exp_dffe13;
+	aligned_dataa_exp_dffe13_wo <= aligned_dataa_exp_dffe13_wi;
 	aligned_dataa_exp_dffe14_wi <= aligned_dataa_exp_dffe13_wo;
-	aligned_dataa_exp_dffe14_wo <= aligned_dataa_exp_dffe14;
+	aligned_dataa_exp_dffe14_wo <= aligned_dataa_exp_dffe14_wi;
 	aligned_dataa_exp_dffe15_wi <= aligned_dataa_exp_dffe14_wo;
 	aligned_dataa_exp_dffe15_wo <= aligned_dataa_exp_dffe15_wi;
 	aligned_dataa_exp_w <= ( "0" & wire_w_lg_w_lg_input_dataa_denormal_dffe11_wo233w234w);
 	aligned_dataa_man_dffe12_wi <= aligned_dataa_man_w(25 DOWNTO 2);
-	aligned_dataa_man_dffe12_wo <= aligned_dataa_man_dffe12;
+	aligned_dataa_man_dffe12_wo <= aligned_dataa_man_dffe12_wi;
 	aligned_dataa_man_dffe13_wi <= aligned_dataa_man_dffe12_wo;
-	aligned_dataa_man_dffe13_wo <= aligned_dataa_man_dffe13;
+	aligned_dataa_man_dffe13_wo <= aligned_dataa_man_dffe13_wi;
 	aligned_dataa_man_dffe14_wi <= aligned_dataa_man_dffe13_wo;
-	aligned_dataa_man_dffe14_wo <= aligned_dataa_man_dffe14;
+	aligned_dataa_man_dffe14_wo <= aligned_dataa_man_dffe14_wi;
 	aligned_dataa_man_dffe15_w <= ( aligned_dataa_man_dffe15_wo & "00");
 	aligned_dataa_man_dffe15_wi <= aligned_dataa_man_dffe14_wo;
 	aligned_dataa_man_dffe15_wo <= aligned_dataa_man_dffe15_wi;
 	aligned_dataa_man_w <= ( wire_w248w & wire_w_lg_w_lg_input_dataa_denormal_dffe11_wo233w243w & "00");
 	aligned_dataa_sign_dffe12_wi <= aligned_dataa_sign_w;
-	aligned_dataa_sign_dffe12_wo <= aligned_dataa_sign_dffe12;
+	aligned_dataa_sign_dffe12_wo <= aligned_dataa_sign_dffe12_wi;
 	aligned_dataa_sign_dffe13_wi <= aligned_dataa_sign_dffe12_wo;
-	aligned_dataa_sign_dffe13_wo <= aligned_dataa_sign_dffe13;
+	aligned_dataa_sign_dffe13_wo <= aligned_dataa_sign_dffe13_wi;
 	aligned_dataa_sign_dffe14_wi <= aligned_dataa_sign_dffe13_wo;
-	aligned_dataa_sign_dffe14_wo <= aligned_dataa_sign_dffe14;
+	aligned_dataa_sign_dffe14_wo <= aligned_dataa_sign_dffe14_wi;
 	aligned_dataa_sign_dffe15_wi <= aligned_dataa_sign_dffe14_wo;
 	aligned_dataa_sign_dffe15_wo <= aligned_dataa_sign_dffe15_wi;
 	aligned_dataa_sign_w <= dataa_dffe11_wo(31);
 	aligned_datab_exp_dffe12_wi <= aligned_datab_exp_w;
-	aligned_datab_exp_dffe12_wo <= aligned_datab_exp_dffe12;
+	aligned_datab_exp_dffe12_wo <= aligned_datab_exp_dffe12_wi;
 	aligned_datab_exp_dffe13_wi <= aligned_datab_exp_dffe12_wo;
-	aligned_datab_exp_dffe13_wo <= aligned_datab_exp_dffe13;
+	aligned_datab_exp_dffe13_wo <= aligned_datab_exp_dffe13_wi;
 	aligned_datab_exp_dffe14_wi <= aligned_datab_exp_dffe13_wo;
-	aligned_datab_exp_dffe14_wo <= aligned_datab_exp_dffe14;
+	aligned_datab_exp_dffe14_wo <= aligned_datab_exp_dffe14_wi;
 	aligned_datab_exp_dffe15_wi <= aligned_datab_exp_dffe14_wo;
 	aligned_datab_exp_dffe15_wo <= aligned_datab_exp_dffe15_wi;
 	aligned_datab_exp_w <= ( "0" & wire_w_lg_w_lg_input_datab_denormal_dffe11_wo252w253w);
 	aligned_datab_man_dffe12_wi <= aligned_datab_man_w(25 DOWNTO 2);
-	aligned_datab_man_dffe12_wo <= aligned_datab_man_dffe12;
+	aligned_datab_man_dffe12_wo <= aligned_datab_man_dffe12_wi;
 	aligned_datab_man_dffe13_wi <= aligned_datab_man_dffe12_wo;
-	aligned_datab_man_dffe13_wo <= aligned_datab_man_dffe13;
+	aligned_datab_man_dffe13_wo <= aligned_datab_man_dffe13_wi;
 	aligned_datab_man_dffe14_wi <= aligned_datab_man_dffe13_wo;
-	aligned_datab_man_dffe14_wo <= aligned_datab_man_dffe14;
+	aligned_datab_man_dffe14_wo <= aligned_datab_man_dffe14_wi;
 	aligned_datab_man_dffe15_w <= ( aligned_datab_man_dffe15_wo & "00");
 	aligned_datab_man_dffe15_wi <= aligned_datab_man_dffe14_wo;
 	aligned_datab_man_dffe15_wo <= aligned_datab_man_dffe15_wi;
 	aligned_datab_man_w <= ( wire_w267w & wire_w_lg_w_lg_input_datab_denormal_dffe11_wo252w262w & "00");
 	aligned_datab_sign_dffe12_wi <= aligned_datab_sign_w;
-	aligned_datab_sign_dffe12_wo <= aligned_datab_sign_dffe12;
+	aligned_datab_sign_dffe12_wo <= aligned_datab_sign_dffe12_wi;
 	aligned_datab_sign_dffe13_wi <= aligned_datab_sign_dffe12_wo;
-	aligned_datab_sign_dffe13_wo <= aligned_datab_sign_dffe13;
+	aligned_datab_sign_dffe13_wo <= aligned_datab_sign_dffe13_wi;
 	aligned_datab_sign_dffe14_wi <= aligned_datab_sign_dffe13_wo;
-	aligned_datab_sign_dffe14_wo <= aligned_datab_sign_dffe14;
+	aligned_datab_sign_dffe14_wo <= aligned_datab_sign_dffe14_wi;
 	aligned_datab_sign_dffe15_wi <= aligned_datab_sign_dffe14_wo;
 	aligned_datab_sign_dffe15_wo <= aligned_datab_sign_dffe15_wi;
 	aligned_datab_sign_w <= datab_dffe11_wo(31);
@@ -3866,7 +3363,7 @@
 	both_inputs_are_infinite_dffe1_wi <= (input_dataa_infinite_dffe15_wo AND input_datab_infinite_dffe15_wo);
 	both_inputs_are_infinite_dffe1_wo <= both_inputs_are_infinite_dffe1;
 	both_inputs_are_infinite_dffe25_wi <= both_inputs_are_infinite_dffe1_wo;
-	both_inputs_are_infinite_dffe25_wo <= both_inputs_are_infinite_dffe25;
+	both_inputs_are_infinite_dffe25_wo <= both_inputs_are_infinite_dffe25_wi;
 	data_exp_dffe1_wi <= (wire_w_lg_w_lg_exp_amb_mux_dffe15_wo316w317w OR wire_w_lg_exp_amb_mux_dffe15_wo314w);
 	data_exp_dffe1_wo <= data_exp_dffe1;
 	dataa_dffe11_wi <= dataa;
@@ -3876,7 +3373,7 @@
 	dataa_sign_dffe1_wi <= aligned_dataa_sign_dffe15_wo;
 	dataa_sign_dffe1_wo <= dataa_sign_dffe1;
 	dataa_sign_dffe25_wi <= dataa_sign_dffe1_wo;
-	dataa_sign_dffe25_wo <= dataa_sign_dffe25;
+	dataa_sign_dffe25_wo <= dataa_sign_dffe25_wi;
 	datab_dffe11_wi <= datab;
 	datab_dffe11_wo <= datab_dffe11_wi;
 	datab_man_dffe1_wi <= (wire_w_lg_w_lg_exp_amb_mux_dffe15_wo316w331w OR wire_w_lg_exp_amb_mux_dffe15_wo330w);
@@ -3891,7 +3388,7 @@
 	denormal_res_dffe3_wi <= denormal_res_dffe33_wo;
 	denormal_res_dffe3_wo <= denormal_res_dffe3;
 	denormal_res_dffe41_wi <= denormal_res_dffe42_wo;
-	denormal_res_dffe41_wo <= denormal_res_dffe41;
+	denormal_res_dffe41_wo <= denormal_res_dffe41_wi;
 	denormal_res_dffe42_wi <= denormal_res_dffe3_wo;
 	denormal_res_dffe42_wo <= denormal_res_dffe42_wi;
 	denormal_res_dffe4_wi <= denormal_res_dffe41_wo;
@@ -3903,7 +3400,7 @@
 	exp_adj_dffe21_wi <= (wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w398w OR wire_w397w);
 	exp_adj_dffe21_wo <= exp_adj_dffe21;
 	exp_adj_dffe23_wi <= exp_adj_dffe21_wo;
-	exp_adj_dffe23_wo <= exp_adj_dffe23;
+	exp_adj_dffe23_wo <= exp_adj_dffe23_wi;
 	exp_adj_dffe26_wi <= exp_adj_dffe23_wo;
 	exp_adj_dffe26_wo <= exp_adj_dffe26_wi;
 	exp_adjust_by_add1 <= "01";
@@ -3917,9 +3414,9 @@
 	exp_all_ones_w <= (OTHERS => '1');
 	exp_all_zeros_w <= (OTHERS => '0');
 	exp_amb_mux_dffe13_wi <= exp_amb_mux_w;
-	exp_amb_mux_dffe13_wo <= exp_amb_mux_dffe13;
+	exp_amb_mux_dffe13_wo <= exp_amb_mux_dffe13_wi;
 	exp_amb_mux_dffe14_wi <= exp_amb_mux_dffe13_wo;
-	exp_amb_mux_dffe14_wo <= exp_amb_mux_dffe14;
+	exp_amb_mux_dffe14_wo <= exp_amb_mux_dffe14_wi;
 	exp_amb_mux_dffe15_wi <= exp_amb_mux_dffe14_wo;
 	exp_amb_mux_dffe15_wo <= exp_amb_mux_dffe15_wi;
 	exp_amb_mux_w <= exp_amb_w(8);
@@ -3927,11 +3424,11 @@
 	exp_b_all_one_w <= ( wire_w_lg_w_datab_range80w85w & wire_w_lg_w_datab_range70w75w & wire_w_lg_w_datab_range60w65w & wire_w_lg_w_datab_range50w55w & wire_w_lg_w_datab_range40w45w & wire_w_lg_w_datab_range30w35w & wire_w_lg_w_datab_range20w25w & datab(23));
 	exp_b_not_zero_w <= ( wire_w_lg_w_datab_range80w81w & wire_w_lg_w_datab_range70w71w & wire_w_lg_w_datab_range60w61w & wire_w_lg_w_datab_range50w51w & wire_w_lg_w_datab_range40w41w & wire_w_lg_w_datab_range30w31w & wire_w_lg_w_datab_range20w21w & datab(23));
 	exp_bma_w <= wire_add_sub2_result;
-	exp_diff_abs_exceed_max_w <= ( wire_w_lg_w_exp_diff_abs_exceed_max_w_range287w289w & wire_w_lg_w_exp_diff_abs_exceed_max_w_range283w286w & exp_diff_abs_w(5));
+	exp_diff_abs_exceed_max_w <= ( wire_w_lg_w_exp_diff_abs_exceed_max_w_range286w288w & wire_w_lg_w_exp_diff_abs_exceed_max_w_range282w285w & exp_diff_abs_w(5));
 	exp_diff_abs_max_w <= (OTHERS => '1');
-	exp_diff_abs_w <= (wire_w_lg_w_lg_exp_amb_mux_w276w277w OR wire_w_lg_exp_amb_mux_w274w);
+	exp_diff_abs_w <= (wire_w_lg_w_lg_exp_amb_mux_w275w276w OR wire_w_lg_exp_amb_mux_w273w);
 	exp_intermediate_res_dffe41_wi <= exp_intermediate_res_dffe42_wo;
-	exp_intermediate_res_dffe41_wo <= exp_intermediate_res_dffe41;
+	exp_intermediate_res_dffe41_wo <= exp_intermediate_res_dffe41_wi;
 	exp_intermediate_res_dffe42_wi <= exp_intermediate_res_w;
 	exp_intermediate_res_dffe42_wo <= exp_intermediate_res_dffe42_wi;
 	exp_intermediate_res_w <= exp_res_dffe3_wo;
@@ -3942,13 +3439,13 @@
 	exp_res_dffe22_wi <= exp_res_dffe2_wo;
 	exp_res_dffe22_wo <= exp_res_dffe22_wi;
 	exp_res_dffe23_wi <= exp_res_dffe21_wo;
-	exp_res_dffe23_wo <= exp_res_dffe23;
+	exp_res_dffe23_wo <= exp_res_dffe23_wi;
 	exp_res_dffe25_wi <= data_exp_dffe1_wo;
-	exp_res_dffe25_wo <= exp_res_dffe25;
+	exp_res_dffe25_wo <= exp_res_dffe25_wi;
 	exp_res_dffe26_wi <= exp_res_dffe23_wo;
 	exp_res_dffe26_wo <= exp_res_dffe26_wi;
 	exp_res_dffe27_wi <= exp_res_dffe22_wo;
-	exp_res_dffe27_wo <= exp_res_dffe27;
+	exp_res_dffe27_wo <= exp_res_dffe27_wi;
 	exp_res_dffe2_wi <= exp_res_dffe25_wo;
 	exp_res_dffe2_wo <= exp_res_dffe2;
 	exp_res_dffe32_wi <= wire_w_lg_w_lg_denormal_result_w572w573w;
@@ -3979,13 +3476,13 @@
 	infinite_output_sign_dffe22_wi <= infinite_output_sign_dffe2_wo;
 	infinite_output_sign_dffe22_wo <= infinite_output_sign_dffe22_wi;
 	infinite_output_sign_dffe23_wi <= infinite_output_sign_dffe21_wo;
-	infinite_output_sign_dffe23_wo <= infinite_output_sign_dffe23;
+	infinite_output_sign_dffe23_wo <= infinite_output_sign_dffe23_wi;
 	infinite_output_sign_dffe25_wi <= infinite_output_sign_dffe1_wo;
-	infinite_output_sign_dffe25_wo <= infinite_output_sign_dffe25;
+	infinite_output_sign_dffe25_wo <= infinite_output_sign_dffe25_wi;
 	infinite_output_sign_dffe26_wi <= infinite_output_sign_dffe23_wo;
 	infinite_output_sign_dffe26_wo <= infinite_output_sign_dffe26_wi;
 	infinite_output_sign_dffe27_wi <= infinite_output_sign_dffe22_wo;
-	infinite_output_sign_dffe27_wo <= infinite_output_sign_dffe27;
+	infinite_output_sign_dffe27_wo <= infinite_output_sign_dffe27_wi;
 	infinite_output_sign_dffe2_wi <= infinite_output_sign_dffe25_wo;
 	infinite_output_sign_dffe2_wo <= infinite_output_sign_dffe2;
 	infinite_output_sign_dffe31_wi <= infinite_output_sign_dffe26_wo;
@@ -3997,7 +3494,7 @@
 	infinite_output_sign_dffe3_wi <= infinite_output_sign_dffe33_wo;
 	infinite_output_sign_dffe3_wo <= infinite_output_sign_dffe3;
 	infinite_output_sign_dffe41_wi <= infinite_output_sign_dffe42_wo;
-	infinite_output_sign_dffe41_wo <= infinite_output_sign_dffe41;
+	infinite_output_sign_dffe41_wo <= infinite_output_sign_dffe41_wi;
 	infinite_output_sign_dffe42_wi <= infinite_output_sign_dffe3_wo;
 	infinite_output_sign_dffe42_wo <= infinite_output_sign_dffe42_wi;
 	infinite_output_sign_dffe4_wi <= infinite_output_sign_dffe41_wo;
@@ -4009,7 +3506,7 @@
 	infinite_res_dffe3_wi <= infinite_res_dff33_wo;
 	infinite_res_dffe3_wo <= infinite_res_dffe3;
 	infinite_res_dffe41_wi <= infinite_res_dffe42_wo;
-	infinite_res_dffe41_wo <= infinite_res_dffe41;
+	infinite_res_dffe41_wo <= infinite_res_dffe41_wi;
 	infinite_res_dffe42_wi <= infinite_res_dffe3_wo;
 	infinite_res_dffe42_wo <= infinite_res_dffe42_wi;
 	infinite_res_dffe4_wi <= infinite_res_dffe41_wo;
@@ -4019,11 +3516,11 @@
 	infinity_magnitude_sub_dffe22_wi <= infinity_magnitude_sub_dffe2_wo;
 	infinity_magnitude_sub_dffe22_wo <= infinity_magnitude_sub_dffe22_wi;
 	infinity_magnitude_sub_dffe23_wi <= infinity_magnitude_sub_dffe21_wo;
-	infinity_magnitude_sub_dffe23_wo <= infinity_magnitude_sub_dffe23;
+	infinity_magnitude_sub_dffe23_wo <= infinity_magnitude_sub_dffe23_wi;
 	infinity_magnitude_sub_dffe26_wi <= infinity_magnitude_sub_dffe23_wo;
 	infinity_magnitude_sub_dffe26_wo <= infinity_magnitude_sub_dffe26_wi;
 	infinity_magnitude_sub_dffe27_wi <= infinity_magnitude_sub_dffe22_wo;
-	infinity_magnitude_sub_dffe27_wo <= infinity_magnitude_sub_dffe27;
+	infinity_magnitude_sub_dffe27_wo <= infinity_magnitude_sub_dffe27_wi;
 	infinity_magnitude_sub_dffe2_wi <= (wire_w_lg_add_sub_dffe25_wo505w(0) AND both_inputs_are_infinite_dffe25_wo);
 	infinity_magnitude_sub_dffe2_wo <= infinity_magnitude_sub_dffe2;
 	infinity_magnitude_sub_dffe31_wi <= infinity_magnitude_sub_dffe26_wo;
@@ -4035,7 +3532,7 @@
 	infinity_magnitude_sub_dffe3_wi <= infinity_magnitude_sub_dffe33_wo;
 	infinity_magnitude_sub_dffe3_wo <= infinity_magnitude_sub_dffe3;
 	infinity_magnitude_sub_dffe41_wi <= infinity_magnitude_sub_dffe42_wo;
-	infinity_magnitude_sub_dffe41_wo <= infinity_magnitude_sub_dffe41;
+	infinity_magnitude_sub_dffe41_wo <= infinity_magnitude_sub_dffe41_wi;
 	infinity_magnitude_sub_dffe42_wi <= infinity_magnitude_sub_dffe3_wo;
 	infinity_magnitude_sub_dffe42_wo <= infinity_magnitude_sub_dffe42_wi;
 	infinity_magnitude_sub_dffe4_wi <= infinity_magnitude_sub_dffe41_wo;
@@ -4046,18 +3543,18 @@
 	input_dataa_infinite_dffe11_wi <= input_dataa_infinite_w;
 	input_dataa_infinite_dffe11_wo <= input_dataa_infinite_dffe11_wi;
 	input_dataa_infinite_dffe12_wi <= input_dataa_infinite_dffe11_wo;
-	input_dataa_infinite_dffe12_wo <= input_dataa_infinite_dffe12;
+	input_dataa_infinite_dffe12_wo <= input_dataa_infinite_dffe12_wi;
 	input_dataa_infinite_dffe13_wi <= input_dataa_infinite_dffe12_wo;
-	input_dataa_infinite_dffe13_wo <= input_dataa_infinite_dffe13;
+	input_dataa_infinite_dffe13_wo <= input_dataa_infinite_dffe13_wi;
 	input_dataa_infinite_dffe14_wi <= input_dataa_infinite_dffe13_wo;
-	input_dataa_infinite_dffe14_wo <= input_dataa_infinite_dffe14;
+	input_dataa_infinite_dffe14_wo <= input_dataa_infinite_dffe14_wi;
 	input_dataa_infinite_dffe15_wi <= input_dataa_infinite_dffe14_wo;
 	input_dataa_infinite_dffe15_wo <= input_dataa_infinite_dffe15_wi;
 	input_dataa_infinite_w <= wire_w_lg_w_exp_a_all_one_w_range84w220w(0);
 	input_dataa_nan_dffe11_wi <= input_dataa_nan_w;
 	input_dataa_nan_dffe11_wo <= input_dataa_nan_dffe11_wi;
 	input_dataa_nan_dffe12_wi <= input_dataa_nan_dffe11_wo;
-	input_dataa_nan_dffe12_wo <= input_dataa_nan_dffe12;
+	input_dataa_nan_dffe12_wo <= input_dataa_nan_dffe12_wi;
 	input_dataa_nan_w <= (exp_a_all_one_w(7) AND man_a_not_zero_w(22));
 	input_dataa_zero_dffe11_wi <= input_dataa_zero_w;
 	input_dataa_zero_dffe11_wo <= input_dataa_zero_dffe11_wi;
@@ -4068,18 +3565,18 @@
 	input_datab_infinite_dffe11_wi <= input_datab_infinite_w;
 	input_datab_infinite_dffe11_wo <= input_datab_infinite_dffe11_wi;
 	input_datab_infinite_dffe12_wi <= input_datab_infinite_dffe11_wo;
-	input_datab_infinite_dffe12_wo <= input_datab_infinite_dffe12;
+	input_datab_infinite_dffe12_wo <= input_datab_infinite_dffe12_wi;
 	input_datab_infinite_dffe13_wi <= input_datab_infinite_dffe12_wo;
-	input_datab_infinite_dffe13_wo <= input_datab_infinite_dffe13;
+	input_datab_infinite_dffe13_wo <= input_datab_infinite_dffe13_wi;
 	input_datab_infinite_dffe14_wi <= input_datab_infinite_dffe13_wo;
-	input_datab_infinite_dffe14_wo <= input_datab_infinite_dffe14;
+	input_datab_infinite_dffe14_wo <= input_datab_infinite_dffe14_wi;
 	input_datab_infinite_dffe15_wi <= input_datab_infinite_dffe14_wo;
 	input_datab_infinite_dffe15_wo <= input_datab_infinite_dffe15_wi;
 	input_datab_infinite_w <= wire_w_lg_w_exp_b_all_one_w_range86w226w(0);
 	input_datab_nan_dffe11_wi <= input_datab_nan_w;
 	input_datab_nan_dffe11_wo <= input_datab_nan_dffe11_wi;
 	input_datab_nan_dffe12_wi <= input_datab_nan_dffe11_wo;
-	input_datab_nan_dffe12_wo <= input_datab_nan_dffe12;
+	input_datab_nan_dffe12_wo <= input_datab_nan_dffe12_wi;
 	input_datab_nan_w <= (exp_b_all_one_w(7) AND man_b_not_zero_w(22));
 	input_datab_zero_dffe11_wi <= input_datab_zero_w;
 	input_datab_zero_dffe11_wo <= input_datab_zero_dffe11_wi;
@@ -4091,13 +3588,13 @@
 	input_is_infinite_dffe22_wi <= input_is_infinite_dffe2_wo;
 	input_is_infinite_dffe22_wo <= input_is_infinite_dffe22_wi;
 	input_is_infinite_dffe23_wi <= input_is_infinite_dffe21_wo;
-	input_is_infinite_dffe23_wo <= input_is_infinite_dffe23;
+	input_is_infinite_dffe23_wo <= input_is_infinite_dffe23_wi;
 	input_is_infinite_dffe25_wi <= input_is_infinite_dffe1_wo;
-	input_is_infinite_dffe25_wo <= input_is_infinite_dffe25;
+	input_is_infinite_dffe25_wo <= input_is_infinite_dffe25_wi;
 	input_is_infinite_dffe26_wi <= input_is_infinite_dffe23_wo;
 	input_is_infinite_dffe26_wo <= input_is_infinite_dffe26_wi;
 	input_is_infinite_dffe27_wi <= input_is_infinite_dffe22_wo;
-	input_is_infinite_dffe27_wo <= input_is_infinite_dffe27;
+	input_is_infinite_dffe27_wo <= input_is_infinite_dffe27_wi;
 	input_is_infinite_dffe2_wi <= input_is_infinite_dffe25_wo;
 	input_is_infinite_dffe2_wo <= input_is_infinite_dffe2;
 	input_is_infinite_dffe31_wi <= input_is_infinite_dffe26_wo;
@@ -4109,15 +3606,15 @@
 	input_is_infinite_dffe3_wi <= input_is_infinite_dffe33_wo;
 	input_is_infinite_dffe3_wo <= input_is_infinite_dffe3;
 	input_is_infinite_dffe41_wi <= input_is_infinite_dffe42_wo;
-	input_is_infinite_dffe41_wo <= input_is_infinite_dffe41;
+	input_is_infinite_dffe41_wo <= input_is_infinite_dffe41_wi;
 	input_is_infinite_dffe42_wi <= input_is_infinite_dffe3_wo;
 	input_is_infinite_dffe42_wo <= input_is_infinite_dffe42_wi;
 	input_is_infinite_dffe4_wi <= input_is_infinite_dffe41_wo;
 	input_is_infinite_dffe4_wo <= input_is_infinite_dffe4;
 	input_is_nan_dffe13_wi <= (input_dataa_nan_dffe12_wo OR input_datab_nan_dffe12_wo);
-	input_is_nan_dffe13_wo <= input_is_nan_dffe13;
+	input_is_nan_dffe13_wo <= input_is_nan_dffe13_wi;
 	input_is_nan_dffe14_wi <= input_is_nan_dffe13_wo;
-	input_is_nan_dffe14_wo <= input_is_nan_dffe14;
+	input_is_nan_dffe14_wo <= input_is_nan_dffe14_wi;
 	input_is_nan_dffe15_wi <= input_is_nan_dffe14_wo;
 	input_is_nan_dffe15_wo <= input_is_nan_dffe15_wi;
 	input_is_nan_dffe1_wi <= input_is_nan_dffe15_wo;
@@ -4127,13 +3624,13 @@
 	input_is_nan_dffe22_wi <= input_is_nan_dffe2_wo;
 	input_is_nan_dffe22_wo <= input_is_nan_dffe22_wi;
 	input_is_nan_dffe23_wi <= input_is_nan_dffe21_wo;
-	input_is_nan_dffe23_wo <= input_is_nan_dffe23;
+	input_is_nan_dffe23_wo <= input_is_nan_dffe23_wi;
 	input_is_nan_dffe25_wi <= input_is_nan_dffe1_wo;
-	input_is_nan_dffe25_wo <= input_is_nan_dffe25;
+	input_is_nan_dffe25_wo <= input_is_nan_dffe25_wi;
 	input_is_nan_dffe26_wi <= input_is_nan_dffe23_wo;
 	input_is_nan_dffe26_wo <= input_is_nan_dffe26_wi;
 	input_is_nan_dffe27_wi <= input_is_nan_dffe22_wo;
-	input_is_nan_dffe27_wo <= input_is_nan_dffe27;
+	input_is_nan_dffe27_wo <= input_is_nan_dffe27_wi;
 	input_is_nan_dffe2_wi <= input_is_nan_dffe25_wo;
 	input_is_nan_dffe2_wo <= input_is_nan_dffe2;
 	input_is_nan_dffe31_wi <= input_is_nan_dffe26_wo;
@@ -4145,7 +3642,7 @@
 	input_is_nan_dffe3_wi <= input_is_nan_dffe33_wo;
 	input_is_nan_dffe3_wo <= input_is_nan_dffe3;
 	input_is_nan_dffe41_wi <= input_is_nan_dffe42_wo;
-	input_is_nan_dffe41_wo <= input_is_nan_dffe41;
+	input_is_nan_dffe41_wo <= input_is_nan_dffe41_wi;
 	input_is_nan_dffe42_wi <= input_is_nan_dffe3_wo;
 	input_is_nan_dffe42_wo <= input_is_nan_dffe42_wi;
 	input_is_nan_dffe4_wi <= input_is_nan_dffe41_wo;
@@ -4159,19 +3656,19 @@
 	man_add_sub_res_mag_dffe21_wi <= man_res_mag_w2;
 	man_add_sub_res_mag_dffe21_wo <= man_add_sub_res_mag_dffe21;
 	man_add_sub_res_mag_dffe23_wi <= man_add_sub_res_mag_dffe21_wo;
-	man_add_sub_res_mag_dffe23_wo <= man_add_sub_res_mag_dffe23;
+	man_add_sub_res_mag_dffe23_wo <= man_add_sub_res_mag_dffe23_wi;
 	man_add_sub_res_mag_dffe26_wi <= man_add_sub_res_mag_dffe23_wo;
 	man_add_sub_res_mag_dffe26_wo <= man_add_sub_res_mag_dffe26_wi;
 	man_add_sub_res_mag_dffe27_wi <= man_add_sub_res_mag_w2;
-	man_add_sub_res_mag_dffe27_wo <= man_add_sub_res_mag_dffe27;
+	man_add_sub_res_mag_dffe27_wo <= man_add_sub_res_mag_dffe27_wi;
 	man_add_sub_res_mag_w2 <= (wire_w_lg_w_man_add_sub_w_range386w393w OR wire_w_lg_w_lg_w_man_add_sub_w_range386w389w392w);
 	man_add_sub_res_sign_dffe21_wo <= man_add_sub_res_sign_dffe21;
 	man_add_sub_res_sign_dffe23_wi <= man_add_sub_res_sign_dffe21_wo;
-	man_add_sub_res_sign_dffe23_wo <= man_add_sub_res_sign_dffe23;
+	man_add_sub_res_sign_dffe23_wo <= man_add_sub_res_sign_dffe23_wi;
 	man_add_sub_res_sign_dffe26_wi <= man_add_sub_res_sign_dffe23_wo;
 	man_add_sub_res_sign_dffe26_wo <= man_add_sub_res_sign_dffe26_wi;
 	man_add_sub_res_sign_dffe27_wi <= man_add_sub_res_sign_w2;
-	man_add_sub_res_sign_dffe27_wo <= man_add_sub_res_sign_dffe27;
+	man_add_sub_res_sign_dffe27_wo <= man_add_sub_res_sign_dffe27_wi;
 	man_add_sub_res_sign_w2 <= (wire_w_lg_need_complement_dffe22_wo390w(0) OR (wire_w_lg_need_complement_dffe22_wo387w(0) AND man_add_sub_w(27)));
 	man_add_sub_w <= ( wire_man_add_sub_lower_w_lg_w_lg_w_lg_cout368w369w370w & wire_man_add_sub_lower_result);
 	man_all_zeros_w <= (OTHERS => '0');
@@ -4195,25 +3692,25 @@
 	man_res_is_not_zero_dffe3_wi <= man_res_is_not_zero_dffe33_wo;
 	man_res_is_not_zero_dffe3_wo <= man_res_is_not_zero_dffe3;
 	man_res_is_not_zero_dffe41_wi <= man_res_is_not_zero_dffe42_wo;
-	man_res_is_not_zero_dffe41_wo <= man_res_is_not_zero_dffe41;
+	man_res_is_not_zero_dffe41_wo <= man_res_is_not_zero_dffe41_wi;
 	man_res_is_not_zero_dffe42_wi <= man_res_is_not_zero_dffe3_wo;
 	man_res_is_not_zero_dffe42_wo <= man_res_is_not_zero_dffe42_wi;
 	man_res_is_not_zero_dffe4_wi <= man_res_is_not_zero_dffe41_wo;
 	man_res_is_not_zero_dffe4_wo <= man_res_is_not_zero_dffe4;
 	man_res_mag_w2 <= (wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w428w OR wire_w426w);
 	man_res_not_zero_dffe23_wi <= man_res_not_zero_w2(24);
-	man_res_not_zero_dffe23_wo <= man_res_not_zero_dffe23;
+	man_res_not_zero_dffe23_wo <= man_res_not_zero_dffe23_wi;
 	man_res_not_zero_dffe26_wi <= man_res_not_zero_dffe23_wo;
 	man_res_not_zero_dffe26_wo <= man_res_not_zero_dffe26_wi;
 	man_res_not_zero_w2 <= ( wire_w_lg_w_man_res_not_zero_w2_range501w503w & wire_w_lg_w_man_res_not_zero_w2_range498w500w & wire_w_lg_w_man_res_not_zero_w2_range495w497w & wire_w_lg_w_man_res_not_zero_w2_range492w494w & wire_w_lg_w_man_res_not_zero_w2_range489w491w & wire_w_lg_w_man_res_not_zero_w2_range486w488w & wire_w_lg_w_man_res_not_zero_w2_range483w485w & wire_w_lg_w_man_res_not_zero_w2_range480w482w & wire_w_lg_w_man_res_not_zero_w2_range477w479w & wire_w_lg_w_man_res_not_zero_w2_range474w476w & wire_w_lg_w_man_res_not_zero_w2_range471w473w & wire_w_lg_w_man_res_not_zero_w2_range468w470w & wire_w_lg_w_man_res_not_zero_w2_range465w467w & wire_w_lg_w_man_res_not_zero_w2_range462w464w & wire_w_lg_w_man_res_not_zero_w2_range459w461w & wire_w_lg_w_man_res_not_zero_w2_range456w458w & wire_w_lg_w_man_res_not_zero_w2_range453w455w & wire_w_lg_w_man_res_not_zero_w2_range450w452w & wire_w_lg_w_man_res_not_zero_w2_range447w449w & wire_w_lg_w_man_res_not_zero_w2_range444w446w & wire_w_lg_w_man_res_not_zero_w2_range441w443w & wire_w_lg_w_man_res_not_zero_w2_range438w440w & wire_w_lg_w_man_res_not_zero_w2_range435w437w & wire_w_lg_w_man_res_not_zero_w2_range431w434w & man_add_sub_res_mag_dffe21_wo(1));
 	man_res_rounding_add_sub_datab_w <= ( "0000000000000000000000000" & man_rounding_add_value_w);
-	man_res_rounding_add_sub_w <= man_res_rounding_add_sub_result_reg;
+	man_res_rounding_add_sub_w <= ( wire_man_res_rounding_add_sub_lower_w_lg_w_lg_w_lg_cout594w595w596w & wire_man_res_rounding_add_sub_lower_result);
 	man_res_w3 <= wire_lbarrel_shift_result(25 DOWNTO 2);
 	man_rounded_res_w <= (wire_w_lg_w_man_res_rounding_add_sub_w_range599w603w OR wire_w601w);
 	man_rounding_add_value_w <= (round_bit_dffe3_wo AND (sticky_bit_dffe3_wo OR guard_bit_dffe3_wo));
 	man_smaller_dffe13_wi <= man_smaller_w;
-	man_smaller_dffe13_wo <= man_smaller_dffe13;
-	man_smaller_w <= (wire_w_lg_exp_amb_mux_w280w OR wire_w_lg_w_lg_exp_amb_mux_w276w279w);
+	man_smaller_dffe13_wo <= man_smaller_dffe13_wi;
+	man_smaller_w <= (wire_w_lg_exp_amb_mux_w279w OR wire_w_lg_w_lg_exp_amb_mux_w275w278w);
 	nan <= nan_flag_dffe5_wo;
 	nan_flag_dffe5_wi <= nan_flag_w;
 	nan_flag_dffe5_wo <= nan_flag_dffe5;
@@ -4222,17 +3719,13 @@
 	need_complement_dffe22_wo <= need_complement_dffe22_wi;
 	need_complement_dffe2_wi <= dataa_sign_dffe25_wo;
 	need_complement_dffe2_wo <= need_complement_dffe2;
-	overflow <= overflow_flag_dffe5_wo;
-	overflow_flag_dffe5_wi <= overflow_flag_w;
-	overflow_flag_dffe5_wo <= overflow_flag_dffe5;
-	overflow_flag_w <= (wire_w_lg_w_lg_force_nan_w644w673w(0) AND wire_w_lg_input_is_infinite_dffe4_wo672w(0));
 	pos_sign_bit_ext <= (OTHERS => '0');
 	priority_encoder_1pads_w <= (OTHERS => '1');
 	result <= ( sign_out_dffe5_wo & exp_out_dffe5_wo & man_out_dffe5_wo);
 	round_bit_dffe21_wi <= round_bit_w;
 	round_bit_dffe21_wo <= round_bit_dffe21;
 	round_bit_dffe23_wi <= round_bit_dffe21_wo;
-	round_bit_dffe23_wo <= round_bit_dffe23;
+	round_bit_dffe23_wo <= round_bit_dffe23_wi;
 	round_bit_dffe26_wi <= round_bit_dffe23_wo;
 	round_bit_dffe26_wo <= round_bit_dffe26_wi;
 	round_bit_dffe31_wi <= round_bit_dffe26_wo;
@@ -4247,12 +3740,12 @@
 	rounded_res_infinity_dffe4_wi <= exp_rounded_res_infinity_w;
 	rounded_res_infinity_dffe4_wo <= rounded_res_infinity_dffe4;
 	rshift_distance_dffe13_wi <= rshift_distance_w;
-	rshift_distance_dffe13_wo <= rshift_distance_dffe13;
+	rshift_distance_dffe13_wo <= rshift_distance_dffe13_wi;
 	rshift_distance_dffe14_wi <= rshift_distance_dffe13_wo;
-	rshift_distance_dffe14_wo <= rshift_distance_dffe14;
+	rshift_distance_dffe14_wo <= rshift_distance_dffe14_wi;
 	rshift_distance_dffe15_wi <= rshift_distance_dffe14_wo;
 	rshift_distance_dffe15_wo <= rshift_distance_dffe15_wi;
-	rshift_distance_w <= (wire_w_lg_w_exp_diff_abs_exceed_max_w_range290w294w OR wire_w293w);
+	rshift_distance_w <= (wire_w_lg_w_exp_diff_abs_exceed_max_w_range289w293w OR wire_w292w);
 	sign_dffe31_wi <= ((man_res_not_zero_dffe26_wo AND man_add_sub_res_sign_dffe26_wo) OR wire_w_lg_w_lg_man_res_not_zero_dffe26_wo517w518w(0));
 	sign_dffe31_wo <= sign_dffe31;
 	sign_dffe32_wi <= sign_dffe31_wo;
@@ -4264,7 +3757,7 @@
 	sign_res_dffe3_wi <= sign_dffe33_wo;
 	sign_res_dffe3_wo <= sign_res_dffe3;
 	sign_res_dffe41_wi <= sign_res_dffe42_wo;
-	sign_res_dffe41_wo <= sign_res_dffe41;
+	sign_res_dffe41_wo <= sign_res_dffe41_wi;
 	sign_res_dffe42_wi <= sign_res_dffe3_wo;
 	sign_res_dffe42_wo <= sign_res_dffe42_wi;
 	sign_res_dffe4_wi <= sign_res_dffe41_wo;
@@ -4279,13 +3772,13 @@
 	sticky_bit_dffe22_wi <= sticky_bit_dffe2_wo;
 	sticky_bit_dffe22_wo <= sticky_bit_dffe22_wi;
 	sticky_bit_dffe23_wi <= sticky_bit_dffe21_wo;
-	sticky_bit_dffe23_wo <= sticky_bit_dffe23;
+	sticky_bit_dffe23_wo <= sticky_bit_dffe23_wi;
 	sticky_bit_dffe25_wi <= sticky_bit_dffe1_wo;
-	sticky_bit_dffe25_wo <= sticky_bit_dffe25;
+	sticky_bit_dffe25_wo <= sticky_bit_dffe25_wi;
 	sticky_bit_dffe26_wi <= sticky_bit_dffe23_wo;
 	sticky_bit_dffe26_wo <= sticky_bit_dffe26_wi;
 	sticky_bit_dffe27_wi <= sticky_bit_dffe22_wo;
-	sticky_bit_dffe27_wo <= sticky_bit_dffe27;
+	sticky_bit_dffe27_wo <= sticky_bit_dffe27_wi;
 	sticky_bit_dffe2_wi <= sticky_bit_dffe25_wo;
 	sticky_bit_dffe2_wo <= sticky_bit_dffe2;
 	sticky_bit_dffe31_wi <= sticky_bit_dffe26_wo;
@@ -4298,11 +3791,7 @@
 	sticky_bit_dffe3_wo <= sticky_bit_dffe3;
 	sticky_bit_w <= (((wire_w_lg_w411w421w(0) OR ((wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w396w(0) AND man_add_sub_res_mag_dffe27_wo(25)) AND wire_w_lg_sticky_bit_dffe27_wo416w(0))) OR (wire_w_lg_w_man_add_sub_res_mag_dffe27_wo_range395w405w(0) AND (wire_w_lg_sticky_bit_dffe27_wo416w(0) OR man_add_sub_res_mag_dffe27_wo(1)))) OR ((man_add_sub_res_mag_dffe27_wo(26) AND man_add_sub_res_mag_dffe27_wo(25)) AND (wire_w_lg_sticky_bit_dffe27_wo416w(0) OR man_add_sub_res_mag_dffe27_wo(1))));
 	trailing_zeros_limit_w <= "000010";
-	underflow <= underflow_flag_dffe5_wo;
-	underflow_flag_dffe5_wi <= underflow_flag_w;
-	underflow_flag_dffe5_wo <= underflow_flag_dffe5;
-	underflow_flag_w <= (((wire_w_lg_force_nan_w644w(0) AND wire_w_lg_force_infinity_w643w(0)) AND wire_w_lg_force_zero_w642w(0)) AND denormal_res_dffe4_wo);
-	zero <= wire_w_lg_zero_flag_n_dffe5_wo677w(0);
+	zero <= wire_w_lg_zero_flag_n_dffe5_wo674w(0);
 	zero_flag_n_dffe5_wi <= zero_flag_n_w;
 	zero_flag_n_dffe5_wo <= zero_flag_n_dffe5;
 	zero_flag_n_w <= (NOT ((wire_w_lg_force_nan_w644w(0) AND wire_w_lg_force_infinity_w643w(0)) AND wire_w_lg_force_zero_w648w(0)));
@@ -4311,11 +3800,11 @@
 	zero_man_sign_dffe22_wi <= zero_man_sign_dffe2_wo;
 	zero_man_sign_dffe22_wo <= zero_man_sign_dffe22_wi;
 	zero_man_sign_dffe23_wi <= zero_man_sign_dffe21_wo;
-	zero_man_sign_dffe23_wo <= zero_man_sign_dffe23;
+	zero_man_sign_dffe23_wo <= zero_man_sign_dffe23_wi;
 	zero_man_sign_dffe26_wi <= zero_man_sign_dffe23_wo;
 	zero_man_sign_dffe26_wo <= zero_man_sign_dffe26_wi;
 	zero_man_sign_dffe27_wi <= zero_man_sign_dffe22_wo;
-	zero_man_sign_dffe27_wo <= zero_man_sign_dffe27;
+	zero_man_sign_dffe27_wo <= zero_man_sign_dffe27_wi;
 	zero_man_sign_dffe2_wi <= (dataa_sign_dffe25_wo AND add_sub_dffe25_wo);
 	zero_man_sign_dffe2_wo <= zero_man_sign_dffe2;
 	wire_w_aligned_dataa_exp_dffe15_wo_range315w <= aligned_dataa_exp_dffe15_wo(7 DOWNTO 0);
@@ -4406,7 +3895,7 @@
 	wire_w_exp_adjustment2_add_sub_w_range571w <= exp_adjustment2_add_sub_w(7 DOWNTO 0);
 	wire_w_exp_adjustment2_add_sub_w_range550w(0) <= exp_adjustment2_add_sub_w(7);
 	wire_w_exp_adjustment2_add_sub_w_range525w(0) <= exp_adjustment2_add_sub_w(8);
-	wire_w_exp_amb_w_range275w <= exp_amb_w(7 DOWNTO 0);
+	wire_w_exp_amb_w_range274w <= exp_amb_w(7 DOWNTO 0);
 	wire_w_exp_b_all_one_w_range9w(0) <= exp_b_all_one_w(0);
 	wire_w_exp_b_all_one_w_range26w(0) <= exp_b_all_one_w(1);
 	wire_w_exp_b_all_one_w_range36w(0) <= exp_b_all_one_w(2);
@@ -4422,13 +3911,13 @@
 	wire_w_exp_b_not_zero_w_range52w(0) <= exp_b_not_zero_w(4);
 	wire_w_exp_b_not_zero_w_range62w(0) <= exp_b_not_zero_w(5);
 	wire_w_exp_b_not_zero_w_range72w(0) <= exp_b_not_zero_w(6);
-	wire_w_exp_bma_w_range273w <= exp_bma_w(7 DOWNTO 0);
-	wire_w_exp_diff_abs_exceed_max_w_range283w(0) <= exp_diff_abs_exceed_max_w(0);
-	wire_w_exp_diff_abs_exceed_max_w_range287w(0) <= exp_diff_abs_exceed_max_w(1);
-	wire_w_exp_diff_abs_exceed_max_w_range290w(0) <= exp_diff_abs_exceed_max_w(2);
-	wire_w_exp_diff_abs_w_range291w <= exp_diff_abs_w(4 DOWNTO 0);
-	wire_w_exp_diff_abs_w_range285w(0) <= exp_diff_abs_w(6);
-	wire_w_exp_diff_abs_w_range288w(0) <= exp_diff_abs_w(7);
+	wire_w_exp_bma_w_range272w <= exp_bma_w(7 DOWNTO 0);
+	wire_w_exp_diff_abs_exceed_max_w_range282w(0) <= exp_diff_abs_exceed_max_w(0);
+	wire_w_exp_diff_abs_exceed_max_w_range286w(0) <= exp_diff_abs_exceed_max_w(1);
+	wire_w_exp_diff_abs_exceed_max_w_range289w(0) <= exp_diff_abs_exceed_max_w(2);
+	wire_w_exp_diff_abs_w_range290w <= exp_diff_abs_w(4 DOWNTO 0);
+	wire_w_exp_diff_abs_w_range284w(0) <= exp_diff_abs_w(6);
+	wire_w_exp_diff_abs_w_range287w(0) <= exp_diff_abs_w(7);
 	wire_w_exp_res_max_w_range554w(0) <= exp_res_max_w(0);
 	wire_w_exp_res_max_w_range557w(0) <= exp_res_max_w(1);
 	wire_w_exp_res_max_w_range559w(0) <= exp_res_max_w(2);
@@ -4572,30 +4061,21 @@
 		result => wire_lbarrel_shift_result
 	  );
 	wire_rbarrel_shift_data <= ( man_smaller_dffe13_wo & "00");
-	rbarrel_shift :  fp_add_altbarrel_shift_07g
+	rbarrel_shift :  fp_add_altbarrel_shift_fkb
 	  PORT MAP ( 
-		aclr => aclr,
-		clk_en => clk_en,
-		clock => clock,
 		data => wire_rbarrel_shift_data,
 		distance => rshift_distance_dffe13_wo,
 		result => wire_rbarrel_shift_result
 	  );
 	wire_leading_zeroes_cnt_data <= ( man_add_sub_res_mag_dffe21_wo(25 DOWNTO 1) & "1" & "000000");
-	leading_zeroes_cnt :  fp_add_altpriority_encoder_ou8
+	leading_zeroes_cnt :  fp_add_altpriority_encoder_qb6
 	  PORT MAP ( 
-		aclr => aclr,
-		clk_en => clk_en,
-		clock => clock,
 		data => wire_leading_zeroes_cnt_data,
 		q => wire_leading_zeroes_cnt_q
 	  );
 	wire_trailing_zeros_cnt_data <= ( "111111111" & man_smaller_dffe13_wo(22 DOWNTO 0));
-	trailing_zeros_cnt :  fp_add_altpriority_encoder_cna
+	trailing_zeros_cnt :  fp_add_altpriority_encoder_e48
 	  PORT MAP ( 
-		aclr => aclr,
-		clk_en => clk_en,
-		clock => clock,
 		data => wire_trailing_zeros_cnt_data,
 		q => wire_trailing_zeros_cnt_q
 	  );
@@ -4609,193 +4089,9 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN add_sub_dffe12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN add_sub_dffe12 <= add_sub_dffe12_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN add_sub_dffe13 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN add_sub_dffe13 <= add_sub_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN add_sub_dffe14 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN add_sub_dffe14 <= add_sub_dffe14_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN add_sub_dffe25 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN add_sub_dffe25 <= add_sub_dffe25_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_dataa_exp_dffe12 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_dataa_exp_dffe12 <= aligned_dataa_exp_dffe12_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_dataa_exp_dffe13 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_dataa_exp_dffe13 <= aligned_dataa_exp_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_dataa_exp_dffe14 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_dataa_exp_dffe14 <= aligned_dataa_exp_dffe14_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_dataa_man_dffe12 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_dataa_man_dffe12 <= aligned_dataa_man_dffe12_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_dataa_man_dffe13 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_dataa_man_dffe13 <= aligned_dataa_man_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_dataa_man_dffe14 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_dataa_man_dffe14 <= aligned_dataa_man_dffe14_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_dataa_sign_dffe12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_dataa_sign_dffe12 <= aligned_dataa_sign_dffe12_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_dataa_sign_dffe13 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_dataa_sign_dffe13 <= aligned_dataa_sign_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_dataa_sign_dffe14 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_dataa_sign_dffe14 <= aligned_dataa_sign_dffe14_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_datab_exp_dffe12 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_datab_exp_dffe12 <= aligned_datab_exp_dffe12_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_datab_exp_dffe13 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_datab_exp_dffe13 <= aligned_datab_exp_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_datab_exp_dffe14 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_datab_exp_dffe14 <= aligned_datab_exp_dffe14_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_datab_man_dffe12 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_datab_man_dffe12 <= aligned_datab_man_dffe12_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_datab_man_dffe13 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_datab_man_dffe13 <= aligned_datab_man_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_datab_man_dffe14 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_datab_man_dffe14 <= aligned_datab_man_dffe14_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_datab_sign_dffe12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_datab_sign_dffe12 <= aligned_datab_sign_dffe12_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_datab_sign_dffe13 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_datab_sign_dffe13 <= aligned_datab_sign_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN aligned_datab_sign_dffe14 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN aligned_datab_sign_dffe14 <= aligned_datab_sign_dffe14_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN both_inputs_are_infinite_dffe1 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN both_inputs_are_infinite_dffe1 <= both_inputs_are_infinite_dffe1_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN both_inputs_are_infinite_dffe25 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN both_inputs_are_infinite_dffe25 <= both_inputs_are_infinite_dffe25_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -4820,14 +4116,6 @@
 		IF (aclr = '1') THEN dataa_sign_dffe1 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN dataa_sign_dffe1 <= dataa_sign_dffe1_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN dataa_sign_dffe25 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN dataa_sign_dffe25 <= dataa_sign_dffe25_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -4865,49 +4153,9 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN denormal_res_dffe41 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN denormal_res_dffe41 <= denormal_res_dffe41_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN exp_adj_dffe21 <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN exp_adj_dffe21 <= exp_adj_dffe21_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_adj_dffe23 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_adj_dffe23 <= exp_adj_dffe23_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_amb_mux_dffe13 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_amb_mux_dffe13 <= exp_amb_mux_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_amb_mux_dffe14 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_amb_mux_dffe14 <= exp_amb_mux_dffe14_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_intermediate_res_dffe41 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_intermediate_res_dffe41 <= exp_intermediate_res_dffe41_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -4932,30 +4180,6 @@
 		IF (aclr = '1') THEN exp_res_dffe21 <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN exp_res_dffe21 <= exp_res_dffe21_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_res_dffe23 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_res_dffe23 <= exp_res_dffe23_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_res_dffe25 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_res_dffe25 <= exp_res_dffe25_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_res_dffe27 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_res_dffe27 <= exp_res_dffe27_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -5001,30 +4225,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN infinite_output_sign_dffe23 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN infinite_output_sign_dffe23 <= infinite_output_sign_dffe23_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN infinite_output_sign_dffe25 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN infinite_output_sign_dffe25 <= infinite_output_sign_dffe25_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN infinite_output_sign_dffe27 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN infinite_output_sign_dffe27 <= infinite_output_sign_dffe27_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN infinite_output_sign_dffe3 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN infinite_output_sign_dffe3 <= infinite_output_sign_dffe3_wi;
@@ -5049,14 +4249,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN infinite_output_sign_dffe41 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN infinite_output_sign_dffe41 <= infinite_output_sign_dffe41_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN infinite_res_dffe3 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN infinite_res_dffe3 <= infinite_res_dffe3_wi;
@@ -5073,14 +4265,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN infinite_res_dffe41 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN infinite_res_dffe41 <= infinite_res_dffe41_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN infinity_magnitude_sub_dffe2 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN infinity_magnitude_sub_dffe2 <= infinity_magnitude_sub_dffe2_wi;
@@ -5092,22 +4276,6 @@
 		IF (aclr = '1') THEN infinity_magnitude_sub_dffe21 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN infinity_magnitude_sub_dffe21 <= infinity_magnitude_sub_dffe21_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN infinity_magnitude_sub_dffe23 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN infinity_magnitude_sub_dffe23 <= infinity_magnitude_sub_dffe23_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN infinity_magnitude_sub_dffe27 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN infinity_magnitude_sub_dffe27 <= infinity_magnitude_sub_dffe27_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -5137,78 +4305,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN infinity_magnitude_sub_dffe41 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN infinity_magnitude_sub_dffe41 <= infinity_magnitude_sub_dffe41_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_dataa_infinite_dffe12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_dataa_infinite_dffe12 <= input_dataa_infinite_dffe12_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_dataa_infinite_dffe13 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_dataa_infinite_dffe13 <= input_dataa_infinite_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_dataa_infinite_dffe14 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_dataa_infinite_dffe14 <= input_dataa_infinite_dffe14_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_dataa_nan_dffe12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_dataa_nan_dffe12 <= input_dataa_nan_dffe12_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_datab_infinite_dffe12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_datab_infinite_dffe12 <= input_datab_infinite_dffe12_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_datab_infinite_dffe13 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_datab_infinite_dffe13 <= input_datab_infinite_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_datab_infinite_dffe14 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_datab_infinite_dffe14 <= input_datab_infinite_dffe14_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_datab_nan_dffe12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_datab_nan_dffe12 <= input_datab_nan_dffe12_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN input_is_infinite_dffe1 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN input_is_infinite_dffe1 <= input_is_infinite_dffe1_wi;
@@ -5228,30 +4324,6 @@
 		IF (aclr = '1') THEN input_is_infinite_dffe21 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN input_is_infinite_dffe21 <= input_is_infinite_dffe21_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_is_infinite_dffe23 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_is_infinite_dffe23 <= input_is_infinite_dffe23_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_is_infinite_dffe25 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_is_infinite_dffe25 <= input_is_infinite_dffe25_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_is_infinite_dffe27 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_is_infinite_dffe27 <= input_is_infinite_dffe27_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -5281,33 +4353,9 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN input_is_infinite_dffe41 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_is_infinite_dffe41 <= input_is_infinite_dffe41_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN input_is_nan_dffe1 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN input_is_nan_dffe1 <= input_is_nan_dffe1_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_is_nan_dffe13 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_is_nan_dffe13 <= input_is_nan_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_is_nan_dffe14 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_is_nan_dffe14 <= input_is_nan_dffe14_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -5324,30 +4372,6 @@
 		IF (aclr = '1') THEN input_is_nan_dffe21 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN input_is_nan_dffe21 <= input_is_nan_dffe21_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_is_nan_dffe23 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_is_nan_dffe23 <= input_is_nan_dffe23_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_is_nan_dffe25 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_is_nan_dffe25 <= input_is_nan_dffe25_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN input_is_nan_dffe27 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_is_nan_dffe27 <= input_is_nan_dffe27_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -5377,14 +4401,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN input_is_nan_dffe41 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN input_is_nan_dffe41 <= input_is_nan_dffe41_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN man_add_sub_res_mag_dffe21 <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN man_add_sub_res_mag_dffe21 <= man_add_sub_res_mag_dffe21_wi;
@@ -5393,41 +4409,9 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN man_add_sub_res_mag_dffe23 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN man_add_sub_res_mag_dffe23 <= man_add_sub_res_mag_dffe23_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN man_add_sub_res_mag_dffe27 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN man_add_sub_res_mag_dffe27 <= man_add_sub_res_mag_dffe27_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN man_add_sub_res_sign_dffe21 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN man_add_sub_res_sign_dffe21 <= man_add_sub_res_sign_dffe27_wo;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN man_add_sub_res_sign_dffe23 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN man_add_sub_res_sign_dffe23 <= man_add_sub_res_sign_dffe23_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN man_add_sub_res_sign_dffe27 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN man_add_sub_res_sign_dffe27 <= man_add_sub_res_sign_dffe27_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -5489,38 +4473,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN man_res_is_not_zero_dffe41 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN man_res_is_not_zero_dffe41 <= man_res_is_not_zero_dffe41_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN man_res_not_zero_dffe23 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN man_res_not_zero_dffe23 <= man_res_not_zero_dffe23_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN man_res_rounding_add_sub_result_reg <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN man_res_rounding_add_sub_result_reg <= ( wire_man_res_rounding_add_sub_lower_w_lg_w_lg_w_lg_cout594w595w596w & wire_man_res_rounding_add_sub_lower_result);
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN man_smaller_dffe13 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN man_smaller_dffe13 <= man_smaller_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN nan_flag_dffe5 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN nan_flag_dffe5 <= nan_flag_dffe5_wi;
@@ -5537,25 +4489,9 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN overflow_flag_dffe5 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN overflow_flag_dffe5 <= overflow_flag_dffe5_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN round_bit_dffe21 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN round_bit_dffe21 <= round_bit_dffe21_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN round_bit_dffe23 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN round_bit_dffe23 <= round_bit_dffe23_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -5580,22 +4516,6 @@
 		IF (aclr = '1') THEN rounded_res_infinity_dffe4 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN rounded_res_infinity_dffe4 <= rounded_res_infinity_dffe4_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN rshift_distance_dffe13 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN rshift_distance_dffe13 <= rshift_distance_dffe13_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN rshift_distance_dffe14 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN rshift_distance_dffe14 <= rshift_distance_dffe14_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -5633,14 +4553,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN sign_res_dffe41 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sign_res_dffe41 <= sign_res_dffe41_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN sticky_bit_dffe1 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN sticky_bit_dffe1 <= sticky_bit_dffe1_wi;
@@ -5665,30 +4577,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN sticky_bit_dffe23 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sticky_bit_dffe23 <= sticky_bit_dffe23_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sticky_bit_dffe25 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sticky_bit_dffe25 <= sticky_bit_dffe25_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sticky_bit_dffe27 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sticky_bit_dffe27 <= sticky_bit_dffe27_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN sticky_bit_dffe3 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN sticky_bit_dffe3 <= sticky_bit_dffe3_wi;
@@ -5700,14 +4588,6 @@
 		IF (aclr = '1') THEN sticky_bit_dffe31 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN sticky_bit_dffe31 <= sticky_bit_dffe31_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN underflow_flag_dffe5 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN underflow_flag_dffe5 <= underflow_flag_dffe5_wi;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -5735,34 +4615,13 @@
 			END IF;
 		END IF;
 	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN zero_man_sign_dffe23 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN zero_man_sign_dffe23 <= zero_man_sign_dffe23_wi;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN zero_man_sign_dffe27 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN zero_man_sign_dffe27 <= zero_man_sign_dffe27_wi;
-			END IF;
-		END IF;
-	END PROCESS;
 	add_sub1 :  lpm_add_sub
 	  GENERIC MAP (
 		LPM_DIRECTION => "SUB",
-		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "SIGNED",
-		LPM_WIDTH => 9,
-		lpm_hint => "USE_WYS=ON"
+		LPM_WIDTH => 9
 	  )
 	  PORT MAP ( 
-		aclr => aclr,
-		clken => clk_en,
-		clock => clock,
 		dataa => aligned_dataa_exp_w,
 		datab => aligned_datab_exp_w,
 		result => wire_add_sub1_result
@@ -5770,15 +4629,10 @@
 	add_sub2 :  lpm_add_sub
 	  GENERIC MAP (
 		LPM_DIRECTION => "SUB",
-		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "SIGNED",
-		LPM_WIDTH => 9,
-		lpm_hint => "USE_WYS=ON"
+		LPM_WIDTH => 9
 	  )
 	  PORT MAP ( 
-		aclr => aclr,
-		clken => clk_en,
-		clock => clock,
 		dataa => aligned_datab_exp_w,
 		datab => aligned_dataa_exp_w,
 		result => wire_add_sub2_result
@@ -5832,19 +4686,19 @@
 		datab => exp_rounding_adjustment_w,
 		result => wire_add_sub6_result
 	  );
-	loop122 : FOR i IN 0 TO 13 GENERATE 
+	loop121 : FOR i IN 0 TO 13 GENERATE 
 		wire_man_2comp_res_lower_w_lg_w_lg_cout381w382w(i) <= wire_man_2comp_res_lower_w_lg_cout381w(0) AND wire_man_2comp_res_upper0_result(i);
-	END GENERATE loop122;
-	loop123 : FOR i IN 0 TO 13 GENERATE 
+	END GENERATE loop121;
+	loop122 : FOR i IN 0 TO 13 GENERATE 
 		wire_man_2comp_res_lower_w_lg_cout380w(i) <= wire_man_2comp_res_lower_cout AND wire_man_2comp_res_upper1_result(i);
-	END GENERATE loop123;
+	END GENERATE loop122;
 	wire_man_2comp_res_lower_w_lg_cout381w(0) <= NOT wire_man_2comp_res_lower_cout;
-	loop124 : FOR i IN 0 TO 13 GENERATE 
+	loop123 : FOR i IN 0 TO 13 GENERATE 
 		wire_man_2comp_res_lower_w_lg_w_lg_w_lg_cout381w382w383w(i) <= wire_man_2comp_res_lower_w_lg_w_lg_cout381w382w(i) OR wire_man_2comp_res_lower_w_lg_cout380w(i);
-	END GENERATE loop124;
+	END GENERATE loop123;
 	man_2comp_res_lower :  lpm_add_sub
 	  GENERIC MAP (
-		LPM_PIPELINE => 2,
+		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "SIGNED",
 		LPM_WIDTH => 14,
 		lpm_hint => "USE_WYS=ON"
@@ -5862,7 +4716,7 @@
 	  );
 	man_2comp_res_upper0 :  lpm_add_sub
 	  GENERIC MAP (
-		LPM_PIPELINE => 2,
+		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "SIGNED",
 		LPM_WIDTH => 14,
 		lpm_hint => "USE_WYS=ON"
@@ -5879,7 +4733,7 @@
 	  );
 	man_2comp_res_upper1 :  lpm_add_sub
 	  GENERIC MAP (
-		LPM_PIPELINE => 2,
+		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "SIGNED",
 		LPM_WIDTH => 14,
 		lpm_hint => "USE_WYS=ON"
@@ -5894,19 +4748,19 @@
 		datab => man_2comp_res_datab_w(27 DOWNTO 14),
 		result => wire_man_2comp_res_upper1_result
 	  );
-	loop125 : FOR i IN 0 TO 13 GENERATE 
+	loop124 : FOR i IN 0 TO 13 GENERATE 
 		wire_man_add_sub_lower_w_lg_w_lg_cout368w369w(i) <= wire_man_add_sub_lower_w_lg_cout368w(0) AND wire_man_add_sub_upper0_result(i);
-	END GENERATE loop125;
-	loop126 : FOR i IN 0 TO 13 GENERATE 
+	END GENERATE loop124;
+	loop125 : FOR i IN 0 TO 13 GENERATE 
 		wire_man_add_sub_lower_w_lg_cout367w(i) <= wire_man_add_sub_lower_cout AND wire_man_add_sub_upper1_result(i);
-	END GENERATE loop126;
+	END GENERATE loop125;
 	wire_man_add_sub_lower_w_lg_cout368w(0) <= NOT wire_man_add_sub_lower_cout;
-	loop127 : FOR i IN 0 TO 13 GENERATE 
+	loop126 : FOR i IN 0 TO 13 GENERATE 
 		wire_man_add_sub_lower_w_lg_w_lg_w_lg_cout368w369w370w(i) <= wire_man_add_sub_lower_w_lg_w_lg_cout368w369w(i) OR wire_man_add_sub_lower_w_lg_cout367w(i);
-	END GENERATE loop127;
+	END GENERATE loop126;
 	man_add_sub_lower :  lpm_add_sub
 	  GENERIC MAP (
-		LPM_PIPELINE => 2,
+		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "SIGNED",
 		LPM_WIDTH => 14,
 		lpm_hint => "USE_WYS=ON"
@@ -5924,7 +4778,7 @@
 	  );
 	man_add_sub_upper0 :  lpm_add_sub
 	  GENERIC MAP (
-		LPM_PIPELINE => 2,
+		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "SIGNED",
 		LPM_WIDTH => 14,
 		lpm_hint => "USE_WYS=ON"
@@ -5941,7 +4795,7 @@
 	  );
 	man_add_sub_upper1 :  lpm_add_sub
 	  GENERIC MAP (
-		LPM_PIPELINE => 2,
+		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "SIGNED",
 		LPM_WIDTH => 14,
 		lpm_hint => "USE_WYS=ON"
@@ -5956,16 +4810,16 @@
 		datab => man_add_sub_datab_w(27 DOWNTO 14),
 		result => wire_man_add_sub_upper1_result
 	  );
-	loop128 : FOR i IN 0 TO 12 GENERATE 
+	loop127 : FOR i IN 0 TO 12 GENERATE 
 		wire_man_res_rounding_add_sub_lower_w_lg_w_lg_cout594w595w(i) <= wire_man_res_rounding_add_sub_lower_w_lg_cout594w(0) AND adder_upper_w(i);
-	END GENERATE loop128;
-	loop129 : FOR i IN 0 TO 12 GENERATE 
+	END GENERATE loop127;
+	loop128 : FOR i IN 0 TO 12 GENERATE 
 		wire_man_res_rounding_add_sub_lower_w_lg_cout593w(i) <= wire_man_res_rounding_add_sub_lower_cout AND wire_man_res_rounding_add_sub_upper1_result(i);
-	END GENERATE loop129;
+	END GENERATE loop128;
 	wire_man_res_rounding_add_sub_lower_w_lg_cout594w(0) <= NOT wire_man_res_rounding_add_sub_lower_cout;
-	loop130 : FOR i IN 0 TO 12 GENERATE 
+	loop129 : FOR i IN 0 TO 12 GENERATE 
 		wire_man_res_rounding_add_sub_lower_w_lg_w_lg_w_lg_cout594w595w596w(i) <= wire_man_res_rounding_add_sub_lower_w_lg_w_lg_cout594w595w(i) OR wire_man_res_rounding_add_sub_lower_w_lg_cout593w(i);
-	END GENERATE loop130;
+	END GENERATE loop129;
 	man_res_rounding_add_sub_lower :  lpm_add_sub
 	  GENERIC MAP (
 		LPM_DIRECTION => "ADD",
@@ -6001,7 +4855,7 @@
 		datab => trailing_zeros_limit_w
 	  );
 
- END RTL; --fp_add_altfp_add_sub_e6o
+ END RTL; --fp_add_altfp_add_sub_m8m
 --VALID FILE
 
 
@@ -6018,9 +4872,7 @@ ENTITY fp_add IS
 		dataa		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		datab		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		nan		: OUT STD_LOGIC ;
-		overflow		: OUT STD_LOGIC ;
 		result		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
-		underflow		: OUT STD_LOGIC ;
 		zero		: OUT STD_LOGIC 
 	);
 END fp_add;
@@ -6030,36 +4882,30 @@ ARCHITECTURE RTL OF fp_add IS
 
 	SIGNAL sub_wire0	: STD_LOGIC ;
 	SIGNAL sub_wire1	: STD_LOGIC ;
-	SIGNAL sub_wire2	: STD_LOGIC ;
-	SIGNAL sub_wire3	: STD_LOGIC_VECTOR (31 DOWNTO 0);
-	SIGNAL sub_wire4	: STD_LOGIC ;
+	SIGNAL sub_wire2	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 
 
 
-	COMPONENT fp_add_altfp_add_sub_e6o
+	COMPONENT fp_add_altfp_add_sub_m8m
 	PORT (
 			clk_en	: IN STD_LOGIC ;
 			clock	: IN STD_LOGIC ;
 			datab	: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
-			overflow	: OUT STD_LOGIC ;
 			zero	: OUT STD_LOGIC ;
 			dataa	: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			nan	: OUT STD_LOGIC ;
 			result	: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
 			aclr	: IN STD_LOGIC ;
-			add_sub	: IN STD_LOGIC ;
-			underflow	: OUT STD_LOGIC 
+			add_sub	: IN STD_LOGIC 
 	);
 	END COMPONENT;
 
 BEGIN
-	overflow    <= sub_wire0;
-	zero    <= sub_wire1;
-	nan    <= sub_wire2;
-	result    <= sub_wire3(31 DOWNTO 0);
-	underflow    <= sub_wire4;
+	zero    <= sub_wire0;
+	nan    <= sub_wire1;
+	result    <= sub_wire2(31 DOWNTO 0);
 
-	fp_add_altfp_add_sub_e6o_component : fp_add_altfp_add_sub_e6o
+	fp_add_altfp_add_sub_m8m_component : fp_add_altfp_add_sub_m8m
 	PORT MAP (
 		clk_en => clk_en,
 		clock => clock,
@@ -6067,11 +4913,9 @@ BEGIN
 		dataa => dataa,
 		aclr => aclr,
 		add_sub => add_sub,
-		overflow => sub_wire0,
-		zero => sub_wire1,
-		nan => sub_wire2,
-		result => sub_wire3,
-		underflow => sub_wire4
+		zero => sub_wire0,
+		nan => sub_wire1,
+		result => sub_wire2
 	);
 
 
@@ -6090,7 +4934,7 @@ END RTL;
 -- Retrieval info: CONSTANT: DIRECTION STRING "VARIABLE"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone III"
 -- Retrieval info: CONSTANT: OPTIMIZE STRING "SPEED"
--- Retrieval info: CONSTANT: PIPELINE NUMERIC "14"
+-- Retrieval info: CONSTANT: PIPELINE NUMERIC "7"
 -- Retrieval info: CONSTANT: REDUCED_FUNCTIONALITY STRING "NO"
 -- Retrieval info: CONSTANT: WIDTH_EXP NUMERIC "8"
 -- Retrieval info: CONSTANT: WIDTH_MAN NUMERIC "23"
@@ -6101,9 +4945,7 @@ END RTL;
 -- Retrieval info: USED_PORT: dataa 0 0 32 0 INPUT NODEFVAL "dataa[31..0]"
 -- Retrieval info: USED_PORT: datab 0 0 32 0 INPUT NODEFVAL "datab[31..0]"
 -- Retrieval info: USED_PORT: nan 0 0 0 0 OUTPUT NODEFVAL "nan"
--- Retrieval info: USED_PORT: overflow 0 0 0 0 OUTPUT NODEFVAL "overflow"
 -- Retrieval info: USED_PORT: result 0 0 32 0 OUTPUT NODEFVAL "result[31..0]"
--- Retrieval info: USED_PORT: underflow 0 0 0 0 OUTPUT NODEFVAL "underflow"
 -- Retrieval info: USED_PORT: zero 0 0 0 0 OUTPUT NODEFVAL "zero"
 -- Retrieval info: CONNECT: @aclr 0 0 0 0 aclr 0 0 0 0
 -- Retrieval info: CONNECT: @add_sub 0 0 0 0 add_sub 0 0 0 0
@@ -6112,13 +4954,11 @@ END RTL;
 -- Retrieval info: CONNECT: @dataa 0 0 32 0 dataa 0 0 32 0
 -- Retrieval info: CONNECT: @datab 0 0 32 0 datab 0 0 32 0
 -- Retrieval info: CONNECT: nan 0 0 0 0 @nan 0 0 0 0
--- Retrieval info: CONNECT: overflow 0 0 0 0 @overflow 0 0 0 0
 -- Retrieval info: CONNECT: result 0 0 32 0 @result 0 0 32 0
--- Retrieval info: CONNECT: underflow 0 0 0 0 @underflow 0 0 0 0
 -- Retrieval info: CONNECT: zero 0 0 0 0 @zero 0 0 0 0
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_add.vhd TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_add.inc FALSE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_add.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL fp_add.bsf TRUE FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL fp_add_inst.vhd FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL fp_add.bsf TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL fp_add_inst.vhd TRUE
 -- Retrieval info: LIB_FILE: lpm

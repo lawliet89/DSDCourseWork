@@ -58,7 +58,7 @@ float determinant(float *matrix, int dimension){
 			for (p = 0; p < j; p++){
 				a = fp_sub(a, fp_mul( getAt(m, i, p, dimension), getAt(m, p, j, dimension)) );
 			}
-			putAt(m, i, j, dimension, a/getAt(m, j, j, dimension));
+			putAt(m, i, j, dimension, fp_div( a, getAt(m, j, j, dimension)));
 		}
 		for (j = i; j < dimension; j++){
 			a = getAt(m, i, j, dimension);

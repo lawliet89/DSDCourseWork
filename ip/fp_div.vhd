@@ -33,11 +33,11 @@
 --applicable agreement for further details.
 
 
---altfp_div CBX_AUTO_BLACKBOX="ALL" DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone III" OPTIMIZE="SPEED" PIPELINE=14 REDUCED_FUNCTIONALITY="NO" WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab nan overflow result underflow zero
+--altfp_div CBX_AUTO_BLACKBOX="ALL" DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone III" OPTIMIZE="SPEED" PIPELINE=6 REDUCED_FUNCTIONALITY="NO" WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab nan result zero
 --VERSION_BEGIN 12.0 cbx_altbarrel_shift 2012:05:31:20:08:02:SJ cbx_altfp_div 2012:05:31:20:08:02:SJ cbx_altsyncram 2012:05:31:20:08:02:SJ cbx_cycloneii 2012:05:31:20:08:02:SJ cbx_lpm_abs 2012:05:31:20:08:02:SJ cbx_lpm_add_sub 2012:05:31:20:08:02:SJ cbx_lpm_compare 2012:05:31:20:08:02:SJ cbx_lpm_decode 2012:05:31:20:08:02:SJ cbx_lpm_divide 2012:05:31:20:08:02:SJ cbx_lpm_mult 2012:05:31:20:08:02:SJ cbx_lpm_mux 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ cbx_padd 2012:05:31:20:08:02:SJ cbx_stratix 2012:05:31:20:08:02:SJ cbx_stratixii 2012:05:31:20:08:02:SJ cbx_stratixiii 2012:05:31:20:08:02:SJ cbx_stratixv 2012:05:31:20:08:02:SJ cbx_util_mgl 2012:05:31:20:08:02:SJ  VERSION_END
 
 
---altfp_div_pst CBX_AUTO_BLACKBOX="ALL" DEVICE_FAMILY="Cyclone III" FILE_NAME="fp_div.vhd:a" PIPELINE=14 WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab nan overflow result underflow zero
+--altfp_div_pst CBX_AUTO_BLACKBOX="ALL" DEVICE_FAMILY="Cyclone III" FILE_NAME="fp_div.vhd:a" PIPELINE=6 WIDTH_EXP=8 WIDTH_MAN=23 aclr clk_en clock dataa datab nan result zero
 --VERSION_BEGIN 12.0 cbx_altbarrel_shift 2012:05:31:20:08:02:SJ cbx_altfp_div 2012:05:31:20:08:02:SJ cbx_altsyncram 2012:05:31:20:08:02:SJ cbx_cycloneii 2012:05:31:20:08:02:SJ cbx_lpm_abs 2012:05:31:20:08:02:SJ cbx_lpm_add_sub 2012:05:31:20:08:02:SJ cbx_lpm_compare 2012:05:31:20:08:02:SJ cbx_lpm_decode 2012:05:31:20:08:02:SJ cbx_lpm_divide 2012:05:31:20:08:02:SJ cbx_lpm_mult 2012:05:31:20:08:02:SJ cbx_lpm_mux 2012:05:31:20:08:02:SJ cbx_mgl 2012:05:31:20:10:16:SJ cbx_padd 2012:05:31:20:08:02:SJ cbx_stratix 2012:05:31:20:08:02:SJ cbx_stratixii 2012:05:31:20:08:02:SJ cbx_stratixiii 2012:05:31:20:08:02:SJ cbx_stratixv 2012:05:31:20:08:02:SJ cbx_util_mgl 2012:05:31:20:08:02:SJ  VERSION_END
 
  LIBRARY altera_mf;
@@ -46,11 +46,11 @@
  LIBRARY lpm;
  USE lpm.all;
 
---synthesis_resources = altsyncram 1 lpm_add_sub 4 lpm_compare 1 lpm_mult 5 mux21 74 reg 875 
+--synthesis_resources = altsyncram 1 lpm_add_sub 4 lpm_compare 1 lpm_mult 5 mux21 74 reg 349 
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_div_altfp_div_pst_ejh IS 
+ ENTITY  fp_div_altfp_div_pst_llf IS 
 	 PORT 
 	 ( 
 		 aclr	:	IN  STD_LOGIC := '0';
@@ -59,14 +59,12 @@
 		 dataa	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 datab	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 nan	:	OUT  STD_LOGIC;
-		 overflow	:	OUT  STD_LOGIC;
 		 result	:	OUT  STD_LOGIC_VECTOR (31 DOWNTO 0);
-		 underflow	:	OUT  STD_LOGIC;
 		 zero	:	OUT  STD_LOGIC
 	 ); 
- END fp_div_altfp_div_pst_ejh;
+ END fp_div_altfp_div_pst_llf;
 
- ARCHITECTURE RTL OF fp_div_altfp_div_pst_ejh IS
+ ARCHITECTURE RTL OF fp_div_altfp_div_pst_llf IS
 
 	 SIGNAL  wire_altsyncram3_q_a	:	STD_LOGIC_VECTOR (8 DOWNTO 0);
 	 SIGNAL	 a_is_infinity_dffe_0	:	STD_LOGIC
@@ -80,22 +78,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL  wire_a_is_infinity_dffe_1_w_lg_q318w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL	 a_is_infinity_dffe_10	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_is_infinity_dffe_11	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_is_infinity_dffe_12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL  wire_a_is_infinity_dffe_12_w_lg_q437w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL	 a_is_infinity_dffe_2	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -111,31 +93,7 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 a_is_infinity_dffe_5	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_is_infinity_dffe_6	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_is_infinity_dffe_7	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_is_infinity_dffe_8	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_is_infinity_dffe_9	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
+	 SIGNAL  wire_a_is_infinity_dffe_4_w_lg_q437w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL	 a_zero_b_not_dffe_0	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -147,21 +105,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL  wire_a_zero_b_not_dffe_1_w_lg_q326w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL	 a_zero_b_not_dffe_10	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_zero_b_not_dffe_11	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_zero_b_not_dffe_12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 a_zero_b_not_dffe_2	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -177,37 +120,7 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 a_zero_b_not_dffe_5	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_zero_b_not_dffe_6	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_zero_b_not_dffe_7	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_zero_b_not_dffe_8	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 a_zero_b_not_dffe_9	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 b1_dffe_0	:	STD_LOGIC_VECTOR(33 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 b1_dffe_1	:	STD_LOGIC_VECTOR(33 DOWNTO 0)
 	 -- synopsys translate_off
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
@@ -223,22 +136,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL  wire_b_is_infinity_dffe_1_w_lg_q325w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL	 b_is_infinity_dffe_10	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 b_is_infinity_dffe_11	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 b_is_infinity_dffe_12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL  wire_b_is_infinity_dffe_12_w_lg_q438w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL	 b_is_infinity_dffe_2	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -254,31 +151,7 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 b_is_infinity_dffe_5	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 b_is_infinity_dffe_6	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 b_is_infinity_dffe_7	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 b_is_infinity_dffe_8	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 b_is_infinity_dffe_9	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
+	 SIGNAL  wire_b_is_infinity_dffe_4_w_lg_q438w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL	 both_exp_zeros_dffe	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -295,21 +168,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL  wire_divbyzero_pipe_dffe_1_w_lg_q317w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL	 divbyzero_pipe_dffe_10	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 divbyzero_pipe_dffe_11	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 divbyzero_pipe_dffe_12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 divbyzero_pipe_dffe_2	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -325,57 +183,12 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 divbyzero_pipe_dffe_5	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 divbyzero_pipe_dffe_6	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 divbyzero_pipe_dffe_7	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 divbyzero_pipe_dffe_8	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 divbyzero_pipe_dffe_9	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 e1_dffe_0	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
 	 -- synopsys translate_off
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 e1_dffe_1	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 e1_dffe_perf_0	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 e1_dffe_perf_1	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 e1_dffe_perf_2	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 e1_dffe_perf_3	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
 	 -- synopsys translate_off
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
@@ -390,52 +203,12 @@
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 exp_result_dffe_10	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_result_dffe_11	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 exp_result_dffe_2	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
 	 -- synopsys translate_off
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 exp_result_dffe_3	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_result_dffe_4	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_result_dffe_5	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_result_dffe_6	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_result_dffe_7	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_result_dffe_8	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 exp_result_dffe_9	:	STD_LOGIC_VECTOR(7 DOWNTO 0)
 	 -- synopsys translate_off
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
@@ -471,27 +244,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL  wire_nan_pipe_dffe_1_w_lg_q308w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL	 nan_pipe_dffe_10	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 nan_pipe_dffe_11	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 nan_pipe_dffe_12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL  wire_nan_pipe_dffe_12_w_lg_q436w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL	 nan_pipe_dffe_13	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 nan_pipe_dffe_2	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -507,27 +259,8 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
+	 SIGNAL  wire_nan_pipe_dffe_4_w_lg_q436w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL	 nan_pipe_dffe_5	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 nan_pipe_dffe_6	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 nan_pipe_dffe_7	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 nan_pipe_dffe_8	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 nan_pipe_dffe_9	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -542,101 +275,17 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 overflow_dffe_10	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 overflow_dffe_11	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 overflow_dffe_2	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 overflow_dffe_3	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 overflow_dffe_4	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 overflow_dffe_5	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 overflow_dffe_6	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 overflow_dffe_7	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 overflow_dffe_8	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 overflow_dffe_9	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 q_partial_perf_dffe_0	:	STD_LOGIC_VECTOR(33 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL  wire_q_partial_perf_dffe_0_w_q_range372w	:	STD_LOGIC_VECTOR (16 DOWNTO 0);
-	 SIGNAL	 q_partial_perf_dffe_1	:	STD_LOGIC_VECTOR(33 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL  wire_q_partial_perf_dffe_1_w_lg_w_q_range406w407w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_q_partial_perf_dffe_1_w_lg_w_q_range409w410w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_q_partial_perf_dffe_1_w_lg_w_q_range412w413w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_q_partial_perf_dffe_1_w_lg_w_q_range415w416w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_q_partial_perf_dffe_1_w_q_range406w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_q_partial_perf_dffe_1_w_q_range409w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_q_partial_perf_dffe_1_w_q_range412w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-	 SIGNAL  wire_q_partial_perf_dffe_1_w_q_range415w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL	 quotient_j_dffe	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
 	 -- synopsys translate_off
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 quotient_k_dffe_0	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 quotient_k_dffe_perf_0	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 quotient_k_dffe_perf_1	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 quotient_k_dffe_perf_2	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 quotient_k_dffe_perf_3	:	STD_LOGIC_VECTOR(16 DOWNTO 0)
 	 -- synopsys translate_off
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
@@ -651,47 +300,12 @@
 	  := (OTHERS => '0')
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 remainder_j_dffe_perf_0	:	STD_LOGIC_VECTOR(49 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 remainder_j_dffe_perf_1	:	STD_LOGIC_VECTOR(49 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 remainder_j_dffe_perf_2	:	STD_LOGIC_VECTOR(49 DOWNTO 0)
-	 -- synopsys translate_off
-	  := (OTHERS => '0')
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 sign_pipe_dffe_0	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 sign_pipe_dffe_1	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sign_pipe_dffe_10	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sign_pipe_dffe_11	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sign_pipe_dffe_12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sign_pipe_dffe_13	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -716,26 +330,6 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 sign_pipe_dffe_6	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sign_pipe_dffe_7	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sign_pipe_dffe_8	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 sign_pipe_dffe_9	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 underflow_dffe_0	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -746,52 +340,7 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 underflow_dffe_10	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 underflow_dffe_11	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 underflow_dffe_2	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 underflow_dffe_3	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 underflow_dffe_4	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 underflow_dffe_5	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 underflow_dffe_6	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 underflow_dffe_7	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 underflow_dffe_8	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 underflow_dffe_9	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -811,21 +360,6 @@
 	  := '0'
 	 -- synopsys translate_on
 	 ;
-	 SIGNAL	 zero_pipe_dffe_10	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 zero_pipe_dffe_11	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 zero_pipe_dffe_12	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
 	 SIGNAL	 zero_pipe_dffe_2	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
@@ -837,31 +371,6 @@
 	 -- synopsys translate_on
 	 ;
 	 SIGNAL	 zero_pipe_dffe_4	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 zero_pipe_dffe_5	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 zero_pipe_dffe_6	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 zero_pipe_dffe_7	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 zero_pipe_dffe_8	:	STD_LOGIC
-	 -- synopsys translate_off
-	  := '0'
-	 -- synopsys translate_on
-	 ;
-	 SIGNAL	 zero_pipe_dffe_9	:	STD_LOGIC
 	 -- synopsys translate_off
 	  := '0'
 	 -- synopsys translate_on
@@ -883,7 +392,16 @@
 	 SIGNAL  wire_b1_prod_result	:	STD_LOGIC_VECTOR (33 DOWNTO 0);
 	 SIGNAL  wire_b1_prod_w_result_range357w	:	STD_LOGIC_VECTOR (16 DOWNTO 0);
 	 SIGNAL  wire_q_partial_0_result	:	STD_LOGIC_VECTOR (33 DOWNTO 0);
+	 SIGNAL  wire_q_partial_0_w_result_range372w	:	STD_LOGIC_VECTOR (16 DOWNTO 0);
+	 SIGNAL  wire_q_partial_1_w_lg_w_result_range406w407w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_q_partial_1_w_lg_w_result_range409w410w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_q_partial_1_w_lg_w_result_range412w413w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_q_partial_1_w_lg_w_result_range415w416w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_q_partial_1_result	:	STD_LOGIC_VECTOR (33 DOWNTO 0);
+	 SIGNAL  wire_q_partial_1_w_result_range406w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_q_partial_1_w_result_range409w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_q_partial_1_w_result_range412w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
+	 SIGNAL  wire_q_partial_1_w_result_range415w	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
 	 SIGNAL  wire_remainder_mult_0_result	:	STD_LOGIC_VECTOR (50 DOWNTO 0);
 	 SIGNAL	wire_exp_result_muxa_dataout	:	STD_LOGIC_VECTOR(7 DOWNTO 0);
 	 SIGNAL	wire_man_a_adjusteda_dataout	:	STD_LOGIC_VECTOR(24 DOWNTO 0);
@@ -1486,7 +1004,7 @@
 	a_is_infinity_w <= wire_altfp_div_pst1_w_lg_w_exp_a_all_one_w_range77w222w(0);
 	a_is_nan_w <= (exp_a_all_one_w(7) AND man_a_not_zero_w(22));
 	a_zero_b_not <= wire_altfp_div_pst1_w_lg_w_exp_b_not_zero_w_range75w256w(0);
-	b1_dffe_w <= ( b1_dffe_1);
+	b1_dffe_w <= ( b1_dffe_0);
 	b_is_infinity_w <= wire_altfp_div_pst1_w_lg_w_exp_b_all_one_w_range79w224w(0);
 	b_is_nan_w <= (exp_b_all_one_w(7) AND man_b_not_zero_w(22));
 	bias_addition_overf_w <= wire_bias_addition_overflow;
@@ -1494,7 +1012,7 @@
 	both_exp_zeros <= both_exp_zeros_dffe;
 	e0_dffe1_wo <= e0_w;
 	e0_w <= wire_altsyncram3_q_a;
-	e1_w <= ( e1_dffe_1 & e1_dffe_perf_3 & wire_b1_prod_w_lg_w_result_range357w358w);
+	e1_w <= ( e1_dffe_1 & e1_dffe_0 & wire_b1_prod_w_lg_w_result_range357w358w);
 	exp_a_all_one_w <= ( wire_altfp_div_pst1_w_lg_w_dataa_range71w78w & wire_altfp_div_pst1_w_lg_w_dataa_range61w68w & wire_altfp_div_pst1_w_lg_w_dataa_range51w58w & wire_altfp_div_pst1_w_lg_w_dataa_range41w48w & wire_altfp_div_pst1_w_lg_w_dataa_range31w38w & wire_altfp_div_pst1_w_lg_w_dataa_range21w28w & wire_altfp_div_pst1_w_lg_w_dataa_range11w18w & dataa(23));
 	exp_a_not_zero_w <= ( wire_altfp_div_pst1_w_lg_w_dataa_range71w73w & wire_altfp_div_pst1_w_lg_w_dataa_range61w63w & wire_altfp_div_pst1_w_lg_w_dataa_range51w53w & wire_altfp_div_pst1_w_lg_w_dataa_range41w43w & wire_altfp_div_pst1_w_lg_w_dataa_range31w33w & wire_altfp_div_pst1_w_lg_w_dataa_range21w23w & wire_altfp_div_pst1_w_lg_w_dataa_range11w13w & dataa(23));
 	exp_add_output_all_one <= ( wire_altfp_div_pst1_w_lg_w_bias_addition_w_range280w298w & wire_altfp_div_pst1_w_lg_w_bias_addition_w_range277w296w & wire_altfp_div_pst1_w_lg_w_bias_addition_w_range274w294w & wire_altfp_div_pst1_w_lg_w_bias_addition_w_range271w292w & wire_altfp_div_pst1_w_lg_w_bias_addition_w_range268w290w & wire_altfp_div_pst1_w_lg_w_bias_addition_w_range265w288w & wire_altfp_div_pst1_w_lg_w_bias_addition_w_range262w286w & bias_addition_w(0));
@@ -1511,7 +1029,7 @@
 	frac_a_smaller_dffe1_wi <= frac_a_smaller_w;
 	frac_a_smaller_dffe1_wo <= frac_a_smaller_dffe1;
 	frac_a_smaller_w <= wire_cmpr2_alb;
-	guard_bit <= q_partial_perf_dffe_1(22);
+	guard_bit <= wire_q_partial_1_result(22);
 	man_a_adjusted_w <= wire_man_a_adjusteda_dataout;
 	man_a_dffe1_wi <= dataa(22 DOWNTO 0);
 	man_a_dffe1_wo <= man_a_dffe1_dffe1;
@@ -1522,29 +1040,27 @@
 	man_b_not_zero_w <= ( wire_altfp_div_pst1_w_lg_w_datab_range216w218w & wire_altfp_div_pst1_w_lg_w_datab_range210w212w & wire_altfp_div_pst1_w_lg_w_datab_range204w206w & wire_altfp_div_pst1_w_lg_w_datab_range198w200w & wire_altfp_div_pst1_w_lg_w_datab_range192w194w & wire_altfp_div_pst1_w_lg_w_datab_range186w188w & wire_altfp_div_pst1_w_lg_w_datab_range180w182w & wire_altfp_div_pst1_w_lg_w_datab_range174w176w & wire_altfp_div_pst1_w_lg_w_datab_range168w170w & wire_altfp_div_pst1_w_lg_w_datab_range162w164w & wire_altfp_div_pst1_w_lg_w_datab_range156w158w & wire_altfp_div_pst1_w_lg_w_datab_range150w152w & wire_altfp_div_pst1_w_lg_w_datab_range144w146w & wire_altfp_div_pst1_w_lg_w_datab_range138w140w & wire_altfp_div_pst1_w_lg_w_datab_range132w134w & wire_altfp_div_pst1_w_lg_w_datab_range126w128w & wire_altfp_div_pst1_w_lg_w_datab_range120w122w & wire_altfp_div_pst1_w_lg_w_datab_range114w116w & wire_altfp_div_pst1_w_lg_w_datab_range108w110w & wire_altfp_div_pst1_w_lg_w_datab_range102w104w & wire_altfp_div_pst1_w_lg_w_datab_range96w98w & wire_altfp_div_pst1_w_lg_w_datab_range90w92w & datab(0));
 	man_result_dffe_wi <= man_result_w;
 	man_result_dffe_wo <= man_result_dffe;
-	man_result_mux_select <= ((((((overflow_dffe_10 OR underflow_dffe_10) OR a_zero_b_not_dffe_12) OR nan_pipe_dffe_12) OR b_is_infinity_dffe_12) OR a_is_infinity_dffe_12) OR divbyzero_pipe_dffe_12);
+	man_result_mux_select <= ((((((overflow_dffe_2 OR underflow_dffe_2) OR a_zero_b_not_dffe_4) OR nan_pipe_dffe_4) OR b_is_infinity_dffe_4) OR a_is_infinity_dffe_4) OR divbyzero_pipe_dffe_4);
 	man_result_w <= wire_man_result_muxa_dataout;
 	man_zeros_w <= (OTHERS => '0');
-	nan <= nan_pipe_dffe_13;
-	overflow <= overflow_dffe_11;
+	nan <= nan_pipe_dffe_5;
 	overflow_ones_w <= (OTHERS => '1');
 	overflow_w <= (wire_altfp_div_pst1_w_lg_bias_addition_overf_w323w(0) AND ((wire_nan_pipe_dffe_1_w_lg_q308w(0) AND wire_a_is_infinity_dffe_1_w_lg_q318w(0)) AND wire_divbyzero_pipe_dffe_1_w_lg_q317w(0)));
 	quotient_accumulate_w <= ( quotient_k_dffe_0 & "00000000000000" & quotient_j_dffe & "00000000000000");
 	quotient_process_cin_w <= (round_bit AND (guard_bit OR sticky_bits(4)));
 	remainder_j_w <= ( wire_remainder_sub_0_result(35 DOWNTO 0) & "00000000000000" & wire_a1_prod_result(34 DOWNTO 0) & "000000000000000");
-	result <= ( sign_pipe_dffe_13 & exp_result_dffe_11 & man_result_dffe_wo);
-	round_bit <= q_partial_perf_dffe_1(21);
+	result <= ( sign_pipe_dffe_5 & exp_result_dffe_3 & man_result_dffe_wo);
+	round_bit <= wire_q_partial_1_result(21);
 	select_bias_out_2_w <= wire_select_bias_2a_dataout;
 	select_bias_out_w <= wire_select_biasa_dataout;
-	sticky_bits <= ( wire_q_partial_perf_dffe_1_w_lg_w_q_range415w416w & wire_q_partial_perf_dffe_1_w_lg_w_q_range412w413w & wire_q_partial_perf_dffe_1_w_lg_w_q_range409w410w & wire_q_partial_perf_dffe_1_w_lg_w_q_range406w407w & q_partial_perf_dffe_1(16));
-	underflow <= underflow_dffe_11;
+	sticky_bits <= ( wire_q_partial_1_w_lg_w_result_range415w416w & wire_q_partial_1_w_lg_w_result_range412w413w & wire_q_partial_1_w_lg_w_result_range409w410w & wire_q_partial_1_w_lg_w_result_range406w407w & wire_q_partial_1_result(16));
 	underflow_w <= ((((wire_altfp_div_pst1_w_lg_w_lg_bias_addition_overf_w304w312w(0) OR (((NOT exp_add_output_not_zero(7)) AND wire_altfp_div_pst1_w_lg_bias_addition_overf_w304w(0)) AND wire_altfp_div_pst1_w_lg_exp_sign_w303w(0))) AND wire_nan_pipe_dffe_1_w_lg_q308w(0)) AND wire_a_zero_b_not_dffe_1_w_lg_q326w(0)) AND wire_b_is_infinity_dffe_1_w_lg_q325w(0));
 	underflow_zeros_w <= (OTHERS => '0');
 	value_add_one_w <= "001111111";
 	value_normal_w <= "001111110";
 	value_zero_w <= (OTHERS => '0');
 	zero <= zero_dffe_wo;
-	zero_dffe_wi <= (((zero_pipe_dffe_12 OR underflow_dffe_10) OR wire_b_is_infinity_dffe_12_w_lg_q438w(0)) AND wire_nan_pipe_dffe_12_w_lg_q436w(0));
+	zero_dffe_wi <= (((zero_pipe_dffe_4 OR underflow_dffe_2) OR wire_b_is_infinity_dffe_4_w_lg_q438w(0)) AND wire_nan_pipe_dffe_4_w_lg_q436w(0));
 	zero_dffe_wo <= zero_dffe;
 	wire_altfp_div_pst1_w_bias_addition_w_range262w(0) <= bias_addition_w(1);
 	wire_altfp_div_pst1_w_bias_addition_w_range265w(0) <= bias_addition_w(2);
@@ -1745,31 +1261,6 @@
 	wire_a_is_infinity_dffe_1_w_lg_q318w(0) <= NOT a_is_infinity_dffe_1;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN a_is_infinity_dffe_10 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_is_infinity_dffe_10 <= a_is_infinity_dffe_9;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_is_infinity_dffe_11 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_is_infinity_dffe_11 <= a_is_infinity_dffe_10;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_is_infinity_dffe_12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_is_infinity_dffe_12 <= a_is_infinity_dffe_11;
-			END IF;
-		END IF;
-	END PROCESS;
-	wire_a_is_infinity_dffe_12_w_lg_q437w(0) <= NOT a_is_infinity_dffe_12;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN a_is_infinity_dffe_2 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN a_is_infinity_dffe_2 <= a_is_infinity_dffe_1;
@@ -1792,46 +1283,7 @@
 			END IF;
 		END IF;
 	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_is_infinity_dffe_5 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_is_infinity_dffe_5 <= a_is_infinity_dffe_4;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_is_infinity_dffe_6 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_is_infinity_dffe_6 <= a_is_infinity_dffe_5;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_is_infinity_dffe_7 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_is_infinity_dffe_7 <= a_is_infinity_dffe_6;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_is_infinity_dffe_8 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_is_infinity_dffe_8 <= a_is_infinity_dffe_7;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_is_infinity_dffe_9 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_is_infinity_dffe_9 <= a_is_infinity_dffe_8;
-			END IF;
-		END IF;
-	END PROCESS;
+	wire_a_is_infinity_dffe_4_w_lg_q437w(0) <= NOT a_is_infinity_dffe_4;
 	PROCESS (clock, aclr)
 	BEGIN
 		IF (aclr = '1') THEN a_zero_b_not_dffe_0 <= '0';
@@ -1849,30 +1301,6 @@
 		END IF;
 	END PROCESS;
 	wire_a_zero_b_not_dffe_1_w_lg_q326w(0) <= NOT a_zero_b_not_dffe_1;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_zero_b_not_dffe_10 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_zero_b_not_dffe_10 <= a_zero_b_not_dffe_9;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_zero_b_not_dffe_11 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_zero_b_not_dffe_11 <= a_zero_b_not_dffe_10;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_zero_b_not_dffe_12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_zero_b_not_dffe_12 <= a_zero_b_not_dffe_11;
-			END IF;
-		END IF;
-	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
 		IF (aclr = '1') THEN a_zero_b_not_dffe_2 <= '0';
@@ -1899,57 +1327,9 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN a_zero_b_not_dffe_5 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_zero_b_not_dffe_5 <= a_zero_b_not_dffe_4;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_zero_b_not_dffe_6 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_zero_b_not_dffe_6 <= a_zero_b_not_dffe_5;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_zero_b_not_dffe_7 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_zero_b_not_dffe_7 <= a_zero_b_not_dffe_6;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_zero_b_not_dffe_8 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_zero_b_not_dffe_8 <= a_zero_b_not_dffe_7;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN a_zero_b_not_dffe_9 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN a_zero_b_not_dffe_9 <= a_zero_b_not_dffe_8;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN b1_dffe_0 <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN b1_dffe_0 <= wire_b1_prod_result;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN b1_dffe_1 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN b1_dffe_1 <= b1_dffe_0;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -1970,31 +1350,6 @@
 		END IF;
 	END PROCESS;
 	wire_b_is_infinity_dffe_1_w_lg_q325w(0) <= NOT b_is_infinity_dffe_1;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN b_is_infinity_dffe_10 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN b_is_infinity_dffe_10 <= b_is_infinity_dffe_9;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN b_is_infinity_dffe_11 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN b_is_infinity_dffe_11 <= b_is_infinity_dffe_10;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN b_is_infinity_dffe_12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN b_is_infinity_dffe_12 <= b_is_infinity_dffe_11;
-			END IF;
-		END IF;
-	END PROCESS;
-	wire_b_is_infinity_dffe_12_w_lg_q438w(0) <= b_is_infinity_dffe_12 AND wire_a_is_infinity_dffe_12_w_lg_q437w(0);
 	PROCESS (clock, aclr)
 	BEGIN
 		IF (aclr = '1') THEN b_is_infinity_dffe_2 <= '0';
@@ -2019,46 +1374,7 @@
 			END IF;
 		END IF;
 	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN b_is_infinity_dffe_5 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN b_is_infinity_dffe_5 <= b_is_infinity_dffe_4;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN b_is_infinity_dffe_6 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN b_is_infinity_dffe_6 <= b_is_infinity_dffe_5;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN b_is_infinity_dffe_7 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN b_is_infinity_dffe_7 <= b_is_infinity_dffe_6;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN b_is_infinity_dffe_8 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN b_is_infinity_dffe_8 <= b_is_infinity_dffe_7;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN b_is_infinity_dffe_9 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN b_is_infinity_dffe_9 <= b_is_infinity_dffe_8;
-			END IF;
-		END IF;
-	END PROCESS;
+	wire_b_is_infinity_dffe_4_w_lg_q438w(0) <= b_is_infinity_dffe_4 AND wire_a_is_infinity_dffe_4_w_lg_q437w(0);
 	PROCESS (clock, aclr)
 	BEGIN
 		IF (aclr = '1') THEN both_exp_zeros_dffe <= '0';
@@ -2086,30 +1402,6 @@
 	wire_divbyzero_pipe_dffe_1_w_lg_q317w(0) <= NOT divbyzero_pipe_dffe_1;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN divbyzero_pipe_dffe_10 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN divbyzero_pipe_dffe_10 <= divbyzero_pipe_dffe_9;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN divbyzero_pipe_dffe_11 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN divbyzero_pipe_dffe_11 <= divbyzero_pipe_dffe_10;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN divbyzero_pipe_dffe_12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN divbyzero_pipe_dffe_12 <= divbyzero_pipe_dffe_11;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN divbyzero_pipe_dffe_2 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN divbyzero_pipe_dffe_2 <= divbyzero_pipe_dffe_1;
@@ -2134,46 +1426,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN divbyzero_pipe_dffe_5 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN divbyzero_pipe_dffe_5 <= divbyzero_pipe_dffe_4;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN divbyzero_pipe_dffe_6 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN divbyzero_pipe_dffe_6 <= divbyzero_pipe_dffe_5;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN divbyzero_pipe_dffe_7 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN divbyzero_pipe_dffe_7 <= divbyzero_pipe_dffe_6;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN divbyzero_pipe_dffe_8 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN divbyzero_pipe_dffe_8 <= divbyzero_pipe_dffe_7;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN divbyzero_pipe_dffe_9 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN divbyzero_pipe_dffe_9 <= divbyzero_pipe_dffe_8;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN e1_dffe_0 <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN e1_dffe_0 <= wire_altfp_div_pst1_w_e1_w_range359w;
@@ -2185,38 +1437,6 @@
 		IF (aclr = '1') THEN e1_dffe_1 <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN e1_dffe_1 <= wire_altfp_div_pst1_w_e1_w_range367w;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN e1_dffe_perf_0 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN e1_dffe_perf_0 <= e1_dffe_0;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN e1_dffe_perf_1 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN e1_dffe_perf_1 <= e1_dffe_perf_0;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN e1_dffe_perf_2 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN e1_dffe_perf_2 <= e1_dffe_perf_1;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN e1_dffe_perf_3 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN e1_dffe_perf_3 <= e1_dffe_perf_2;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -2238,22 +1458,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN exp_result_dffe_10 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_result_dffe_10 <= exp_result_dffe_9;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_result_dffe_11 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_result_dffe_11 <= exp_result_dffe_10;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN exp_result_dffe_2 <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN exp_result_dffe_2 <= exp_result_dffe_1;
@@ -2265,54 +1469,6 @@
 		IF (aclr = '1') THEN exp_result_dffe_3 <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN exp_result_dffe_3 <= exp_result_dffe_2;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_result_dffe_4 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_result_dffe_4 <= exp_result_dffe_3;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_result_dffe_5 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_result_dffe_5 <= exp_result_dffe_4;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_result_dffe_6 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_result_dffe_6 <= exp_result_dffe_5;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_result_dffe_7 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_result_dffe_7 <= exp_result_dffe_6;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_result_dffe_8 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_result_dffe_8 <= exp_result_dffe_7;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN exp_result_dffe_9 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN exp_result_dffe_9 <= exp_result_dffe_8;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -2367,39 +1523,6 @@
 	wire_nan_pipe_dffe_1_w_lg_q308w(0) <= NOT nan_pipe_dffe_1;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN nan_pipe_dffe_10 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN nan_pipe_dffe_10 <= nan_pipe_dffe_9;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN nan_pipe_dffe_11 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN nan_pipe_dffe_11 <= nan_pipe_dffe_10;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN nan_pipe_dffe_12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN nan_pipe_dffe_12 <= nan_pipe_dffe_11;
-			END IF;
-		END IF;
-	END PROCESS;
-	wire_nan_pipe_dffe_12_w_lg_q436w(0) <= NOT nan_pipe_dffe_12;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN nan_pipe_dffe_13 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN nan_pipe_dffe_13 <= nan_pipe_dffe_12;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN nan_pipe_dffe_2 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN nan_pipe_dffe_2 <= nan_pipe_dffe_1;
@@ -2422,43 +1545,12 @@
 			END IF;
 		END IF;
 	END PROCESS;
+	wire_nan_pipe_dffe_4_w_lg_q436w(0) <= NOT nan_pipe_dffe_4;
 	PROCESS (clock, aclr)
 	BEGIN
 		IF (aclr = '1') THEN nan_pipe_dffe_5 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN nan_pipe_dffe_5 <= nan_pipe_dffe_4;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN nan_pipe_dffe_6 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN nan_pipe_dffe_6 <= nan_pipe_dffe_5;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN nan_pipe_dffe_7 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN nan_pipe_dffe_7 <= nan_pipe_dffe_6;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN nan_pipe_dffe_8 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN nan_pipe_dffe_8 <= nan_pipe_dffe_7;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN nan_pipe_dffe_9 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN nan_pipe_dffe_9 <= nan_pipe_dffe_8;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -2480,22 +1572,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN overflow_dffe_10 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN overflow_dffe_10 <= overflow_dffe_9;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN overflow_dffe_11 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN overflow_dffe_11 <= overflow_dffe_10;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN overflow_dffe_2 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN overflow_dffe_2 <= overflow_dffe_1;
@@ -2504,90 +1580,9 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN overflow_dffe_3 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN overflow_dffe_3 <= overflow_dffe_2;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN overflow_dffe_4 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN overflow_dffe_4 <= overflow_dffe_3;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN overflow_dffe_5 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN overflow_dffe_5 <= overflow_dffe_4;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN overflow_dffe_6 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN overflow_dffe_6 <= overflow_dffe_5;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN overflow_dffe_7 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN overflow_dffe_7 <= overflow_dffe_6;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN overflow_dffe_8 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN overflow_dffe_8 <= overflow_dffe_7;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN overflow_dffe_9 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN overflow_dffe_9 <= overflow_dffe_8;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN q_partial_perf_dffe_0 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN q_partial_perf_dffe_0 <= wire_q_partial_0_result;
-			END IF;
-		END IF;
-	END PROCESS;
-	wire_q_partial_perf_dffe_0_w_q_range372w <= q_partial_perf_dffe_0(32 DOWNTO 16);
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN q_partial_perf_dffe_1 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN q_partial_perf_dffe_1 <= wire_q_partial_1_result;
-			END IF;
-		END IF;
-	END PROCESS;
-	wire_q_partial_perf_dffe_1_w_lg_w_q_range406w407w(0) <= wire_q_partial_perf_dffe_1_w_q_range406w(0) OR wire_altfp_div_pst1_w_sticky_bits_range404w(0);
-	wire_q_partial_perf_dffe_1_w_lg_w_q_range409w410w(0) <= wire_q_partial_perf_dffe_1_w_q_range409w(0) OR wire_altfp_div_pst1_w_sticky_bits_range408w(0);
-	wire_q_partial_perf_dffe_1_w_lg_w_q_range412w413w(0) <= wire_q_partial_perf_dffe_1_w_q_range412w(0) OR wire_altfp_div_pst1_w_sticky_bits_range411w(0);
-	wire_q_partial_perf_dffe_1_w_lg_w_q_range415w416w(0) <= wire_q_partial_perf_dffe_1_w_q_range415w(0) OR wire_altfp_div_pst1_w_sticky_bits_range414w(0);
-	wire_q_partial_perf_dffe_1_w_q_range406w(0) <= q_partial_perf_dffe_1(17);
-	wire_q_partial_perf_dffe_1_w_q_range409w(0) <= q_partial_perf_dffe_1(18);
-	wire_q_partial_perf_dffe_1_w_q_range412w(0) <= q_partial_perf_dffe_1(19);
-	wire_q_partial_perf_dffe_1_w_q_range415w(0) <= q_partial_perf_dffe_1(20);
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN quotient_j_dffe <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN quotient_j_dffe <= wire_q_partial_perf_dffe_0_w_q_range372w;
+			IF (clk_en = '1') THEN quotient_j_dffe <= wire_q_partial_0_w_result_range372w;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -2595,39 +1590,7 @@
 	BEGIN
 		IF (aclr = '1') THEN quotient_k_dffe_0 <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN quotient_k_dffe_0 <= quotient_k_dffe_perf_3;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN quotient_k_dffe_perf_0 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN quotient_k_dffe_perf_0 <= wire_altfp_div_pst1_w_w_quotient_accumulate_w_range384w_range385w;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN quotient_k_dffe_perf_1 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN quotient_k_dffe_perf_1 <= quotient_k_dffe_perf_0;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN quotient_k_dffe_perf_2 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN quotient_k_dffe_perf_2 <= quotient_k_dffe_perf_1;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN quotient_k_dffe_perf_3 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN quotient_k_dffe_perf_3 <= quotient_k_dffe_perf_2;
+			IF (clk_en = '1') THEN quotient_k_dffe_0 <= wire_altfp_div_pst1_w_w_quotient_accumulate_w_range384w_range385w;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -2643,31 +1606,7 @@
 	BEGIN
 		IF (aclr = '1') THEN remainder_j_dffe_1 <= (OTHERS => '0');
 		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN remainder_j_dffe_1 <= remainder_j_dffe_perf_2;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN remainder_j_dffe_perf_0 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN remainder_j_dffe_perf_0 <= remainder_j_dffe_0;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN remainder_j_dffe_perf_1 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN remainder_j_dffe_perf_1 <= remainder_j_dffe_perf_0;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN remainder_j_dffe_perf_2 <= (OTHERS => '0');
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN remainder_j_dffe_perf_2 <= remainder_j_dffe_perf_1;
+			IF (clk_en = '1') THEN remainder_j_dffe_1 <= remainder_j_dffe_0;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -2684,38 +1623,6 @@
 		IF (aclr = '1') THEN sign_pipe_dffe_1 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN sign_pipe_dffe_1 <= sign_pipe_dffe_0;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sign_pipe_dffe_10 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sign_pipe_dffe_10 <= sign_pipe_dffe_9;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sign_pipe_dffe_11 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sign_pipe_dffe_11 <= sign_pipe_dffe_10;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sign_pipe_dffe_12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sign_pipe_dffe_12 <= sign_pipe_dffe_11;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sign_pipe_dffe_13 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sign_pipe_dffe_13 <= sign_pipe_dffe_12;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -2753,38 +1660,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN sign_pipe_dffe_6 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sign_pipe_dffe_6 <= sign_pipe_dffe_5;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sign_pipe_dffe_7 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sign_pipe_dffe_7 <= sign_pipe_dffe_6;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sign_pipe_dffe_8 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sign_pipe_dffe_8 <= sign_pipe_dffe_7;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN sign_pipe_dffe_9 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN sign_pipe_dffe_9 <= sign_pipe_dffe_8;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN underflow_dffe_0 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN underflow_dffe_0 <= underflow_w;
@@ -2801,81 +1676,9 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN underflow_dffe_10 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN underflow_dffe_10 <= underflow_dffe_9;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN underflow_dffe_11 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN underflow_dffe_11 <= underflow_dffe_10;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN underflow_dffe_2 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN underflow_dffe_2 <= underflow_dffe_1;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN underflow_dffe_3 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN underflow_dffe_3 <= underflow_dffe_2;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN underflow_dffe_4 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN underflow_dffe_4 <= underflow_dffe_3;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN underflow_dffe_5 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN underflow_dffe_5 <= underflow_dffe_4;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN underflow_dffe_6 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN underflow_dffe_6 <= underflow_dffe_5;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN underflow_dffe_7 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN underflow_dffe_7 <= underflow_dffe_6;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN underflow_dffe_8 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN underflow_dffe_8 <= underflow_dffe_7;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN underflow_dffe_9 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN underflow_dffe_9 <= underflow_dffe_8;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -2905,30 +1708,6 @@
 	END PROCESS;
 	PROCESS (clock, aclr)
 	BEGIN
-		IF (aclr = '1') THEN zero_pipe_dffe_10 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN zero_pipe_dffe_10 <= zero_pipe_dffe_9;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN zero_pipe_dffe_11 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN zero_pipe_dffe_11 <= zero_pipe_dffe_10;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN zero_pipe_dffe_12 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN zero_pipe_dffe_12 <= zero_pipe_dffe_11;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
 		IF (aclr = '1') THEN zero_pipe_dffe_2 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN zero_pipe_dffe_2 <= zero_pipe_dffe_1;
@@ -2948,46 +1727,6 @@
 		IF (aclr = '1') THEN zero_pipe_dffe_4 <= '0';
 		ELSIF (clock = '1' AND clock'event) THEN 
 			IF (clk_en = '1') THEN zero_pipe_dffe_4 <= zero_pipe_dffe_3;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN zero_pipe_dffe_5 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN zero_pipe_dffe_5 <= zero_pipe_dffe_4;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN zero_pipe_dffe_6 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN zero_pipe_dffe_6 <= zero_pipe_dffe_5;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN zero_pipe_dffe_7 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN zero_pipe_dffe_7 <= zero_pipe_dffe_6;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN zero_pipe_dffe_8 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN zero_pipe_dffe_8 <= zero_pipe_dffe_7;
-			END IF;
-		END IF;
-	END PROCESS;
-	PROCESS (clock, aclr)
-	BEGIN
-		IF (aclr = '1') THEN zero_pipe_dffe_9 <= '0';
-		ELSIF (clock = '1' AND clock'event) THEN 
-			IF (clk_en = '1') THEN zero_pipe_dffe_9 <= zero_pipe_dffe_8;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -3023,20 +1762,16 @@
 		result => wire_exp_sub_result
 	  );
 	wire_quotient_process_dataa <= ( quotient_accumulate_w(61 DOWNTO 45) & "00000000000000");
-	wire_quotient_process_datab <= ( "00000000000000" & q_partial_perf_dffe_1(32 DOWNTO 22) & "111111");
+	wire_quotient_process_datab <= ( "00000000000000" & wire_q_partial_1_result(32 DOWNTO 22) & "111111");
 	wire_quotient_process_w_result_range424w <= wire_quotient_process_result(28 DOWNTO 6);
 	quotient_process :  lpm_add_sub
 	  GENERIC MAP (
 		LPM_DIRECTION => "ADD",
-		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "UNSIGNED",
 		LPM_WIDTH => 31
 	  )
 	  PORT MAP ( 
-		aclr => aclr,
 		cin => quotient_process_cin_w,
-		clken => clk_en,
-		clock => clock,
 		dataa => wire_quotient_process_dataa,
 		datab => wire_quotient_process_datab,
 		result => wire_quotient_process_result
@@ -3045,14 +1780,10 @@
 	remainder_sub_0 :  lpm_add_sub
 	  GENERIC MAP (
 		LPM_DIRECTION => "SUB",
-		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "UNSIGNED",
 		LPM_WIDTH => 50
 	  )
 	  PORT MAP ( 
-		aclr => aclr,
-		clken => clk_en,
-		clock => clock,
 		dataa => wire_remainder_sub_0_dataa,
 		datab => wire_remainder_mult_0_result(49 DOWNTO 0),
 		result => wire_remainder_sub_0_result
@@ -3070,7 +1801,7 @@
 	wire_a1_prod_datab <= ( "1" & e0_dffe1_wo);
 	a1_prod :  lpm_mult
 	  GENERIC MAP (
-		LPM_PIPELINE => 3,
+		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "UNSIGNED",
 		LPM_WIDTHA => 25,
 		LPM_WIDTHB => 10,
@@ -3092,7 +1823,7 @@
 	wire_b1_prod_w_result_range357w <= wire_b1_prod_result(33 DOWNTO 17);
 	b1_prod :  lpm_mult
 	  GENERIC MAP (
-		LPM_PIPELINE => 3,
+		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "UNSIGNED",
 		LPM_WIDTHA => 24,
 		LPM_WIDTHB => 10,
@@ -3107,6 +1838,7 @@
 		datab => wire_b1_prod_datab,
 		result => wire_b1_prod_result
 	  );
+	wire_q_partial_0_w_result_range372w <= wire_q_partial_0_result(32 DOWNTO 16);
 	q_partial_0 :  lpm_mult
 	  GENERIC MAP (
 		LPM_PIPELINE => 1,
@@ -3124,6 +1856,14 @@
 		datab => e1_w(16 DOWNTO 0),
 		result => wire_q_partial_0_result
 	  );
+	wire_q_partial_1_w_lg_w_result_range406w407w(0) <= wire_q_partial_1_w_result_range406w(0) OR wire_altfp_div_pst1_w_sticky_bits_range404w(0);
+	wire_q_partial_1_w_lg_w_result_range409w410w(0) <= wire_q_partial_1_w_result_range409w(0) OR wire_altfp_div_pst1_w_sticky_bits_range408w(0);
+	wire_q_partial_1_w_lg_w_result_range412w413w(0) <= wire_q_partial_1_w_result_range412w(0) OR wire_altfp_div_pst1_w_sticky_bits_range411w(0);
+	wire_q_partial_1_w_lg_w_result_range415w416w(0) <= wire_q_partial_1_w_result_range415w(0) OR wire_altfp_div_pst1_w_sticky_bits_range414w(0);
+	wire_q_partial_1_w_result_range406w(0) <= wire_q_partial_1_result(17);
+	wire_q_partial_1_w_result_range409w(0) <= wire_q_partial_1_result(18);
+	wire_q_partial_1_w_result_range412w(0) <= wire_q_partial_1_result(19);
+	wire_q_partial_1_w_result_range415w(0) <= wire_q_partial_1_result(20);
 	q_partial_1 :  lpm_mult
 	  GENERIC MAP (
 		LPM_PIPELINE => 1,
@@ -3143,7 +1883,7 @@
 	  );
 	remainder_mult_0 :  lpm_mult
 	  GENERIC MAP (
-		LPM_PIPELINE => 3,
+		LPM_PIPELINE => 1,
 		LPM_REPRESENTATION => "UNSIGNED",
 		LPM_WIDTHA => 34,
 		LPM_WIDTHB => 17,
@@ -3155,22 +1895,22 @@
 		clken => clk_en,
 		clock => clock,
 		dataa => b1_dffe_w(33 DOWNTO 0),
-		datab => q_partial_perf_dffe_0(32 DOWNTO 16),
+		datab => wire_q_partial_0_result(32 DOWNTO 16),
 		result => wire_remainder_mult_0_result
 	  );
 	wire_exp_result_muxa_dataout <= underflow_zeros_w WHEN exp_result_mux_sel_w = '1'  ELSE exp_result_w;
 	wire_man_a_adjusteda_dataout <= ( "1" & man_a_dffe1_wo & "0") WHEN frac_a_smaller_dffe1_wo = '1'  ELSE ( "0" & "1" & man_a_dffe1_wo);
-	wire_man_result_muxa_dataout <= ( nan_pipe_dffe_12 & man_zeros_w(21 DOWNTO 0)) WHEN man_result_mux_select = '1'  ELSE wire_quotient_process_result(28 DOWNTO 6);
+	wire_man_result_muxa_dataout <= ( nan_pipe_dffe_4 & man_zeros_w(21 DOWNTO 0)) WHEN man_result_mux_select = '1'  ELSE wire_quotient_process_result(28 DOWNTO 6);
 	wire_select_bias_2a_dataout <= value_zero_w WHEN both_exp_zeros = '1'  ELSE select_bias_out_w;
 	wire_select_biasa_dataout <= value_normal_w WHEN frac_a_smaller_dffe1_wo = '1'  ELSE value_add_one_w;
 
- END RTL; --fp_div_altfp_div_pst_ejh
+ END RTL; --fp_div_altfp_div_pst_llf
 
---synthesis_resources = altsyncram 1 lpm_add_sub 4 lpm_compare 1 lpm_mult 5 mux21 74 reg 875 
+--synthesis_resources = altsyncram 1 lpm_add_sub 4 lpm_compare 1 lpm_mult 5 mux21 74 reg 349 
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  fp_div_altfp_div_55l IS 
+ ENTITY  fp_div_altfp_div_c7j IS 
 	 PORT 
 	 ( 
 		 aclr	:	IN  STD_LOGIC := '0';
@@ -3179,21 +1919,17 @@
 		 dataa	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 datab	:	IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
 		 nan	:	OUT  STD_LOGIC;
-		 overflow	:	OUT  STD_LOGIC;
 		 result	:	OUT  STD_LOGIC_VECTOR (31 DOWNTO 0);
-		 underflow	:	OUT  STD_LOGIC;
 		 zero	:	OUT  STD_LOGIC
 	 ); 
- END fp_div_altfp_div_55l;
+ END fp_div_altfp_div_c7j;
 
- ARCHITECTURE RTL OF fp_div_altfp_div_55l IS
+ ARCHITECTURE RTL OF fp_div_altfp_div_c7j IS
 
 	 SIGNAL  wire_altfp_div_pst1_nan	:	STD_LOGIC;
-	 SIGNAL  wire_altfp_div_pst1_overflow	:	STD_LOGIC;
 	 SIGNAL  wire_altfp_div_pst1_result	:	STD_LOGIC_VECTOR (31 DOWNTO 0);
-	 SIGNAL  wire_altfp_div_pst1_underflow	:	STD_LOGIC;
 	 SIGNAL  wire_altfp_div_pst1_zero	:	STD_LOGIC;
-	 COMPONENT  fp_div_altfp_div_pst_ejh
+	 COMPONENT  fp_div_altfp_div_pst_llf
 	 PORT
 	 ( 
 		aclr	:	IN  STD_LOGIC := '0';
@@ -3202,20 +1938,16 @@
 		dataa	:	IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
 		datab	:	IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
 		nan	:	OUT  STD_LOGIC;
-		overflow	:	OUT  STD_LOGIC;
 		result	:	OUT  STD_LOGIC_VECTOR(31 DOWNTO 0);
-		underflow	:	OUT  STD_LOGIC;
 		zero	:	OUT  STD_LOGIC
 	 ); 
 	 END COMPONENT;
  BEGIN
 
 	nan <= wire_altfp_div_pst1_nan;
-	overflow <= wire_altfp_div_pst1_overflow;
 	result <= wire_altfp_div_pst1_result;
-	underflow <= wire_altfp_div_pst1_underflow;
 	zero <= wire_altfp_div_pst1_zero;
-	altfp_div_pst1 :  fp_div_altfp_div_pst_ejh
+	altfp_div_pst1 :  fp_div_altfp_div_pst_llf
 	  PORT MAP ( 
 		aclr => aclr,
 		clk_en => clk_en,
@@ -3223,13 +1955,11 @@
 		dataa => dataa,
 		datab => datab,
 		nan => wire_altfp_div_pst1_nan,
-		overflow => wire_altfp_div_pst1_overflow,
 		result => wire_altfp_div_pst1_result,
-		underflow => wire_altfp_div_pst1_underflow,
 		zero => wire_altfp_div_pst1_zero
 	  );
 
- END RTL; --fp_div_altfp_div_55l
+ END RTL; --fp_div_altfp_div_c7j
 --VALID FILE
 
 
@@ -3245,9 +1975,7 @@ ENTITY fp_div IS
 		dataa		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		datab		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		nan		: OUT STD_LOGIC ;
-		overflow		: OUT STD_LOGIC ;
 		result		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
-		underflow		: OUT STD_LOGIC ;
 		zero		: OUT STD_LOGIC 
 	);
 END fp_div;
@@ -3257,46 +1985,38 @@ ARCHITECTURE RTL OF fp_div IS
 
 	SIGNAL sub_wire0	: STD_LOGIC ;
 	SIGNAL sub_wire1	: STD_LOGIC ;
-	SIGNAL sub_wire2	: STD_LOGIC ;
-	SIGNAL sub_wire3	: STD_LOGIC_VECTOR (31 DOWNTO 0);
-	SIGNAL sub_wire4	: STD_LOGIC ;
+	SIGNAL sub_wire2	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 
 
 
-	COMPONENT fp_div_altfp_div_55l
+	COMPONENT fp_div_altfp_div_c7j
 	PORT (
+			aclr	: IN STD_LOGIC ;
 			clk_en	: IN STD_LOGIC ;
 			clock	: IN STD_LOGIC ;
 			datab	: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
-			overflow	: OUT STD_LOGIC ;
 			zero	: OUT STD_LOGIC ;
 			dataa	: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			nan	: OUT STD_LOGIC ;
-			result	: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
-			aclr	: IN STD_LOGIC ;
-			underflow	: OUT STD_LOGIC 
+			result	: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
 	);
 	END COMPONENT;
 
 BEGIN
-	overflow    <= sub_wire0;
-	zero    <= sub_wire1;
-	nan    <= sub_wire2;
-	result    <= sub_wire3(31 DOWNTO 0);
-	underflow    <= sub_wire4;
+	zero    <= sub_wire0;
+	nan    <= sub_wire1;
+	result    <= sub_wire2(31 DOWNTO 0);
 
-	fp_div_altfp_div_55l_component : fp_div_altfp_div_55l
+	fp_div_altfp_div_c7j_component : fp_div_altfp_div_c7j
 	PORT MAP (
+		aclr => aclr,
 		clk_en => clk_en,
 		clock => clock,
 		datab => datab,
 		dataa => dataa,
-		aclr => aclr,
-		overflow => sub_wire0,
-		zero => sub_wire1,
-		nan => sub_wire2,
-		result => sub_wire3,
-		underflow => sub_wire4
+		zero => sub_wire0,
+		nan => sub_wire1,
+		result => sub_wire2
 	);
 
 
@@ -3312,7 +2032,7 @@ END RTL;
 -- Retrieval info: CONSTANT: DENORMAL_SUPPORT STRING "NO"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone III"
 -- Retrieval info: CONSTANT: OPTIMIZE STRING "SPEED"
--- Retrieval info: CONSTANT: PIPELINE NUMERIC "14"
+-- Retrieval info: CONSTANT: PIPELINE NUMERIC "6"
 -- Retrieval info: CONSTANT: REDUCED_FUNCTIONALITY STRING "NO"
 -- Retrieval info: CONSTANT: WIDTH_EXP NUMERIC "8"
 -- Retrieval info: CONSTANT: WIDTH_MAN NUMERIC "23"
@@ -3322,9 +2042,7 @@ END RTL;
 -- Retrieval info: USED_PORT: dataa 0 0 32 0 INPUT NODEFVAL "dataa[31..0]"
 -- Retrieval info: USED_PORT: datab 0 0 32 0 INPUT NODEFVAL "datab[31..0]"
 -- Retrieval info: USED_PORT: nan 0 0 0 0 OUTPUT NODEFVAL "nan"
--- Retrieval info: USED_PORT: overflow 0 0 0 0 OUTPUT NODEFVAL "overflow"
 -- Retrieval info: USED_PORT: result 0 0 32 0 OUTPUT NODEFVAL "result[31..0]"
--- Retrieval info: USED_PORT: underflow 0 0 0 0 OUTPUT NODEFVAL "underflow"
 -- Retrieval info: USED_PORT: zero 0 0 0 0 OUTPUT NODEFVAL "zero"
 -- Retrieval info: CONNECT: @aclr 0 0 0 0 aclr 0 0 0 0
 -- Retrieval info: CONNECT: @clk_en 0 0 0 0 clk_en 0 0 0 0
@@ -3332,12 +2050,10 @@ END RTL;
 -- Retrieval info: CONNECT: @dataa 0 0 32 0 dataa 0 0 32 0
 -- Retrieval info: CONNECT: @datab 0 0 32 0 datab 0 0 32 0
 -- Retrieval info: CONNECT: nan 0 0 0 0 @nan 0 0 0 0
--- Retrieval info: CONNECT: overflow 0 0 0 0 @overflow 0 0 0 0
 -- Retrieval info: CONNECT: result 0 0 32 0 @result 0 0 32 0
--- Retrieval info: CONNECT: underflow 0 0 0 0 @underflow 0 0 0 0
 -- Retrieval info: CONNECT: zero 0 0 0 0 @zero 0 0 0 0
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.vhd TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.inc TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.inc FALSE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.cmp TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div.bsf TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL fp_div_inst.vhd TRUE

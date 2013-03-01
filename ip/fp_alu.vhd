@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 12.0 Build 178 05/31/2012 SJ Full Version"
--- CREATED		"Sun Feb 17 17:28:09 2013"
+-- CREATED		"Fri Mar 01 19:24:42 2013"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -46,8 +46,6 @@ COMPONENT fp_add
 		 dataa : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 		 datab : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 		 NaN : OUT STD_LOGIC;
-		 overflow : OUT STD_LOGIC;
-		 underflow : OUT STD_LOGIC;
 		 zero : OUT STD_LOGIC;
 		 result : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
 	);
@@ -60,19 +58,17 @@ COMPONENT fp_mult
 		 dataa : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 		 datab : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 		 nan : OUT STD_LOGIC;
-		 overflow : OUT STD_LOGIC;
-		 underflow : OUT STD_LOGIC;
 		 zero : OUT STD_LOGIC;
 		 result : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
 	);
 END COMPONENT;
 
-COMPONENT const_13
+COMPONENT const_6
 	PORT(		 result : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
 	);
 END COMPONENT;
 
-COMPONENT const_10
+COMPONENT const_4
 	PORT(		 result : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
 	);
 END COMPONENT;
@@ -84,10 +80,13 @@ COMPONENT fp_div
 		 dataa : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 		 datab : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 		 NaN : OUT STD_LOGIC;
-		 overflow : OUT STD_LOGIC;
-		 underflow : OUT STD_LOGIC;
 		 zero : OUT STD_LOGIC;
 		 result : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT const_5
+	PORT(		 result : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
 	);
 END COMPONENT;
 
@@ -129,6 +128,7 @@ SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC_VECTOR(31 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_11 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_9 :  STD_LOGIC_VECTOR(3 DOWNTO 0);
 
 
 BEGIN 
@@ -154,11 +154,11 @@ PORT MAP(clk_en => clk_en,
 		 result => SYNTHESIZED_WIRE_3);
 
 
-b2v_inst10 : const_13
+b2v_inst10 : const_6
 PORT MAP(		 result => SYNTHESIZED_WIRE_11);
 
 
-b2v_inst11 : const_10
+b2v_inst11 : const_4
 PORT MAP(		 result => SYNTHESIZED_WIRE_8);
 
 
@@ -173,6 +173,10 @@ PORT MAP(clock => clk,
 
 SYNTHESIZED_WIRE_0 <= NOT(n(0));
 
+
+
+b2v_inst5 : const_5
+PORT MAP(		 result => SYNTHESIZED_WIRE_9);
 
 
 b2v_inst6 : four_input_bus_mux
@@ -200,7 +204,7 @@ b2v_inst9 : four_input_4bit_mux
 PORT MAP(data0x => SYNTHESIZED_WIRE_11,
 		 data1x => SYNTHESIZED_WIRE_11,
 		 data2x => SYNTHESIZED_WIRE_8,
-		 data3x => SYNTHESIZED_WIRE_11,
+		 data3x => SYNTHESIZED_WIRE_9,
 		 sel => n,
 		 result => SYNTHESIZED_WIRE_5);
 

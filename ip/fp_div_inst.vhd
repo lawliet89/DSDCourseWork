@@ -5,8 +5,6 @@ fp_div_inst : fp_div PORT MAP (
 		dataa	 => dataa_sig,
 		datab	 => datab_sig,
 		nan	 => nan_sig,
-		overflow	 => overflow_sig,
 		result	 => result_sig,
-		underflow	 => underflow_sig,
 		zero	 => zero_sig
 	);

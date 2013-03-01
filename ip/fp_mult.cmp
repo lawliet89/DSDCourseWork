@@ -22,9 +22,7 @@ component fp_mult
 		dataa		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		datab		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		nan		: OUT STD_LOGIC ;
-		overflow		: OUT STD_LOGIC ;
 		result		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
-		underflow		: OUT STD_LOGIC ;
 		zero		: OUT STD_LOGIC 
 	);
 end component;

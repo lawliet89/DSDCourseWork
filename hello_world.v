@@ -54,7 +54,7 @@ assign DRAM_CLK = PLL_external_clk;
 first_nios2_system	b2v_inst(
 	.clk_clk(CLOCK_50),
 	.reset_reset_n(SYNTHESIZED_WIRE_0),
-	.led_pio_external_connection_export(LEDG),
+//	.led_pio_external_connection_export(LEDG),
 	.sdram_wire_addr                    (DRAM_A),                    // sdram_wire.addr - not entirely sure???
 	.sdram_wire_ba                      (DRAM_BA),                      //                            .ba
 	.sdram_wire_cas_n                   (DRAM_CAS_N),                   //                            .cas_n
@@ -64,7 +64,7 @@ first_nios2_system	b2v_inst(
 	.sdram_wire_dqm                     (DRAM_DQM),                     //                            .dqm
 	.sdram_wire_ras_n                   (DRAM_RAS_N),                   //                            .ras_n
 	.sdram_wire_we_n                    (DRAM_WE_N),                     //                            .we_n
-	.pll_external_clk_clk               (PLL_external_clk)             //            pll_external_clk.clk
+	.pll_c0_clk             (PLL_external_clk)            
 	);
 
 

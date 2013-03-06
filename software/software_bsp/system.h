@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'first_nios2_system'
  * SOPC Builder design path: ../../first_nios2_system.sopcinfo
  *
- * Generated: Fri Feb 22 11:22:34 GMT 2013
+ * Generated: Wed Mar 06 23:05:08 GMT 2013
  */
 
 /*
@@ -126,6 +126,8 @@
 #define ALT_CI_FP_ALU_0(n,A,B) __builtin_custom_inii(ALT_CI_FP_ALU_0_N+(n&ALT_CI_FP_ALU_0_N_MASK),(A),(B))
 #define ALT_CI_FP_ALU_0_N 0x0
 #define ALT_CI_FP_ALU_0_N_MASK ((1<<2)-1)
+#define ALT_CI_FP_DET_NIOS_0(A,B) __builtin_custom_inii(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
+#define ALT_CI_FP_DET_NIOS_0_N 0x4
 
 
 /*
@@ -135,12 +137,12 @@
 
 #define __ALTERA_AVALON_JTAG_UART
 #define __ALTERA_AVALON_NEW_SDRAM_CONTROLLER
-#define __ALTERA_AVALON_PIO
 #define __ALTERA_AVALON_SYSID_QSYS
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_QSYS
 #define __ALTPLL
 #define __FP_ALU
+#define __FP_DET_NIOS
 
 
 /*
@@ -159,24 +161,38 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart"
-#define ALT_STDERR_BASE 0x1001050
+#define ALT_STDERR_BASE 0x1001040
 #define ALT_STDERR_DEV jtag_uart
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart"
-#define ALT_STDIN_BASE 0x1001050
+#define ALT_STDIN_BASE 0x1001040
 #define ALT_STDIN_DEV jtag_uart
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart"
-#define ALT_STDOUT_BASE 0x1001050
+#define ALT_STDOUT_BASE 0x1001040
 #define ALT_STDOUT_DEV jtag_uart
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
 #define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
 #define ALT_SYSTEM_NAME "first_nios2_system"
+
+
+/*
+ * fp_det_nios_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_fp_det_nios_0 fp_det_nios
+#define FP_DET_NIOS_0_BASE 0x1001050
+#define FP_DET_NIOS_0_IRQ -1
+#define FP_DET_NIOS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define FP_DET_NIOS_0_NAME "/dev/fp_det_nios_0"
+#define FP_DET_NIOS_0_SPAN 1
+#define FP_DET_NIOS_0_TYPE "fp_det_nios"
 
 
 /*
@@ -195,7 +211,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart altera_avalon_jtag_uart
-#define JTAG_UART_BASE 0x1001050
+#define JTAG_UART_BASE 0x1001040
 #define JTAG_UART_IRQ 16
 #define JTAG_UART_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_NAME "/dev/jtag_uart"
@@ -208,39 +224,12 @@
 
 
 /*
- * led_pio configuration
- *
- */
-
-#define ALT_MODULE_CLASS_led_pio altera_avalon_pio
-#define LED_PIO_BASE 0x1001020
-#define LED_PIO_BIT_CLEARING_EDGE_REGISTER 0
-#define LED_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define LED_PIO_CAPTURE 0
-#define LED_PIO_DATA_WIDTH 8
-#define LED_PIO_DO_TEST_BENCH_WIRING 0
-#define LED_PIO_DRIVEN_SIM_VALUE 0x0
-#define LED_PIO_EDGE_TYPE "NONE"
-#define LED_PIO_FREQ 50000000u
-#define LED_PIO_HAS_IN 0
-#define LED_PIO_HAS_OUT 1
-#define LED_PIO_HAS_TRI 0
-#define LED_PIO_IRQ -1
-#define LED_PIO_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define LED_PIO_IRQ_TYPE "NONE"
-#define LED_PIO_NAME "/dev/led_pio"
-#define LED_PIO_RESET_VALUE 0x0
-#define LED_PIO_SPAN 16
-#define LED_PIO_TYPE "altera_avalon_pio"
-
-
-/*
  * pll configuration
  *
  */
 
 #define ALT_MODULE_CLASS_pll altpll
-#define PLL_BASE 0x1001040
+#define PLL_BASE 0x1001030
 #define PLL_IRQ -1
 #define PLL_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define PLL_NAME "/dev/pll"
@@ -319,13 +308,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid altera_avalon_sysid_qsys
-#define SYSID_BASE 0x1001058
+#define SYSID_BASE 0x1001048
 #define SYSID_ID 0
 #define SYSID_IRQ -1
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1361531825
+#define SYSID_TIMESTAMP 1362610768
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */

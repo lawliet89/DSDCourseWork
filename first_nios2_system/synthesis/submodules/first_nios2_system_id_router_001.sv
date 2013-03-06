@@ -149,10 +149,13 @@ module first_nios2_system_id_router_001
 
 
         if (destid == 0 ) begin
-            src_channel = 7'b01;
+            src_channel = 7'b001;
         end
         if (destid == 1 ) begin
-            src_channel = 7'b10;
+            src_channel = 7'b010;
+        end
+        if (destid == 2 ) begin
+            src_channel = 7'b100;
         end
 
     end

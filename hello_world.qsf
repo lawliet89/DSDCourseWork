@@ -106,6 +106,7 @@ set_location_assignment PIN_A3 -to DRAM_A[1]
 set_location_assignment PIN_C4 -to DRAM_A[0]
 set_location_assignment PIN_B8 -to DRAM_DQM[1]
 set_location_assignment PIN_E7 -to DRAM_DQM[0]
+set_global_assignment -name VERILOG_FILE ip/fp_det_nios.v
 set_global_assignment -name VHDL_FILE ip/fp_alu.vhd
 set_global_assignment -name QIP_FILE first_nios2_system/synthesis/first_nios2_system.qip
 set_global_assignment -name VERILOG_FILE hello_world.v
@@ -124,4 +125,5 @@ set_global_assignment -name QIP_FILE ip/const_7.qip
 set_global_assignment -name QIP_FILE ip/const_5.qip
 set_global_assignment -name QIP_FILE const_6.qip
 set_global_assignment -name QIP_FILE ip/const_4.qip
+set_global_assignment -name QIP_FILE ip/ram_det.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

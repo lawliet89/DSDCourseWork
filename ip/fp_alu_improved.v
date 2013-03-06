@@ -52,8 +52,8 @@ always @ (posedge clk) begin
 		end else if ( dataa[30:0] == 31'h7F800000 || datab[30:0] == 31'h7F800000) begin // Infinity operations
 			done <= 1;
 			result <= NaN;
-		end else if (datab == 0 && n == 3) begin  // Divide by zero
-			if (dataa == 0) begin
+		end else if (datab[30:0] == 0 && n == 3) begin  // Divide by zero
+			if (dataa[30:0] == 0) begin
 				done <= 1;
 				result <= NaN;
 			end else if (dataa[31] == 0) begin
@@ -65,13 +65,13 @@ always @ (posedge clk) begin
 				done <= 1;
 				result = 32'hff800000;
 			end
-		end else if (dataa == 0 || datab == 0)  begin	// zero arithmetic
+		end else if (dataa[30:0] == 0 || datab[30:0] == 0)  begin	// zero arithmetic
 			if (n == 0) begin // addition
 				done <= 1;
-				result <= (dataa == 0) ? datab : dataa;
+				result <= (dataa[30:0] == 0) ? datab : dataa;
 			end else if (n == 1) begin // subtraction
 				done <= 1;
-				if (dataa == 0) begin
+				if (dataa[30:0] == 0) begin
 					result[30:0] <= datab[30:0];
 					result[31] <= ~datab[31];
 				end else begin
@@ -80,10 +80,10 @@ always @ (posedge clk) begin
 			end else begin // multiplication or division
 				result <= 0;
 			end
-		end else if ( (dataa == 1 || datab == 1) && n == 2) begin 	// one multipication
+		end else if ( (dataa == 'h3f800000 || datab == 'h3f800000) && n == 2) begin 	// one multipication
 			done <= 1;
-			result <= (dataa == 1) ? datab : dataa;
-		end else if ( datab == 1 && n == 3 ) begin	// divide by 1
+			result <= (dataa == 'h3f800000) ? datab : dataa;
+		end else if ( datab == 'h3f800000 && n == 3 ) begin	// divide by 1
 			done <= 1;
 			result <= dataa;
 		end  // No need to assign, since the ALU won't be done in a single cycle anyway

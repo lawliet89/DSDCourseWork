@@ -23,6 +23,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include "altera_avalon_pio_regs.h"
+#include "sys/alt_irq.h"
 
 #define ALT_CI_FP_ALU_FP(n,A,B) __builtin_custom_fnff(ALT_CI_FP_ALU_0_N+(n&ALT_CI_FP_ALU_0_N_MASK),(A),(B))
 #define fp_add(A,B) ALT_CI_FP_ALU_FP(0,(A),(B))
@@ -36,6 +38,7 @@ float determinant(float *matrix, int dimension);
 float getAt(float *m, int i, int j, int dimension);
 void putAt(float *m, int i, int j, int dimension, float value);
 void randomMatrix(float *matrix, int dimension);
+void setDeterminantDimension(int size);
 
 float determinant(float *matrix, int dimension){
 	int i, j, p;
@@ -112,6 +115,10 @@ void randomMatrix(float *matrix, int dimension){
 	alt_putstr("]\n");
 }
 
+void setDeterminantSize(int size){
+	IOWR_ALTERA_AVALON_PIO_DATA(FP_DET_NIOS_0_BASE, size);
+}
+
 int main(){
 	float det = 0.f;
 	int i;
@@ -134,6 +141,10 @@ int main(){
 	alt_putstr("\n");
 	alt_putstr(" proc time = "); alt_putstr(buf); alt_putstr(" seconds \n");
 
+	setDeterminantSize(15);
+	i = ALT_CI_FP_DET_NIOS_0(0,0);
+	gcvt(i, 10, buffer);
+	alt_putstr("set to = "); alt_putstr(buffer);
 	/* Event loop never exits. */
 	while (1);
 

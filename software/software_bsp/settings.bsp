@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Mar 1, 2013 7:30:36 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1362166236042</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Mar 6, 2013 11:05:05 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1362611105339</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>H:\DSD\DSDCourseWork\software\software_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\first_nios2_system.sopcinfo</SopcDesignFile>
@@ -863,27 +863,27 @@
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>led_pio</slaveDescriptor>
-                <addressRange>0x01001020 - 0x0100102F</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>pll</slaveDescriptor>
-                <addressRange>0x01001040 - 0x0100104F</addressRange>
+                <addressRange>0x01001030 - 0x0100103F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x01001050 - 0x01001057</addressRange>
+                <addressRange>0x01001040 - 0x01001047</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid</slaveDescriptor>
-                <addressRange>0x01001058 - 0x0100105F</addressRange>
+                <addressRange>0x01001048 - 0x0100104F</addressRange>
                 <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>fp_det_nios_0</slaveDescriptor>
+                <addressRange>0x01001050 - 0x01001050</addressRange>
+                <addressSpan>1</addressSpan>
                 <attributes/>
         </MemoryMap>
         <LinkerSection>

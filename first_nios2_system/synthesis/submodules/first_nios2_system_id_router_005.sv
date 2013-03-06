@@ -29,28 +29,28 @@
 
 `timescale 1 ns / 1 ns
 
-module first_nios2_system_addr_router_default_decode
+module first_nios2_system_id_router_005_default_decode
   #(
-     parameter DEFAULT_CHANNEL = 1,
+     parameter DEFAULT_CHANNEL = 0,
                DEFAULT_DESTID = 1 
    )
-  (output [85 - 83 : 0] default_destination_id,
-   output [7-1 : 0] default_src_channel
+  (output [58 - 56 : 0] default_destination_id,
+   output [6-1 : 0] default_src_channel
   );
 
   assign default_destination_id = 
-    DEFAULT_DESTID[85 - 83 : 0];
+    DEFAULT_DESTID[58 - 56 : 0];
   generate begin : default_decode
     if (DEFAULT_CHANNEL == -1)
       assign default_src_channel = '0;
     else
-      assign default_src_channel = 7'b1 << DEFAULT_CHANNEL;
+      assign default_src_channel = 6'b1 << DEFAULT_CHANNEL;
   end endgenerate
 
 endmodule
 
 
-module first_nios2_system_addr_router
+module first_nios2_system_id_router_005
 (
     // -------------------
     // Clock & Reset
@@ -62,7 +62,7 @@ module first_nios2_system_addr_router
     // Command Sink (Input)
     // -------------------
     input                       sink_valid,
-    input  [96-1 : 0]    sink_data,
+    input  [69-1 : 0]    sink_data,
     input                       sink_startofpacket,
     input                       sink_endofpacket,
     output                      sink_ready,
@@ -71,8 +71,8 @@ module first_nios2_system_addr_router
     // Command Source (Output)
     // -------------------
     output                          src_valid,
-    output reg [96-1    : 0] src_data,
-    output reg [7-1 : 0] src_channel,
+    output reg [69-1    : 0] src_data,
+    output reg [6-1 : 0] src_channel,
     output                          src_startofpacket,
     output                          src_endofpacket,
     input                           src_ready
@@ -81,16 +81,16 @@ module first_nios2_system_addr_router
     // -------------------------------------------------------
     // Local parameters and variables
     // -------------------------------------------------------
-    localparam PKT_ADDR_H = 60;
-    localparam PKT_ADDR_L = 36;
-    localparam PKT_DEST_ID_H = 85;
-    localparam PKT_DEST_ID_L = 83;
-    localparam ST_DATA_W = 96;
-    localparam ST_CHANNEL_W = 7;
-    localparam DECODER_TYPE = 0;
+    localparam PKT_ADDR_H = 33;
+    localparam PKT_ADDR_L = 9;
+    localparam PKT_DEST_ID_H = 58;
+    localparam PKT_DEST_ID_L = 56;
+    localparam ST_DATA_W = 69;
+    localparam ST_CHANNEL_W = 6;
+    localparam DECODER_TYPE = 1;
 
-    localparam PKT_TRANS_WRITE = 63;
-    localparam PKT_TRANS_READ  = 64;
+    localparam PKT_TRANS_WRITE = 36;
+    localparam PKT_TRANS_READ  = 37;
 
     localparam PKT_ADDR_W = PKT_ADDR_H-PKT_ADDR_L + 1;
     localparam PKT_DEST_ID_W = PKT_DEST_ID_H-PKT_DEST_ID_L + 1;
@@ -102,16 +102,13 @@ module first_nios2_system_addr_router
     // Figure out the number of bits to mask off for each slave span
     // during address decoding
     // -------------------------------------------------------
-    localparam PAD0 = log2ceil(32'h1000000 - 32'h800000);
-    localparam PAD1 = log2ceil(32'h1001000 - 32'h1000800);
-    localparam PAD2 = log2ceil(32'h1001040 - 32'h1001030);
 
     // -------------------------------------------------------
     // Work out which address bits are significant based on the
     // address range of the slaves. If the required width is too
     // large or too small, we use the address field width instead.
     // -------------------------------------------------------
-    localparam ADDR_RANGE = 32'h1001040;
+    localparam ADDR_RANGE = 32'h0;
     localparam RANGE_ADDR_WIDTH = log2ceil(ADDR_RANGE);
     localparam OPTIMIZED_ADDR_H = (RANGE_ADDR_WIDTH > PKT_ADDR_W) ||
                                   (RANGE_ADDR_WIDTH == 0) ?
@@ -119,7 +116,7 @@ module first_nios2_system_addr_router
                                         PKT_ADDR_L + RANGE_ADDR_WIDTH - 1;
     localparam RG = RANGE_ADDR_WIDTH-1;
 
-      wire [PKT_ADDR_W-1 : 0] address = sink_data[OPTIMIZED_ADDR_H : PKT_ADDR_L];
+    reg [PKT_DEST_ID_W-1 : 0] destid;
 
     // -------------------------------------------------------
     // Pass almost everything through, untouched
@@ -130,12 +127,12 @@ module first_nios2_system_addr_router
     assign src_endofpacket   = sink_endofpacket;
 
     wire [PKT_DEST_ID_W-1:0] default_destid;
-    wire [7-1 : 0] default_src_channel;
+    wire [6-1 : 0] default_src_channel;
 
 
 
 
-    first_nios2_system_addr_router_default_decode the_default_decode(
+    first_nios2_system_id_router_005_default_decode the_default_decode(
       .default_destination_id (default_destid),
       .default_src_channel (default_src_channel)
     );
@@ -144,29 +141,17 @@ module first_nios2_system_addr_router
         src_data    = sink_data;
         src_channel = default_src_channel;
 
-        src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = default_destid;
         // --------------------------------------------------
-        // Address Decoder
-        // Sets the channel and destination ID based on the address
+        // DestinationID Decoder
+        // Sets the channel based on the destination ID.
         // --------------------------------------------------
+        destid      = sink_data[PKT_DEST_ID_H : PKT_DEST_ID_L];
 
-        // ( 0x800000 .. 0x1000000 )
-        if ( {address[RG:PAD0],{PAD0{1'b0}}} == 'h800000 ) begin
-            src_channel = 7'b010;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 1;
+
+        if (destid == 1 ) begin
+            src_channel = 6'b1;
         end
 
-        // ( 0x1000800 .. 0x1001000 )
-        if ( {address[RG:PAD1],{PAD1{1'b0}}} == 'h1000800 ) begin
-            src_channel = 7'b001;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 0;
-        end
-
-        // ( 0x1001030 .. 0x1001040 )
-        if ( {address[RG:PAD2],{PAD2{1'b0}}} == 'h1001030 ) begin
-            src_channel = 7'b100;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 2;
-        end
     end
 
     // --------------------------------------------------

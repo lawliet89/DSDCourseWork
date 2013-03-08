@@ -70,7 +70,7 @@ PROCESS(state, m, nstate, det, result_mult_sig, start, readdata, result_add_sig,
 
 variable mat1, mat2, mat3, mat4, mat5, mat6, det : std_logic_vector(31 DOWNTO 0);
 variable iterator :std_logic_vector(9 DOWNTO 0); 
-variable loc: integer;
+variable loc: integer ;
 BEGIN
 m(0) <= (others => '0');
 m(1) <= (others => '0');
@@ -82,7 +82,7 @@ m(6) <= (others => '0');
 m(7) <= (others => '0');
 m(8) <= (others => '0');
 
-iterator := "0000000000";
+
 loc := 0;
 add_sub_sig <= '1';
 done <= '0';
@@ -102,29 +102,28 @@ mat5 := (others => '0');
 mat6 := (others => '0');
 
 
-if start <= '1' then
-	nstate <= mult1;
-end if; 
 
 case state is
 
 	WHEN IDLE =>
 		if start = '1' then
-		nstate <= read_addr;		
+		nstate <= read_addr;	
+		iterator := (others => '0');
+		loc := 0;	
 		end if;
 		
 	when read_addr=>
 		rden <= '1';
 		rdaddress <= iterator; 
 		nstate <= read_data;
-		loc := to_integer(shift_right(unsigned(iterator), 4));
+		loc := to_integer(shift_right(unsigned(iterator), 3));
 		loc := loc-1;
 		nstate <= read_data;
 		
 	when read_data=>
 		m(loc) <= readdata;	
 		iterator := std_logic_vector(unsigned(iterator) + 8);
-		if unsigned(iterator) = 72 then
+		if unsigned(iterator) = 80 then
 		nstate <= mult1;
 		else
 		nstate <= read_addr;

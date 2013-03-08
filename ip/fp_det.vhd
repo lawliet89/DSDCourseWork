@@ -11,10 +11,11 @@ entity fp_det IS
 		 start		:IN std_logic; 
 		 reset		:IN std_logic;
 		 n				:IN std_logic_vector(4 DOWNTO 0);
-		 data			:IN std_logic_vector(31 DOWNTO 0);
+		 readdata		:IN std_logic_vector(31 DOWNTO 0);
+		 writedata		: OUT std_logic_vector(31 DOWNTO 0);
 		 wraddress	:IN std_logic_vector(9 DOWNTO 0);
 		 rdaddress	:IN std_logic_vector(9 DOWNTO 0);
-		 wren			:IN std_logic;
+		 wren			:OUT std_logic;
 		 done 		:OUT std_logic;
 		 result		:OUT std_logic_vector(31 DOWNTO 0);
 	);

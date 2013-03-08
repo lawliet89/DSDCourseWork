@@ -34,18 +34,49 @@ module fp_det_nios (
 
 	parameter AUTO_CLOCK_SINK_CLOCK_RATE = "-1";
 	parameter DEFAULT_DIMENSION = 10;
-	reg [7:0] dimension = DEFAULT_DIMENSION;
+	reg [7:0] dimension = DEFAULT_DIMENSION-1;
+	
+	wire [9:0] ramReadAddress;
+	wire [9:0] ramWriteAddress;
+	wire [31:0] ramReadData;
+	wire [31:0] ramWriteData;
+	wire ramWriteEnable;
+	
+	// instantiate ram
+	ram_det ram_inst(
+		.clock(clk),
+		.data(ramWriteData),
+		.rdaddress(ramReadAddress),
+		.wraddress(ramWriteAddress),
+		.wren(ramWriteEnable),
+		.q(ramReadData)	
+	);
+	
+	
+	wire detStart;
+	wire detDone;
+	wire [31:0] detResult;
+	// instantiate determinant calculating module
+	fp_det det_inst(
+		.clk(clk),
+		.clk_en(clk_en),
+		.start(detStart),
+		.reset(reset),
+		.n(dimension),
+		.readdata(ramReadData),
+		.writedata(ramWriteData),
+		.wraddress(ramWriteAddress),
+		.raddress(ramReadAddress),
+		.wren(ramWriteEnable),
+		.done(detDone),
+		.result(detResult)
+	);
 
     //assign result = 32'b00000000000000000000000000000000;
-
     //assign done = 1'b0;
-
     //assign writedata = 32'b00000000000000000000000000000000;
-
     //assign address = 24'b000000000000000000000000;
-
     //assign write = 1'b0;
-
     //assign read = 1'b0;
 
 	
@@ -53,7 +84,7 @@ module fp_det_nios (
 	always @ (posedge avalon_clk) begin
 		if (n_set) begin
 			if (n >= 2 && n <= 32) begin	// check for bounds
-				dimension <= n;
+				dimension <= n-1;
 			end
 		end
 	end

@@ -65,15 +65,24 @@ BEGIN
 	
 
 C1:
-PROCESS(state, m, nstate, det)
+PROCESS(state, m, nstate, det, result_mult_sig, start, readdata, result_add_sig, reset, clk_en)
 
 
 variable mat1, mat2, mat3, mat4, mat5, mat6, det : std_logic_vector(31 DOWNTO 0);
 variable iterator :std_logic_vector(9 DOWNTO 0); 
 variable loc: integer;
 BEGIN
-		
---iterator := "0";
+m(0) <= (others => '0');
+m(1) <= (others => '0');
+m(2) <= (others => '0');
+m(3) <= (others => '0');
+m(4) <= (others => '0');
+m(5) <= (others => '0');
+m(6) <= (others => '0');
+m(7) <= (others => '0');
+m(8) <= (others => '0');
+
+iterator := "0000000000";
 loc := 0;
 add_sub_sig <= '1';
 done <= '0';
@@ -95,14 +104,14 @@ case state is
 		rden <= '1';
 		rdaddress <= iterator; 
 		nstate <= read_data;
-		loc := to_integer(shift_right(unsigned(iterator), 2));
+		loc := to_integer(shift_right(unsigned(iterator), 4));
 		loc := loc-1;
 		nstate <= read_data;
 		
 	when read_data=>
 		m(loc) <= readdata;	
-		iterator := std_logic_vector(unsigned(iterator) + 4);
-		if unsigned(iterator) = 36 then
+		iterator := std_logic_vector(unsigned(iterator) + 8);
+		if unsigned(iterator) = 72 then
 		nstate <= mult1;
 		else
 		nstate <= read_addr;
@@ -227,9 +236,11 @@ case state is
 		nstate <= IDLE;		
 END CASE;	
 	
+	aclr_add_sig <= reset;
+	aclr_mult_sig <= reset;
 	
-	
-		
+	clk_en_add_sig <= clk_en;
+	clk_en_mult_sig <= clk_en;
 		
 --mat1 := m(0)(0)*m(1)(1)*m(2)(2);
 --mat2 := m(0)(1)*m(1)(2)*m(2)(0);
@@ -262,6 +273,9 @@ BEGIN
 	state <= IDLE;
 	end if; 
 	
+	clock1_mult_sig <= clk;
+	clock_add_sig <= clk;
+ 
 	
 END PROCESS R4;
 

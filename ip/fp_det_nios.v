@@ -21,13 +21,13 @@ module fp_det_nios (
         input  wire        start,         //                              .start
         output reg        done,          //                              .done
 		input  wire	      reset,		//								 .reset
-        output wire [23:0] address,       //                 avalon_master.address
-        output wire        read,          //                              .read
+        output reg [23:0] address,       //                 avalon_master.address
+        output reg        read,          //                              .read
         input  wire [31:0] readdata,      //                              .readdata
         input  wire        readdatavalid, //                              .readdatavalid
         input  wire        waitrequest,   //                              .waitrequest
-        output wire        write,         //                              .write
-        output wire [31:0] writedata,     //                              .writedata
+        output reg        write,         //                              .write
+        output reg [31:0] writedata,     //                              .writedata
         input  wire        n_set,         //                  avalon_slave.write
         input  wire [7:0]  n              //                              .writedata
     );
@@ -36,8 +36,8 @@ module fp_det_nios (
 	parameter DEFAULT_DIMENSION = 10;
 	
 	reg [7:0] dimension = DEFAULT_DIMENSION;	// stored dimension of matrix, minus 1
-	reg [15:0] loopCounter;
-	reg [15:0] readCounter;
+	reg [15:0] readRequestCounter;
+	reg [15:0] readReceiveCounter;
 	reg [23:0] sdReadAddress;
 	reg [23:0] sdWriteAddress;
 	reg [9:0] ramLoadAddress;
@@ -50,11 +50,12 @@ module fp_det_nios (
 	reg [1:0] stage = 0;		// stage of computation
 	reg [31:0] finalResult = 0;
 	
-	wire [9:0] ramReadAddress;
-	wire [9:0] ramWriteAddress;
+	reg [9:0] ramReadAddress;
+	reg [9:0] ramWriteAddress;
 	wire [31:0] ramReadData;
-	wire [31:0] ramWriteData;
-	wire ramWriteEnable;
+	reg [31:0] ramWriteData;
+	reg ramWriteEnable;
+	reg ramReadEnable;
 	
 	// instantiate ram
 	ram_det ram_inst(
@@ -63,20 +64,23 @@ module fp_det_nios (
 		.rdaddress(ramReadAddress),
 		.wraddress(ramWriteAddress),
 		.wren(ramWriteEnable),
+		.rden(ramReadEnable),
 		.q(ramReadData)	
 	);
 	
 	
-	wire detStart;
+	reg detStart;
 	wire detDone;
 	wire [31:0] detResult;
 	wire [9:0] detRamReadAddress;
 	wire [9:0] detRamWriteAddress;
-	wire [31:0] detRamReadData;
+	reg [31:0] detRamReadData;
 	wire [31:0] detRamWriteData;
 	wire detRamWriteEnable;
+	wire detRamReadEnable;
+	
 	// instantiate determinant calculating module
-	fp_det det_inst(
+/*	fp_det det_inst(
 		.clk(clk),
 		.clk_en(clk_en),
 		.start(detStart),
@@ -87,9 +91,10 @@ module fp_det_nios (
 		.wraddress(detRamWriteAddress),
 		.raddress(detRamReadAddress),
 		.wren(detRamWriteEnable),
+		.rden(detRamReadEnable)
 		.done(detDone),
 		.result(detResult)
-	);
+	); */
 
     //assign result = 32'b00000000000000000000000000000000;
     //assign done = 1'b0;
@@ -129,12 +134,13 @@ module fp_det_nios (
 			ramWriteAddress <= 0;
 			ramWriteData <= 0;
 			ramWriteEnable <= 0;
+			ramReadEnable <= 0;
 			
 		end else if (stage == 0) begin   // start command
 			if (start) begin
 				stage <= 1;
-				loopCounter <= dimension*dimension;
-				readCounter <= dimension*dimension;
+				readRequestCounter <= dimension*dimension;
+				readReceiveCounter <= dimension*dimension;
 				sdReadAddress <= dataa[23:0];
 				sdWriteAddress <= datab[23:0];
 				ramLoadAddress <= 0;
@@ -155,48 +161,62 @@ module fp_det_nios (
 			ramWriteAddress <= 0;
 			ramWriteData <= 0;
 			ramWriteEnable <= 0;
+			ramReadEnable <= 0;
+			
 		end else if (stage == 1) begin  // read from SDRAM
 			result <= 0;
 			done <= 0;
 			
-			
-			while (loopCounter > 0) begin 
+			write <= 0;
+			writedata <= 0;
+					
+			if (readRequestCounter > 0) begin
 				read <= 1;
 				address <= sdReadAddress;
-				
-				if (!waitrequest && readCounter > 0) begin
-					address <= address + 4;
-					readCounter <= readCounter - 1;
-				end
-				
-				if (readdatavalid) begin
-					ramWriteEnable <= 1;
-					ramWriteAddress  <= ramLoadAddress;
-					ramWriteData <= readdata;
-					ramLoadAddress <= ramLoadAddress + 4;
-					loopCounter <= loopCounter - 1;
-				end else begin
-					ramWriteEnable <= 0;
-					ramWriteAddress  <= 0;
-					ramWriteData <= 0;
-				end
-				
-				ramReadAddress <= 0;
+			end 
+			
+			// Request Pipeline
+			if (!waitrequest && readRequestCounter > 0) begin
+				sdReadAddress <= sdReadAddress + 4;
+				readRequestCounter <= readRequestCounter - 1;
+			end else if (!waitrequest && readRequestCounter == 0) begin // potential problem area
+				address <= sdReadAddress;
+				read <= 0;
 			end
 			
-			if (loopCounter == 0) begin		// start calculating
+			// Receive pipeline
+			if (readdatavalid) begin
+				ramWriteEnable <= 1;
+				ramWriteAddress  <= ramLoadAddress;
+				ramWriteData <= readdata;
+				ramLoadAddress <= ramLoadAddress + 4;
+				readReceiveCounter <= readReceiveCounter - 1;
+			end else if (!readdatavalid) begin
+				ramWriteEnable <= 0;
+				ramWriteAddress  <= 0;
+				ramWriteData <= 0;
+			end
+			
+			if (readReceiveCounter == 0) begin		// start calculating
 				detStart <= 1;
 				stage <= 2;
 				
 				// RAM stuff - connect RAM controls with determinant module
-				ramReadAddress <= detRamReadAddress;
-				ramWriteAddress <= detRamWriteAddress;
-				ramWriteData <= detRamWriteAddress;
-				ramWriteEnable <= detRamWriteAddress;
+				//ramReadAddress <= detRamReadAddress;
+				//ramWriteAddress <= detRamWriteAddress;
+				//ramWriteData <= detRamWriteAddress;
+				//ramWriteEnable <= detRamWriteAddress;
+				//ramReadEnable <= detRamReadEnable;
+				//detRamReadData <= ramReadData;
 			end
+			
 		end else if (stage == 2) begin	// calculating
-		
-			if (detDone) begin  // done
+			ramReadAddress <= 0;
+			ramReadEnable <= 1;
+			result <= 0;
+			done <= 0;
+			stage <= 3;
+		/*	if (detDone) begin  // done
 				stage <= 0;
 				finalResult <= detResult;
 				
@@ -208,6 +228,7 @@ module fp_det_nios (
 				ramWriteAddress <= 0;
 				ramWriteData <= 0;
 				ramWriteEnable <= 0;
+				ramReadEnable <= 0;
 			end else begin    // still calculating
 				done <= 0;
 				result <= 0;
@@ -217,8 +238,10 @@ module fp_det_nios (
 				ramWriteAddress <= detRamWriteAddress;
 				ramWriteData <= detRamWriteAddress;
 				ramWriteEnable <= detRamWriteAddress;
+				ramReadEnable <= detRamReadEnable;
+				detRamReadData <= ramReadData;
 			end
-			
+		*/	
 			// Avalon master
 			read <= 0;
 			write <= 0;
@@ -226,6 +249,12 @@ module fp_det_nios (
 			writedata <= 0;
 			
 			detStart <= 0;
+		end else if (stage == 3) begin
+			done <= 1;
+			result <= ramReadData;
+			ramReadAddress <= 0;
+			ramReadEnable <= 0;
+			stage <= 0;
 		end
 	end
 

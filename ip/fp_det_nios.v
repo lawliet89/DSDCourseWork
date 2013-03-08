@@ -202,20 +202,20 @@ module fp_det_nios (
 				stage <= 2;
 				
 				// RAM stuff - connect RAM controls with determinant module
-				//ramReadAddress <= detRamReadAddress;
-				//ramWriteAddress <= detRamWriteAddress;
-				//ramWriteData <= detRamWriteAddress;
-				//ramWriteEnable <= detRamWriteAddress;
-				//ramReadEnable <= detRamReadEnable;
-				//detRamReadData <= ramReadData;
+				ramReadAddress <= detRamReadAddress;
+				ramWriteAddress <= detRamWriteAddress;
+				ramWriteData <= detRamWriteAddress;
+				ramWriteEnable <= detRamWriteEnable;
+				ramReadEnable <= detRamReadEnable;
+				detRamReadData <= ramReadData;
 			end
 			
 		end else if (stage == 2) begin	// calculating
-			//ramReadAddress <= 0;
-			//ramReadEnable <= 1;
-			//stage <= 3;
+			ramReadAddress <= 0;
+			ramReadEnable <= 1;
+			stage <= 3;
 			
-			if (detDone) begin  // done
+			/*if (detDone) begin  // done
 				stage <= 0;
 				finalResult <= detResult;
 				
@@ -240,7 +240,7 @@ module fp_det_nios (
 				ramReadEnable <= detRamReadEnable;
 				detRamReadData <= ramReadData;
 			end
-		
+		*/
 			// Avalon master
 			read <= 0;
 			write <= 0;

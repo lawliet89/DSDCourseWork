@@ -1,16 +1,16 @@
-Fitter Status : Successful - Fri Mar 01 19:26:43 2013
+Fitter Status : Successful - Fri Mar 08 20:03:23 2013
 Quartus II 64-Bit Version : 12.0 Build 178 05/31/2012 SJ Full Version
 Revision Name : hello_world
 Top-level Entity Name : hello_world
 Family : Cyclone III
 Device : EP3C16F484C6
 Timing Models : Final
-Total logic elements : 4,882 / 15,408 ( 32 % )
-    Total combinational functions : 4,503 / 15,408 ( 29 % )
-    Dedicated logic registers : 2,876 / 15,408 ( 19 % )
-Total registers : 2944
+Total logic elements : 5,361 / 15,408 ( 35 % )
+    Total combinational functions : 5,001 / 15,408 ( 32 % )
+    Dedicated logic registers : 3,152 / 15,408 ( 20 % )
+Total registers : 3220
 Total pins : 47 / 347 ( 14 % )
 Total virtual pins : 0
-Total memory bits : 33,746 / 516,096 ( 7 % )
-Embedded Multiplier 9-bit elements : 27 / 112 ( 24 % )
+Total memory bits : 66,514 / 516,096 ( 13 % )
+Embedded Multiplier 9-bit elements : 28 / 112 ( 25 % )
 Total PLLs : 1 / 4 ( 25 % )

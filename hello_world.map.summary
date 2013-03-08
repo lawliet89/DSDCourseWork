@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Fri Mar 01 19:25:51 2013
+Analysis & Synthesis Status : Successful - Fri Mar 08 20:02:26 2013
 Quartus II 64-Bit Version : 12.0 Build 178 05/31/2012 SJ Full Version
 Revision Name : hello_world
 Top-level Entity Name : hello_world
 Family : Cyclone III
-Total logic elements : 5,230
-    Total combinational functions : 4,499
-    Dedicated logic registers : 2,987
-Total registers : 2987
+Total logic elements : 5,727
+    Total combinational functions : 4,996
+    Dedicated logic registers : 3,263
+Total registers : 3263
 Total pins : 47
 Total virtual pins : 0
-Total memory bits : 33,746
-Embedded Multiplier 9-bit elements : 27
+Total memory bits : 66,514
+Embedded Multiplier 9-bit elements : 28
 Total PLLs : 1

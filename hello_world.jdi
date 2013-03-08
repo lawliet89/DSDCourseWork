@@ -1,7 +1,7 @@
 <sld_project_info>
   <file_info>
-    <file checksum="0x0045E18B" device="EP3C16F484C6" path="hello_world.sof" usercode="0xFFFFFFFF"/>
-    <file checksum="0x057592AA" device="EPCS4" path="hello_world.pof" usercode="0x00000000"/>
+    <file checksum="0x004B09CD" device="EP3C16F484C6" path="hello_world.sof" usercode="0xFFFFFFFF"/>
+    <file checksum="0x056AEA2E" device="EPCS4" path="hello_world.pof" usercode="0x00000000"/>
   </file_info>
   <hub_info ir_width="2" node_count="2"/>
   <node_info>

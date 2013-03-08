@@ -45,6 +45,7 @@ ENTITY ram_det IS
 		clock		: IN STD_LOGIC  := '1';
 		data		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		rdaddress		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
+		rden		: IN STD_LOGIC  := '1';
 		wraddress		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
 		wren		: IN STD_LOGIC  := '0';
 		q		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
@@ -73,6 +74,7 @@ ARCHITECTURE SYN OF ram_det IS
 		outdata_aclr_b		: STRING;
 		outdata_reg_b		: STRING;
 		power_up_uninitialized		: STRING;
+		rdcontrol_reg_b		: STRING;
 		read_during_write_mode_mixed_ports		: STRING;
 		widthad_a		: NATURAL;
 		widthad_b		: NATURAL;
@@ -85,6 +87,7 @@ ARCHITECTURE SYN OF ram_det IS
 			clock0	: IN STD_LOGIC ;
 			data_a	: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			q_b	: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
+			rden_b	: IN STD_LOGIC ;
 			wren_a	: IN STD_LOGIC ;
 			address_b	: IN STD_LOGIC_VECTOR (9 DOWNTO 0)
 	);
@@ -108,6 +111,7 @@ BEGIN
 		outdata_aclr_b => "NONE",
 		outdata_reg_b => "CLOCK0",
 		power_up_uninitialized => "FALSE",
+		rdcontrol_reg_b => "CLOCK0",
 		read_during_write_mode_mixed_ports => "OLD_DATA",
 		widthad_a => 10,
 		widthad_b => 10,
@@ -119,6 +123,7 @@ BEGIN
 		address_a => wraddress,
 		clock0 => clock,
 		data_a => data,
+		rden_b => rden,
 		wren_a => wren,
 		address_b => rdaddress,
 		q_b => sub_wire0
@@ -189,7 +194,7 @@ END SYN;
 -- Retrieval info: PRIVATE: WRADDR_REG_B NUMERIC "0"
 -- Retrieval info: PRIVATE: WRCTRL_ACLR_B NUMERIC "0"
 -- Retrieval info: PRIVATE: enable NUMERIC "0"
--- Retrieval info: PRIVATE: rden NUMERIC "0"
+-- Retrieval info: PRIVATE: rden NUMERIC "1"
 -- Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 -- Retrieval info: CONSTANT: ADDRESS_ACLR_B STRING "NONE"
 -- Retrieval info: CONSTANT: ADDRESS_REG_B STRING "CLOCK0"
@@ -204,6 +209,7 @@ END SYN;
 -- Retrieval info: CONSTANT: OUTDATA_ACLR_B STRING "NONE"
 -- Retrieval info: CONSTANT: OUTDATA_REG_B STRING "CLOCK0"
 -- Retrieval info: CONSTANT: POWER_UP_UNINITIALIZED STRING "FALSE"
+-- Retrieval info: CONSTANT: RDCONTROL_REG_B STRING "CLOCK0"
 -- Retrieval info: CONSTANT: READ_DURING_WRITE_MODE_MIXED_PORTS STRING "OLD_DATA"
 -- Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "10"
 -- Retrieval info: CONSTANT: WIDTHAD_B NUMERIC "10"
@@ -214,12 +220,14 @@ END SYN;
 -- Retrieval info: USED_PORT: data 0 0 32 0 INPUT NODEFVAL "data[31..0]"
 -- Retrieval info: USED_PORT: q 0 0 32 0 OUTPUT NODEFVAL "q[31..0]"
 -- Retrieval info: USED_PORT: rdaddress 0 0 10 0 INPUT NODEFVAL "rdaddress[9..0]"
+-- Retrieval info: USED_PORT: rden 0 0 0 0 INPUT VCC "rden"
 -- Retrieval info: USED_PORT: wraddress 0 0 10 0 INPUT NODEFVAL "wraddress[9..0]"
 -- Retrieval info: USED_PORT: wren 0 0 0 0 INPUT GND "wren"
 -- Retrieval info: CONNECT: @address_a 0 0 10 0 wraddress 0 0 10 0
 -- Retrieval info: CONNECT: @address_b 0 0 10 0 rdaddress 0 0 10 0
 -- Retrieval info: CONNECT: @clock0 0 0 0 0 clock 0 0 0 0
 -- Retrieval info: CONNECT: @data_a 0 0 32 0 data 0 0 32 0
+-- Retrieval info: CONNECT: @rden_b 0 0 0 0 rden 0 0 0 0
 -- Retrieval info: CONNECT: @wren_a 0 0 0 0 wren 0 0 0 0
 -- Retrieval info: CONNECT: q 0 0 32 0 @q_b 0 0 32 0
 -- Retrieval info: GEN_FILE: TYPE_NORMAL ram_det.vhd TRUE

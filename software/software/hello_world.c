@@ -25,14 +25,17 @@
 #include <unistd.h>
 #include "altera_avalon_pio_regs.h"
 #include "sys/alt_irq.h"
+#include "sys/alt_cache.h"
 
 #define ALT_CI_FP_ALU_FP(n,A,B) __builtin_custom_fnff(ALT_CI_FP_ALU_0_N+(n&ALT_CI_FP_ALU_0_N_MASK),(A),(B))
 #define fp_add(A,B) ALT_CI_FP_ALU_FP(0,(A),(B))
 #define fp_sub(A,B) ALT_CI_FP_ALU_FP(1,(A),(B))
 #define fp_mul(A,B) ALT_CI_FP_ALU_FP(2,(A),(B))
 #define fp_div(A,B) ALT_CI_FP_ALU_FP(3,(A),(B))
+#define fp_det(A,B) __builtin_custom_fnpp(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
+#define fp_det_status(A,B) __builtin_custom_inpp(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
 
-#define DIMENSION 20 // Dimension for the matrix to be defined
+#define DIMENSION 3 // Dimension for the matrix to be defined
 
 float determinant(float *matrix, int dimension);
 float getAt(float *m, int i, int j, int dimension);
@@ -120,31 +123,40 @@ void setDeterminantSize(int size){
 }
 
 int main(){
-	float det = 0.f;
-	int i;
+	volatile float det = 0.f;
+	volatile int i;
 	char buffer[11];
 	char buf[11];
 	clock_t exec_t1, exec_t2;
-	float matrix[DIMENSION][DIMENSION];
+	volatile float matrix[DIMENSION][DIMENSION];
+
 	alt_putstr("Hello from Nios II!\n");
 	randomMatrix( (float *) matrix, DIMENSION);
+	//alt_dcache_flush( (void *) matrix, sizeof(float)*DIMENSION*DIMENSION);
+	//alt_dcache_flush_all();
+
+	setDeterminantSize(DIMENSION);
+	det = fp_det((void *) matrix,0);
+	gcvt(det, 10, buffer);
+	//i = fp_det_status((void *) matrix, 0);
+	//gcvt(i, 10, buffer);
+	alt_putstr("set to = "); alt_putstr(buffer); alt_putstr("\n");
 
 	exec_t1 = times(NULL); // get system time before starting the process
 	for (i = 0; i < 100; i++){
 		det = determinant( (float *) matrix, DIMENSION);
-
 	}
 	exec_t2 = times(NULL); // get system time after finishing the process
 	gcvt(((double)exec_t2-(double)exec_t1) / alt_ticks_per_second(), 10, buf);
+
+	alt_putstr("software calculation = ");
 	gcvt(det, 10, buffer);
 	alt_putstr(buffer);
 	alt_putstr("\n");
 	alt_putstr(" proc time = "); alt_putstr(buf); alt_putstr(" seconds \n");
 
-	setDeterminantSize(15);
-	i = ALT_CI_FP_DET_NIOS_0(0,0);
-	gcvt(i, 10, buffer);
-	alt_putstr("set to = "); alt_putstr(buffer);
+
+
 	/* Event loop never exits. */
 	while (1);
 

@@ -33,17 +33,15 @@ module fp_det_nios (
     );
 
 	parameter AUTO_CLOCK_SINK_CLOCK_RATE = "-1";
-	parameter DEFAULT_DIMENSION = 8'd3;
+	parameter DEFAULT_DIMENSION = 8'd16;
 	
 	reg [7:0] dimension = DEFAULT_DIMENSION;
-	reg [15:0] readReceiveCounter;
 	reg [23:0] sdReadBase;
 	reg [23:0] sdReadAddress;
 	reg [23:0] sdWriteAddress;
 	reg [9:0] ramLoadAddress;
 	reg startSdRead = 0;
-	
-	reg [31:0] temp;
+	reg ramWriteDone = 0;
 	
 	/* Stages:
 		0 - Idle, waiting for CPU start
@@ -140,6 +138,7 @@ module fp_det_nios (
 			ramReadEnable <= 0;
 			
 			startSdRead <= 0;
+			ramWriteDone <= 0;
 			sdReadAddress <= 0;
 			sdWriteAddress <= 0;
 			ramLoadAddress <= 0;
@@ -148,12 +147,12 @@ module fp_det_nios (
 		end else if (stage == 0) begin   // start command
 			if (start) begin
 				stage <= 1;
-				readReceiveCounter <= dimension*dimension;
 				sdReadAddress <= dataa[23:0];
 				sdReadBase <= dataa[23:0];
 				sdWriteAddress <= datab[23:0];
 				ramLoadAddress <= 0;
 				startSdRead <= 1;
+				ramWriteDone <= 0;
 			end
 			result <= 0;
 			done <= 0;
@@ -198,42 +197,41 @@ module fp_det_nios (
 			end
 			
 			// Receive pipeline
-			if (readdatavalid) begin
-				if (ramLoadAddress == 8) begin
-					temp <= readdata;
-				end
+			if (readdatavalid && !ramWriteDone) begin
 				ramWriteEnable <= 1;
-				ramWriteAddress  <= ramLoadAddress;
+				ramWriteAddress <= ramLoadAddress;
 				ramWriteData <= readdata;
 				ramLoadAddress <= ramLoadAddress + 10'd1;
-				readReceiveCounter <= readReceiveCounter - 16'd1;
+
+				if (ramLoadAddress == dimension*dimension-1) begin
+					ramWriteDone <= 1;
+				end
 			end else if (!readdatavalid) begin
 				ramWriteEnable <= 0;
-				ramWriteAddress  <= 0;
-				ramWriteData <= 0;
 			end
 			
-			if (readReceiveCounter == 0) begin		// start calculating
+			if (ramWriteDone) begin		// start calculating
 				detStart <= 1;
 				stage <= 2;
+				ramReadAddress <= 0;
+				ramReadEnable <= 1;
+				ramWriteEnable <= 0;
 				
 				// RAM stuff - connect RAM controls with determinant module
-				ramReadAddress <= detRamReadAddress;
-				ramWriteAddress <= detRamWriteAddress;
-				ramWriteData <= detRamWriteAddress;
-				ramWriteEnable <= detRamWriteEnable;
-				ramReadEnable <= detRamReadEnable;
-				detRamReadData <= ramReadData;
+				//ramReadAddress <= detRamReadAddress;
+				//ramWriteAddress <= detRamWriteAddress;
+				//ramWriteData <= detRamWriteAddress;
+				//ramWriteEnable <= detRamWriteEnable;
+				//ramReadEnable <= detRamReadEnable;
+				//detRamReadData <= ramReadData;
 			end
 			
 		end else if (stage == 2) begin	// calculating
-			ramReadAddress <= 0;
-			ramReadEnable <= 1;
-			//stage <= 3;
 			
-			result <= temp;
-			done <= 1;
 			stage <= 0;
+			
+			result <= ramReadData;
+			done <= 1;
 			/*
 			if (detDone) begin  // done
 				stage <= 0;
@@ -268,13 +266,7 @@ module fp_det_nios (
 			writedata <= 0;
 			
 			detStart <= 0;
-		end else if (stage == 3) begin
-			done <= 1;
-			result <= ramReadData;
-			ramReadAddress <= 0;
-			ramReadEnable <= 0;
-			stage <= 0;
-		end
+		end 
 	end
 
 endmodule

@@ -88,6 +88,19 @@ add_sub_sig <= '1';
 done <= '0';
 add_mult <= '1';
 rden <= '0';
+rdaddress <= (others => '0');
+dataa_mult_sig <= (others => '0');
+datab_mult_sig <= (others => '0');
+dataa_add_sig <= (others => '0');
+datab_add_sig <= (others => '0');
+result <= (others => '0');
+mat1 := (others => '0');
+mat2 := (others => '0');
+mat3 := (others => '0');
+mat4 := (others => '0');
+mat5 := (others => '0');
+mat6 := (others => '0');
+
 
 if start <= '1' then
 	nstate <= mult1;

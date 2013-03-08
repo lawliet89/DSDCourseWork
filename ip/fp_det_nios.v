@@ -33,14 +33,17 @@ module fp_det_nios (
     );
 
 	parameter AUTO_CLOCK_SINK_CLOCK_RATE = "-1";
-	parameter DEFAULT_DIMENSION = 8'd10;
+	parameter DEFAULT_DIMENSION = 8'd3;
 	
-	reg [7:0] dimension = DEFAULT_DIMENSION;	// stored dimension of matrix, minus 1
-	reg [15:0] readRequestCounter;
+	reg [7:0] dimension = DEFAULT_DIMENSION;
 	reg [15:0] readReceiveCounter;
+	reg [23:0] sdReadBase;
 	reg [23:0] sdReadAddress;
 	reg [23:0] sdWriteAddress;
 	reg [9:0] ramLoadAddress;
+	reg startSdRead = 0;
+	
+	reg [31:0] temp;
 	
 	/* Stages:
 		0 - Idle, waiting for CPU start
@@ -136,14 +139,21 @@ module fp_det_nios (
 			ramWriteEnable <= 0;
 			ramReadEnable <= 0;
 			
+			startSdRead <= 0;
+			sdReadAddress <= 0;
+			sdWriteAddress <= 0;
+			ramLoadAddress <= 0;
+			
+
 		end else if (stage == 0) begin   // start command
 			if (start) begin
 				stage <= 1;
-				readRequestCounter <= dimension*dimension;
 				readReceiveCounter <= dimension*dimension;
 				sdReadAddress <= dataa[23:0];
+				sdReadBase <= dataa[23:0];
 				sdWriteAddress <= datab[23:0];
 				ramLoadAddress <= 0;
+				startSdRead <= 1;
 			end
 			result <= 0;
 			done <= 0;
@@ -169,27 +179,33 @@ module fp_det_nios (
 			
 			write <= 0;
 			writedata <= 0;
-					
-			if (readRequestCounter > 0) begin
+			
+			
+			if (startSdRead) begin
 				read <= 1;
 				address <= sdReadAddress;
-			end 
-			
+				startSdRead <= 0;
+			end
+								
 			// Request Pipeline
-			if (!waitrequest && readRequestCounter > 0) begin
-				sdReadAddress <= sdReadAddress + 23'd4;
-				readRequestCounter <= readRequestCounter - 16'd1;
-			end else if (!waitrequest && readRequestCounter == 0) begin // potential problem area
+			if (!waitrequest && read) begin
+				sdReadAddress = sdReadAddress + 4;
 				address <= sdReadAddress;
-				read <= 0;
+				
+				if (sdReadAddress == sdReadBase + dimension*dimension*4) begin
+					read <= 0;
+				end
 			end
 			
 			// Receive pipeline
 			if (readdatavalid) begin
+				if (ramLoadAddress == 8) begin
+					temp <= readdata;
+				end
 				ramWriteEnable <= 1;
 				ramWriteAddress  <= ramLoadAddress;
 				ramWriteData <= readdata;
-				ramLoadAddress <= ramLoadAddress + 10'd4;
+				ramLoadAddress <= ramLoadAddress + 10'd1;
 				readReceiveCounter <= readReceiveCounter - 16'd1;
 			end else if (!readdatavalid) begin
 				ramWriteEnable <= 0;
@@ -213,9 +229,13 @@ module fp_det_nios (
 		end else if (stage == 2) begin	// calculating
 			ramReadAddress <= 0;
 			ramReadEnable <= 1;
-			stage <= 3;
+			//stage <= 3;
 			
-			/*if (detDone) begin  // done
+			result <= temp;
+			done <= 1;
+			stage <= 0;
+			/*
+			if (detDone) begin  // done
 				stage <= 0;
 				finalResult <= detResult;
 				

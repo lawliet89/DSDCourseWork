@@ -4,7 +4,7 @@ USE IEEE.numeric_std.ALL;
 USE work.all;
 
 entity fp_det IS
-	GENERIC( vsize: INTEGER := 3); -- length of vectors
+	GENERIC( vsize: INTEGER := 9); -- length of vectors
 	PORT(
 		 clk			:IN std_logic;
 		 clk_en		:IN std_logic;
@@ -23,13 +23,13 @@ entity fp_det IS
 END ENTITY fp_det;
 
 ARCHITECTURE Determinant  of fp_det IS
---	TYPE value_t IS ARRAY (31 DOWNTO 0) OF std_logic;
---	TYPE column_t IS ARRAY (vsize-1 DOWNTO 0) OF value_t;
+	subtype value_t IS std_logic_vector(31 DOWNTO 0);
+	TYPE column_t IS ARRAY (vsize-1 DOWNTO 0) OF value_t;
 --	TYPE matrix_t IS ARRAY (vsize-1 DOWNTO 0) OF column_t;
-	TYPE state_t IS (IDLE, read_addr, read_data, mult1, mult2, mult3, mult4, mult5, mult6, mult7, mult8, mult9, mult10, mult11, mult12, ADD1, ADD2, ADD3, ADD4, ADD5, ADD6);
-	
+	TYPE state_t IS (IDLE, read_addr, read_data, mult1, mult2, mult3, mult4, mult5, mult6, mult7, mult8, mult9, mult10, mult11, mult12, mult13, ADD1, ADD2, ADD3, ADD4, ADD5, ADD6);
+signal state, nstate : state_t;	
 signal a :std_logic_vector(31 DOWNTO 0);
-signal m :matrix_t;
+signal m :column_t;
 signal det: std_logic_vector(31 DOWNTO 0);
 signal dataa_add_sig, dataa_mult_sig, datab_add_sig, datab_mult_sig, result_add_sig, result_mult_sig : std_logic_vector(31 DOWNTO 0);
 signal aclr_add_sig, aclr_mult_sig, add_sub_sig, clk_en_add_sig, clk_en_mult_sig, clock1_mult_sig, clock_add_sig : std_logic;
@@ -69,16 +69,16 @@ PROCESS(state, m, nstate, det)
 
 
 variable mat1, mat2, mat3, mat4, mat5, mat6, det : std_logic_vector(31 DOWNTO 0);
-variable iterator :integer; 
+variable iterator :std_logic_vector(9 DOWNTO 0); 
 variable loc: integer;
 BEGIN
 		
-iterator := '0';
-loc := '0';
+--iterator := "0";
+loc := 0;
 add_sub_sig <= '1';
 done <= '0';
 add_mult <= '1';
-rden <=0;
+rden <= '0';
 
 if start <= '1' then
 	nstate <= mult1;
@@ -93,19 +93,19 @@ case state is
 		
 	when read_addr=>
 		rden <= '1';
-		readaddr <= iterator; 
-		next_state <= read_data;
-		i := iterator mod 4;
-		i := i-1;
-		state <= read_data;
+		rdaddress <= iterator; 
+		nstate <= read_data;
+		loc := to_integer(shift_right(unsigned(iterator), 2));
+		loc := loc-1;
+		nstate <= read_data;
 		
 	when read_data=>
-		m(i) <= readdata;	
-		iterator := iterator + '4';
-		if iterator = 36 then
-		state<= mult1;
+		m(loc) <= readdata;	
+		iterator := std_logic_vector(unsigned(iterator) + 4);
+		if unsigned(iterator) = 36 then
+		nstate <= mult1;
 		else
-		state<= read_addr;
+		nstate <= read_addr;
 		end if;
 		
 		
@@ -189,7 +189,7 @@ case state is
 		nstate <= ADD2;
 	WHEN ADD2 =>
 		add_mult <= '0';
-		det <= result_add_sig;
+		det := result_add_sig;
 		add_sub_sig <= '1';
 		dataa_add_sig <= mat3;
 		datab_add_sig <= det;
@@ -197,7 +197,7 @@ case state is
 		
 	WHEN ADD3 =>	
 		add_mult <= '0';
-		det <= result_add_sig;
+		det := result_add_sig;
 		add_sub_sig <= '0';
 		dataa_add_sig <= mat4;
 		datab_add_sig <= det;
@@ -205,7 +205,7 @@ case state is
 		
 	WHEN ADD4 =>	
 		add_mult <= '0';
-		det <= result_add_sig;
+		det := result_add_sig;
 		add_sub_sig <= '0';
 		dataa_add_sig <= mat5;
 		datab_add_sig <= det;
@@ -213,7 +213,7 @@ case state is
 		
 	WHEN ADD5 =>	
 		add_mult <= '0';
-		det <= result_add_sig;
+		det := result_add_sig;
 		add_sub_sig <= '0';
 		dataa_add_sig <= mat6;
 		datab_add_sig <= det;		
@@ -221,9 +221,9 @@ case state is
 		
 	WHEN ADD6 =>
 		add_mult <= '0';
-		det <= result_add_sig;		
+		det := result_add_sig;		
 		result <= det;
-		done <= 1;
+		done <= '1';
 		nstate <= IDLE;		
 END CASE;	
 	
@@ -244,18 +244,18 @@ END PROCESS C1;
 
 R4: -- state register with reset
 PROCESS
-variable count :std_logic_vector(2 DOWNTO 0);
+variable count :integer;--std_logic_vector(2 DOWNTO 0);
 BEGIN
 
   WAIT UNTIL clk'EVENT and clk='1';
-	if count = '5' and add_mult = '1' then
-	count <= 0;
+	if count = 5 and add_mult = '1' then
+	count := 0;
 	state <= nstate;
-	elsif count = '7' and add_mult ='0' then
-	count <= 0;
+	elsif count = 7 and add_mult ='0' then
+	count := 0;
 	state <= nstate;
 	else 
-	count <= count+1;
+	count := count+1;
 	end if; 
 
 	if reset = '1' then

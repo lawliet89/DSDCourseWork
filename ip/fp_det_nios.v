@@ -228,10 +228,9 @@ module fp_det_nios (
 			
 		end else if (stage == 2) begin	// calculating
 			
-			stage <= 0;
-			
-			result <= ramReadData;
-			done <= 1;
+			stage <= 3;
+			ramReadEnable <= 0;
+
 			/*
 			if (detDone) begin  // done
 				stage <= 0;
@@ -266,7 +265,13 @@ module fp_det_nios (
 			writedata <= 0;
 			
 			detStart <= 0;
-		end 
+		end else if (stage == 3) begin
+			stage <= 0;
+			
+			done <= 1;
+			result <= ramReadData;
+		end
+		
 	end
 
 endmodule

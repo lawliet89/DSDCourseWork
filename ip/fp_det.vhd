@@ -35,7 +35,7 @@ signal dataa_add_sig, dataa_mult_sig, datab_add_sig, datab_mult_sig, result_add_
 signal aclr_add_sig, aclr_mult_sig, add_sub_sig, clk_en_add_sig, clk_en_mult_sig, clock1_mult_sig, clock_add_sig : std_logic;
 signal nan_add_sig, nan_mult_sig, zero_add_sig, zero_mult_sig :std_logic;
 signal add_mult : std_logic;
-
+signal count :integer;
 
 
 BEGIN 
@@ -82,7 +82,7 @@ m(6) <= (others => '0');
 m(7) <= (others => '0');
 m(8) <= (others => '0');
 iterator := (others => '0');
-
+nstate <= state;
 loc := 0;
 add_sub_sig <= '1';
 done <= '0';
@@ -117,7 +117,6 @@ case state is
 	when read_addr=>
 		rden <= '1';
 		rdaddress <= iterator; 
-		nstate <= read_data;
 		loc := to_integer(shift_right(unsigned(iterator), 3));
 		loc := loc-1;
 		nstate <= read_data;
@@ -200,6 +199,7 @@ case state is
 		dataa_mult_sig <= m(6);
 		datab_mult_sig <=	mat6;	
 		nstate <= mult13;
+		
 	WHEN mult13 =>	
 		mat6 := result_mult_sig;
 		nstate <= ADD1;
@@ -210,6 +210,7 @@ case state is
 		dataa_add_sig <= mat1;
 		datab_add_sig <= mat2;
 		nstate <= ADD2;
+		
 	WHEN ADD2 =>
 		add_mult <= '0';
 		det := result_add_sig;
@@ -269,18 +270,18 @@ END PROCESS C1;
 
 R4: -- state register with reset
 PROCESS
-variable count :integer;--std_logic_vector(2 DOWNTO 0);
+
 BEGIN
 
   WAIT UNTIL clk'EVENT and clk='1';
 	if count = 5 and add_mult = '1' then
-	count := 0;
+	count <= 0;
 	state <= nstate;
 	elsif count = 7 and add_mult ='0' then
-	count := 0;
+	count <= 0;
 	state <= nstate;
 	else 
-	count := count+1;
+	count <= count+1;
 	end if; 
 
 	if reset = '1' then
@@ -294,20 +295,6 @@ BEGIN
 END PROCESS R4;
 
 END ARCHITECTURE Determinant;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

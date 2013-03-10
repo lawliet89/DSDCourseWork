@@ -81,7 +81,7 @@ m(5) <= (others => '0');
 m(6) <= (others => '0');
 m(7) <= (others => '0');
 m(8) <= (others => '0');
-
+iterator := (others => '0');
 
 loc := 0;
 add_sub_sig <= '1';
@@ -110,6 +110,8 @@ case state is
 		nstate <= read_addr;	
 		iterator := (others => '0');
 		loc := 0;	
+		else
+		nstate <= IDLE;
 		end if;
 		
 	when read_addr=>

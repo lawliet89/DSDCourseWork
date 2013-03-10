@@ -35,12 +35,12 @@
 #define fp_det(A,B) __builtin_custom_fnpp(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
 #define fp_det_status(A,B) __builtin_custom_inpp(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
 
-#define DIMENSION 3 // Dimension for the matrix to be defined
+#define DIMENSION 5 // Dimension for the matrix to be defined
 
 float determinant(float *matrix, int dimension);
 float getAt(float *m, int i, int j, int dimension);
 void putAt(float *m, int i, int j, int dimension, float value);
-void randomMatrix(float *matrix, int dimension);
+float* randomMatrix(int dimension);
 void setDeterminantDimension(int size);
 
 float determinant(float *matrix, int dimension){
@@ -98,24 +98,22 @@ void putAt(float *m, int i, int j, int dimension, float value){
 	*(m + i*dimension + j) = value;
 }
 
-void randomMatrix(float *matrix, int dimension){
+float * randomMatrix(int dimension){
 	int i, j;
 	float no;
-	char buffer[11];
+	float *matrix;
+
+	matrix = (float *) malloc(sizeof(float) * DIMENSION * DIMENSION);
 	// Seed
 	srand(times(NULL));
-	alt_putstr("[");
 	for (i = 0; i < dimension; i++){
 		for (j = 0; j < dimension; j++){
-			no = ((float) (rand()%20))/10-1;
-			*(matrix+i*dimension+j) = no;
-			gcvt(no, 10, buffer);
-			alt_putstr(buffer);
-			alt_putstr(" ");
+			no = ((float) (rand()%100))/50-1;
+			*(matrix + i*dimension + j) = no;
 		}
-		alt_putstr(";\n");
 	}
-	alt_putstr("]\n");
+
+	return matrix;
 }
 
 void setDeterminantSize(int size){
@@ -124,19 +122,28 @@ void setDeterminantSize(int size){
 
 int main(){
 	volatile float det = 0.f;
-	volatile int i;
+	volatile int i,j;
 	char buffer[11];
 	char buf[11];
 	clock_t exec_t1, exec_t2;
-	volatile float matrix[DIMENSION][DIMENSION];
-
-	alt_putstr("Hello from Nios II!\n");
-	randomMatrix( (float *) matrix, DIMENSION);
-	//alt_dcache_flush( (void *) matrix, sizeof(float)*DIMENSION*DIMENSION);
-	//alt_dcache_flush_all();
+	float *matrix;
 
 	setDeterminantSize(DIMENSION);
-	det = fp_det((void *) matrix,0);
+	alt_putstr("Hello from Nios II!\n");
+	matrix = randomMatrix(DIMENSION);
+
+	alt_putstr("[");
+	for (i = 0; i < DIMENSION; i++){
+		for (j = 0; j <  DIMENSION; j++){
+			gcvt( *(matrix + i*DIMENSION + j) , 10, buffer);
+			alt_putstr(buffer);
+			alt_putstr(" ");
+		}
+		alt_putstr(";\n");
+	}
+	alt_putstr("]\n");
+
+	det = fp_det((void *) matrix, ( void *) &det);
 	gcvt(det, 10, buffer);
 	//i = fp_det_status((void *) matrix, 0);
 	//gcvt(i, 10, buffer);
@@ -144,7 +151,7 @@ int main(){
 
 	exec_t1 = times(NULL); // get system time before starting the process
 	for (i = 0; i < 100; i++){
-		det = determinant( (float *) matrix, DIMENSION);
+		det = determinant( matrix, DIMENSION);
 	}
 	exec_t2 = times(NULL); // get system time after finishing the process
 	gcvt(((double)exec_t2-(double)exec_t1) / alt_ticks_per_second(), 10, buf);

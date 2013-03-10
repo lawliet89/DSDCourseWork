@@ -124,11 +124,12 @@ case state is
 	when read_data=>
 		m(loc) <= readdata;	
 		iterator := std_logic_vector(unsigned(iterator) + 8);
-		if unsigned(iterator) = 80 then
-		result <= (others=>'1');
+		if unsigned(iterator) > 72 then
+		result <= std_logic_vector(to_unsigned(8,result'length));
 		done <= '1';
 		nstate <= mult1;
-		else
+
+		else		
 		nstate <= read_addr;
 		end if;		
 	WHEN mult1 =>

@@ -124,11 +124,8 @@ case state is
 	when read_data=>
 		m(loc) <= readdata;	
 		iterator := std_logic_vector(unsigned(iterator) + 8);
-		if unsigned(iterator) > 72 then
-		result <= std_logic_vector(to_unsigned(8,result'length));
-		done <= '1';
+		if unsigned(iterator) = 8 then
 		nstate <= mult1;
-
 		else		
 		nstate <= read_addr;
 		end if;		
@@ -140,7 +137,7 @@ case state is
 		mat1 := result_mult_sig;
 		dataa_mult_sig <= m(8);
 		datab_mult_sig <= mat1;
-		nstate <= mult3;
+		nstate <= mult3;		
 		
 	WHEN mult3 =>
 		mat1 := result_mult_sig;
@@ -213,6 +210,8 @@ case state is
 		nstate <= ADD2;
 		
 	WHEN ADD2 =>
+		result <= (others=>'1');
+		done <= '1';
 		add_mult <= '0';
 		det := result_add_sig;
 		add_sub_sig <= '1';
@@ -237,6 +236,7 @@ case state is
 		nstate <= ADD5;
 		
 	WHEN ADD5 =>	
+		
 		add_mult <= '0';
 		det := result_add_sig;
 		add_sub_sig <= '0';

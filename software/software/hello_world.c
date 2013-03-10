@@ -32,16 +32,19 @@
 #define fp_sub(A,B) ALT_CI_FP_ALU_FP(1,(A),(B))
 #define fp_mul(A,B) ALT_CI_FP_ALU_FP(2,(A),(B))
 #define fp_div(A,B) ALT_CI_FP_ALU_FP(3,(A),(B))
-#define fp_det(A,B) __builtin_custom_fnpp(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
-#define fp_det_status(A,B) __builtin_custom_inpp(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
+#define fp_det(A,B) __builtin_custom_inpi(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
 
 #define DIMENSION 5 // Dimension for the matrix to be defined
+
+volatile int done = 0;
+volatile float det = 0.f;
 
 float determinant(float *matrix, int dimension);
 float getAt(float *m, int i, int j, int dimension);
 void putAt(float *m, int i, int j, int dimension, float value);
 float* randomMatrix(int dimension);
-void setDeterminantDimension(int size);
+void fp_det_isr(void* context);
+//void setDeterminantDimension(int size);
 
 float determinant(float *matrix, int dimension){
 	int i, j, p;
@@ -116,20 +119,27 @@ float * randomMatrix(int dimension){
 	return matrix;
 }
 
-void setDeterminantSize(int size){
-	IOWR_ALTERA_AVALON_PIO_DATA(FP_DET_NIOS_0_BASE, size);
+void fp_det_isr(void* context){
+	done = 1;
+	det = IORD(FP_DET_NIOS_0_BASE, 0);
 }
+//void setDeterminantSize(int size){
+//	IOWR_ALTERA_AVALON_PIO_DATA(FP_DET_NIOS_0_BASE, size);
+//}
 
 int main(){
-	volatile float det = 0.f;
 	volatile int i,j;
+	volatile int status;
 	char buffer[11];
 	char buf[11];
 	clock_t exec_t1, exec_t2;
 	float *matrix;
 
-	setDeterminantSize(DIMENSION);
-	alt_putstr("Hello from Nios II!\n");
+	alt_irq_init(NULL);  // allow for interrupts
+	// register ISR
+	status = alt_ic_isr_register(FP_DET_NIOS_0_IRQ_INTERRUPT_CONTROLLER_ID, FP_DET_NIOS_0_IRQ, fp_det_isr, NULL, NULL);
+	alt_putstr("ISR = "); alt_putstr(buf); alt_putstr("\n"); // zero is good
+
 	matrix = randomMatrix(DIMENSION);
 
 	alt_putstr("[");
@@ -143,7 +153,11 @@ int main(){
 	}
 	alt_putstr("]\n");
 
-	det = fp_det((void *) matrix, ( void *) &det);
+	while (!done){
+		status = fp_det((void *) matrix, DIMENSION);
+		gcvt(status, 10, buffer);
+		alt_putstr("stage = "); alt_putstr(buf); alt_putstr("\n");
+	}
 	gcvt(det, 10, buffer);
 	//i = fp_det_status((void *) matrix, 0);
 	//gcvt(i, 10, buffer);

@@ -32,19 +32,16 @@
 #define fp_sub(A,B) ALT_CI_FP_ALU_FP(1,(A),(B))
 #define fp_mul(A,B) ALT_CI_FP_ALU_FP(2,(A),(B))
 #define fp_div(A,B) ALT_CI_FP_ALU_FP(3,(A),(B))
-#define fp_det(A,B) __builtin_custom_inpi(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
+#define fp_det(A,B) __builtin_custom_fnpp(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
+#define fp_det_status(A,B) __builtin_custom_inpp(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
 
 #define DIMENSION 5 // Dimension for the matrix to be defined
-
-volatile int done = 0;
-volatile float det = 0.f;
 
 float determinant(float *matrix, int dimension);
 float getAt(float *m, int i, int j, int dimension);
 void putAt(float *m, int i, int j, int dimension, float value);
 float* randomMatrix(int dimension);
-void fp_det_isr(void* context);
-//void setDeterminantDimension(int size);
+void setDeterminantDimension(int size);
 
 float determinant(float *matrix, int dimension){
 	int i, j, p;
@@ -131,24 +128,17 @@ void fp_det_isr(void* context){
 	result.i = IORD(FP_DET_NIOS_0_BASE, 0);
 	det = result.f;
 }
-//void setDeterminantSize(int size){
-//	IOWR_ALTERA_AVALON_PIO_DATA(FP_DET_NIOS_0_BASE, size);
-//}
 
 int main(){
+	volatile float det = 0.f;
 	volatile int i,j;
-	volatile int status;
 	char buffer[11];
+	char buf[11];
 	clock_t exec_t1, exec_t2;
 	float *matrix;
 
-	alt_irq_init(NULL);  // allow for interrupts
-
-	// register ISR
-	status = alt_ic_isr_register(FP_DET_NIOS_0_IRQ_INTERRUPT_CONTROLLER_ID, FP_DET_NIOS_0_IRQ, fp_det_isr, NULL, NULL);
-	gcvt(status, 10, buffer);
-	alt_putstr("ISR = "); alt_putstr(buffer); alt_putstr("\n"); // zero is good
-
+	setDeterminantSize(DIMENSION);
+	alt_putstr("Hello from Nios II!\n");
 	matrix = randomMatrix(DIMENSION);
 
 	alt_putstr("[");
@@ -162,25 +152,26 @@ int main(){
 	}
 	alt_putstr("]\n");
 
-	while (!done){
-		status = fp_det((void *) matrix, DIMENSION);
-		gcvt(status, 10, buffer);
-		alt_putstr("stage = "); alt_putstr(buffer); alt_putstr("\n");
-	}
+	det = fp_det((void *) matrix, ( void *) &det);
 	gcvt(det, 10, buffer);
-	alt_putstr("Richard calculates = "); alt_putstr(buffer); alt_putstr("\n");
+	//i = fp_det_status((void *) matrix, 0);
+	//gcvt(i, 10, buffer);
+	alt_putstr("set to = "); alt_putstr(buffer); alt_putstr("\n");
 
 	exec_t1 = times(NULL); // get system time before starting the process
 	for (i = 0; i < 100; i++){
 		det = determinant( matrix, DIMENSION);
 	}
 	exec_t2 = times(NULL); // get system time after finishing the process
-	gcvt(((double)exec_t2-(double)exec_t1) / alt_ticks_per_second(), 10, buffer);
-	alt_putstr(" software time = "); alt_putstr(buffer); alt_putstr(" seconds \n");
+	gcvt(((double)exec_t2-(double)exec_t1) / alt_ticks_per_second(), 10, buf);
+
 	alt_putstr("software calculation = ");
 	gcvt(det, 10, buffer);
 	alt_putstr(buffer);
 	alt_putstr("\n");
+	alt_putstr(" proc time = "); alt_putstr(buf); alt_putstr(" seconds \n");
+
+
 
 	/* Event loop never exits. */
 	while (1);

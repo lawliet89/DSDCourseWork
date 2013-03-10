@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2013.03.10.14:56:53</td>
+    <td class="l">2013.03.08.14:49:27</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -297,7 +297,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_clk_0">clk_0</a>
       </td>
       <td class="from">clk&#160;&#160;</td>
-      <td class="main" rowspan="36">cpu</td>
+      <td class="main" rowspan="34">cpu</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
@@ -448,7 +448,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td></td>
       <td class="from">custom_instruction_master&#160;&#160;</td>
-      <td class="neighbor" rowspan="6">
+      <td class="neighbor" rowspan="4">
        <a href="#module_fp_det_nios_0">fp_det_nios_0</a>
       </td>
      </tr>
@@ -466,16 +466,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td></td>
       <td class="to">&#160;&#160;avalon_slave</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">d_irq&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;interrupt_sender</td>
      </tr>
     </table>
    </div>
@@ -856,7 +846,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">dataSlaveMapParam</td>
-        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='sdram.s1' start='0x800000' end='0x1000000' /&gt;&lt;slave name='cpu.jtag_debug_module' start='0x1000800' end='0x1001000' /&gt;&lt;slave name='sys_clk_timer.s1' start='0x1001000' end='0x1001020' /&gt;&lt;slave name='pll.pll_slave' start='0x1001030' end='0x1001040' /&gt;&lt;slave name='jtag_uart.avalon_jtag_slave' start='0x1001040' end='0x1001048' /&gt;&lt;slave name='sysid.control_slave' start='0x1001048' end='0x1001050' /&gt;&lt;slave name='fp_det_nios_0.avalon_slave' start='0x1001050' end='0x1001054' /&gt;&lt;/address-map&gt;</td>
+        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='sdram.s1' start='0x800000' end='0x1000000' /&gt;&lt;slave name='cpu.jtag_debug_module' start='0x1000800' end='0x1001000' /&gt;&lt;slave name='sys_clk_timer.s1' start='0x1001000' end='0x1001020' /&gt;&lt;slave name='pll.pll_slave' start='0x1001030' end='0x1001040' /&gt;&lt;slave name='jtag_uart.avalon_jtag_slave' start='0x1001040' end='0x1001048' /&gt;&lt;slave name='sysid.control_slave' start='0x1001048' end='0x1001050' /&gt;&lt;slave name='fp_det_nios_0.avalon_slave' start='0x1001050' end='0x1001051' /&gt;&lt;/address-map&gt;</td>
        </tr>
        <tr>
         <td class="parametername">clockFrequency</td>
@@ -868,7 +858,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">internalIrqMaskSystemInfo</td>
-        <td class="parametervalue">1114114</td>
+        <td class="parametervalue">65538</td>
        </tr>
        <tr>
         <td class="parametername">customInstSlavesSystemInfo</td>
@@ -1374,7 +1364,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">timestamp</td>
-        <td class="parametervalue">1362927355</td>
+        <td class="parametervalue">1362754112</td>
        </tr>
        <tr>
         <td class="parametername">AUTO_CLK_CLOCK_RATE</td>
@@ -1407,7 +1397,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">TIMESTAMP</td>
-        <td class="parametervalue">1362927355</td>
+        <td class="parametervalue">1362754112</td>
        </tr>
       </table>
      </td>
@@ -2479,23 +2469,23 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td class="neighbor" rowspan="4">
        <a href="#module_clk_0">clk_0</a>
       </td>
-      <td class="from">clk&#160;&#160;</td>
-      <td class="main" rowspan="13">fp_det_nios_0</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;clock_sink</td>
-     </tr>
-     <tr>
       <td class="from">clk_reset&#160;&#160;</td>
+      <td class="main" rowspan="11">fp_det_nios_0</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;reset_sink</td>
+     </tr>
+     <tr>
+      <td class="from">clk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;clock_sink</td>
      </tr>
      <tr style="height:6px">
       <td></td>
      </tr>
      <tr>
-      <td class="neighbor" rowspan="6">
+      <td class="neighbor" rowspan="4">
        <a href="#module_cpu">cpu</a>
       </td>
       <td class="from">custom_instruction_master&#160;&#160;</td>
@@ -2508,12 +2498,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </tr>
      <tr>
       <td class="to">&#160;&#160;avalon_slave</td>
-     </tr>
-     <tr>
-      <td class="from">d_irq&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;interrupt_sender</td>
      </tr>
      <tr>
       <td></td>
@@ -2538,12 +2522,12 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <h2>Parameters</h2>
       <table>
        <tr>
-        <td class="parametername">DEFAULT_DIMENSION</td>
-        <td class="parametervalue">10</td>
-       </tr>
-       <tr>
         <td class="parametername">AUTO_CLOCK_SINK_CLOCK_RATE</td>
         <td class="parametervalue">50000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">DEFAULT_DIMENSION</td>
+        <td class="parametervalue">10</td>
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -2566,8 +2550,8 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </div>
   <table class="blueBar">
    <tr>
-    <td class="l">generation took 0.00 seconds</td>
-    <td class="r">rendering took 0.13 seconds</td>
+    <td class="l">generation took 0.01 seconds</td>
+    <td class="r">rendering took 0.12 seconds</td>
    </tr>
   </table>
  </body>

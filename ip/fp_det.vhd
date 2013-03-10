@@ -114,7 +114,7 @@ case state is
 		nstate <= IDLE;
 		end if;
 		
-	when read_addr=>
+	when read_addr=>		
 		rden <= '1';
 		rdaddress <= iterator; 
 		loc := to_integer(shift_right(unsigned(iterator), 3));
@@ -125,12 +125,12 @@ case state is
 		m(loc) <= readdata;	
 		iterator := std_logic_vector(unsigned(iterator) + 8);
 		if unsigned(iterator) = 80 then
+		result <= (others=>'1');
+		done <= '1';
 		nstate <= mult1;
 		else
 		nstate <= read_addr;
-		end if;
-		
-		
+		end if;		
 	WHEN mult1 =>
 		dataa_mult_sig <= m(0);
 		datab_mult_sig <= m(4);
@@ -280,8 +280,11 @@ BEGIN
 	elsif count = 7 and add_mult ='0' then
 	count <= 0;
 	state <= nstate;
+	elsif state = IDLE or state = read_addr or state = read_data then
+	state <=nstate;	
 	else 
 	count <= count+1;
+	state <= state;
 	end if; 
 
 	if reset = '1' then

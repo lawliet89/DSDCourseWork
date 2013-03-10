@@ -209,3 +209,17 @@ hello_world.sta.summary
 *.o
 *.elf
 *.map
+.qsys_edit
+hello_world.asm.rpt
+hello_world.done
+hello_world.fit.rpt
+hello_world.fit.summary
+hello_world.flow.rpt
+hello_world.jdi
+hello_world.map.rpt
+hello_world.map.smsg
+hello_world.map.summary
+hello_world.pof
+hello_world.sof
+hello_world.sta.rpt
+hello_world.sta.summary

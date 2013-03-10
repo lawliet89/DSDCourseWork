@@ -130,7 +130,7 @@ void fp_det_isr(void* context){
 int main(){
 	volatile int i,j;
 	volatile int status;
-	volatile char buffer[11];
+	char buffer[11];
 	clock_t exec_t1, exec_t2;
 	float *matrix;
 
@@ -159,8 +159,8 @@ int main(){
 		gcvt(status, 10, buffer);
 		alt_putstr("stage = "); alt_putstr(buffer); alt_putstr("\n");
 	}
-
-	alt_putstr("set to = "); alt_putstr(buffer); alt_putstr("\n");
+	gcvt(det, 10, buffer);
+	alt_putstr("Richard calculates = "); alt_putstr(buffer); alt_putstr("\n");
 
 	exec_t1 = times(NULL); // get system time before starting the process
 	for (i = 0; i < 100; i++){

@@ -1,14 +1,3 @@
-
-// fp_det_nios.v
-
-// This file was auto-generated as a prototype implementation of a module
-// created in component editor.  It ties off all outputs to ground and
-// ignores all inputs.  It needs to be edited to make it do something
-// useful.
-// 
-// This file will not be automatically regenerated.  You should check it in
-// to your version control system if you want to keep it.
-
 //`timescale 1 ps / 1 ps
 module fp_det_nios (
 	    input  wire        avalon_clk,    //                    clock_sink.clk
@@ -149,10 +138,10 @@ module fp_det_nios (
 					ramWriteDone <= 0;
 					
 					done <= 1;
-					result <= 36;
+					result <= 0;
 			end else begin
 				done <= 0;
-				result <= 0;
+				result <= 999;
 			end
 			
 			// Avalon master
@@ -176,7 +165,7 @@ module fp_det_nios (
 				result <= 1;
 				done <= 1;
 			end else begin
-				result <= 0;
+				result <= 998;
 				done <= 0;
 			
 			end
@@ -233,7 +222,7 @@ module fp_det_nios (
 				result <= 2;
 				done <= 1;
 			end else begin
-				result <= 0;
+				result <= 997;
 				done <= 0;
 			
 			end
@@ -274,7 +263,7 @@ module fp_det_nios (
 				result <= 3;
 				done <= 1;
 			end else begin
-				result <= 0;
+				result <= 996;
 				done <= 0;
 			
 			end

@@ -130,15 +130,16 @@ void fp_det_isr(void* context){
 int main(){
 	volatile int i,j;
 	volatile int status;
-	char buffer[11];
-	char buf[11];
+	volatile char buffer[11];
 	clock_t exec_t1, exec_t2;
 	float *matrix;
 
 	alt_irq_init(NULL);  // allow for interrupts
+
 	// register ISR
 	status = alt_ic_isr_register(FP_DET_NIOS_0_IRQ_INTERRUPT_CONTROLLER_ID, FP_DET_NIOS_0_IRQ, fp_det_isr, NULL, NULL);
-	alt_putstr("ISR = "); alt_putstr(buf); alt_putstr("\n"); // zero is good
+	gcvt(status, 10, buffer);
+	alt_putstr("ISR = "); alt_putstr(buffer); alt_putstr("\n"); // zero is good
 
 	matrix = randomMatrix(DIMENSION);
 
@@ -156,11 +157,9 @@ int main(){
 	while (!done){
 		status = fp_det((void *) matrix, DIMENSION);
 		gcvt(status, 10, buffer);
-		alt_putstr("stage = "); alt_putstr(buf); alt_putstr("\n");
+		alt_putstr("stage = "); alt_putstr(buffer); alt_putstr("\n");
 	}
-	gcvt(det, 10, buffer);
-	//i = fp_det_status((void *) matrix, 0);
-	//gcvt(i, 10, buffer);
+
 	alt_putstr("set to = "); alt_putstr(buffer); alt_putstr("\n");
 
 	exec_t1 = times(NULL); // get system time before starting the process
@@ -168,15 +167,12 @@ int main(){
 		det = determinant( matrix, DIMENSION);
 	}
 	exec_t2 = times(NULL); // get system time after finishing the process
-	gcvt(((double)exec_t2-(double)exec_t1) / alt_ticks_per_second(), 10, buf);
-
+	gcvt(((double)exec_t2-(double)exec_t1) / alt_ticks_per_second(), 10, buffer);
+	alt_putstr(" software time = "); alt_putstr(buffer); alt_putstr(" seconds \n");
 	alt_putstr("software calculation = ");
 	gcvt(det, 10, buffer);
 	alt_putstr(buffer);
 	alt_putstr("\n");
-	alt_putstr(" proc time = "); alt_putstr(buf); alt_putstr(" seconds \n");
-
-
 
 	/* Event loop never exits. */
 	while (1);

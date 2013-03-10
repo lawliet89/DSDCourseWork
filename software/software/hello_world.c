@@ -120,8 +120,16 @@ float * randomMatrix(int dimension){
 }
 
 void fp_det_isr(void* context){
+	// do some union thingamagick because IORD always interprets result as an int
+	// and C does not have reinterpret cast
+	union {
+		int i;
+		float f;
+	} result;
+
 	done = 1;
-	det = IORD(FP_DET_NIOS_0_BASE, 0);
+	result.i = IORD(FP_DET_NIOS_0_BASE, 0);
+	det = result.f;
 }
 //void setDeterminantSize(int size){
 //	IOWR_ALTERA_AVALON_PIO_DATA(FP_DET_NIOS_0_BASE, size);

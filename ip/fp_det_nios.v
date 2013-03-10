@@ -1,14 +1,3 @@
-
-// fp_det_nios.v
-
-// This file was auto-generated as a prototype implementation of a module
-// created in component editor.  It ties off all outputs to ground and
-// ignores all inputs.  It needs to be edited to make it do something
-// useful.
-// 
-// This file will not be automatically regenerated.  You should check it in
-// to your version control system if you want to keep it.
-
 //`timescale 1 ps / 1 ps
 module fp_det_nios (
 	    input  wire        avalon_clk,    //                    clock_sink.clk
@@ -28,8 +17,9 @@ module fp_det_nios (
         input  wire        waitrequest,   //                              .waitrequest
         output reg        write,         //                              .write
         output reg [31:0] writedata,     //                              .writedata
-        input  wire        n_set,         //                  avalon_slave.write
-        input  wire [7:0]  n              //                              .writedata
+        input  wire        result_read,     //                  avalon_slave.read
+        output reg [31:0] result_readdata, //                              .readdata
+        output reg        irq              //              interrupt_sender.irq
     );
 
 	parameter AUTO_CLOCK_SINK_CLOCK_RATE = "-1";
@@ -38,7 +28,6 @@ module fp_det_nios (
 	reg [7:0] dimension = DEFAULT_DIMENSION;
 	reg [23:0] sdReadBase;
 	reg [23:0] sdReadAddress;
-	reg [23:0] sdWriteAddress;
 	reg [9:0] ramLoadAddress;
 	reg startSdRead = 0;
 	reg ramWriteDone = 0;
@@ -97,30 +86,17 @@ module fp_det_nios (
 		.result(detResult)
 	); 
 
-    //assign result = 32'b00000000000000000000000000000000;
-    //assign done = 1'b0;
-    //assign writedata = 32'b00000000000000000000000000000000;
-    //assign address = 24'b000000000000000000000000;
-    //assign write = 1'b0;
-    //assign read = 1'b0;
 
 	
-	// handle setting of dimension
-	always @ (posedge avalon_clk) begin
-		if (n_set && stage == 0) begin
-			if (n >= 2 && n <= 32) begin	// check for bounds
-				dimension <= n;
-			end
-		end
-	end
-	
-	// handle nios custom instruction
+
 	always @ (posedge clk) begin
+			
 		// we get a reset command
 		if (reset) begin
 			stage <= 0;
 			done <= 0;
 			result <= 0;
+			irq <= 0;
 			
 			// Avalon master
 			read <= 0;
@@ -140,22 +116,33 @@ module fp_det_nios (
 			startSdRead <= 0;
 			ramWriteDone <= 0;
 			sdReadAddress <= 0;
-			sdWriteAddress <= 0;
 			ramLoadAddress <= 0;
 			
+			dimension <= DEFAULT_DIMENSION;
+			finalResult <= 0;
+			
 
-		end else if (stage == 0) begin   // start command
-			if (start) begin
-				stage <= 1;
-				sdReadAddress <= dataa[23:0];
-				sdReadBase <= dataa[23:0];
-				sdWriteAddress <= datab[23:0];
-				ramLoadAddress <= 0;
-				startSdRead <= 1;
-				ramWriteDone <= 0;
+		end else if (stage == 0) begin   // idle state. doing nothing
+			if (start) begin  // start
+					stage <= 1;
+					sdReadAddress <= dataa[23:0];
+					sdReadBase <= dataa[23:0];
+					if (datab != 0) begin
+						dimension <= datab[7:0];
+					end else begin
+						dimension <= DEFAULT_DIMENSION;
+					end
+					
+					ramLoadAddress <= 0;
+					startSdRead <= 1;
+					ramWriteDone <= 0;
+					
+					done <= 1;
+					result <= 0;
+			end else begin
+				done <= 0;
+				result <= 999;
 			end
-			result <= 0;
-			done <= 0;
 			
 			// Avalon master
 			read <= 0;
@@ -173,8 +160,15 @@ module fp_det_nios (
 			ramReadEnable <= 0;
 			
 		end else if (stage == 1) begin  // read from SDRAM
-			result <= 0;
-			done <= 0;
+		
+			if (start) begin		// invalid start - we are not ready
+				result <= 1;
+				done <= 1;
+			end else begin
+				result <= 998;
+				done <= 0;
+			
+			end
 			
 			write <= 0;
 			writedata <= 0;
@@ -188,7 +182,7 @@ module fp_det_nios (
 								
 			// Request Pipeline
 			if (!waitrequest && read) begin
-				sdReadAddress = sdReadAddress + 4;
+				sdReadAddress = sdReadAddress + 24'd4;
 				address <= sdReadAddress;
 				
 				if (sdReadAddress == sdReadBase + dimension*dimension*4) begin
@@ -213,9 +207,6 @@ module fp_det_nios (
 			if (ramWriteDone) begin		// start calculating
 				detStart <= 1;
 				stage <= 2;
-				//ramReadAddress <= 0;
-				//ramReadEnable <= 1;
-				//ramWriteEnable <= 0;
 				
 				// RAM stuff - connect RAM controls with determinant module
 				ramReadAddress <= detRamReadAddress;
@@ -227,17 +218,20 @@ module fp_det_nios (
 			end
 			
 		end else if (stage == 2) begin	// calculating
+			if (start) begin		// invalid start - we are not ready
+				result <= 2;
+				done <= 1;
+			end else begin
+				result <= 997;
+				done <= 0;
 			
-			//stage <= 3;
-			//ramReadEnable <= 0;
-
+			end
 			
 			if (detDone) begin  // done
-				stage <= 0;
-				finalResult <= detResult;
+				stage <= 3;		// stage 3, waiting for interrupt to be cleared
 				
-				result <= detResult;
-				done <= 1;
+				finalResult <= detResult;		// RAISE AN INTERRUPT
+				irq <= 1;
 				
 				// RAM stuff
 				ramReadAddress <= 0;
@@ -246,8 +240,6 @@ module fp_det_nios (
 				ramWriteEnable <= 0;
 				ramReadEnable <= 0;
 			end else begin    // still calculating
-				done <= 0;
-				result <= 0;
 							
 				// RAM stuff - connect RAM controls with determinant module
 				ramReadAddress <= detRamReadAddress;
@@ -265,13 +257,23 @@ module fp_det_nios (
 			writedata <= 0;
 			
 			detStart <= 0;
-		end else if (stage == 3) begin
-			stage <= 0;
-			
-			done <= 1;
-			result <= ramReadData;
-		end
 		
+		end else if (stage == 3) begin
+			if (start) begin		// invalid start - we are not ready
+				result <= 3;
+				done <= 1;
+			end else begin
+				result <= 996;
+				done <= 0;
+			
+			end
+			
+			if (result_read) begin
+				result_readdata <= finalResult;
+				irq <= 0;
+				stage <= 0;		// reset to zero
+			end
+		end	
 	end
 
 endmodule

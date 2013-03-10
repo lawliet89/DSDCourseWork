@@ -1,19 +1,3 @@
-/*
- * "Hello World" example.
- *
- * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
- * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example
- * designs. It runs with or without the MicroC/OS-II RTOS and requires a STDOUT
- * device in your system's hardware.
- * The memory footprint of this hosted application is ~69 kbytes by default
- * using the standard reference design.
- *
- * For a reduced footprint version of this template, and an explanation of how
- * to reduce the memory footprint for a given application, see the
- * "small_hello_world" template.
- *
- */
-
 #include "stdlib.h"
 #include "sys/alt_stdio.h"
 #include <sys/alt_alarm.h>
@@ -27,25 +11,63 @@
 #include "sys/alt_irq.h"
 #include "sys/alt_cache.h"
 
+// NIOS custom instructions
 #define ALT_CI_FP_ALU_FP(n,A,B) __builtin_custom_fnff(ALT_CI_FP_ALU_0_N+(n&ALT_CI_FP_ALU_0_N_MASK),(A),(B))
 #define fp_add(A,B) ALT_CI_FP_ALU_FP(0,(A),(B))
 #define fp_sub(A,B) ALT_CI_FP_ALU_FP(1,(A),(B))
 #define fp_mul(A,B) ALT_CI_FP_ALU_FP(2,(A),(B))
 #define fp_div(A,B) ALT_CI_FP_ALU_FP(3,(A),(B))
-#define fp_det(A,B) __builtin_custom_inpi(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
 
-#define DIMENSION 5 // Dimension for the matrix to be defined
+// invoke the start of HW_det calculations
+// A = matrix starting address
+// B = dimension
+// set B = 0 or 1 to get stage
+#define _fp_det_invoke(A,B) __builtin_custom_inpi(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
+#define _fp_det_check() _fp_det_invoke(NULL, 0)
 
-volatile int done = 0;
-volatile float det = 0.f;
+#define FP_DET_READY 0
+#define FP_DET_ACCEPTED 99
+#define FP_DET_READ_SDRAM 1
+#define FP_DET_CALCULATING 2
+#define FP_DET_WAIT_IRQ 3
 
+#define DIMENSION 3 // Dimension for the matrix to be defined
+
+/************************ prototypes ************************************/
+/** program stuff **/
+float* randomMatrix(int dimension);  // generate matrix
+int done = 0;
+volatile float det = 0;
+
+/* Software Determinant Stuff */
 float determinant(float *matrix, int dimension);
 float getAt(float *m, int i, int j, int dimension);
 void putAt(float *m, int i, int j, int dimension, float value);
-float* randomMatrix(int dimension);
-void fp_det_isr(void* context);
-//void setDeterminantDimension(int size);
 
+/* hardware determinant stuff */
+void _fp_det_isr(void* context);
+
+// two versions of the determinant functions. It is best that users don't mix them. Use one or the other, but never both
+
+// blocking version of HW determinant. Simulate a normal C function
+// takes a dimension x dimension matrix pointer. returns results
+float fp_det(float *matrix, int dimension);
+
+// interrupt version of the function
+// when run, will wait for hardware to be ready
+// then sends command and returns status
+// when the hardware finishes the calculation, it will call the function provided by func which takes in a float value
+int fp_det_interrupt(float *matrix, int dimension, void (*func)(float));
+
+// get the status of the hardware
+int fp_det_check();
+
+void (*_fp_det_func)(float) = NULL;
+volatile float _fp_det_result = 0;
+volatile int _fp_det_done = 0;
+
+/*************************** functions ***********************************/
+/* Software Determinant Stuff */
 float determinant(float *matrix, int dimension){
 	int i, j, p;
 	float a, result;
@@ -101,6 +123,7 @@ void putAt(float *m, int i, int j, int dimension, float value){
 	*(m + i*dimension + j) = value;
 }
 
+/** program stuff **/
 float * randomMatrix(int dimension){
 	int i, j;
 	float no;
@@ -119,7 +142,14 @@ float * randomMatrix(int dimension){
 	return matrix;
 }
 
-void fp_det_isr(void* context){
+void det_done(float result){
+	done = 1;
+	det = result;
+}
+
+/* hardware determinant stuff */
+// ISR
+void _fp_det_isr(void* context){
 	// do some union thingamagick because IORD always interprets result as an int
 	// and C does not have reinterpret cast
 	union {
@@ -127,17 +157,45 @@ void fp_det_isr(void* context){
 		float f;
 	} result;
 
-	done = 1;
+	_fp_det_done = 1;
 	result.i = IORD(FP_DET_NIOS_0_BASE, 0);
-	det = result.f;
+	_fp_det_result = result.f;
+	if (_fp_det_func != NULL) _fp_det_func(_fp_det_result);
 }
-//void setDeterminantSize(int size){
-//	IOWR_ALTERA_AVALON_PIO_DATA(FP_DET_NIOS_0_BASE, size);
-//}
+
+// normal C function
+float fp_det(float *matrix, int dimension){
+	// check hardware is ready
+	while(fp_det_check() != FP_DET_READY);
+	_fp_det_done = 0;	// reset done
+	_fp_det_invoke((void *) matrix, dimension);
+
+	// now wait for done
+	while (!_fp_det_done);
+	_fp_det_done = 0;
+	return _fp_det_result;
+}
+
+// interrupt version - should return FP_DET_ACCEPTED
+int fp_det_interrupt(float *matrix, int dimension, void (*func)(float)){
+	// check hardware is ready
+	while(fp_det_check() != FP_DET_READY);
+	_fp_det_done = 0;	// reset done
+	_fp_det_func = func;
+	return _fp_det_invoke((void *) matrix, dimension);
+}
+
+// check status
+int fp_det_check(){
+	return _fp_det_check();
+}
+
+/******************* main ******************/
+
 
 int main(){
 	volatile int i,j;
-	volatile int status;
+	volatile int status, previous;
 	char buffer[11];
 	clock_t exec_t1, exec_t2;
 	float *matrix;
@@ -145,7 +203,7 @@ int main(){
 	alt_irq_init(NULL);  // allow for interrupts
 
 	// register ISR
-	status = alt_ic_isr_register(FP_DET_NIOS_0_IRQ_INTERRUPT_CONTROLLER_ID, FP_DET_NIOS_0_IRQ, fp_det_isr, NULL, NULL);
+	status = alt_ic_isr_register(FP_DET_NIOS_0_IRQ_INTERRUPT_CONTROLLER_ID, FP_DET_NIOS_0_IRQ, _fp_det_isr, NULL, NULL);
 	gcvt(status, 10, buffer);
 	alt_putstr("ISR = "); alt_putstr(buffer); alt_putstr("\n"); // zero is good
 
@@ -162,11 +220,20 @@ int main(){
 	}
 	alt_putstr("]\n");
 
+	// invoke calculation
+	status = fp_det_interrupt((void *) matrix, DIMENSION, det_done);
+	gcvt(status, 10, buffer);
+	alt_putstr("invoke = "); alt_putstr(buffer); alt_putstr("\n");	// should be FP_DET_ACCEPTED
+	previous = status;
 	while (!done){
-		status = fp_det((void *) matrix, DIMENSION);
-		gcvt(status, 10, buffer);
-		alt_putstr("stage = "); alt_putstr(buffer); alt_putstr("\n");
+		status = fp_det_check();
+		if (status != previous){
+			previous = status;
+			gcvt(status, 10, buffer);
+			alt_putstr("stage = "); alt_putstr(buffer); alt_putstr("\n");
+		}
 	}
+
 	gcvt(det, 10, buffer);
 	alt_putstr("Richard calculates = "); alt_putstr(buffer); alt_putstr("\n");
 

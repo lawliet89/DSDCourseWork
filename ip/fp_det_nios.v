@@ -1,4 +1,11 @@
-//`timescale 1 ps / 1 ps
+/*
+	Status return Code
+		0 - ready
+		1 - reading SDRAM
+		2 - calculating
+		3 - waiting for interrupt to be serviced
+		99 - start calculation request received and valid
+*/
 module fp_det_nios (
 	    input  wire        avalon_clk,    //                    clock_sink.clk
         input  wire        avalon_reset,  //                    reset_sink.reset
@@ -123,7 +130,7 @@ module fp_det_nios (
 			
 
 		end else if (stage == 0) begin   // idle state. doing nothing
-			if (start) begin  // start
+			if (start && datab > 1) begin  // start
 					stage <= 1;
 					sdReadAddress <= dataa[23:0];
 					sdReadBase <= dataa[23:0];
@@ -138,10 +145,13 @@ module fp_det_nios (
 					ramWriteDone <= 0;
 					
 					done <= 1;
-					result <= 0;
+					result <= 99;
+			end else if (start && datab <= 1) begin		// send dimension <= 1 to check for ready status
+				done <= 1;
+				result <= 0;
 			end else begin
 				done <= 0;
-				result <= 999;
+				result <= 0;
 			end
 			
 			// Avalon master
@@ -165,7 +175,7 @@ module fp_det_nios (
 				result <= 1;
 				done <= 1;
 			end else begin
-				result <= 998;
+				result <= 0;
 				done <= 0;
 			
 			end
@@ -222,7 +232,7 @@ module fp_det_nios (
 				result <= 2;
 				done <= 1;
 			end else begin
-				result <= 997;
+				result <= 0;
 				done <= 0;
 			
 			end
@@ -263,7 +273,7 @@ module fp_det_nios (
 				result <= 3;
 				done <= 1;
 			end else begin
-				result <= 996;
+				result <= 0;
 				done <= 0;
 			
 			end

@@ -216,6 +216,7 @@ module first_nios2_system_cpu_test_bench (
   wire             W_op_mulxuu;
   wire             W_op_nextpc;
   wire             W_op_nor;
+  wire             W_op_notch_0;
   wire             W_op_opx;
   wire             W_op_or;
   wire             W_op_orhi;
@@ -411,6 +412,7 @@ module first_nios2_system_cpu_test_bench (
   assign W_op_rsvx63 = W_op_opx & (W_iw_opx == 63);
   assign W_op_fp_alu_0 = W_op_custom & ({W_iw_custom_n[2] , 2'b0} == 3'h0);
   assign W_op_fp_det_nios_0 = W_op_custom & ({W_iw_custom_n[2 : 0]} == 3'h4);
+  assign W_op_notch_0 = W_op_custom & ({W_iw_custom_n[2 : 0]} == 3'h5);
   assign W_op_opx = W_iw_op == 58;
   assign W_op_custom = W_iw_op == 50;
   always @(posedge clk or negedge reset_n)

@@ -2,7 +2,7 @@ set_global_assignment -entity "first_nios2_system" -library "lib_first_nios2_sys
 set_global_assignment -entity "first_nios2_system" -library "lib_first_nios2_system" -name IP_TOOL_VERSION "12.0"
 set_global_assignment -entity "first_nios2_system" -library "lib_first_nios2_system" -name IP_TOOL_ENV "qsys"
 set_global_assignment -library "lib_first_nios2_system" -name MISC_FILE [file join $::quartus(qip_path) ../../first_nios2_system.sopcinfo]
-set_instance_assignment -entity "first_nios2_system" -library "lib_first_nios2_system" -name SLD_INFO "QSYS_NAME first_nios2_system HAS_SOPCINFO 1 GENERATION_ID 1362927355"
+set_instance_assignment -entity "first_nios2_system" -library "lib_first_nios2_system" -name SLD_INFO "QSYS_NAME first_nios2_system HAS_SOPCINFO 1 GENERATION_ID 1363115347"
 set_global_assignment -name SYNTHESIS_ONLY_QIP ON
 set_global_assignment -library "lib_first_nios2_system" -name MISC_FILE [file join $::quartus(qip_path) ../../first_nios2_system.qsys]
 
@@ -26,9 +26,11 @@ set_global_assignment -library "lib_first_nios2_system" -name SDC_FILE [file joi
 set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/altera_merlin_burst_adapter.sv]
 set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/altera_merlin_traffic_limiter.sv]
 set_global_assignment -library "lib_first_nios2_system" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/altera_avalon_st_pipeline_base.v]
+set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/first_nios2_system_id_router_009.sv]
 set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/first_nios2_system_id_router_003.sv]
 set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/first_nios2_system_id_router_001.sv]
 set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/first_nios2_system_id_router.sv]
+set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/first_nios2_system_addr_router_003.sv]
 set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/first_nios2_system_addr_router_002.sv]
 set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/first_nios2_system_addr_router_001.sv]
 set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/first_nios2_system_addr_router.sv]
@@ -40,6 +42,11 @@ set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE
 set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/altera_customins_slave_translator.sv]
 set_global_assignment -library "lib_first_nios2_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) submodules/first_nios2_system_cpu_custom_instruction_master_multi_xconnect.sv]
 set_global_assignment -library "lib_first_nios2_system" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/altera_customins_master_translator.v]
+set_global_assignment -library "lib_first_nios2_system" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/notch.v]
+set_global_assignment -library "lib_first_nios2_system" -name VHDL_FILE [file join $::quartus(qip_path) submodules/Altera_UP_Flash_Memory_IP_Core_Avalon_Interface.vhd]
+set_global_assignment -library "lib_first_nios2_system" -name VHDL_FILE [file join $::quartus(qip_path) submodules/Altera_UP_Flash_Memory_Controller.vhd]
+set_global_assignment -library "lib_first_nios2_system" -name VHDL_FILE [file join $::quartus(qip_path) submodules/Altera_UP_Flash_Memory_IP_Core_Standalone.vhd]
+set_global_assignment -library "lib_first_nios2_system" -name VHDL_FILE [file join $::quartus(qip_path) submodules/Altera_UP_Flash_Memory_User_Interface.vhd]
 set_global_assignment -library "lib_first_nios2_system" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/fp_det_nios.v]
 set_global_assignment -library "lib_first_nios2_system" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/fp_alu_improved.v]
 set_global_assignment -library "lib_first_nios2_system" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/first_nios2_system_pll.v]
@@ -106,6 +113,9 @@ set_global_assignment -entity "altera_merlin_burst_adapter" -library "lib_first_
 set_global_assignment -entity "altera_merlin_traffic_limiter" -library "lib_first_nios2_system" -name IP_TOOL_NAME "altera_merlin_traffic_limiter"
 set_global_assignment -entity "altera_merlin_traffic_limiter" -library "lib_first_nios2_system" -name IP_TOOL_VERSION "12.0"
 set_global_assignment -entity "altera_merlin_traffic_limiter" -library "lib_first_nios2_system" -name IP_TOOL_ENV "qsys"
+set_global_assignment -entity "first_nios2_system_id_router_009" -library "lib_first_nios2_system" -name IP_TOOL_NAME "altera_merlin_router"
+set_global_assignment -entity "first_nios2_system_id_router_009" -library "lib_first_nios2_system" -name IP_TOOL_VERSION "12.0"
+set_global_assignment -entity "first_nios2_system_id_router_009" -library "lib_first_nios2_system" -name IP_TOOL_ENV "qsys"
 set_global_assignment -entity "first_nios2_system_id_router_003" -library "lib_first_nios2_system" -name IP_TOOL_NAME "altera_merlin_router"
 set_global_assignment -entity "first_nios2_system_id_router_003" -library "lib_first_nios2_system" -name IP_TOOL_VERSION "12.0"
 set_global_assignment -entity "first_nios2_system_id_router_003" -library "lib_first_nios2_system" -name IP_TOOL_ENV "qsys"
@@ -115,6 +125,9 @@ set_global_assignment -entity "first_nios2_system_id_router_001" -library "lib_f
 set_global_assignment -entity "first_nios2_system_id_router" -library "lib_first_nios2_system" -name IP_TOOL_NAME "altera_merlin_router"
 set_global_assignment -entity "first_nios2_system_id_router" -library "lib_first_nios2_system" -name IP_TOOL_VERSION "12.0"
 set_global_assignment -entity "first_nios2_system_id_router" -library "lib_first_nios2_system" -name IP_TOOL_ENV "qsys"
+set_global_assignment -entity "first_nios2_system_addr_router_003" -library "lib_first_nios2_system" -name IP_TOOL_NAME "altera_merlin_router"
+set_global_assignment -entity "first_nios2_system_addr_router_003" -library "lib_first_nios2_system" -name IP_TOOL_VERSION "12.0"
+set_global_assignment -entity "first_nios2_system_addr_router_003" -library "lib_first_nios2_system" -name IP_TOOL_ENV "qsys"
 set_global_assignment -entity "first_nios2_system_addr_router_002" -library "lib_first_nios2_system" -name IP_TOOL_NAME "altera_merlin_router"
 set_global_assignment -entity "first_nios2_system_addr_router_002" -library "lib_first_nios2_system" -name IP_TOOL_VERSION "12.0"
 set_global_assignment -entity "first_nios2_system_addr_router_002" -library "lib_first_nios2_system" -name IP_TOOL_ENV "qsys"

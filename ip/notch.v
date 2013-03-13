@@ -1,3 +1,5 @@
+// Sign extension: http://stackoverflow.com/questions/4176556/how-to-sign-extend-a-number-in-verilog
+
 module notch (
 	    input  wire        avalon_clk,    //                    clock_sink.clk
         input  wire        avalon_reset,  //                    reset_sink.reset
@@ -27,19 +29,31 @@ module notch (
         output reg [31:0] slave_readdata, //                              .readdata
 		input wire		  slave_write,		//								.write
 		input [31:0]	  slave_writedata,	//								.writedata
-		output			slave_waitrequest,	//								.waitrequest							.
+        input [2:0]       address,          //                              .address    TODO
         output reg        irq              //              interrupt_sender.irq
     );
-
-	
-	
+   
 	parameter N = 2;		// order
 	parameter NO_SAMPLES = 963144;
 	parameter SAMPLE_SCALING = 2147483647;
-	parameter COEFF_SCALING = 17297;
+	parameter COEFF_SCALING = 16383;
 	parameter FLASH_BASE_ADDRESS = 0;
 	
-	parameter A1 = TODO;
+    // default coefficients
+    //a = 1	-1.89436042308807	0.913743853569031
+    //b = 0.505116066895425	-1	0.505116066895425
+    // the parameters below are scaled versions
+	parameter A1 = -16'd31035;
+    parameter A2 = 16'd14969;
+    parameter B0 = 16'd8275;
+    parameter B1 = -16'd16383;
+    parameter B2 = 16'd8275;
+    
+    reg [15:0] a1 = A1;
+    reg [15:0] a2 = A2;
+    reg [15:0] b0 = B0;
+    reg [15:0] b1 = B1;
+    reg [15:0] b2 = B2;
 	
 	
 	reg [31:0] x_n = 0;		// x(N)
@@ -47,8 +61,8 @@ module notch (
 	reg [31:0] x_n2 = 0;	// x(n-2)
 		
 	reg [63:0] yIntermediate = 0;	// y(n)
-	reg [47:0] a1Intermediate;
-	reg [47:0] a2Intermediate;
+	reg [63:0] a1Intermediate;
+	reg [63:0] a2Intermediate;
 	reg [47:0] b0Intermediate;
 	reg [47:0] b1Intermediate;
 	reg [47:0] b2Intermediate;
@@ -59,10 +73,12 @@ module notch (
 	
 	reg [1:0] stage = 0;
 	reg [31:0] writeBase = 0;	// base address to write result to.
+    reg [31:0] writeAddress = 0;
 	reg startFlashRead = 0;
 	reg [21:0] flashReadMemory = 0;
 	reg [2:0] calculationStage = 0;
-	reg [19:0] iteration = 0;
+    reg [2:0] writeStage = 0;
+    reg [31:0] writeCache;
 
 	reg [31:0] readFifoWrite;
 	reg readFifoReadRequest = 0;
@@ -115,9 +131,10 @@ module notch (
 			
 			stage <= 0;
 			writeBase <= 0;
+            writeAddress <= 0;
 			startFlashRead <= 0;
 			calculationStage <= 0;
-			iteration <= 0;
+            writeStage <= 0;
 			
 			fladdress <= 0;
 			flashReadMemory <= 0;
@@ -135,11 +152,12 @@ module notch (
 			if (start && dataa != 0) begin		// start
 				stage <= 1;
 				writeBase <= dataa;
+                writeAddress <= dataa;
 				fladdress <= 0;
 				flashReadMemory <= 0;
-				iteration <= 0;
 				calculationStage <= 0;
 				startFlashRead <= 1;
+                writeStage <= 0;
 				
 				x_n <= 0;
 				x_n1 <= 0;
@@ -234,21 +252,77 @@ module notch (
 				x_n2 <= x_n1;
 				
 				calculationStage <= 2;
-			end else if (calculationStage == 2) begin
-				a1Intermediate = ;
-				a2Intermediate;
-				b0Intermediate;
-				b1Intermediate;
-				b2Intermediate;
-			
+			end else if (calculationStage == 2) begin   // multiply  - potential problem area
+				a1Intermediate <= $signed($signed(y_n1)*$signed(a1));
+				a2Intermediate <= $signed($signed(y_n2)*$signed(a2));
+				b0Intermediate <= $signed($signed(x_n)*$signed(b0));
+				b1Intermediate <= $signed($signed(x_n1)*$signed(b1));
+				b2Intermediate <= $signed($signed(x_n2)*$signed(b2));
+                calculationStage <= 3;
+			 
+			end else if (calculationStage == 3) begin   // accumulate - potential problem area
+                yIntermediate <= $signed( $signed(b0Intermediate) + $signed(b1Intermediate) + $signed(b3Intermediate) - $signed(a1Intermediate)  - $signed(a2Intermediate));
+                calculationStage <= 4;
+            end else if (calculationStage == 4) begin // get rid of coefficient scaling, and buffer
+                y_n2 <= y_n1;
+                y_n1 <= $signed($signed(yIntermediate)/COEFF_SCALING)[31:0];
+            
+            end else if (calculationStage == 4) begin // write
+                if (!writeFifoFull) begin
+                    writeFifoWriteRequest <= 1;
+                    writeFifoWrite <= y_n1;
+                    calculationStage <= 5
+                end else begin
+                    writeFifoWriteRequest <= 0;
+                end
+            end else if (calculationStage == 5) begin // reset
+                writeFifoWriteRequest <= 0;
+                calculationStage <= 0;
 			end
-			
+            
+            // write to SDRAM pipeline
+            if (writeAddress < writeBase + NO_SAMPLES*4) begin
+                if (writeStage == 0 && ! writeFifoEmpty) begin
+                    writeFifoReadRequest <= 1;
+                    writeStage <= 1;
+                    
+                end else if (writeStage == 1) begin
+                    writeCache <= writeFifoOutput;
+                    writeFifoReadRequest <= 0;
+                    writeStage <= 2;
+                    
+                end else if (writeStage == 2) begin
+                    sdwrite <= 1;
+                    sdwritedata <= writeCache;
+                    sdaddress <= writeAddress;
+                    writeStage <= 3;
+                    
+                end else if (writeStage == 3) begin
+                    if (!sdwaitrequest) begin
+                        sdwrite <= 0;
+                        writeAddress <= writeAddress + 4;
+                        writeStage <= 0;
+                    end
+                end
+            end else begin      // we are done
+                stage <= 2;
+                irq <= 1;
+            end
 			
 		
-		end else if (stage == 2) begin
-			done <= 1;
-			stage <= 0;
+		end else if (stage == 2) begin      // wait for IRQ to be serviced
+			if (start) begin	// handle request checks
+				done <= 1;
+				result <= stage;
+			end else begin
+				done <= 0;
+			end
 		
+            if (slave_read) begin
+                slave_readdata <= NO_SAMPLES;
+                irq <= 0;
+                stage <= 0;
+            end
 		end
 		
 	end

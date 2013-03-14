@@ -75,6 +75,7 @@ volatile int _fp_det_done = 0;
 /* NOTCH STUFF */
 // ISR
 void _notch_isr(void* context);
+int _notch_status_read(int i);
 
 int _notch_done = 0;
 int _notch_result = 0;
@@ -209,6 +210,11 @@ void _notch_isr(void* context){
 	_notch_result = IORD(NOTCH_0_BASE, 0);
 }
 
+int _notch_status_read(int i){
+	//i *= 4;
+	return IORD(NOTCH_0_BASE, i);
+}
+
 /******************* main ******************/
 
 
@@ -277,6 +283,50 @@ int main(){
 				gcvt(status_notch, 10, buffer);
 				alt_putstr("Notch = "); alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
 				previous_notch = status_notch;
+			}
+			else{
+				alt_putstr("-----------------------\n");
+				// 0
+				status = _notch_status_read(0);
+				gcvt(status, 10, buffer);
+				alt_putstr("flashReadMemory = "); alt_putstr(buffer); alt_putstr("\n");
+
+				// 1
+				status = _notch_status_read(1);
+				gcvt(status, 10, buffer);
+				alt_putstr("readFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
+
+				// 2
+				status = _notch_status_read(2);
+				gcvt(status, 10, buffer);
+				alt_putstr("flwaitrequest = "); alt_putstr(buffer); alt_putstr("\n");
+
+				// 3
+				status = _notch_status_read(3);
+				gcvt(status, 10, buffer);
+				alt_putstr("flreaddatavalid = "); alt_putstr(buffer); alt_putstr("\n");
+
+				// 4
+				status = _notch_status_read(4);
+				gcvt(status, 10, buffer);
+				alt_putstr("calculationStage = "); alt_putstr(buffer); alt_putstr("\n");
+
+				// 5
+				status = _notch_status_read(5);
+				gcvt(status, 10, buffer);
+				alt_putstr("writeFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
+
+				// 6
+				status = _notch_status_read(6);
+				gcvt(status, 10, buffer);
+				alt_putstr("sdwaitrequest = "); alt_putstr(buffer); alt_putstr("\n");
+
+				// 7
+				status = _notch_status_read(7);
+				gcvt(status, 10, buffer);
+				alt_putstr("writeAddress = "); alt_putstr(buffer); alt_putstr("\n");
+
+				alt_putstr("-----------------------\n");
 			}
 		}
 	}

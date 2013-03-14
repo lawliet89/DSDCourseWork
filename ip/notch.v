@@ -89,6 +89,7 @@ module notch (
 	wire readFifoEmpty;
 	wire readFifoFull;
 	wire [31:0] readFifoOutput;
+	wire [3:0] readFifoUsed;
 	
 	fifo_16	readFifo (
 		.clock ( clk ),
@@ -98,7 +99,8 @@ module notch (
 		.wrreq ( readFifoWriteRequest ),
 		.empty ( readFifoEmpty ),
 		.full ( readFifoFull ),
-		.q ( readFifoOutput )
+		.q ( readFifoOutput ),
+		.usedw ( readFifoUsed )
 		);
 	
 	reg [31:0] writeFifoWrite;
@@ -108,6 +110,7 @@ module notch (
 	wire writeFifoEmpty;
 	wire writeFifoFull;
 	wire [31:0] writeFifoOutput;
+	wire [3:0] writeFifoUsed;
 		
 	fifo_16	writeFifo (
 		.clock ( clk ),
@@ -117,7 +120,8 @@ module notch (
 		.wrreq ( writeFifoWriteRequest ),
 		.empty ( writeFifoEmpty ),
 		.full ( writeFifoFull ),
-		.q ( writeFifoOutput )
+		.q ( writeFifoOutput ),
+		.usedw ( writeFifoUsed )
 		);	
 		
 	
@@ -194,9 +198,24 @@ module notch (
 		end else if (stage == 1) begin	// stage 1 - reading and calculating
 			if (start) begin	// handle request checks
 				done <= 1;
-				result <= writeAddress-writeBase;
+				result <= (writeAddress-writeBase)/4;
 			end else begin
 				done <= 0;
+			end
+			
+			// slave status read
+			if (slave_read) begin
+				case (address) 
+					0:  slave_readdata <= { {10{1'd0}}, flashReadMemory };
+					1: 	slave_readdata <= { {28{1'd0}}, readFifoUsed };
+					2: 	slave_readdata <= { {31{1'd0}}, flwaitrequest }; 
+					3: 	slave_readdata <= { {31{1'd0}}, flreaddatavalid };
+					4: 	slave_readdata <= { {29{1'd0}}, calculationStage };
+					5: 	slave_readdata <= { {28{1'd0}}, writeFifoUsed };
+					6: 	slave_readdata <= { {31{1'd0}}, sdwaitrequest };
+					7: 	slave_readdata <= (writeAddress-writeBase);
+				endcase
+			
 			end
 			
 			if (startFlashRead) begin
@@ -205,7 +224,7 @@ module notch (
 				
 				writeFifoClear <= 0;
 				readFifoClear <= 0;
-			end			
+			end		
 			
 			
 			// Request Pipeline

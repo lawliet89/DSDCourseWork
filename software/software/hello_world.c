@@ -33,6 +33,12 @@
 
 #define DIMENSION 3 // Dimension for the matrix to be defined
 
+// PART II
+#define hw_notch(A) __builtin_custom_inpi(ALT_CI_NOTCH_0_N,(A),0)
+#define NOTCH_SIZE 963144
+#define NOTCH_ACCEPTED 99
+#define NOTCH_READY -1
+
 /************************ prototypes ************************************/
 /** program stuff **/
 float* randomMatrix(int dimension);  // generate matrix
@@ -65,6 +71,13 @@ int fp_det_check();
 void (*_fp_det_func)(float) = NULL;
 volatile float _fp_det_result = 0;
 volatile int _fp_det_done = 0;
+
+/* NOTCH STUFF */
+// ISR
+void _notch_isr(void* context);
+
+int _notch_done = 0;
+int _notch_result = 0;
 
 /*************************** functions ***********************************/
 /* Software Determinant Stuff */
@@ -190,52 +203,89 @@ int fp_det_check(){
 	return _fp_det_check();
 }
 
+/** NOTCH STUFF **/
+void _notch_isr(void* context){
+	_notch_done = 1;
+	_notch_result = IORD(NOTCH_0_BASE, 0);
+}
+
 /******************* main ******************/
 
 
 int main(){
 	volatile int i,j;
-	volatile int status, previous;
+	volatile int status, status_det, status_notch, previous_det, previous_notch;
 	char buffer[11];
 	clock_t exec_t1, exec_t2;
 	float *matrix;
+	int *wav;
 
 	alt_irq_init(NULL);  // allow for interrupts
 
-	// register ISR
+	// register ISR - det
 	status = alt_ic_isr_register(FP_DET_NIOS_0_IRQ_INTERRUPT_CONTROLLER_ID, FP_DET_NIOS_0_IRQ, _fp_det_isr, NULL, NULL);
-	gcvt(status, 10, buffer);
-	alt_putstr("ISR = "); alt_putstr(buffer); alt_putstr("\n"); // zero is good
+	//gcvt(status, 10, buffer);
+	//alt_putstr("ISR = "); alt_putstr(buffer); alt_putstr("\n"); // zero is good
 
-	matrix = randomMatrix(DIMENSION);
+	// register ISR - notch
+	status = alt_ic_isr_register(NOTCH_0_IRQ_INTERRUPT_CONTROLLER_ID, NOTCH_0_IRQ, _notch_isr, NULL, NULL);
+	//gcvt(status, 10, buffer);
+	//alt_putstr("ISR = "); alt_putstr(buffer); alt_putstr("\n"); // zero is good
 
+	// setup things - malloc space for output
+	wav = (int *) calloc(NOTCH_SIZE, sizeof(int));
+
+	// setup things - generate matrix
+	matrix = randomMatrix(DIMENSION);	// generate random matrix
 	alt_putstr("[");
-	for (i = 0; i < DIMENSION; i++){
-		for (j = 0; j <  DIMENSION; j++){
-			gcvt( *(matrix + i*DIMENSION + j) , 10, buffer);
-			alt_putstr(buffer);
-			alt_putstr(" ");
+		for (i = 0; i < DIMENSION; i++){
+			for (j = 0; j <  DIMENSION; j++){
+				gcvt( *(matrix + i*DIMENSION + j) , 10, buffer);
+				alt_putstr(buffer);
+				alt_putstr(" ");
+			}
+			alt_putstr(";\n");
 		}
-		alt_putstr(";\n");
-	}
 	alt_putstr("]\n");
 
-	// invoke calculation
-	status = fp_det_interrupt((void *) matrix, DIMENSION, det_done);
-	gcvt(status, 10, buffer);
-	alt_putstr("invoke = "); alt_putstr(buffer); alt_putstr("\n");	// should be FP_DET_ACCEPTED
-	previous = status;
-	while (!done){
-		status = fp_det_check();
-		if (status != previous){
-			previous = status;
-			gcvt(status, 10, buffer);
-			alt_putstr("stage = "); alt_putstr(buffer); alt_putstr("\n");
+	// invoke Part II
+	status_notch = hw_notch((void *) wav);
+	gcvt(status_notch, 10, buffer);
+	alt_putstr("Notch = "); alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
+	previous_notch = status_notch;
+
+
+	// invoke part I
+	status_det = fp_det_interrupt((void *) matrix, DIMENSION, det_done);
+	gcvt(status_det, 10, buffer);
+	alt_putstr("det = "); alt_putstr(buffer); alt_putstr("\n");	// should be FP_DET_ACCEPTED
+	previous_det = status_det;
+
+	// wait for everything to be done
+	while (!done || !_notch_done){
+		if (!done){
+			status_det = fp_det_check();
+			if (status_det != previous_det){
+				previous_det = status_det;
+				gcvt(status_det, 10, buffer);
+				alt_putstr("det_stage = "); alt_putstr(buffer); alt_putstr("\n");
+			}
+		}
+		if (!_notch_done){
+			status_notch = hw_notch(NULL);
+			if (status_notch != previous_notch){
+				gcvt(status_notch, 10, buffer);
+				alt_putstr("Notch = "); alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
+				previous_notch = status_notch;
+			}
 		}
 	}
 
 	gcvt(det, 10, buffer);
 	alt_putstr("Richard calculates = "); alt_putstr(buffer); alt_putstr("\n");
+
+	gcvt(_notch_result, 10, buffer);
+	alt_putstr("Notch calculates = "); alt_putstr(buffer); alt_putstr("\n");
 
 	exec_t1 = times(NULL); // get system time before starting the process
 	for (i = 0; i < 100; i++){

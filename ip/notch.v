@@ -39,6 +39,8 @@ module notch (
 	parameter COEFF_SCALING = 16383;
 	parameter FLASH_BASE_ADDRESS = 0;
 	
+	reg forceReset = 0;
+	
     // default coefficients
     //a = 1	-1.89436042308807	0.913743853569031
     //b = 0.505116066895425	-1	0.505116066895425
@@ -121,7 +123,9 @@ module notch (
 	
 	always @ (posedge clk) begin
 	
-		if (reset) begin
+		if (reset || forceReset) begin
+			forceReset <= 0;
+		
 			x_n <= 0;
 			x_n1 <= 0;
 			x_n2 <= 0;
@@ -174,12 +178,12 @@ module notch (
 				writeFifoReadRequest <= 0;
 				writeFifoReadRequest <= 0;
 				
-				//done <= 1;
-				//result <= 99;
+				done <= 1;
+				result <= 99;
 					
 			end else if (start && dataa == 0) begin		// status check
 				done <= 1;
-				result <= 0;
+				result <= -1;
 			end else begin		// idle
 				done <= 0;
 			end
@@ -190,7 +194,7 @@ module notch (
 		end else if (stage == 1) begin	// stage 1 - reading and calculating
 			if (start) begin	// handle request checks
 				done <= 1;
-				result <= stage;
+				result <= writeAddress-writeBase;
 			end else begin
 				done <= 0;
 			end
@@ -222,7 +226,7 @@ module notch (
 				end
 				
 				if (!flread && !readFifoFull) begin	// see if fifo buffer is not full again and restart requests
-					flread <= 0;
+					flread <= 1;
 				end
 			
 			end
@@ -261,28 +265,32 @@ module notch (
                 calculationStage <= 3;
 			 
 			end else if (calculationStage == 3) begin   // accumulate - potential problem area
-                yIntermediate <= $signed( $signed(b0Intermediate) + $signed(b1Intermediate) + $signed(b3Intermediate) - $signed(a1Intermediate)  - $signed(a2Intermediate));
+                yIntermediate <= $signed( $signed(b0Intermediate) + $signed(b1Intermediate) + $signed(b2Intermediate) - $signed(a1Intermediate)  - $signed(a2Intermediate));
                 calculationStage <= 4;
+				
             end else if (calculationStage == 4) begin // get rid of coefficient scaling, and buffer
                 y_n2 <= y_n1;
-                y_n1 <= $signed($signed(yIntermediate)/COEFF_SCALING)[31:0];
+                y_n1 <= ($signed($signed(yIntermediate)/COEFF_SCALING));
+				calculationStage <= 5;
             
-            end else if (calculationStage == 4) begin // write
+            end else if (calculationStage == 5) begin // write
                 if (!writeFifoFull) begin
                     writeFifoWriteRequest <= 1;
                     writeFifoWrite <= y_n1;
-                    calculationStage <= 5
+                    calculationStage <= 6;
                 end else begin
                     writeFifoWriteRequest <= 0;
                 end
-            end else if (calculationStage == 5) begin // reset
+				
+            end else if (calculationStage == 6) begin // reset
                 writeFifoWriteRequest <= 0;
                 calculationStage <= 0;
+
 			end
             
             // write to SDRAM pipeline
             if (writeAddress < writeBase + NO_SAMPLES*4) begin
-                if (writeStage == 0 && ! writeFifoEmpty) begin
+                if (writeStage == 0 && !writeFifoEmpty) begin
                     writeFifoReadRequest <= 1;
                     writeStage <= 1;
                     

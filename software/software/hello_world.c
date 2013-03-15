@@ -257,112 +257,100 @@ int main(){
 	// invoke Part II
 	status_notch = hw_notch((void *) wav);
 	gcvt(status_notch, 10, buffer);
-	alt_putstr("Notch = "); alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
+	alt_putstr("Notch Invocation = "); alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
 	previous_notch = status_notch;
 
 
 	// invoke part I
 	status_det = fp_det_interrupt((void *) matrix, DIMENSION, det_done);
 	gcvt(status_det, 10, buffer);
-	alt_putstr("det = "); alt_putstr(buffer); alt_putstr("\n");	// should be FP_DET_ACCEPTED
+	alt_putstr("Det Invocation = "); alt_putstr(buffer); alt_putstr("\n");	// should be FP_DET_ACCEPTED
 	previous_det = status_det;
 
 	// wait for everything to be done
-	while (!done || !_notch_done){
-		if (!done){
+	while (/*!done ||*/ !_notch_done){
+
 			status_det = fp_det_check();
 			if (status_det != previous_det){
 				previous_det = status_det;
 				gcvt(status_det, 10, buffer);
-				alt_putstr("det_stage = "); alt_putstr(buffer); alt_putstr("\n");
+				alt_putstr("Det Status = "); alt_putstr(buffer); alt_putstr("\n");
 			}
-		}
-		if (!_notch_done){
+
 			status_notch = hw_notch(NULL);
 			if (status_notch != previous_notch){
 				gcvt(status_notch, 10, buffer);
-				alt_putstr("Notch = "); alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
+				alt_putstr("Notch Processing = "); alt_putstr(buffer); alt_putstr("\n");
 				previous_notch = status_notch;
 			}
-			else{
-				alt_putstr("-----------------------\n");
+			else if (!_notch_done){	// diagnostic
+				alt_putstr("----------Diagnostic-------------\n");
 				// 0
 				status = _notch_status_read(0)/4;
 				gcvt(status, 10, buffer);
-				alt_putstr("flashReadMemory = "); alt_putstr(buffer); alt_putstr("\n");
+				alt_putstr("readAddress = "); alt_putstr(buffer); alt_putstr("\n");
 
 				// 1
 				status = _notch_status_read(1);
 				gcvt(status, 10, buffer);
-				alt_putstr("readFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
+				alt_putstr("reqFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
 
 				// 2
 				status = _notch_status_read(2);
 				gcvt(status, 10, buffer);
-				alt_putstr("flwaitrequest = "); alt_putstr(buffer); alt_putstr("\n");
+				alt_putstr("readFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
 
-				// 3
+				//3
 				status = _notch_status_read(3);
 				gcvt(status, 10, buffer);
-				alt_putstr("flreaddatavalid = "); alt_putstr(buffer); alt_putstr("\n");
-				
-				// 4
+				alt_putstr("sdReceiveCount = "); alt_putstr(buffer); alt_putstr("\n");
+
+				//4
 				status = _notch_status_read(4);
 				gcvt(status, 10, buffer);
-				alt_putstr("flread = "); alt_putstr(buffer); alt_putstr("\n");
+				alt_putstr("sdDiscardedRead = "); alt_putstr(buffer); alt_putstr("\n");
 
-				// 5
+				//5
 				status = _notch_status_read(5);
-				gcvt(status, 10, buffer);
-				alt_putstr("flashReceiveCount = "); alt_putstr(buffer); alt_putstr("\n");
-
-				// 6
-				status = _notch_status_read(6);
 				gcvt(status, 10, buffer);
 				alt_putstr("calculationStage = "); alt_putstr(buffer); alt_putstr("\n");
 
-				// 7
-				status = _notch_status_read(7);
+				//6
+				status = _notch_status_read(6);
 				gcvt(status, 10, buffer);
 				alt_putstr("calculationCount = "); alt_putstr(buffer); alt_putstr("\n");
 
-				// 8
+				//7
+				status = _notch_status_read(7)/4;
+				gcvt(status, 10, buffer);
+				alt_putstr("writeAddress = "); alt_putstr(buffer); alt_putstr("\n");
+
+				//8
 				status = _notch_status_read(8);
 				gcvt(status, 10, buffer);
 				alt_putstr("writeFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
 
-				// 9
+				//9
 				status = _notch_status_read(9);
+				gcvt(status, 10, buffer);
+				alt_putstr("sdread = "); alt_putstr(buffer); alt_putstr("\n");
+
+				//10
+				status = _notch_status_read(10);
 				gcvt(status, 10, buffer);
 				alt_putstr("sdwaitrequest = "); alt_putstr(buffer); alt_putstr("\n");
 
-				// 10
-				status = _notch_status_read(10);
+				//11
+				status = _notch_status_read(11);
 				gcvt(status, 10, buffer);
 				alt_putstr("sdwrite = "); alt_putstr(buffer); alt_putstr("\n");
-				
-				
-				// 11
-				status = _notch_status_read(11)/4;
-				gcvt(status, 10, buffer);
-				alt_putstr("writeAddress = "); alt_putstr(buffer); alt_putstr("\n");
 
-				// 12
-				status = _notch_status_read(12);
-				gcvt(status, 10, buffer);
-				alt_putstr("reqFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
-
-				// 13
-				status = _notch_status_read(13);
-				gcvt(status, 10, buffer);
-				alt_putstr("flashDiscardedCount = "); alt_putstr(buffer); alt_putstr("\n");
-
-				alt_putstr("-----------------------\n");
 			}
-		}
-		else{
-			alt_putstr("NOTCH IS DONE!!!!!!\n");
-		}
+			else if (_notch_done){
+							gcvt((int) wav, 10, buffer);
+							alt_putstr("Notch Result Ptr = "); alt_putstr(buffer); alt_putstr("\n");
+			}
+
 	}
 
 	gcvt(det, 10, buffer);
@@ -383,6 +371,17 @@ int main(){
 	alt_putstr(buffer);
 	alt_putstr("\n");
 
+	//alt_putstr("output begins:\n");
+	// output the bloody result
+	//for (i = 0; i < NOTCH_SIZE; i++){
+	//	gcvt(wav[i], 10, buffer);
+	//	alt_putstr(buffer); alt_putstr("\n");
+	//}
+
+	for (i = 0; i < 10; i++){
+		gcvt(wav[i], 10, buffer);
+		alt_putstr(buffer); alt_putstr("\n");
+	}
 	/* Event loop never exits. */
 	while (1);
 

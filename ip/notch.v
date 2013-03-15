@@ -29,7 +29,7 @@ module notch (
         output reg [31:0] slave_readdata, //                              .readdata
 		input wire		  slave_write,		//								.write
 		input [31:0]	  slave_writedata,	//								.writedata
-        input [2:0]       address,          //                              .address    TODO
+        input [3:0]       slave_address,    //                              .address    
         output reg        irq              //              interrupt_sender.irq
     );
    
@@ -79,6 +79,7 @@ module notch (
 	reg startFlashRead = 0;
 	reg [21:0] flashReadMemory = 0;
 	reg [2:0] calculationStage = 0;
+	reg [31:0] calculationCount = 0;
     reg [2:0] writeStage = 0;
     reg [31:0] writeCache;
 
@@ -142,6 +143,7 @@ module notch (
             writeAddress <= 0;
 			startFlashRead <= 0;
 			calculationStage <= 0;
+			calculationCount <= 0;
             writeStage <= 0;
 			
 			fladdress <= 0;
@@ -164,6 +166,7 @@ module notch (
 				fladdress <= 0;
 				flashReadMemory <= 0;
 				calculationStage <= 0;
+				calculationCount <= 0;
 				startFlashRead <= 1;
                 writeStage <= 0;
 				
@@ -205,15 +208,18 @@ module notch (
 			
 			// slave status read
 			if (slave_read) begin
-				case (address) 
-					0:  slave_readdata <= { {10{1'd0}}, flashReadMemory };
-					1: 	slave_readdata <= { {28{1'd0}}, readFifoUsed };
-					2: 	slave_readdata <= { {31{1'd0}}, flwaitrequest }; 
-					3: 	slave_readdata <= { {31{1'd0}}, flreaddatavalid };
-					4: 	slave_readdata <= { {29{1'd0}}, calculationStage };
-					5: 	slave_readdata <= { {28{1'd0}}, writeFifoUsed };
-					6: 	slave_readdata <= { {31{1'd0}}, sdwaitrequest };
-					7: 	slave_readdata <= (writeAddress-writeBase);
+				case (slave_address) 
+					0:  	slave_readdata <= { {10{1'd0}}, flashReadMemory };
+					1: 		slave_readdata <= { {28{1'd0}}, readFifoUsed };
+					2: 		slave_readdata <= { {31{1'd0}}, flwaitrequest }; 
+					3: 		slave_readdata <= { {31{1'd0}}, flreaddatavalid };
+					4: 		slave_readdata <= { {31{1'd0}}, flread };
+					5: 		slave_readdata <= { {29{1'd0}}, calculationStage };
+					6:		slave_readdata <= calculationCount;
+					7: 		slave_readdata <= { {28{1'd0}}, writeFifoUsed };
+					8: 		slave_readdata <= { {31{1'd0}}, sdwaitrequest };
+					9: 		slave_readdata <= { {31{1'd0}}, sdwrite };
+					10: 	slave_readdata <= (writeAddress-writeBase);
 				endcase
 			
 			end
@@ -269,7 +275,10 @@ module notch (
 			if (!readFifoEmpty && calculationStage == 0) begin	// request
 				readFifoReadRequest <= 1;
 				calculationStage <= 1;
+				
 			end else if (calculationStage == 1) begin
+				readFifoReadRequest <= 0;
+				
 				x_n <= readFifoOutput;
 				x_n1 <= x_n;
 				x_n2 <= x_n1;
@@ -302,6 +311,7 @@ module notch (
                 end
 				
             end else if (calculationStage == 6) begin // reset
+				calculationCount <= calculationCount + 1;
                 writeFifoWriteRequest <= 0;
                 calculationStage <= 0;
 

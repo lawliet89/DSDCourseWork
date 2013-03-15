@@ -6,5 +6,6 @@ fifo_16	fifo_16_inst (
 	.wrreq ( wrreq_sig ),
 	.empty ( empty_sig ),
 	.full ( full_sig ),
-	.q ( q_sig )
+	.q ( q_sig ),
+	.usedw ( usedw_sig )
 	);

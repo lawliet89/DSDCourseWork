@@ -287,7 +287,7 @@ int main(){
 			else{
 				alt_putstr("-----------------------\n");
 				// 0
-				status = _notch_status_read(0);
+				status = _notch_status_read(0)/4;
 				gcvt(status, 10, buffer);
 				alt_putstr("flashReadMemory = "); alt_putstr(buffer); alt_putstr("\n");
 
@@ -305,24 +305,40 @@ int main(){
 				status = _notch_status_read(3);
 				gcvt(status, 10, buffer);
 				alt_putstr("flreaddatavalid = "); alt_putstr(buffer); alt_putstr("\n");
-
+				
 				// 4
 				status = _notch_status_read(4);
 				gcvt(status, 10, buffer);
-				alt_putstr("calculationStage = "); alt_putstr(buffer); alt_putstr("\n");
+				alt_putstr("flread = "); alt_putstr(buffer); alt_putstr("\n");
 
 				// 5
 				status = _notch_status_read(5);
 				gcvt(status, 10, buffer);
-				alt_putstr("writeFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
+				alt_putstr("calculationStage = "); alt_putstr(buffer); alt_putstr("\n");
 
 				// 6
 				status = _notch_status_read(6);
 				gcvt(status, 10, buffer);
-				alt_putstr("sdwaitrequest = "); alt_putstr(buffer); alt_putstr("\n");
+				alt_putstr("calculationCount = "); alt_putstr(buffer); alt_putstr("\n");
 
 				// 7
 				status = _notch_status_read(7);
+				gcvt(status, 10, buffer);
+				alt_putstr("writeFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
+
+				// 8
+				status = _notch_status_read(8);
+				gcvt(status, 10, buffer);
+				alt_putstr("sdwaitrequest = "); alt_putstr(buffer); alt_putstr("\n");
+
+				// 9
+				status = _notch_status_read(9);
+				gcvt(status, 10, buffer);
+				alt_putstr("sdwrite = "); alt_putstr(buffer); alt_putstr("\n");
+				
+				
+				// 10
+				status = _notch_status_read(10)/4;
 				gcvt(status, 10, buffer);
 				alt_putstr("writeAddress = "); alt_putstr(buffer); alt_putstr("\n");
 

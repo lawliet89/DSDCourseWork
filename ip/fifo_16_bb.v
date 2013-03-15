@@ -39,7 +39,8 @@ module fifo_16 (
 	wrreq,
 	empty,
 	full,
-	q);
+	q,
+	usedw);
 
 	input	  clock;
 	input	[31:0]  data;
@@ -49,6 +50,7 @@ module fifo_16 (
 	output	  empty;
 	output	  full;
 	output	[31:0]  q;
+	output	[3:0]  usedw;
 
 endmodule
 
@@ -69,11 +71,11 @@ endmodule
 // Retrieval info: PRIVATE: LegacyRREQ NUMERIC "1"
 // Retrieval info: PRIVATE: MAX_DEPTH_BY_9 NUMERIC "0"
 // Retrieval info: PRIVATE: OVERFLOW_CHECKING NUMERIC "0"
-// Retrieval info: PRIVATE: Optimize NUMERIC "0"
+// Retrieval info: PRIVATE: Optimize NUMERIC "1"
 // Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "0"
 // Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "0"
 // Retrieval info: PRIVATE: UNDERFLOW_CHECKING NUMERIC "0"
-// Retrieval info: PRIVATE: UsedW NUMERIC "0"
+// Retrieval info: PRIVATE: UsedW NUMERIC "1"
 // Retrieval info: PRIVATE: Width NUMERIC "32"
 // Retrieval info: PRIVATE: dc_aclr NUMERIC "0"
 // Retrieval info: PRIVATE: diff_widths NUMERIC "0"
@@ -88,7 +90,7 @@ endmodule
 // Retrieval info: PRIVATE: wsFull NUMERIC "1"
 // Retrieval info: PRIVATE: wsUsedW NUMERIC "0"
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
-// Retrieval info: CONSTANT: ADD_RAM_OUTPUT_REGISTER STRING "OFF"
+// Retrieval info: CONSTANT: ADD_RAM_OUTPUT_REGISTER STRING "ON"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone III"
 // Retrieval info: CONSTANT: LPM_NUMWORDS NUMERIC "16"
 // Retrieval info: CONSTANT: LPM_SHOWAHEAD STRING "OFF"
@@ -105,6 +107,7 @@ endmodule
 // Retrieval info: USED_PORT: q 0 0 32 0 OUTPUT NODEFVAL "q[31..0]"
 // Retrieval info: USED_PORT: rdreq 0 0 0 0 INPUT NODEFVAL "rdreq"
 // Retrieval info: USED_PORT: sclr 0 0 0 0 INPUT NODEFVAL "sclr"
+// Retrieval info: USED_PORT: usedw 0 0 4 0 OUTPUT NODEFVAL "usedw[3..0]"
 // Retrieval info: USED_PORT: wrreq 0 0 0 0 INPUT NODEFVAL "wrreq"
 // Retrieval info: CONNECT: @clock 0 0 0 0 clock 0 0 0 0
 // Retrieval info: CONNECT: @data 0 0 32 0 data 0 0 32 0
@@ -114,6 +117,7 @@ endmodule
 // Retrieval info: CONNECT: empty 0 0 0 0 @empty 0 0 0 0
 // Retrieval info: CONNECT: full 0 0 0 0 @full 0 0 0 0
 // Retrieval info: CONNECT: q 0 0 32 0 @q 0 0 32 0
+// Retrieval info: CONNECT: usedw 0 0 4 0 @usedw 0 0 4 0
 // Retrieval info: GEN_FILE: TYPE_NORMAL fifo_16.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL fifo_16.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL fifo_16.cmp FALSE

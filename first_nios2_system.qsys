@@ -16,15 +16,7 @@
    {
       datum baseAddress
       {
-         value = "20975712";
-         type = "long";
-      }
-   }
-   element notch_0.avalon_slave
-   {
-      datum baseAddress
-      {
-         value = "20975648";
+         value = "20975744";
          type = "long";
       }
    }
@@ -32,7 +24,15 @@
    {
       datum baseAddress
       {
-         value = "20975728";
+         value = "20975760";
+         type = "long";
+      }
+   }
+   element notch_0.avalon_slave
+   {
+      datum baseAddress
+      {
+         value = "20975616";
          type = "long";
       }
    }
@@ -48,7 +48,7 @@
    {
       datum baseAddress
       {
-         value = "20975720";
+         value = "20975752";
          type = "long";
       }
    }
@@ -72,7 +72,7 @@
    {
       datum baseAddress
       {
-         value = "20975732";
+         value = "20975764";
          type = "long";
       }
    }
@@ -152,15 +152,7 @@
    {
       datum baseAddress
       {
-         value = "20975696";
-         type = "long";
-      }
-   }
-   element sys_clk_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "20975616";
+         value = "20975728";
          type = "long";
       }
    }
@@ -169,6 +161,14 @@
       datum baseAddress
       {
          value = "8388608";
+         type = "long";
+      }
+   }
+   element sys_clk_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "20975680";
          type = "long";
       }
    }
@@ -232,7 +232,7 @@
  <parameter name="projectName" value="hello_world.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1363257246549" />
+ <parameter name="timeStamp" value="1363341395631" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
@@ -366,8 +366,8 @@
   <parameter name="tightlyCoupledInstructionMaster1AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster2AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster3AddrWidth" value="1" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='cpu.jtag_debug_module' start='0x1400800' end='0x1401000' /><slave name='pll.pll_slave' start='0x1401050' end='0x1401060' /></address-map>]]></parameter>
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='flash_slave.flash_data' start='0x1000000' end='0x1400000' /><slave name='cpu.jtag_debug_module' start='0x1400800' end='0x1401000' /><slave name='sys_clk_timer.s1' start='0x1401000' end='0x1401020' /><slave name='notch_0.avalon_slave' start='0x1401020' end='0x1401040' /><slave name='pll.pll_slave' start='0x1401050' end='0x1401060' /><slave name='jtag_uart.avalon_jtag_slave' start='0x1401060' end='0x1401068' /><slave name='sysid.control_slave' start='0x1401068' end='0x1401070' /><slave name='fp_det_nios_0.avalon_slave' start='0x1401070' end='0x1401074' /><slave name='flash_slave.flash_erase_control' start='0x1401074' end='0x1401078' /></address-map>]]></parameter>
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='cpu.jtag_debug_module' start='0x1400800' end='0x1401000' /><slave name='pll.pll_slave' start='0x1401070' end='0x1401080' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='flash_slave.flash_data' start='0x1000000' end='0x1400000' /><slave name='cpu.jtag_debug_module' start='0x1400800' end='0x1401000' /><slave name='notch_0.avalon_slave' start='0x1401000' end='0x1401040' /><slave name='sys_clk_timer.s1' start='0x1401040' end='0x1401060' /><slave name='pll.pll_slave' start='0x1401070' end='0x1401080' /><slave name='jtag_uart.avalon_jtag_slave' start='0x1401080' end='0x1401088' /><slave name='sysid.control_slave' start='0x1401088' end='0x1401090' /><slave name='fp_det_nios_0.avalon_slave' start='0x1401090' end='0x1401094' /><slave name='flash_slave.flash_erase_control' start='0x1401094' end='0x1401098' /></address-map>]]></parameter>
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="deviceFamilyName" value="Cyclone III" />
   <parameter name="internalIrqMaskSystemInfo" value="1638402" />
@@ -709,7 +709,7 @@
    start="cpu.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401060" />
+  <parameter name="baseAddress" value="0x01401080" />
  </connection>
  <connection
    kind="reset"
@@ -722,7 +722,7 @@
    start="cpu.data_master"
    end="sys_clk_timer.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401000" />
+  <parameter name="baseAddress" value="0x01401040" />
  </connection>
  <connection kind="reset" version="12.0" start="clk_0.clk_reset" end="sysid.reset" />
  <connection
@@ -731,7 +731,7 @@
    start="cpu.data_master"
    end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401068" />
+  <parameter name="baseAddress" value="0x01401088" />
  </connection>
  <connection kind="clock" version="12.0" start="clk_0.clk" end="led_pio.clk" />
  <connection
@@ -788,7 +788,7 @@
    start="cpu.data_master"
    end="pll.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401050" />
+  <parameter name="baseAddress" value="0x01401070" />
  </connection>
  <connection
    kind="avalon"
@@ -796,7 +796,7 @@
    start="cpu.instruction_master"
    end="pll.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401050" />
+  <parameter name="baseAddress" value="0x01401070" />
  </connection>
  <connection kind="clock" version="12.0" start="clk_0.clk" end="sdram.clk" />
  <connection
@@ -837,7 +837,7 @@
    start="cpu.data_master"
    end="fp_det_nios_0.avalon_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401070" />
+  <parameter name="baseAddress" value="0x01401090" />
  </connection>
  <connection
    kind="interrupt"
@@ -862,7 +862,7 @@
    start="cpu.data_master"
    end="flash_slave.flash_erase_control">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401074" />
+  <parameter name="baseAddress" value="0x01401094" />
  </connection>
  <connection
    kind="clock"
@@ -880,7 +880,7 @@
    start="cpu.data_master"
    end="notch_0.avalon_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401020" />
+  <parameter name="baseAddress" value="0x01401000" />
  </connection>
  <connection kind="avalon" version="12.0" start="notch_0.sd_master" end="sdram.s1">
   <parameter name="arbitrationPriority" value="1" />

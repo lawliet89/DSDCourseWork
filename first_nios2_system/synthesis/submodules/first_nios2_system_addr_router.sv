@@ -104,14 +104,14 @@ module first_nios2_system_addr_router
     // -------------------------------------------------------
     localparam PAD0 = log2ceil(32'h1000000 - 32'h800000);
     localparam PAD1 = log2ceil(32'h1401000 - 32'h1400800);
-    localparam PAD2 = log2ceil(32'h1401060 - 32'h1401050);
+    localparam PAD2 = log2ceil(32'h1401080 - 32'h1401070);
 
     // -------------------------------------------------------
     // Work out which address bits are significant based on the
     // address range of the slaves. If the required width is too
     // large or too small, we use the address field width instead.
     // -------------------------------------------------------
-    localparam ADDR_RANGE = 32'h1401060;
+    localparam ADDR_RANGE = 32'h1401080;
     localparam RANGE_ADDR_WIDTH = log2ceil(ADDR_RANGE);
     localparam OPTIMIZED_ADDR_H = (RANGE_ADDR_WIDTH > PKT_ADDR_W) ||
                                   (RANGE_ADDR_WIDTH == 0) ?
@@ -162,8 +162,8 @@ module first_nios2_system_addr_router
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 0;
         end
 
-        // ( 0x1401050 .. 0x1401060 )
-        if ( {address[RG:PAD2],{PAD2{1'b0}}} == 'h1401050 ) begin
+        // ( 0x1401070 .. 0x1401080 )
+        if ( {address[RG:PAD2],{PAD2{1'b0}}} == 'h1401070 ) begin
             src_channel = 10'b100;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 2;
         end

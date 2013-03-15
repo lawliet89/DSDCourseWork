@@ -360,6 +360,9 @@ int main(){
 				alt_putstr("-----------------------\n");
 			}
 		}
+		else{
+			alt_putstr("NOTCH IS DONE!!!!!!\n");
+		}
 	}
 
 	gcvt(det, 10, buffer);

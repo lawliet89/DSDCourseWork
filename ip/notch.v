@@ -299,7 +299,7 @@ module notch (
 			if (flashReadMemory < NO_SAMPLES*4) begin
 			
 				// Wait request
-				if (!flwaitrequest) begin		// request accepted
+				if (!flwaitrequest && flread) begin		// request accepted
 					// save this request to Fifo
 					reqFifoWriteRequest <= 1;
 					
@@ -327,6 +327,7 @@ module notch (
 			
 			end else begin
 				reqFifoWriteRequest <= 0;
+				flread <= 0;
 				
 			end
 		

@@ -1,4 +1,4 @@
-fifo_16	fifo_16_inst (
+fifo_32	fifo_32_inst (
 	.clock ( clock_sig ),
 	.data ( data_sig ),
 	.rdreq ( rdreq_sig ),

@@ -42,6 +42,7 @@ module fifo_16 (
 	rdreq,
 	sclr,
 	wrreq,
+	almost_full,
 	empty,
 	full,
 	q,
@@ -52,6 +53,7 @@ module fifo_16 (
 	input	  rdreq;
 	input	  sclr;
 	input	  wrreq;
+	output	  almost_full;
 	output	  empty;
 	output	  full;
 	output	[31:0]  q;
@@ -61,10 +63,12 @@ module fifo_16 (
 	wire  sub_wire1;
 	wire  sub_wire2;
 	wire [31:0] sub_wire3;
+	wire  sub_wire4;
 	wire [3:0] usedw = sub_wire0[3:0];
 	wire  empty = sub_wire1;
 	wire  full = sub_wire2;
 	wire [31:0] q = sub_wire3[31:0];
+	wire  almost_full = sub_wire4;
 
 	scfifo	scfifo_component (
 				.clock (clock),
@@ -76,11 +80,12 @@ module fifo_16 (
 				.empty (sub_wire1),
 				.full (sub_wire2),
 				.q (sub_wire3),
+				.almost_full (sub_wire4),
 				.aclr (),
-				.almost_empty (),
-				.almost_full ());
+				.almost_empty ());
 	defparam
 		scfifo_component.add_ram_output_register = "ON",
+		scfifo_component.almost_full_value = 14,
 		scfifo_component.intended_device_family = "Cyclone III",
 		scfifo_component.lpm_numwords = 16,
 		scfifo_component.lpm_showahead = "OFF",
@@ -99,8 +104,8 @@ endmodule
 // ============================================================
 // Retrieval info: PRIVATE: AlmostEmpty NUMERIC "0"
 // Retrieval info: PRIVATE: AlmostEmptyThr NUMERIC "-1"
-// Retrieval info: PRIVATE: AlmostFull NUMERIC "0"
-// Retrieval info: PRIVATE: AlmostFullThr NUMERIC "-1"
+// Retrieval info: PRIVATE: AlmostFull NUMERIC "1"
+// Retrieval info: PRIVATE: AlmostFullThr NUMERIC "14"
 // Retrieval info: PRIVATE: CLOCKS_ARE_SYNCHRONIZED NUMERIC "1"
 // Retrieval info: PRIVATE: Clock NUMERIC "0"
 // Retrieval info: PRIVATE: Depth NUMERIC "16"
@@ -131,6 +136,7 @@ endmodule
 // Retrieval info: PRIVATE: wsUsedW NUMERIC "0"
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 // Retrieval info: CONSTANT: ADD_RAM_OUTPUT_REGISTER STRING "ON"
+// Retrieval info: CONSTANT: ALMOST_FULL_VALUE NUMERIC "14"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone III"
 // Retrieval info: CONSTANT: LPM_NUMWORDS NUMERIC "16"
 // Retrieval info: CONSTANT: LPM_SHOWAHEAD STRING "OFF"
@@ -140,6 +146,7 @@ endmodule
 // Retrieval info: CONSTANT: OVERFLOW_CHECKING STRING "ON"
 // Retrieval info: CONSTANT: UNDERFLOW_CHECKING STRING "ON"
 // Retrieval info: CONSTANT: USE_EAB STRING "ON"
+// Retrieval info: USED_PORT: almost_full 0 0 0 0 OUTPUT NODEFVAL "almost_full"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
 // Retrieval info: USED_PORT: data 0 0 32 0 INPUT NODEFVAL "data[31..0]"
 // Retrieval info: USED_PORT: empty 0 0 0 0 OUTPUT NODEFVAL "empty"
@@ -154,6 +161,7 @@ endmodule
 // Retrieval info: CONNECT: @rdreq 0 0 0 0 rdreq 0 0 0 0
 // Retrieval info: CONNECT: @sclr 0 0 0 0 sclr 0 0 0 0
 // Retrieval info: CONNECT: @wrreq 0 0 0 0 wrreq 0 0 0 0
+// Retrieval info: CONNECT: almost_full 0 0 0 0 @almost_full 0 0 0 0
 // Retrieval info: CONNECT: empty 0 0 0 0 @empty 0 0 0 0
 // Retrieval info: CONNECT: full 0 0 0 0 @full 0 0 0 0
 // Retrieval info: CONNECT: q 0 0 32 0 @q 0 0 32 0

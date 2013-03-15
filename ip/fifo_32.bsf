@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "symbol" (version "1.2"))
 (symbol
 	(rect 0 0 176 200)
-	(text "fifo_16" (rect 70 0 113 16)(font "Arial" (font_size 10)))
+	(text "fifo_32" (rect 70 0 113 16)(font "Arial" (font_size 10)))
 	(text "inst" (rect 8 184 25 196)(font "Arial" ))
 	(port
 		(pt 0 48)
@@ -89,13 +89,13 @@ applicable agreement for further details.
 	(port
 		(pt 176 120)
 		(output)
-		(text "usedw[3..0]" (rect 0 0 68 14)(font "Arial" (font_size 8)))
-		(text "usedw[3..0]" (rect 99 113 155 126)(font "Arial" (font_size 8)))
+		(text "usedw[4..0]" (rect 0 0 68 14)(font "Arial" (font_size 8)))
+		(text "usedw[4..0]" (rect 99 113 155 126)(font "Arial" (font_size 8)))
 		(line (pt 176 120)(pt 160 120)(line_width 3))
 	)
 	(drawing
-		(text "32 bits x 16 words" (rect 83 149 240 309)(font "Arial" ))
-		(text "almost_full at 14" (rect 89 139 247 289)(font "Arial" ))
+		(text "32 bits x 32 words" (rect 83 149 240 309)(font "Arial" ))
+		(text "almost_full at 30" (rect 89 139 246 289)(font "Arial" ))
 		(line (pt 16 132)(pt 160 132))
 		(line (pt 16 32)(pt 160 32))
 		(line (pt 160 32)(pt 160 184))

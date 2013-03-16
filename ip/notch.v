@@ -349,7 +349,7 @@ module notch (
 			if (readAddress < sdBase + NO_SAMPLES*4) begin
 			
 				// Wait request
-				if (!sdwaitrequest && sdread && !sdwrite) begin		// request accepted
+				if (!sdwaitrequest && sdread) begin		// request accepted
 					// save this request to Fifo
 					reqFifoWriteRequest <= 1;
 					
@@ -378,7 +378,7 @@ module notch (
 				reqFifoWriteRequest <= 0;
 				sdread <= 0;
 				
-				stage <= 2;
+				//stage <= 2;
 			end
 			
 			// incoming data
@@ -517,8 +517,41 @@ module notch (
 			// wrtie results to SDRAM pipeline
 			
 			if (writeAddress < sdBase + NO_SAMPLES*4) begin
-				
 			
+				if (writeStage == 0) begin
+					// wait for write Fifo to be filled
+					if (!writeFifoEmpty) begin
+						writeStage <= 1;
+						// fetch from fifo
+						writeFifoReadRequest <= 1;
+					end
+					
+				end else if (writeStage == 1) begin
+					writeCache <= writeFifoOutput;
+					writeFifoReadRequest <= 0;
+					writeStage <= 0;
+					
+				end /*else if (writeStage == 2) begin
+				
+					// wait for sdread to be deasserted (since it has priority)
+					if (!sdread) begin		// send write request
+						sdwrite <= 1;
+						sdwritedata <= writeCache;
+						sdaddress <= writeAddress;
+						writeStage <= 3;
+					end
+					
+				end else if (writeStage == 3) begin
+					if (!sdwaitrequest) begin // write has been accepted
+						sdwrite <= 0;
+						writeAddress <= writeAddress + 24'd4;
+						writeStage <= 0;
+					end
+				
+				end*/
+			end else begin
+				stage <= 2;
+				irq <= 1;
 			end
 			
 

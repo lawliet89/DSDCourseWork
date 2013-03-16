@@ -282,7 +282,6 @@ module notch (
 			calculationStage <= 0;
 			calculationCount <= 0;
             writeStage <= 0;
-			startSdRead <= 0;
 			
 			sdDiscardedRead <= 0;
 			sdReceiveCount <= 0;
@@ -313,6 +312,8 @@ module notch (
 					sdBase <= dataa[23:0];
 					writeAddress <= dataa[23:0];
 					readAddress <= dataa[23:0];
+					
+					startSdRead <= 1;
 
 				end else begin			// status check
 					result <= -1;
@@ -336,8 +337,52 @@ module notch (
 			end else begin
 				done <= 0;
 			end
+
+			if (startSdRead) begin
+				startSdRead <= 0;
+				sdread <= 1;
+
+			end		
+						
+						
+			// SD read request pipeline
+			if (readAddress < sdBase + NO_SAMPLES*4) begin
 			
-			stage <= 2;
+				// Wait request
+				if (!sdwaitrequest && sdread && !sdwrite) begin		// request accepted
+					// save this request to Fifo
+					reqFifoWriteRequest <= 1;
+					
+					readAddress <= readAddress + 24'd4;
+							
+					if (readAddress >= sdBase + NO_SAMPLES*4 -4) begin	// done!
+						sdread <= 0;
+					
+					end else if (reqFifoAlmostFull) begin // request fifo  "almost" full
+						sdread <= 0;
+						
+					end else begin		// not almost full? continue to request
+						sdread <= 1;
+						sdaddress <= readAddress + 24'd4;
+					end
+					
+				end else begin			// waiting for requests to be accepted
+					reqFifoWriteRequest <= 0;
+					
+					if (!sdread && !reqFifoAlmostFull && !sdwrite) begin	// see if fifo buffer is not full again and restart requests
+						sdread <= 1;
+					end
+				end
+			
+			end else begin
+				reqFifoWriteRequest <= 0;
+				sdread <= 0;
+				
+				stage <= 2;
+				
+			end
+			
+			
 			
 		
 		end else if (stage == 2) begin      // wait for IRQ to be serviced

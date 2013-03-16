@@ -40,14 +40,14 @@ module mul_64 (
 	input	  clock;
 	input	[63:0]  dataa;
 	input	[15:0]  datab;
-	output	[63:0]  result;
+	output	[79:0]  result;
 
 endmodule
 
 // ============================================================
 // CNX file retrieval info
 // ============================================================
-// Retrieval info: PRIVATE: AutoSizeResult NUMERIC "0"
+// Retrieval info: PRIVATE: AutoSizeResult NUMERIC "1"
 // Retrieval info: PRIVATE: B_isConstant NUMERIC "0"
 // Retrieval info: PRIVATE: ConstantB NUMERIC "0"
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Cyclone III"
@@ -59,7 +59,7 @@ endmodule
 // Retrieval info: PRIVATE: ValidConstant NUMERIC "0"
 // Retrieval info: PRIVATE: WidthA NUMERIC "64"
 // Retrieval info: PRIVATE: WidthB NUMERIC "16"
-// Retrieval info: PRIVATE: WidthP NUMERIC "64"
+// Retrieval info: PRIVATE: WidthP NUMERIC "80"
 // Retrieval info: PRIVATE: aclr NUMERIC "0"
 // Retrieval info: PRIVATE: clken NUMERIC "0"
 // Retrieval info: PRIVATE: new_diagram STRING "1"
@@ -71,15 +71,15 @@ endmodule
 // Retrieval info: CONSTANT: LPM_TYPE STRING "LPM_MULT"
 // Retrieval info: CONSTANT: LPM_WIDTHA NUMERIC "64"
 // Retrieval info: CONSTANT: LPM_WIDTHB NUMERIC "16"
-// Retrieval info: CONSTANT: LPM_WIDTHP NUMERIC "64"
+// Retrieval info: CONSTANT: LPM_WIDTHP NUMERIC "80"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
 // Retrieval info: USED_PORT: dataa 0 0 64 0 INPUT NODEFVAL "dataa[63..0]"
 // Retrieval info: USED_PORT: datab 0 0 16 0 INPUT NODEFVAL "datab[15..0]"
-// Retrieval info: USED_PORT: result 0 0 64 0 OUTPUT NODEFVAL "result[63..0]"
+// Retrieval info: USED_PORT: result 0 0 80 0 OUTPUT NODEFVAL "result[79..0]"
 // Retrieval info: CONNECT: @clock 0 0 0 0 clock 0 0 0 0
 // Retrieval info: CONNECT: @dataa 0 0 64 0 dataa 0 0 64 0
 // Retrieval info: CONNECT: @datab 0 0 16 0 datab 0 0 16 0
-// Retrieval info: CONNECT: result 0 0 64 0 @result 0 0 64 0
+// Retrieval info: CONNECT: result 0 0 80 0 @result 0 0 80 0
 // Retrieval info: GEN_FILE: TYPE_NORMAL mul_64.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL mul_64.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL mul_64.cmp FALSE

@@ -36,27 +36,21 @@ module notch (
 	parameter N = 2;		// order
 	parameter NO_SAMPLES = 963144;
 	parameter SAMPLE_SCALING = 2147483647;
-	parameter COEFF_SCALING = 16'd16383;
-	parameter DIVIDER_LATENCY = 5'd16;
-	parameter SDRAM_WORD_SKIP = 24'd4;
+	parameter COEFF_SCALING = 16383;
+	parameter DIVIDER_LATENCY = 16;
+	parameter SDRAM_WORD_SKIP = 4;
 	
 	reg forceReset = 0;
 	
     // default coefficients
     //a = 1	-1.89436042308807	0.913743853569031
     //b = 0.505116066895425	-1	0.505116066895425
-    // the parameters below are scaled versions
-	parameter A1 = 16'h86C5;		// -31035
-    parameter A2 = 16'd14969;
-    parameter B0 = 16'd8275;
-    parameter B1 = 16'hC001;		// -16383
-    parameter B2 = 16'd8275;
-    
-    reg [15:0] a1 = A1;
-    reg [15:0] a2 = A2;
-    reg [15:0] b0 = B0;
-    reg [15:0] b1 = B1;
-    reg [15:0] b2 = B2;
+    // the parameters below are scaled versions   
+    reg [15:0] a1 = 16'h86C5; // -31035
+    reg [15:0] a2 = 16'd14969;
+    reg [15:0] b0 = 16'd8275;
+    reg [15:0] b1 = 16'hC001; // -16383
+    reg [15:0] b2 = 16'd8275;
 	
 	
 	reg [31:0] x_n = 0;		// x(N)
@@ -185,7 +179,7 @@ module notch (
     */
 	reg [63:0] mul_a1_a;
 	reg [15:0] mul_a1_b;
-	wire [63:0] mul_a1_result;
+	wire [79:0] mul_a1_result;
 	
 	mul_64	mul_64_a1 (
 		.clock ( clk ),
@@ -197,7 +191,7 @@ module notch (
 
 	reg [63:0] mul_a2_a;
 	reg [15:0] mul_a2_b;
-	wire [63:0] mul_a2_result;
+	wire [79:0] mul_a2_result;
 	
 	mul_64	mul_64_a2 (
 		.clock ( clk ),
@@ -208,7 +202,7 @@ module notch (
 	
 	reg [31:0] mul_b0_a;
 	reg [15:0] mul_b0_b;
-	wire [63:0] mul_b0_result;
+	wire [47:0] mul_b0_result;
 	
 	mul_32	mul_32_b0 (
 		.clock ( clk ),
@@ -219,7 +213,7 @@ module notch (
 	
 	reg [31:0] mul_b1_a;
 	reg [15:0] mul_b1_b;
-	wire [63:0] mul_b1_result;
+	wire [47:0] mul_b1_result;
 	
 	mul_32	mul_32_b1 (
 		.clock ( clk ),
@@ -230,7 +224,7 @@ module notch (
 	
 	reg [31:0] mul_b2_a;
 	reg [15:0] mul_b2_b;
-	wire [63:0] mul_b2_result;
+	wire [47:0] mul_b2_result;
 	
 	mul_32	mul_32_b2 (
 		.clock ( clk ),
@@ -266,7 +260,11 @@ module notch (
         end else if (slave_write) begin
 			case (slave_address)
 				0:		writeToResult <= slave_writedata[0];
-				//1:		writeToResult <= slave_writedata[0];
+				1:		a1 <= slave_writedata[15:0];
+				2:		a2 <= slave_writedata[15:0];
+				3:		b0 <= slave_writedata[15:0];
+				4:		b1 <= slave_writedata[15:0];
+				5:		b2 <= slave_writedata[15:0];
 			endcase
 		end
    
@@ -317,7 +315,7 @@ module notch (
 			if (start) begin
 				
 				if (dataa != 0) begin		// begin processing
-					done <= 1;
+					//done <= 1;
 					result <= 99;		// indicate acceptance of start
 					
 					stage <= 1;
@@ -522,14 +520,18 @@ module notch (
 			
 			end else if (calculationStage == 5) begin	
 				// start to accumulate
-				yIntermediate <= mul_b0_result + mul_b1_result;
-				yAccumulateIntermediate1 <= mul_b2_result - mul_a1_result;
-				yAccumulateIntermediate2 <= mul_a2_result;
+				//yIntermediate <= $signed($signed(mul_b0_result) + $signed(mul_b1_result));
+				//yAccumulateIntermediate1 <=  $signed($signed(mul_b2_result) - $signed(mul_a1_result[63:0]));
+				yIntermediate <= { {17{mul_b0_result[47]}}, mul_b0_result[46:0] }  + { {17{mul_b1_result[47]}}, mul_b1_result[46:0] };
+				yAccumulateIntermediate1 <= { {17{mul_b2_result[47]}}, mul_b2_result[46:0] } - mul_a1_result[63:0];
+				yAccumulateIntermediate2 <= mul_a2_result[63:0];
 				
 				calculationStage <= 6;
+			
 				
 			end else if (calculationStage == 6) begin		
 				// final accumulation
+				//yIntermediate <= $signed($signed(yIntermediate) + $signed(yAccumulateIntermediate1) - $signed(yAccumulateIntermediate2));
 				yIntermediate <= yIntermediate + yAccumulateIntermediate1 - yAccumulateIntermediate2;
 				
 				calculationStage <= 7;
@@ -570,6 +572,11 @@ module notch (
 						writeFifoWrite <= x_n;
 						
 					calculationStage <= 10;
+					
+					if (calculationCount == 2) begin
+						done <= 1;
+						result <= y_n1[31:0];
+					end
 	
                 end 			
 			end else if (calculationStage == 10) begin	// reset

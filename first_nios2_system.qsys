@@ -16,15 +16,7 @@
    {
       datum baseAddress
       {
-         value = "20975744";
-         type = "long";
-      }
-   }
-   element fp_det_nios_0.avalon_slave
-   {
-      datum baseAddress
-      {
-         value = "20975760";
+         value = "16781440";
          type = "long";
       }
    }
@@ -32,7 +24,15 @@
    {
       datum baseAddress
       {
-         value = "20975616";
+         value = "16781312";
+         type = "long";
+      }
+   }
+   element fp_det_nios_0.avalon_slave
+   {
+      datum baseAddress
+      {
+         value = "16781456";
          type = "long";
       }
    }
@@ -48,7 +48,7 @@
    {
       datum baseAddress
       {
-         value = "20975752";
+         value = "16781448";
          type = "long";
       }
    }
@@ -80,7 +80,7 @@
    {
       datum baseAddress
       {
-         value = "20973568";
+         value = "16779264";
          type = "long";
       }
    }
@@ -128,15 +128,7 @@
    {
       datum baseAddress
       {
-         value = "20975728";
-         type = "long";
-      }
-   }
-   element sdram.s1
-   {
-      datum baseAddress
-      {
-         value = "8388608";
+         value = "16781424";
          type = "long";
       }
    }
@@ -156,11 +148,19 @@
          type = "long";
       }
    }
+   element sdram.s1
+   {
+      datum baseAddress
+      {
+         value = "8388608";
+         type = "long";
+      }
+   }
    element sys_clk_timer.s1
    {
       datum baseAddress
       {
-         value = "20975680";
+         value = "16781376";
          type = "long";
       }
    }
@@ -208,7 +208,7 @@
  <parameter name="projectName" value="hello_world.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1363436227576" />
+ <parameter name="timeStamp" value="1363472043707" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
@@ -337,8 +337,8 @@
   <parameter name="tightlyCoupledInstructionMaster1AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster2AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster3AddrWidth" value="1" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='cpu.jtag_debug_module' start='0x1400800' end='0x1401000' /><slave name='pll.pll_slave' start='0x1401070' end='0x1401080' /></address-map>]]></parameter>
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='cpu.jtag_debug_module' start='0x1400800' end='0x1401000' /><slave name='notch_0.avalon_slave' start='0x1401000' end='0x1401040' /><slave name='sys_clk_timer.s1' start='0x1401040' end='0x1401060' /><slave name='pll.pll_slave' start='0x1401070' end='0x1401080' /><slave name='jtag_uart.avalon_jtag_slave' start='0x1401080' end='0x1401088' /><slave name='sysid.control_slave' start='0x1401088' end='0x1401090' /><slave name='fp_det_nios_0.avalon_slave' start='0x1401090' end='0x1401094' /></address-map>]]></parameter>
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='cpu.jtag_debug_module' start='0x1000800' end='0x1001000' /><slave name='pll.pll_slave' start='0x1001070' end='0x1001080' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='cpu.jtag_debug_module' start='0x1000800' end='0x1001000' /><slave name='notch_0.avalon_slave' start='0x1001000' end='0x1001040' /><slave name='sys_clk_timer.s1' start='0x1001040' end='0x1001060' /><slave name='pll.pll_slave' start='0x1001070' end='0x1001080' /><slave name='jtag_uart.avalon_jtag_slave' start='0x1001080' end='0x1001088' /><slave name='sysid.control_slave' start='0x1001088' end='0x1001090' /><slave name='fp_det_nios_0.avalon_slave' start='0x1001090' end='0x1001094' /></address-map>]]></parameter>
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="deviceFamilyName" value="Cyclone III" />
   <parameter name="internalIrqMaskSystemInfo" value="1638402" />
@@ -618,12 +618,9 @@
   <parameter name="NO_SAMPLES" value="963144" />
   <parameter name="SAMPLE_SCALING" value="2147483647" />
   <parameter name="COEFF_SCALING" value="16383" />
-  <parameter name="DIVIDER_LATENCY" value="0" />
-  <parameter name="A1" value="34501" />
-  <parameter name="A2" value="14969" />
-  <parameter name="B0" value="8275" />
-  <parameter name="B1" value="49153" />
-  <parameter name="B2" value="8275" />
+  <parameter name="DIVIDER_LATENCY" value="16" />
+  <parameter name="SDRAM_WORD_SKIP" value="4" />
+  <parameter name="AUTO_CLOCK_SINK_CLOCK_RATE" value="50000000" />
  </module>
  <connection
    kind="avalon"
@@ -631,7 +628,7 @@
    start="cpu.instruction_master"
    end="cpu.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01400800" />
+  <parameter name="baseAddress" value="0x01000800" />
  </connection>
  <connection
    kind="avalon"
@@ -639,7 +636,7 @@
    start="cpu.data_master"
    end="cpu.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01400800" />
+  <parameter name="baseAddress" value="0x01000800" />
  </connection>
  <connection kind="clock" version="12.0" start="clk_0.clk" end="cpu.clk" />
  <connection kind="clock" version="12.0" start="clk_0.clk" end="onchip_mem.clk1" />
@@ -669,7 +666,7 @@
    start="cpu.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401080" />
+  <parameter name="baseAddress" value="0x01001080" />
  </connection>
  <connection
    kind="reset"
@@ -682,7 +679,7 @@
    start="cpu.data_master"
    end="sys_clk_timer.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401040" />
+  <parameter name="baseAddress" value="0x01001040" />
  </connection>
  <connection kind="reset" version="12.0" start="clk_0.clk_reset" end="sysid.reset" />
  <connection
@@ -691,7 +688,7 @@
    start="cpu.data_master"
    end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401088" />
+  <parameter name="baseAddress" value="0x01001088" />
  </connection>
  <connection kind="clock" version="12.0" start="clk_0.clk" end="led_pio.clk" />
  <connection
@@ -748,7 +745,7 @@
    start="cpu.data_master"
    end="pll.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401070" />
+  <parameter name="baseAddress" value="0x01001070" />
  </connection>
  <connection
    kind="avalon"
@@ -756,7 +753,7 @@
    start="cpu.instruction_master"
    end="pll.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401070" />
+  <parameter name="baseAddress" value="0x01001070" />
  </connection>
  <connection kind="clock" version="12.0" start="clk_0.clk" end="sdram.clk" />
  <connection
@@ -797,7 +794,7 @@
    start="cpu.data_master"
    end="fp_det_nios_0.avalon_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401090" />
+  <parameter name="baseAddress" value="0x01001090" />
  </connection>
  <connection
    kind="interrupt"
@@ -812,7 +809,7 @@
    start="cpu.data_master"
    end="notch_0.avalon_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01401000" />
+  <parameter name="baseAddress" value="0x01001000" />
  </connection>
  <connection kind="avalon" version="12.0" start="notch_0.sd_master" end="sdram.s1">
   <parameter name="arbitrationPriority" value="1" />
@@ -828,6 +825,11 @@
   <parameter name="baseAddress" value="5" />
  </connection>
  <connection
+   kind="clock"
+   version="12.0"
+   start="clk_0.clk"
+   end="notch_0.clock_sink" />
+ <connection
    kind="reset"
    version="12.0"
    start="clk_0.clk_reset"
@@ -839,9 +841,4 @@
    end="notch_0.interrupt_sender">
   <parameter name="irqNumber" value="19" />
  </connection>
- <connection
-   kind="clock"
-   version="12.0"
-   start="clk_0.clk"
-   end="notch_0.clock_sink" />
 </system>

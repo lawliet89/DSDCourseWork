@@ -320,7 +320,7 @@ int main(){
 	// setup things - malloc space for output
 	//wav = (int *) calloc(NOTCH_SIZE, sizeof(int));
 	// ask to overwrite results
-	IOWR(NOTCH_0_BASE,0,1);
+	//IOWR(NOTCH_0_BASE,0,1);
 
 	// setup things - generate matrix
 	matrix = randomMatrix(DIMENSION);	// generate random matrix

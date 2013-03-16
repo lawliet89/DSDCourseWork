@@ -559,21 +559,10 @@ module notch (
                         writeStage <= 0;
                     end
                 end
+				
             end else begin      // we are done
                 stage <= 2;
                 irq <= 1;
-				
-				// purge Fifos
-				reqFifoClear <= 1;
-				writeFifoClear <= 1;
-				readFifoClear <= 1;
-
-				reqFifoReadRequest <= 0;
-				reqFifoWriteRequest <= 0;
-				readFifoReadRequest <= 0;
-				readFifoWriteRequest <= 0;
-				writeFifoReadRequest <= 0;
-				writeFifoReadRequest <= 0;
             end
 			
 		
@@ -584,12 +573,12 @@ module notch (
 			end else begin
 				done <= 0;
 			end
-		
-			// turn off Fifo purging
-			reqFifoClear <= 0;
-			writeFifoClear <= 0;
-			readFifoClear <= 0;
 			
+			// purge Fifos
+			reqFifoClear <= 1;
+			writeFifoClear <= 1;
+			readFifoClear <= 1;
+					
 			reqFifoReadRequest <= 0;
 			reqFifoWriteRequest <= 0;
 			readFifoReadRequest <= 0;
@@ -600,6 +589,11 @@ module notch (
             if (slave_read) begin   /// doesn't matter what they read. we consider it serviced
                 irq <= 0;
                 stage <= 0;
+				
+				// turn off Fifo purging
+				reqFifoClear <= 0;
+				writeFifoClear <= 0;
+				readFifoClear <= 0;
             end
 		end
 		

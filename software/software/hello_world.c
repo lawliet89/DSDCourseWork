@@ -34,10 +34,11 @@
 #define DIMENSION 3 // Dimension for the matrix to be defined
 
 // PART II
-#define hw_notch(A) __builtin_custom_inpi(ALT_CI_NOTCH_0_N,(A),0)
+#define hw_notch(A) __builtin_custom_inii(ALT_CI_NOTCH_0_N,(A),0)
 #define NOTCH_SIZE 963144
 #define NOTCH_ACCEPTED 99
 #define NOTCH_READY -1
+#define NOTCH_DATA_START (SDRAM_BASE + SDRAM_SPAN/2)
 
 /************************ prototypes ************************************/
 /** program stuff **/
@@ -76,6 +77,7 @@ volatile int _fp_det_done = 0;
 // ISR
 void _notch_isr(void* context);
 int _notch_status_read(int i);
+int notch_read(int offset);
 
 int _notch_done = 0;
 int _notch_result = 0;
@@ -215,6 +217,10 @@ int _notch_status_read(int i){
 	return IORD(NOTCH_0_BASE, i);
 }
 
+int notch_read(int offset){
+
+	return IORD(NOTCH_DATA_START, offset);
+}
 /******************* main ******************/
 
 
@@ -224,7 +230,7 @@ int main(){
 	char buffer[11];
 	clock_t exec_t1, exec_t2;
 	float *matrix;
-	int *wav;
+	//int *wav;
 
 	alt_irq_init(NULL);  // allow for interrupts
 
@@ -239,7 +245,7 @@ int main(){
 	//alt_putstr("ISR = "); alt_putstr(buffer); alt_putstr("\n"); // zero is good
 
 	// setup things - malloc space for output
-	wav = (int *) calloc(NOTCH_SIZE, sizeof(int));
+	//wav = (int *) calloc(NOTCH_SIZE, sizeof(int));
 
 	// setup things - generate matrix
 	matrix = randomMatrix(DIMENSION);	// generate random matrix
@@ -255,13 +261,13 @@ int main(){
 	alt_putstr("]\n");
 
 	// invoke Part II
-	status_notch = hw_notch(NULL);
+	status_notch = hw_notch(0);
 	gcvt(status_notch, 10, buffer);
 	alt_putstr("Notch Ready = "); alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
 	previous_notch = status_notch;
 
 	alt_putstr("Notch Invocation = ");
-	status_notch = hw_notch((void *) wav);
+	status_notch = hw_notch(NOTCH_DATA_START);
 	gcvt(status_notch, 10, buffer);
 	alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
 	previous_notch = status_notch;
@@ -282,7 +288,7 @@ int main(){
 				alt_putstr("Det Status = "); alt_putstr(buffer); alt_putstr("\n");
 			}
 
-			status_notch = hw_notch(NULL);
+			status_notch = hw_notch(0);
 			if (status_notch != previous_notch){
 				gcvt(status_notch, 10, buffer);
 				alt_putstr("Notch Processing = "); alt_putstr(buffer); alt_putstr("\n");
@@ -292,7 +298,7 @@ int main(){
 				i = 0;
 				alt_putstr("----------Diagnostic-------------\n");
 				// 0
-				status = _notch_status_read(i++)/4;
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("readAddress = "); alt_putstr(buffer); alt_putstr("\n");
 
@@ -327,7 +333,7 @@ int main(){
 				alt_putstr("calculationCount = "); alt_putstr(buffer); alt_putstr("\n");
 
 				//7
-				status = _notch_status_read(i++)/4;
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("writeAddress = "); alt_putstr(buffer); alt_putstr("\n");
 
@@ -358,7 +364,7 @@ int main(){
 
 			}
 			else if (_notch_done){
-				gcvt((int) wav, 10, buffer);
+				gcvt(NOTCH_DATA_START, 10, buffer);
 				alt_putstr("Notch Result Ptr = "); alt_putstr(buffer); alt_putstr("\n");
 			}
 
@@ -383,7 +389,7 @@ int main(){
 	alt_putstr("\n");
 
 	for (i = 0; i < 10; i++){
-		gcvt(wav[i], 10, buffer);
+		gcvt(notch_read(i), 10, buffer);
 		alt_putstr(buffer); alt_putstr("\n");
 	}
 	/* Event loop never exits. */

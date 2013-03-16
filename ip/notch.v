@@ -38,7 +38,7 @@ module notch (
 	parameter SAMPLE_SCALING = 2147483647;
 	parameter COEFF_SCALING = 16383;
 	parameter DIVIDER_LATENCY = 5'd16;
-	
+	parameter SDRAM_WORD_SKIP = 24'd1;
 	
 	reg forceReset = 0;
 	
@@ -333,7 +333,7 @@ module notch (
             
             if (start) begin	// handle request checks
 				done <= 1;
-				result <= (writeAddress-sdBase)/4;
+				result <= (writeAddress-sdBase)/SDRAM_WORD_SKIP;
 			end else begin
 				done <= 0;
 			end
@@ -353,9 +353,9 @@ module notch (
 					// save this request to Fifo
 					reqFifoWriteRequest <= 1;
 					
-					readAddress <= readAddress + 24'd4;
+					readAddress <= readAddress + SDRAM_WORD_SKIP;
 							
-					if (readAddress >= sdBase + NO_SAMPLES*4 -4) begin	// done!
+					if (readAddress >= sdBase + NO_SAMPLES*SDRAM_WORD_SKIP -SDRAM_WORD_SKIP) begin	// done!
 						sdread <= 0;		// yield read forever
 					
 					end else if (reqFifoAlmostFull) begin // request fifo  "almost" full
@@ -363,7 +363,7 @@ module notch (
 						
 					end else begin		// not almost full? continue to request
 						sdread <= 1;
-						sdaddress <= readAddress + 24'd4;
+						sdaddress <= readAddress + SDRAM_WORD_SKIP;
 					end
 					
 				end else begin
@@ -386,7 +386,7 @@ module notch (
 				end else if (writeStage == 2) begin
 					if (!sdwaitrequest && sdwrite) begin // write has been accepted
 						sdwrite <= 0;
-						writeAddress <= writeAddress + 24'd4;
+						writeAddress <= writeAddress + SDRAM_WORD_SKIP;
 						writeStage <= 0;
 					end
 				
@@ -396,10 +396,10 @@ module notch (
 				reqFifoWriteRequest <= 0;
 				
 				// decide if we should read or write
-				if (readAddress < sdBase + NO_SAMPLES*4 && !reqFifoAlmostFull /*&& !sdwrite*/) begin	// read has priority
+				if (readAddress < sdBase + NO_SAMPLES*SDRAM_WORD_SKIP && !reqFifoAlmostFull /*&& !sdwrite*/) begin	// read has priority
 					sdread <= 1; //read
 				
-				end else if (writeAddress < sdBase + NO_SAMPLES*4)  begin // handle any necessary writes
+				end else if (writeAddress < sdBase + NO_SAMPLES*SDRAM_WORD_SKIP)  begin // handle any necessary writes
 					if (writeStage == 0 && !writeFifoEmpty) begin
 						writeStage <= 1;
 						// fetch from fifo
@@ -411,7 +411,7 @@ module notch (
 	
 			end
 			
-			if (writeAddress >= sdBase + NO_SAMPLES*4) begin	// we are done!
+			if (writeAddress >= sdBase + NO_SAMPLES*SDRAM_WORD_SKIP) begin	// we are done!
 					stage <= 2;
 					irq <= 1;
 			end

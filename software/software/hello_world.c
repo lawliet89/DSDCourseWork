@@ -396,8 +396,9 @@ int main(){
 	alt_putstr(buffer);
 	alt_putstr("\n");
 
-	notch_diagnostic();
+	//notch_diagnostic();
 
+	alt_putstr("Outputs:\n");
 	for (i = 0; i < 30; i++){
 		gcvt(notch_read(i), 10, buffer);
 		alt_putstr(buffer); alt_putstr("\n");

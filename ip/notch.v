@@ -64,11 +64,10 @@ module notch (
 	reg [31:0] x_n2 = 0;	// x(n-2)
 		
 	reg [63:0] yIntermediate = 0;	// y(n)
-	/*wire [63:0] a1Intermediate;
-	wire [63:0] a2Intermediate;
-	wire [63:0] b0Intermediate;
-	wire [63:0] b1Intermediate;
-	wire [63:0] b2Intermediate;*/
+	
+	reg [63:0] yAccumulateIntermediate1;	// accumulator intermediate
+	reg [63:0] yAccumulateIntermediate2;
+
 	
 	reg [63:0] y_n1 = 0;		// y(n-1)
 	reg [63:0] y_n2 = 0;		// y(n-2)
@@ -318,7 +317,7 @@ module notch (
 			if (start) begin
 				
 				if (dataa != 0) begin		// begin processing
-					//done <= 1;
+					done <= 1;
 					result <= 99;		// indicate acceptance of start
 					
 					stage <= 1;
@@ -370,10 +369,10 @@ module notch (
 			
 			// SD pipeline
 			if (writeAddress >= sdBase + NO_SAMPLES*SDRAM_WORD_SKIP) begin	// we are done!
-					stage <= 2;
-					irq <= 1;
-					sdread <= 0;
-					sdwrite <= 0;
+				stage <= 2;
+				irq <= 1;
+				sdread <= 0;
+				sdwrite <= 0;
 					
 			end else if (sdread) begin		// reading
 			
@@ -486,31 +485,94 @@ module notch (
 			end else if (calculationStage == 2) begin	
 				
 				x_n <= readFifoOutput;
-				x_n1 <= x_n;
+				x_n1 <= x_n;			// optimisation potential
 				x_n2 <= x_n1;
 							
-				calculationStage <= 10;
+				calculationStage <= 3;
+			
+			end else if (calculationStage == 3) begin	
+				// let the multiplications begin
 				
-			end else if (calculationStage == 10) begin
+				// a1
+				mul_a1_a <= y_n1;
+				mul_a1_b <= a1;
+				
+				// a2
+				mul_a2_a <= y_n2;
+				mul_a2_b <= a2;
+				
+				//b0
+				mul_b0_a <= x_n;
+				mul_b0_b <= b0;
+				
+				//b1
+				mul_b1_a <= x_n1;
+				mul_b1_b <= b1;
+				
+				
+				//b2
+				mul_b2_a <= x_n2;
+				mul_b2_b <= b2;
+				
+				calculationStage <= 4;
+			
+			end else if (calculationStage == 4) begin	
+				// multiplier latency
+				calculationStage <= 5;
+			
+			end else if (calculationStage == 5) begin	
+				// start to accumulate
+				yIntermediate <= mul_b0_result + mul_b1_result;
+				yAccumulateIntermediate1 <= mul_b2_result - mul_a1_result;
+				yAccumulateIntermediate2 <= mul_a2_result;
+				
+				calculationStage <= 6;
+				
+			end else if (calculationStage == 6) begin		
+				// final accumulation
+				yIntermediate <= yIntermediate + yAccumulateIntermediate1 - yAccumulateIntermediate2;
+				
+				calculationStage <= 7;
+				
+			end else if (calculationStage == 7) begin  // get rid of coefficient scaling
+			
+				dividerNumerator <= yIntermediate;
+				dividerDenominator <= COEFF_SCALING;
+				
+				divideCounter <= DIVIDER_LATENCY;
+				
+				calculationStage <= 8;
+				
+			end else if (calculationStage == 8) begin
+				// divider latency
+				if (divideCounter != 0) begin
+					divideCounter <= divideCounter - 5'd1;
+				
+				end else begin		
+					calculationStage <= 9;
+					
+					// get quotient
+					y_n2 <= y_n1;
+					y_n1 <= dividerQuotient;			// potential optimisation?
+					
+				end
+			
+				
+			end else if (calculationStage == 9) begin
 				if (!writeFifoAlmostFull) begin
 								
                     writeFifoWriteRequest <= 1;
 					
 					if (writeToResult)
-						writeFifoWrite <= y_n1;
+						writeFifoWrite <= y_n1[31:0];
 					
                     else 
 						writeFifoWrite <= x_n;
 						
-					calculationStage <= 11;
-										
-					if (!calculationCount) begin
-						done <= 1;
-						result <= x_n;
-					end
+					calculationStage <= 10;
 	
                 end 			
-			end else if (calculationStage == 11) begin	// reset
+			end else if (calculationStage == 10) begin	// reset
 				calculationCount <= calculationCount + 1;
                 writeFifoWriteRequest <= 0;
                 calculationStage <= 0;

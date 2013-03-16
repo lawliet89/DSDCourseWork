@@ -54,8 +54,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 144)
 		(input)
-		(text "sclr" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "sclr" (rect 20 137 36 150)(font "Arial" (font_size 8)))
+		(text "aclr" (rect 0 0 21 14)(font "Arial" (font_size 8)))
+		(text "aclr" (rect 20 137 36 150)(font "Arial" (font_size 8)))
 		(line (pt 0 144)(pt 16 144))
 	)
 	(port

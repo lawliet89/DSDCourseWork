@@ -289,69 +289,70 @@ int main(){
 				previous_notch = status_notch;
 			}
 			else if (!_notch_done){	// diagnostic
+				i = 0;
 				alt_putstr("----------Diagnostic-------------\n");
 				// 0
-				status = _notch_status_read(0)/4;
+				status = _notch_status_read(i++)/4;
 				gcvt(status, 10, buffer);
 				alt_putstr("readAddress = "); alt_putstr(buffer); alt_putstr("\n");
 
 				// 1
-				status = _notch_status_read(1);
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("reqFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
 
 				// 2
-				status = _notch_status_read(2);
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("readFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
 
 				//3
-				status = _notch_status_read(3);
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("sdReceiveCount = "); alt_putstr(buffer); alt_putstr("\n");
 
 				//4
-				status = _notch_status_read(4);
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("sdDiscardedRead = "); alt_putstr(buffer); alt_putstr("\n");
 
 				//5
-				status = _notch_status_read(5);
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("calculationStage = "); alt_putstr(buffer); alt_putstr("\n");
 
 				//6
-				status = _notch_status_read(6);
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("calculationCount = "); alt_putstr(buffer); alt_putstr("\n");
 
 				//7
-				status = _notch_status_read(7)/4;
+				status = _notch_status_read(i++)/4;
 				gcvt(status, 10, buffer);
 				alt_putstr("writeAddress = "); alt_putstr(buffer); alt_putstr("\n");
 
 				//8
-				status = _notch_status_read(8);
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("writeFifoUsed = "); alt_putstr(buffer); alt_putstr("\n");
 
 				//9
-				status = _notch_status_read(9);
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("sdread = "); alt_putstr(buffer); alt_putstr("\n");
 
 				//10
-				status = _notch_status_read(10);
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("sdwaitrequest = "); alt_putstr(buffer); alt_putstr("\n");
 
 				//11
-				status = _notch_status_read(11);
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("sdwrite = "); alt_putstr(buffer); alt_putstr("\n");
 
 				//12
-				status = _notch_status_read(12);
+				status = _notch_status_read(i++);
 				gcvt(status, 10, buffer);
 				alt_putstr("stage = "); alt_putstr(buffer); alt_putstr("\n");
 

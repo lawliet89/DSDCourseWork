@@ -344,9 +344,9 @@ module notch (
 
 			end		
 						
-						
-			// SD read request pipeline
-			if (readAddress < sdBase + NO_SAMPLES*4) begin
+			
+			// SD pipeline
+			if (sdread) begin		// reading
 			
 				// Wait request
 				if (!sdwaitrequest && sdread) begin		// request accepted
@@ -356,30 +356,66 @@ module notch (
 					readAddress <= readAddress + 24'd4;
 							
 					if (readAddress >= sdBase + NO_SAMPLES*4 -4) begin	// done!
-						sdread <= 0;
+						sdread <= 0;		// yield read forever
 					
 					end else if (reqFifoAlmostFull) begin // request fifo  "almost" full
-						sdread <= 0;
+						sdread <= 0;		//  yield
 						
 					end else begin		// not almost full? continue to request
 						sdread <= 1;
 						sdaddress <= readAddress + 24'd4;
 					end
 					
-				end else begin			// waiting for requests to be accepted
+				end else begin
 					reqFifoWriteRequest <= 0;
 					
-					if (!sdread && !reqFifoAlmostFull && !sdwrite) begin	// see if fifo buffer is not full again and restart requests
-						sdread <= 1;
-					end
 				end
 			
-			end else begin
+			end else if (writeStage != 0 || sdwrite) begin		// writing
 				reqFifoWriteRequest <= 0;
-				sdread <= 0;
 				
-				//stage <= 2;
+				if (writeStage == 1 /*&& !sdread*/) begin
+					//writeCache <= writeFifoOutput;
+					
+					writeFifoReadRequest <= 0;
+					writeStage <= 2;
+					
+					sdwrite <= 1;
+					sdwritedata <= writeFifoOutput;
+					sdaddress <= writeAddress;
+				end else if (writeStage == 2) begin
+					if (!sdwaitrequest && sdwrite) begin // write has been accepted
+						sdwrite <= 0;
+						writeAddress <= writeAddress + 24'd4;
+						writeStage <= 0;
+					end
+				
+				end
+			
+			end else begin		// neither reading nor writing
+				reqFifoWriteRequest <= 0;
+				
+				// decide if we should read or write
+				if (readAddress < sdBase + NO_SAMPLES*4 && !reqFifoAlmostFull /*&& !sdwrite*/) begin	// read has priority
+					sdread <= 1; //read
+				
+				end else if (writeAddress < sdBase + NO_SAMPLES*4)  begin // handle any necessary writes
+					if (writeStage == 0 && !writeFifoEmpty) begin
+						writeStage <= 1;
+						// fetch from fifo
+						writeFifoReadRequest <= 1;
+					end
+			
+				end 
+				// if control reaches here, then let's not do anything
+	
 			end
+			
+			if (writeAddress >= sdBase + NO_SAMPLES*4) begin	// we are done!
+					stage <= 2;
+					irq <= 1;
+			end
+			
 			
 			// incoming data
 			if (sdreaddatavalid) begin
@@ -513,88 +549,8 @@ module notch (
 				
 				reqFifoReadRequest <= 1;	// drain request FIFO
 			end
-			
-			// wrtie results to SDRAM pipeline
-			
-			if (writeAddress < sdBase + NO_SAMPLES*4) begin
-			
-				if (writeStage == 0) begin
-					// wait for write Fifo to be filled
-					if (!writeFifoEmpty) begin
-						writeStage <= 1;
-						// fetch from fifo
-						writeFifoReadRequest <= 1;
-					end
 					
-				end else if (writeStage == 1) begin
-					writeCache <= writeFifoOutput;
-					writeFifoReadRequest <= 0;
-					writeStage <= 0;
-					
-				end /*else if (writeStage == 2) begin
-				
-					// wait for sdread to be deasserted (since it has priority)
-					if (!sdread) begin		// send write request
-						sdwrite <= 1;
-						sdwritedata <= writeCache;
-						sdaddress <= writeAddress;
-						writeStage <= 3;
-					end
-					
-				end else if (writeStage == 3) begin
-					if (!sdwaitrequest) begin // write has been accepted
-						sdwrite <= 0;
-						writeAddress <= writeAddress + 24'd4;
-						writeStage <= 0;
-					end
-				
-				end*/
-			end else begin
-				stage <= 2;
-				irq <= 1;
-			end
-			
 
-			// write to SDRAM pipeline
-			/*
-				0 - Request Fetch
-				1 - Fetch received
-				2 - Send write request
-				3 - Request Written
-			*/
-			/*
-            if (writeAddress < sdBase + NO_SAMPLES*4) begin
-                if (writeStage == 0 && !writeFifoEmpty) begin
-                    writeFifoReadRequest <= 1;
-                    writeStage <= 1;
-                    
-                end else if (writeStage == 1) begin
-                    writeCache <= writeFifoOutput;
-                    writeFifoReadRequest <= 0;
-                    writeStage <= 2;
-                    
-                end else if (writeStage == 2) begin
-				
-					if (!sdread) begin
-						sdwrite <= 1;
-						sdwritedata <= writeCache;
-						sdaddress <= writeAddress[23:0];
-						writeStage <= 3;
-					end
-                    
-                end else if (writeStage == 3) begin
-                    if (!sdwaitrequest && sdwrite) begin
-                        sdwrite <= 0;
-                        writeAddress <= writeAddress + 24'd4;
-                        writeStage <= 0;
-                    end
-                end
-				
-            end else begin      // we are done
-                stage <= 2;
-                irq <= 1;
-            end
-			*/
 		
 		end else if (stage == 2) begin      // wait for IRQ to be serviced
 			if (start) begin	// handle request checks

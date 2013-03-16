@@ -1,8 +1,8 @@
 fifo_16	fifo_16_inst (
+	.aclr ( aclr_sig ),
 	.clock ( clock_sig ),
 	.data ( data_sig ),
 	.rdreq ( rdreq_sig ),
-	.sclr ( sclr_sig ),
 	.wrreq ( wrreq_sig ),
 	.almost_full ( almost_full_sig ),
 	.empty ( empty_sig ),

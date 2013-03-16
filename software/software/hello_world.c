@@ -255,11 +255,16 @@ int main(){
 	alt_putstr("]\n");
 
 	// invoke Part II
-	status_notch = hw_notch((void *) wav);
+	status_notch = hw_notch(NULL);
 	gcvt(status_notch, 10, buffer);
-	alt_putstr("Notch Invocation = "); alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
+	alt_putstr("Notch Ready = "); alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
 	previous_notch = status_notch;
 
+	alt_putstr("Notch Invocation = ");
+	status_notch = hw_notch((void *) wav);
+	gcvt(status_notch, 10, buffer);
+	alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
+	previous_notch = status_notch;
 
 	// invoke part I
 	status_det = fp_det_interrupt((void *) matrix, DIMENSION, det_done);
@@ -345,10 +350,15 @@ int main(){
 				gcvt(status, 10, buffer);
 				alt_putstr("sdwrite = "); alt_putstr(buffer); alt_putstr("\n");
 
+				//12
+				status = _notch_status_read(12);
+				gcvt(status, 10, buffer);
+				alt_putstr("stage = "); alt_putstr(buffer); alt_putstr("\n");
+
 			}
 			else if (_notch_done){
-							gcvt((int) wav, 10, buffer);
-							alt_putstr("Notch Result Ptr = "); alt_putstr(buffer); alt_putstr("\n");
+				gcvt((int) wav, 10, buffer);
+				alt_putstr("Notch Result Ptr = "); alt_putstr(buffer); alt_putstr("\n");
 			}
 
 	}
@@ -370,13 +380,6 @@ int main(){
 	gcvt(det, 10, buffer);
 	alt_putstr(buffer);
 	alt_putstr("\n");
-
-	//alt_putstr("output begins:\n");
-	// output the bloody result
-	//for (i = 0; i < NOTCH_SIZE; i++){
-	//	gcvt(wav[i], 10, buffer);
-	//	alt_putstr(buffer); alt_putstr("\n");
-	//}
 
 	for (i = 0; i < 10; i++){
 		gcvt(wav[i], 10, buffer);

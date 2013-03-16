@@ -20,19 +20,19 @@
          type = "long";
       }
    }
-   element notch_0.avalon_slave
-   {
-      datum baseAddress
-      {
-         value = "20975616";
-         type = "long";
-      }
-   }
    element fp_det_nios_0.avalon_slave
    {
       datum baseAddress
       {
          value = "20975760";
+         type = "long";
+      }
+   }
+   element notch_0.avalon_slave
+   {
+      datum baseAddress
+      {
+         value = "20975616";
          type = "long";
       }
    }
@@ -132,22 +132,6 @@
          type = "long";
       }
    }
-   element onchip_mem.s1
-   {
-      datum baseAddress
-      {
-         value = "67239936";
-         type = "long";
-      }
-   }
-   element sys_clk_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "20975680";
-         type = "long";
-      }
-   }
    element sdram.s1
    {
       datum baseAddress
@@ -161,6 +145,22 @@
       datum baseAddress
       {
          value = "16781344";
+         type = "long";
+      }
+   }
+   element onchip_mem.s1
+   {
+      datum baseAddress
+      {
+         value = "67239936";
+         type = "long";
+      }
+   }
+   element sys_clk_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "20975680";
          type = "long";
       }
    }
@@ -208,7 +208,7 @@
  <parameter name="projectName" value="hello_world.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1363388881431" />
+ <parameter name="timeStamp" value="1363436227576" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
@@ -618,14 +618,12 @@
   <parameter name="NO_SAMPLES" value="963144" />
   <parameter name="SAMPLE_SCALING" value="2147483647" />
   <parameter name="COEFF_SCALING" value="16383" />
-  <parameter name="FLASH_BASE_ADDRESS" value="0" />
   <parameter name="DIVIDER_LATENCY" value="0" />
   <parameter name="A1" value="34501" />
   <parameter name="A2" value="14969" />
   <parameter name="B0" value="8275" />
   <parameter name="B1" value="49153" />
   <parameter name="B2" value="8275" />
-  <parameter name="AUTO_CLOCK_SINK_CLOCK_RATE" value="50000000" />
  </module>
  <connection
    kind="avalon"
@@ -809,16 +807,6 @@
   <parameter name="irqNumber" value="20" />
  </connection>
  <connection
-   kind="clock"
-   version="12.0"
-   start="clk_0.clk"
-   end="notch_0.clock_sink" />
- <connection
-   kind="reset"
-   version="12.0"
-   start="clk_0.clk_reset"
-   end="notch_0.reset_sink" />
- <connection
    kind="avalon"
    version="12.0"
    start="cpu.data_master"
@@ -831,13 +819,6 @@
   <parameter name="baseAddress" value="0x00800000" />
  </connection>
  <connection
-   kind="interrupt"
-   version="12.0"
-   start="cpu.d_irq"
-   end="notch_0.interrupt_sender">
-  <parameter name="irqNumber" value="19" />
- </connection>
- <connection
    kind="nios_custom_instruction"
    version="12.0"
    start="cpu.custom_instruction_master"
@@ -846,4 +827,21 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="5" />
  </connection>
+ <connection
+   kind="reset"
+   version="12.0"
+   start="clk_0.clk_reset"
+   end="notch_0.reset_sink" />
+ <connection
+   kind="interrupt"
+   version="12.0"
+   start="cpu.d_irq"
+   end="notch_0.interrupt_sender">
+  <parameter name="irqNumber" value="19" />
+ </connection>
+ <connection
+   kind="clock"
+   version="12.0"
+   start="clk_0.clk"
+   end="notch_0.clock_sink" />
 </system>

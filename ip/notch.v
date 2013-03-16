@@ -258,6 +258,7 @@ module notch (
                 9: 		slave_readdata <= { {31{1'd0}}, sdread };
                 10:		slave_readdata <= { {31{1'd0}}, sdwaitrequest };
                 11: 	slave_readdata <= { {31{1'd0}}, sdwrite };		
+				12:		slave_readdata <= { {30{1'd0}}, stage };		
             endcase
         
         end
@@ -293,51 +294,50 @@ module notch (
 			readFifoWriteRequest <= 0;
 			writeFifoReadRequest <= 0;
 			writeFifoReadRequest <= 0;
-			
+						
 		end else if (stage == 0) begin
-			if (start && dataa != 0) begin		// start
-				stage <= 1;
-				
-				sdBase <= dataa;
-				writeAddress <= dataa;
-				readAddress <= dataa;
-				
-				calculationStage <= 0;
-				calculationCount <= 0;
-				startSdRead <= 1;
-                writeStage <= 0;
-				
-				sdDiscardedRead <= 0;
-				sdReceiveCount <= 0;
-				
-				x_n <= 0;
-				x_n1 <= 0;
-				x_n2 <= 0;
-				yIntermediate <= 0;
-				y_n1 <= 0;
-				y_n2 <= 0;
-				
-				reqFifoClear <= 1;
-				writeFifoClear <= 1;
-				readFifoClear <= 1;
-				
-				reqFifoReadRequest <= 0;
-				reqFifoWriteRequest <= 0;
-				readFifoReadRequest <= 0;
-				readFifoWriteRequest <= 0;
-				writeFifoReadRequest <= 0;
-				writeFifoReadRequest <= 0;
-				
-                done <= 1;
-				result <= 99;
-					
-			end else if (start && dataa == 0) begin		// status check
+			
+			if (start) begin
 				done <= 1;
-				result <= -1;
-                
-			end else begin		// idle
-				done <= 0;
-                
+				
+				if (dataa) begin		// begin processing
+					result <= 99;		// indicate acceptance of start
+					
+					stage <= 1;
+					
+					sdBase <= dataa[23:0];
+					writeAddress <= dataa[23:0];
+					readAddress <= dataa[23:0];
+					
+					sdDiscardedRead <= 0;
+					sdReceiveCount <= 0;
+					
+					calculationStage <= 0;
+					calculationCount <= 0;
+					startSdRead <= 1;
+					writeStage <= 0;
+					
+					x_n <= 0;
+					x_n1 <= 0;
+					x_n2 <= 0;
+					yIntermediate <= 0;
+					y_n1 <= 0;
+					y_n2 <= 0;
+										
+					reqFifoReadRequest <= 0;
+					reqFifoWriteRequest <= 0;
+					readFifoReadRequest <= 0;
+					readFifoWriteRequest <= 0;
+					writeFifoReadRequest <= 0;
+					writeFifoReadRequest <= 0;
+					
+				end else begin			// status check
+					result <= -1;
+				
+				end
+			
+			end else begin
+				done <= 0;	//idle
 			end
 			
 			
@@ -353,11 +353,6 @@ module notch (
 			if (startSdRead) begin
 				startSdRead <= 0;
 				sdread <= 1;
-				
-                // clear the fifo purging
-				reqFifoClear <= 0;
-				writeFifoClear <= 0;
-				readFifoClear <= 0;
 			end		
 						
 						
@@ -369,7 +364,7 @@ module notch (
 					// save this request to Fifo
 					reqFifoWriteRequest <= 1;
 					
-					readAddress = readAddress + 22'd4;
+					readAddress = readAddress + 24'd4;
 					sdaddress <= readAddress;
 										
 				
@@ -410,7 +405,12 @@ module notch (
 				
 					sdReceiveCount <= sdReceiveCount + 1;
 				end
-												
+				
+				if (!sdReceiveCount) begin
+					done <= 1;
+					result <= sdreaddata;
+				end
+				
 			end else begin
 				readFifoWriteRequest <= 0;		// don't write!
 			
@@ -555,13 +555,25 @@ module notch (
                 end else if (writeStage == 3) begin
                     if (!sdwaitrequest && sdwrite) begin
                         sdwrite <= 0;
-                        writeAddress <= writeAddress + 4;
+                        writeAddress <= writeAddress + 24'd4;
                         writeStage <= 0;
                     end
                 end
             end else begin      // we are done
                 stage <= 2;
                 irq <= 1;
+				
+				// purge Fifos
+				reqFifoClear <= 1;
+				writeFifoClear <= 1;
+				readFifoClear <= 1;
+
+				reqFifoReadRequest <= 0;
+				reqFifoWriteRequest <= 0;
+				readFifoReadRequest <= 0;
+				readFifoWriteRequest <= 0;
+				writeFifoReadRequest <= 0;
+				writeFifoReadRequest <= 0;
             end
 			
 		
@@ -572,6 +584,18 @@ module notch (
 			end else begin
 				done <= 0;
 			end
+		
+			// turn off Fifo purging
+			reqFifoClear <= 0;
+			writeFifoClear <= 0;
+			readFifoClear <= 0;
+			
+			reqFifoReadRequest <= 0;
+			reqFifoWriteRequest <= 0;
+			readFifoReadRequest <= 0;
+			readFifoWriteRequest <= 0;
+			writeFifoReadRequest <= 0;
+			writeFifoReadRequest <= 0;
 		
             if (slave_read) begin   /// doesn't matter what they read. we consider it serviced
                 irq <= 0;

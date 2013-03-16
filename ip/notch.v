@@ -36,7 +36,7 @@ module notch (
 	parameter N = 2;		// order
 	parameter NO_SAMPLES = 963144;
 	parameter SAMPLE_SCALING = 2147483647;
-	parameter COEFF_SCALING = 16383;
+	parameter COEFF_SCALING = 16'd16383;
 	parameter DIVIDER_LATENCY = 5'd16;
 	parameter SDRAM_WORD_SKIP = 24'd4;
 	
@@ -46,10 +46,10 @@ module notch (
     //a = 1	-1.89436042308807	0.913743853569031
     //b = 0.505116066895425	-1	0.505116066895425
     // the parameters below are scaled versions
-	parameter A1 = -16'd31035;
+	parameter A1 = 16'h86C5;		// -31035
     parameter A2 = 16'd14969;
     parameter B0 = 16'd8275;
-    parameter B1 = -16'd16383;
+    parameter B1 = 16'hC001;		// -16383
     parameter B2 = 16'd8275;
     
     reg [15:0] a1 = A1;
@@ -168,9 +168,9 @@ module notch (
         Divider Instantiation
     */
 	reg [63:0] dividerNumerator;
-	reg [31:0] dividerDenominator;
+	reg [15:0] dividerDenominator;
 	wire [63:0] dividerQuotient;
-	wire [31:0] dividerRemainder;
+	wire [15:0] dividerRemainder;
 	
 	div_64	divider (
 		.clock ( clk ),

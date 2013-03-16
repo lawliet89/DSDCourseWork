@@ -218,7 +218,6 @@ int _notch_status_read(int i){
 }
 
 int notch_read(int offset){
-
 	return IORD(NOTCH_DATA_START, offset);
 }
 
@@ -320,6 +319,8 @@ int main(){
 
 	// setup things - malloc space for output
 	//wav = (int *) calloc(NOTCH_SIZE, sizeof(int));
+	// ask to overwrite results
+	IOWR(NOTCH_0_BASE,0,1);
 
 	// setup things - generate matrix
 	matrix = randomMatrix(DIMENSION);	// generate random matrix

@@ -38,7 +38,7 @@ module notch (
 	parameter SAMPLE_SCALING = 2147483647;
 	parameter COEFF_SCALING = 16383;
 	parameter DIVIDER_LATENCY = 5'd16;
-	parameter SDRAM_WORD_SKIP = 24'd1;
+	parameter SDRAM_WORD_SKIP = 24'd4;
 	
 	reg forceReset = 0;
 	
@@ -88,6 +88,9 @@ module notch (
     reg [2:0] writeStage = 0;
     reg [31:0] writeCache;
 	reg [4:0] divideCounter;
+	
+	// control registers
+	reg writeToResult = 0;
 	
 	
     /* 
@@ -258,10 +261,16 @@ module notch (
                 9: 		slave_readdata <= { {31{1'd0}}, sdread };
                 10:		slave_readdata <= { {31{1'd0}}, sdwaitrequest };
                 11: 	slave_readdata <= { {31{1'd0}}, sdwrite };		
-				12:		slave_readdata <= { {30{1'd0}}, stage };		
+				12:		slave_readdata <= { {30{1'd0}}, stage };	
+				13:		slave_readdata <= { {30{1'd0}}, writeToResult };
             endcase
         
-        end
+        end else if (slave_write) begin
+			case (slave_address)
+				0:		writeToResult <= slave_writedata[0];
+				//1:		writeToResult <= slave_writedata[0];
+			endcase
+		end
    
 	
 		if (reset || forceReset) begin
@@ -302,9 +311,9 @@ module notch (
 		end else if (stage == 0) begin
 			
 			if (start) begin
-				done <= 1;
 				
 				if (dataa != 0) begin		// begin processing
+					//done <= 1;
 					result <= 99;		// indicate acceptance of start
 					
 					stage <= 1;
@@ -316,6 +325,7 @@ module notch (
 					startSdRead <= 1;
 
 				end else begin			// status check
+					done <= 1;
 					result <= -1;
 					
 				end
@@ -346,7 +356,13 @@ module notch (
 						
 			
 			// SD pipeline
-			if (sdread) begin		// reading
+			if (writeAddress >= sdBase + NO_SAMPLES*SDRAM_WORD_SKIP) begin	// we are done!
+					stage <= 2;
+					irq <= 1;
+					sdread <= 0;
+					sdwrite <= 0;
+					
+			end else if (sdread) begin		// reading
 			
 				// Wait request
 				if (!sdwaitrequest && sdread) begin		// request accepted
@@ -374,16 +390,27 @@ module notch (
 			end else if (writeStage != 0 || sdwrite) begin		// writing
 				reqFifoWriteRequest <= 0;
 				
-				if (writeStage == 1 /*&& !sdread*/) begin
+				if (writeStage == 1) begin
+					// fetch from fifo
+					writeFifoReadRequest <= 1;
+					writeStage <= 2;
+				
+				end else if (writeStage == 2) begin
 					//writeCache <= writeFifoOutput;
 					
 					writeFifoReadRequest <= 0;
-					writeStage <= 2;
+					writeStage <= 3;
 					
 					sdwrite <= 1;
 					sdwritedata <= writeFifoOutput;
 					sdaddress <= writeAddress;
-				end else if (writeStage == 2) begin
+					
+					if (writeAddress - sdBase == 4) begin
+						done <= 1;
+						result <= writeFifoOutput;
+					end
+					
+				end else if (writeStage == 3) begin
 					if (!sdwaitrequest && sdwrite) begin // write has been accepted
 						sdwrite <= 0;
 						writeAddress <= writeAddress + SDRAM_WORD_SKIP;
@@ -396,26 +423,19 @@ module notch (
 				reqFifoWriteRequest <= 0;
 				
 				// decide if we should read or write
-				if (readAddress < sdBase + NO_SAMPLES*SDRAM_WORD_SKIP && !reqFifoAlmostFull /*&& !sdwrite*/) begin	// read has priority
+				if (readAddress < sdBase + NO_SAMPLES*SDRAM_WORD_SKIP && !reqFifoAlmostFull) begin	// read has priority
 					sdread <= 1; //read
 				
 				end else if (writeAddress < sdBase + NO_SAMPLES*SDRAM_WORD_SKIP)  begin // handle any necessary writes
 					if (writeStage == 0 && !writeFifoEmpty) begin
 						writeStage <= 1;
-						// fetch from fifo
-						writeFifoReadRequest <= 1;
 					end
 			
 				end 
 				// if control reaches here, then let's not do anything
 	
 			end
-			
-			if (writeAddress >= sdBase + NO_SAMPLES*SDRAM_WORD_SKIP) begin	// we are done!
-					stage <= 2;
-					irq <= 1;
-			end
-			
+				
 			
 			// incoming data
 			if (sdreaddatavalid) begin
@@ -430,12 +450,7 @@ module notch (
 				
 					sdReceiveCount <= sdReceiveCount + 1;
 				end
-				
-				if (!sdReceiveCount) begin
-					done <= 1;
-					result <= sdreaddata;
-				end
-				
+					
 			end else begin
 				readFifoWriteRequest <= 0;		// don't write!
 			
@@ -533,9 +548,15 @@ module notch (
             end else if (calculationStage == 10) begin // write
                 if (!writeFifoFull) begin
 					y_n1 <= dividerQuotient;
+								
                     writeFifoWriteRequest <= 1;
-                    writeFifoWrite <= dividerQuotient[31:0];
-                    writeFifoWrite <= x_n;
+					
+					if (writeToResult)
+						writeFifoWrite <= dividerQuotient[31:0];
+					
+                    else 
+						writeFifoWrite <= x_n;
+						
 					calculationStage <= 11;
 					
                 end else begin

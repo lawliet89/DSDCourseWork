@@ -386,7 +386,7 @@ int main(){
 	alt_putstr("software calculation = ");
 	gcvt(det, 10, buffer);
 	alt_putstr(buffer);
-	alt_putstr("\n");
+	alt_putstr("\noutput:\n");
 
 	for (i = 0; i < 10; i++){
 		gcvt(notch_read(i), 10, buffer);

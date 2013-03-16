@@ -37,7 +37,6 @@ module notch (
 	parameter NO_SAMPLES = 963144;
 	parameter SAMPLE_SCALING = 2147483647;
 	parameter COEFF_SCALING = 16383;
-	parameter FLASH_BASE_ADDRESS = 0;
 	parameter DIVIDER_LATENCY = 5'd16;
 	
 	
@@ -91,6 +90,9 @@ module notch (
 	reg [4:0] divideCounter;
 	
 	
+    /* 
+        FIFO Instantiation
+    */
 	reg [31:0] reqFifoWrite = NO_SAMPLES;	// write jibberish. doesn't matter
 	reg reqFifoReadRequest = 0;
 	reg reqFifoClear = 0;
@@ -161,6 +163,9 @@ module notch (
 		);	
 		
 	
+    /*
+        Divider Instantiation
+    */
 	reg [63:0] dividerNumerator;
 	reg [31:0] dividerDenominator;
 	wire [63:0] dividerQuotient;
@@ -174,6 +179,9 @@ module notch (
 		.remain ( dividerRemainder )
 	);
 	
+    /*
+        Multipliers Instantiation
+    */
 	reg [63:0] mul_a1_a;
 	reg [15:0] mul_a1_b;
 	wire [63:0] mul_a1_result;
@@ -230,7 +238,30 @@ module notch (
 		.result ( mul_b2_result )
 	);	
 	
+    /*
+        Processing
+    */
 	always @ (posedge clk) begin
+    
+        // slave status read
+        if (slave_read) begin
+            case (slave_address) 
+                0:  	slave_readdata <= (readAddress-sdBase);
+                1:		slave_readdata <= { {27{1'd0}}, reqFifoUsed };
+                2: 		slave_readdata <= { {27{1'd0}}, readFifoUsed };
+                3:		slave_readdata <= sdReceiveCount;
+                4:		slave_readdata <= sdDiscardedRead;
+                5: 		slave_readdata <= { {28{1'd0}}, calculationStage };
+                6:		slave_readdata <= calculationCount;
+                7:	 	slave_readdata <= (writeAddress-sdBase);
+                8: 		slave_readdata <= { {27{1'd0}}, writeFifoUsed };
+                9: 		slave_readdata <= { {31{1'd0}}, sdread };
+                10:		slave_readdata <= { {31{1'd0}}, sdwaitrequest };
+                11: 	slave_readdata <= { {31{1'd0}}, sdwrite };		
+            endcase
+        
+        end
+    
 	
 		if (reset || forceReset) begin
 			forceReset <= 0;
@@ -297,57 +328,40 @@ module notch (
 				writeFifoReadRequest <= 0;
 				writeFifoReadRequest <= 0;
 				
-				//done <= 1;
-				//result <= 99;
+                done <= 1;
+				result <= 99;
 					
 			end else if (start && dataa == 0) begin		// status check
 				done <= 1;
 				result <= -1;
+                
 			end else begin		// idle
 				done <= 0;
+                
 			end
 			
-			writeFifoClear <= 0;
-			readFifoClear <= 0;
 			
 		end else if (stage == 1) begin	// stage 1 - reading and calculating
-			if (start) begin	// handle request checks
+            
+            if (start) begin	// handle request checks
 				done <= 1;
 				result <= (writeAddress-sdBase)/4;
 			end else begin
 				done <= 0;
 			end
 			
-			// slave status read
-			if (slave_read) begin
-				case (slave_address) 
-					0:  	slave_readdata <= (readAddress-sdBase);
-					1:		slave_readdata <= { {27{1'd0}}, reqFifoUsed };
-					2: 		slave_readdata <= { {27{1'd0}}, readFifoUsed };
-					3:		slave_readdata <= sdReceiveCount;
-					4:		slave_readdata <= sdDiscardedRead;
-					5: 		slave_readdata <= { {28{1'd0}}, calculationStage };
-					6:		slave_readdata <= calculationCount;
-					7:	 	slave_readdata <= (writeAddress-sdBase);
-					8: 		slave_readdata <= { {27{1'd0}}, writeFifoUsed };
-					9: 		slave_readdata <= { {31{1'd0}}, sdread };
-					10:		slave_readdata <= { {31{1'd0}}, sdwaitrequest };
-					11: 	slave_readdata <= { {31{1'd0}}, sdwrite };		
-				endcase
-			
-			end
-			
 			if (startSdRead) begin
 				startSdRead <= 0;
 				sdread <= 1;
 				
+                // clear the fifo purging
 				reqFifoClear <= 0;
 				writeFifoClear <= 0;
 				readFifoClear <= 0;
 			end		
 						
 						
-			// Flash read request pipeline
+			// SD read request pipeline
 			if (readAddress < sdBase + NO_SAMPLES*4) begin
 			
 				// Wait request
@@ -559,8 +573,7 @@ module notch (
 				done <= 0;
 			end
 		
-            if (slave_read) begin
-                slave_readdata <= (writeAddress-sdBase)/4;
+            if (slave_read) begin   /// doesn't matter what they read. we consider it serviced
                 irq <= 0;
                 stage <= 0;
             end

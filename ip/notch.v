@@ -107,7 +107,7 @@ module notch (
 		.clock ( clk ),
 		.data ( reqFifoWrite ),
 		.rdreq ( reqFifoReadRequest ),
-		.sclr ( reqFifoClear ),
+		.aclr ( reqFifoClear ),
 		.wrreq ( reqFifoWriteRequest ),
 		.almost_full ( reqFifoAlmostFull ),
 		.empty ( reqFifoEmpty ),
@@ -130,7 +130,7 @@ module notch (
 		.clock ( clk ),
 		.data ( readFifoWrite ),
 		.rdreq ( readFifoReadRequest ),
-		.sclr ( readFifoClear ),
+		.aclr ( readFifoClear ),
 		.wrreq ( readFifoWriteRequest ),
 		.almost_full ( readFifoAlmostFull ),
 		.empty ( readFifoEmpty ),
@@ -153,7 +153,7 @@ module notch (
 		.clock ( clk ),
 		.data ( writeFifoWrite ),
 		.rdreq ( writeFifoReadRequest ),
-		.sclr ( writeFifoClear ),
+		.aclr ( writeFifoClear ),
 		.wrreq ( writeFifoWriteRequest ),
 		.almost_full ( writeFifoAlmostFull ),
 		.empty ( writeFifoEmpty ),
@@ -262,7 +262,7 @@ module notch (
             endcase
         
         end
-    
+   
 	
 		if (reset || forceReset) begin
 			forceReset <= 0;
@@ -282,14 +282,19 @@ module notch (
 			calculationStage <= 0;
 			calculationCount <= 0;
             writeStage <= 0;
+			startSdRead <= 0;
 			
 			sdDiscardedRead <= 0;
 			sdReceiveCount <= 0;
+			
+			// purge
 			
 			reqFifoClear <= 1;
 			writeFifoClear <= 1;
 			readFifoClear <= 1;
 			
+			reqFifoReadRequest <= 0;
+			reqFifoWriteRequest <= 0;
 			readFifoReadRequest <= 0;
 			readFifoWriteRequest <= 0;
 			writeFifoReadRequest <= 0;
@@ -300,7 +305,7 @@ module notch (
 			if (start) begin
 				done <= 1;
 				
-				if (dataa) begin		// begin processing
+				if (dataa != 0) begin		// begin processing
 					result <= 99;		// indicate acceptance of start
 					
 					stage <= 1;
@@ -308,44 +313,21 @@ module notch (
 					sdBase <= dataa[23:0];
 					writeAddress <= dataa[23:0];
 					readAddress <= dataa[23:0];
-					
-					sdDiscardedRead <= 0;
-					sdReceiveCount <= 0;
-					
-					calculationStage <= 0;
-					calculationCount <= 0;
-					startSdRead <= 1;
-					writeStage <= 0;
-					
-					x_n <= 0;
-					x_n1 <= 0;
-					x_n2 <= 0;
-					yIntermediate <= 0;
-					y_n1 <= 0;
-					y_n2 <= 0;
-										
-					reqFifoReadRequest <= 0;
-					reqFifoWriteRequest <= 0;
-					readFifoReadRequest <= 0;
-					readFifoWriteRequest <= 0;
-					writeFifoReadRequest <= 0;
-					writeFifoReadRequest <= 0;
-					
-					// purge
-					reqFifoClear <= 1;
-					writeFifoClear <= 1;
-					readFifoClear <= 1;
-					
+
 				end else begin			// status check
 					result <= -1;
-				
+					
 				end
 			
 			end else begin
 				done <= 0;	//idle
 			end
 			
-			
+			// clear purge flags
+			reqFifoClear <= 0;
+			writeFifoClear <= 0;
+			readFifoClear <= 0;
+					
 		end else if (stage == 1) begin	// stage 1 - reading and calculating
             
             if (start) begin	// handle request checks
@@ -355,225 +337,7 @@ module notch (
 				done <= 0;
 			end
 			
-			if (startSdRead) begin
-				startSdRead <= 0;
-				sdread <= 1;
-				
-				// turn off Fifo purging
-				reqFifoClear <= 0;
-				writeFifoClear <= 0;
-				readFifoClear <= 0;
-			end		
-						
-						
-			// SD read request pipeline
-			if (readAddress < sdBase + NO_SAMPLES*4) begin
-			
-				// Wait request
-				if (!sdwaitrequest && sdread && !sdwrite) begin		// request accepted
-					// save this request to Fifo
-					reqFifoWriteRequest <= 1;
-					
-					readAddress = readAddress + 24'd4;
-					sdaddress <= readAddress;
-										
-				
-					if (readAddress >= sdBase + NO_SAMPLES*4) begin	// done!
-						sdread <= 0;
-					
-					end else if (reqFifoAlmostFull) begin // request fifo  "almost" full
-						sdread <= 0;
-						
-					end else begin		// not almost full? continue to request
-						sdread <= 1;
-					end
-					
-				end else begin			// waiting for requests to be accepted
-					reqFifoWriteRequest <= 0;
-					
-					if (!sdread && !reqFifoAlmostFull && !sdwrite) begin	// see if fifo buffer is not full again and restart requests
-						sdread <= 1;
-					end
-				end
-			
-			end else begin
-				reqFifoWriteRequest <= 0;
-				sdread <= 0;
-				
-			end
-		
-			// incoming data
-			if (sdreaddatavalid) begin
-				
-				// receive FIFO handling
-				if(readFifoFull) begin		// discarded! THIS SHOULDN'T HAPPEN AT ALL!
-					sdDiscardedRead <= sdDiscardedRead + 1;
-					
-				end else begin
-					readFifoWriteRequest <= 1;	// save to calculation pipeline
-					readFifoWrite <= sdreaddata;
-				
-					sdReceiveCount <= sdReceiveCount + 1;
-				end
-				
-				if (!sdReceiveCount) begin
-					done <= 1;
-					result <= sdreaddata;
-				end
-				
-			end else begin
-				readFifoWriteRequest <= 0;		// don't write!
-			
-			end
-		
-					
-			// calculation pipeline
-
-			if (!readFifoEmpty && calculationStage == 0) begin	// request
-				readFifoReadRequest <= 1;
-				calculationStage <= 1;
-				
-				reqFifoReadRequest <= 0;
-				
-			end else if (calculationStage == 1) begin
-				readFifoReadRequest <= 0;
-				
-				x_n <= readFifoOutput;
-				x_n1 <= x_n;
-				x_n2 <= x_n1;
-				
-				calculationStage <= 2;
-			end else if (calculationStage == 2) begin   // multiply  - potential problem area
-				// sign extend the numbers - http://stackoverflow.com/questions/4176556/how-to-sign-extend-a-number-in-verilog
-				
-				/*
-				a1Intermediate <= y_n1 * { {49{a1[15]}}, a1[14:0] };
-				a2Intermediate <= y_n2 * { {49{a2[15]}}, a2[14:0] };
-				b0Intermediate <= { {33{x_n[31]}}, x_n[30:0] }* { {49{b0[15]}}, b0[14:0] };
-				b1Intermediate <= { {33{x_n1[31]}}, x_n1[30:0] }* { {49{b1[15]}}, b1[14:0] };
-				b2Intermediate <= { {33{x_n2[31]}}, x_n2[30:0] }* { {49{b2[15]}}, b2[14:0] };
-				*/
-				
-				// a1
-				mul_a1_a <= y_n1;
-				mul_a1_b <= a1;
-				
-				// a2
-				mul_a2_a <= y_n2;
-				mul_a2_b <= a2;
-				
-				//b0
-				mul_b0_a <= x_n;
-				mul_b0_b <= b0;
-				
-				//b1
-				mul_b1_a <= x_n1;
-				mul_b1_b <= b1;
-				
-				
-				//b2
-				mul_b2_a <= x_n2;
-				mul_b2_b <= b2;
-				
-                calculationStage <= 3;
-			 
-			end else if (calculationStage == 3) begin   
-				// multiply latency
-				calculationStage <= 4;
-			 
-			end else if (calculationStage == 4) begin   // accumulate - potential problem area
-                yIntermediate <= mul_b0_result + mul_b1_result;
-                calculationStage <= 5;
-				
-			end else if (calculationStage == 5) begin   // accumulate - potential problem area
-                yIntermediate <= yIntermediate + mul_b2_result;
-                calculationStage <= 6;
-				
-			end else if (calculationStage == 6) begin   
-                yIntermediate <= yIntermediate - mul_a1_result;
-                calculationStage <= 7;	
-				
-			end else if (calculationStage == 7) begin   
-                yIntermediate <= yIntermediate - mul_a2_result;
-                calculationStage <= 8;					
-				
-            end else if (calculationStage == 8) begin // get rid of coefficient scaling, and buffer
-                y_n2 <= y_n1;	
-				calculationStage <= 9;
-				
-				dividerNumerator <= yIntermediate;
-				dividerDenominator <= COEFF_SCALING;
-				
-				divideCounter <= DIVIDER_LATENCY-5'd1;
-			
-			end else if (calculationStage == 9) begin
-				// divider latency
-				if (divideCounter != 0) begin
-					divideCounter <= divideCounter - 5'd1;
-				
-				end else begin		
-					calculationStage <= 10;
-				
-				end
-				
-            end else if (calculationStage == 10) begin // write
-                if (!writeFifoFull) begin
-					y_n1 <= dividerQuotient;
-                    writeFifoWriteRequest <= 1;
-                    writeFifoWrite <= dividerQuotient[31:0];
-                    writeFifoWrite <= x_n;
-					calculationStage <= 11;
-					
-                end else begin
-                    writeFifoWriteRequest <= 0;
-                end
-				
-            end else if (calculationStage == 11) begin // reset
-				calculationCount <= calculationCount + 1;
-                writeFifoWriteRequest <= 0;
-                calculationStage <= 0;
-				
-				reqFifoReadRequest <= 1;	// drain request FIFO
-			end
-            
-            // write to SDRAM pipeline
-			/*
-				0 - Request Fetch
-				1 - Fetch received
-				2 - Send write request
-				3 - Request Written
-			*/
-            if (writeAddress < sdBase + NO_SAMPLES*4) begin
-                if (writeStage == 0 && !writeFifoEmpty) begin
-                    writeFifoReadRequest <= 1;
-                    writeStage <= 1;
-                    
-                end else if (writeStage == 1) begin
-                    writeCache <= writeFifoOutput;
-                    writeFifoReadRequest <= 0;
-                    writeStage <= 2;
-                    
-                end else if (writeStage == 2) begin
-				
-					if (!sdread) begin
-						sdwrite <= 1;
-						sdwritedata <= writeCache;
-						sdaddress <= writeAddress[23:0];
-						writeStage <= 3;
-					end
-                    
-                end else if (writeStage == 3) begin
-                    if (!sdwaitrequest && sdwrite) begin
-                        sdwrite <= 0;
-                        writeAddress <= writeAddress + 24'd4;
-                        writeStage <= 0;
-                    end
-                end
-				
-            end else begin      // we are done
-                stage <= 2;
-                irq <= 1;
-            end
+			stage <= 2;
 			
 		
 		end else if (stage == 2) begin      // wait for IRQ to be serviced
@@ -583,17 +347,10 @@ module notch (
 			end else begin
 				done <= 0;
 			end
-								
-			reqFifoReadRequest <= 0;
-			reqFifoWriteRequest <= 0;
-			readFifoReadRequest <= 0;
-			readFifoWriteRequest <= 0;
-			writeFifoReadRequest <= 0;
-			writeFifoReadRequest <= 0;
-		
+										
             if (slave_read) begin   /// doesn't matter what they read. we consider it serviced
                 irq <= 0;
-                stage <= 0;
+                forceReset <= 1;	// reset
 				
             end
 		end

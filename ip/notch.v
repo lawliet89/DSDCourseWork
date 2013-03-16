@@ -315,7 +315,7 @@ module notch (
 			if (start) begin
 				
 				if (dataa != 0) begin		// begin processing
-					//done <= 1;
+					done <= 1;
 					result <= 99;		// indicate acceptance of start
 					
 					stage <= 1;
@@ -573,10 +573,10 @@ module notch (
 						
 					calculationStage <= 10;
 					
-					if (calculationCount == 2) begin
+					/*if (calculationCount == 2) begin
 						done <= 1;
 						result <= y_n1[31:0];
-					end
+					end*/
 	
                 end 			
 			end else if (calculationStage == 10) begin	// reset

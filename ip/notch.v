@@ -331,6 +331,11 @@ module notch (
 					writeFifoReadRequest <= 0;
 					writeFifoReadRequest <= 0;
 					
+					// purge
+					reqFifoClear <= 1;
+					writeFifoClear <= 1;
+					readFifoClear <= 1;
+					
 				end else begin			// status check
 					result <= -1;
 				
@@ -353,6 +358,11 @@ module notch (
 			if (startSdRead) begin
 				startSdRead <= 0;
 				sdread <= 1;
+				
+				// turn off Fifo purging
+				reqFifoClear <= 0;
+				writeFifoClear <= 0;
+				readFifoClear <= 0;
 			end		
 						
 						
@@ -573,12 +583,7 @@ module notch (
 			end else begin
 				done <= 0;
 			end
-			
-			// purge Fifos
-			reqFifoClear <= 1;
-			writeFifoClear <= 1;
-			readFifoClear <= 1;
-					
+								
 			reqFifoReadRequest <= 0;
 			reqFifoWriteRequest <= 0;
 			readFifoReadRequest <= 0;
@@ -590,10 +595,6 @@ module notch (
                 irq <= 0;
                 stage <= 0;
 				
-				// turn off Fifo purging
-				reqFifoClear <= 0;
-				writeFifoClear <= 0;
-				readFifoClear <= 0;
             end
 		end
 		

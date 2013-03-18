@@ -354,7 +354,7 @@ int main(){
 	previous_det = status_det;
 
 	// wait for everything to be done
-	while (/*!done ||*/ !_notch_done){
+	while (!done || !_notch_done){
 
 			status_det = fp_det_check();
 			if (status_det != previous_det){
@@ -372,10 +372,10 @@ int main(){
 			else if (!_notch_done){	// diagnostic
 				notch_diagnostic();
 			}
-			else if (_notch_done){
+			/*else if (_notch_done){
 				gcvt(NOTCH_DATA_START, 10, buffer);
 				alt_putstr("Notch Result Ptr = "); alt_putstr(buffer); alt_putstr("\n");
-			}
+			}*/
 
 	}
 

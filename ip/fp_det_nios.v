@@ -203,14 +203,14 @@ module fp_det_nios (
             diagonalStage <= 0;
 			swapCount <= 0;
             negateSign <= 0;
-            
-  		end else if (stage == 0) begin   // idle state. doing nothing
+
+		end else if (stage == 0) begin   // idle state. doing nothing
 			if (start && datab > 1) begin  // start
 					stage <= 1;
 					sdReadAddress <= dataa[23:0];
 					sdReadBase <= dataa[23:0];
 					if (datab != 0) begin
-						dimension <= datab[5:0];
+						dimension <= datab[7:0];
 					end else begin
 						dimension <= DEFAULT_DIMENSION;
 					end
@@ -219,8 +219,8 @@ module fp_det_nios (
 					startSdRead <= 1;
 					ramWriteDone <= 0;
 					
-					//done <= 1;
-					//result <= 99;
+					done <= 1;
+					result <= 99;
 			end else if (start && datab <= 1) begin		// send dimension <= 1 to check for ready status
 				done <= 1;
 				result <= -1;
@@ -229,18 +229,6 @@ module fp_det_nios (
 				result <= 0;
 			end
 			
-			// Avalon master
-			read <= 0;
-			write <= 0;
-			address <= 0;
-			writedata <= 0;
-			
-			// RAM stuff
-			ramReadAddress <= 0;
-			ramWriteAddress <= 0;
-			ramWriteData <= 0;
-			ramWriteEnable <= 0;
-			ramReadEnable <= 0;
 			
 		end else if (stage == 1) begin  // read from SDRAM
 		
@@ -248,18 +236,13 @@ module fp_det_nios (
 				result <= 1;
 				done <= 1;
 			end else begin
+				result <= 0;
 				done <= 0;
 			
 			end
 			
 			write <= 0;
 			writedata <= 0;
-            
-            // initialise row address
-            if (i < dimension) begin
-                rowAddress[i] <= i*dimension;
-                i <= i+1;
-            end
 			
 			
 			if (startSdRead) begin
@@ -295,10 +278,12 @@ module fp_det_nios (
 			if (ramWriteDone) begin		// start calculating
 				stage <= 2;
 				
-				i <= 0; // reset i
-				
-				done <= 1;
-				result <= rowAddress[2];
+				// reset ram controls to zero
+				ramReadAddress <= 0;
+				ramWriteAddress <= 0;
+				ramWriteData <= 0;
+				ramWriteEnable <= 0;
+				ramReadEnable <= 0;
 			end
 			
 		end else if (stage == 2) begin	// calculating
@@ -306,381 +291,23 @@ module fp_det_nios (
 				result <= 2;
 				done <= 1;
 			end else begin
+				result <= 0;
 				done <= 0;
+			
 			end
 			
-            // begin LU decomposition
-            /*
-                LU stages
-                    0 - Fetch ajj
-                    1 - ajj latency
-                    2 - receive ajj
-                    3 - swap rows, if necessary
-                    4 - fetch aij
-                    5 - aij latency
-                    6 - receive aij 
-                    7 - p Loop
-                    8 - divide aij/ajj
-                    9 - divider latency
-                    10 - write aij
-                    11 - loop back or continue
-                    
-                    
-                    12 - fetch aij
-                    13 - aij latency
-                    14 - receive aij
-                    15 - p loop
-                    16 - write aij
-                    17 - increment j or i
-            */
-			if (i < dimension) begin
-               
-                if (luStage == 0) begin
-                    ramReadAddress <= rowAddress[j] + j;
-                    ramReadEnable <= 1;
-                    
-					//luStage <= 1;
-					luStage <= 11;
-                
-                end else if (luStage == 1) begin
-                    // latency
-                    // optimise?
-                    ramReadEnable <= 0;
-                    luStage <= 2;
-                
-                end else if (luStage == 2) begin
-                    ajj = ramReadData;
-                    
-                    if (ajj == 0) begin
-                        luStage <= 3;
-                    end else begin
-                        luStage <= 4;
-                    end
-                    
-                end else if (luStage == 3) begin
-                    // swap
-                    
-                    if (swapCount > dimension) begin    // NaN
-                        finalResult <= NaN;
-                        irq <= 1;
-                        stage <= 3;
-                    end else begin
-                        // find row to swap
-                        // TODO Row swapping
-                        
-                        
-                        luStage <= 4;
-                    end
-                
-                end else if (luStage == 4) begin    // fetch aij
-                    ramReadAddress <= rowAddress[i] + j;
-                    ramReadEnable <= 1;
-                    luStage <= 5;
-                    
-                end else if (luStage == 5) begin // latency
-                    ramReadEnable <= 0;
-                    luStage <= 6;
-                
-                end else if (luStage == 6) begin
-                    aij <= ramReadData;
-                    
-                    p <= 0;
-                    pStage <= 0;
-                    luStage <= 7;
-           
-                end else if (luStage == 7) begin
-                    if (p < j) begin
-                        
-                        /*  
-                            pStage
-                                0 - fetch aip
-                                1 - fetch apj
-                                2 - receive aip
-                                3 - receive apj
-                                4 - multiply latency
-                                5 - subtract start
-                                6 - adder latency
-                        */
-                        if (pStage == 0) begin
-                            ramReadAddress <= rowAddress[i] + p;
-                            ramReadEnable <= 1;
-                            pStage <= 1;
-                            
-                        end else if (pStage == 1) begin
-                            ramReadAddress <= rowAddress[p] + j;
-                            pStage <= 2;
-                            
-                        end else if (pStage == 2) begin
-                            aip <= ramReadData;
-                            ramReadEnable <= 0; 
-                            pStage <= 3;
-                        end else if (pStage == 3) begin
-                            apj = ramReadData;
-                            
-                            // start multiplication
-                            counter <= MULTPLIER_LATENCY;
-                            mulDataa <= aip;
-                            mulDatab <= apj;
-                            
-                            pStage <= 4;
-                            
-                        end else if (pStage == 4) begin
-                            
-                            if (counter) begin
-                                counter <= counter - 1;
-                                
-                            end else begin
-                                pStage <= 5;
-                            end
-                            
-                        end else if (pStage == 5) begin
-                            adderMode <= 0;
-                            adderDataa <= aij;
-                            adderDatab <= mulResult;
-                            
-                            counter <= ADDER_LATENCY;
-                            
-                            pStage <= 6;
-                            
-                        end else if (pStage == 6) begin
-                            if (counter) begin
-                                counter <= counter - 1;
-                                
-                            end else begin
-                                pStage <= 7;
-                            end
-                        
-                        end else if (pStage == 7) begin
-                            aij <= adderResult;
-                            
-                            p <= p + 1;
-                            pStage <= 0;
-                        
-                        end
-                    
-                    end else begin
-                        
-                        luStage <= 8;
-                    end
-                
-                end else if (luStage == 8) begin
-                    divNumerator <= aij;
-                    divDenominator <= ajj;
-                    
-                    counter <= DIVIDER_LATENCY;
-                    
-                    luStage <= 9;
-                
-                end else if (luStage == 9) begin
-                    if (counter) begin
-                        counter <= counter - 1;
-                        
-                    end else begin
-                        luStage <= 10;
-                    end
-                
-                end else if (luStage == 10) begin
-                    // save aij
-                    ramWriteEnable <= 1;
-                    ramWriteAddress <= rowAddress[i] + j;
-                    ramWriteData <= divResult;
-                    
-                    luStage <= 11;
-                
-                end else if (luStage == 11) begin
-                    j = j + 1;
-                    
-                    if (j < i) begin
-                        luStage <= 0;
-                        
-                    end else begin
-                        luStage <= 12;
-                        
-                    end
-                    
-                end else if (luStage == 12) begin
-                    ramReadAddress <= rowAddress[i] + j;
-                    ramReadEnable <= 1;
-                    
-					//luStage <= 13;
-					
-					luStage <= 17;
-                
-                end else if (luStage == 13) begin
-                    ramReadEnable <= 0;
-                    luStage <= 14;
-                end else if (luStage == 14) begin
-                    aij <= ramReadData;
-                    
-                    p <= 0;
-                    pStage <= 0;
-                    
-                    luStage <= 15;
-                
-                end else if (luStage == 15) begin
-                    if (p < i) begin
-                        
-                        /*  
-                            pStage
-                                0 - fetch aip
-                                1 - fetch apj
-                                2 - receive aip
-                                3 - receive apj
-                                4 - multiply latency
-                                5 - subtract start
-                                6 - adder latency
-                        */
-                        if (pStage == 0) begin
-                            ramReadAddress <= rowAddress[i] + p;
-                            ramReadEnable <= 1;
-                            pStage <= 1;
-                            
-                        end else if (pStage == 1) begin
-                            ramReadAddress <= rowAddress[p] + j;
-                            pStage <= 2;
-                            
-                        end else if (pStage == 2) begin
-                            aip <= ramReadData;
-                            ramReadEnable <= 0; 
-                            pStage <= 3;
-                        end else if (pStage == 3) begin
-                            apj = ramReadData;
-                            
-                            // start multiplication
-                            counter <= MULTPLIER_LATENCY;
-                            mulDataa <= aip;
-                            mulDatab <= apj;
-                            
-                            pStage <= 4;
-                            
-                        end else if (pStage == 4) begin
-                            
-                            if (counter) begin
-                                counter <= counter - 1;
-                                
-                            end else begin
-                                pStage <= 5;
-                            end
-                            
-                        end else if (pStage == 5) begin
-                            adderMode <= 0;
-                            adderDataa <= aij;
-                            adderDatab <= mulResult;
-                            
-                            counter <= ADDER_LATENCY;
-                            
-                            pStage <= 6;
-                            
-                        end else if (pStage == 6) begin
-                            if (counter) begin
-                                counter <= counter - 1;
-                                
-                            end else begin
-                                pStage <= 7;
-                            end
-                        
-                        end else if (pStage == 7) begin
-                            aij <= adderResult;
-                            
-                            p <= p + 1;
-                            pStage <= 0;
-                        
-                        end
-                    
-                    end else begin
-                        
-                        luStage <= 16;
-                   
-                   end
-                
-                end else if (luStage == 16) begin
-                    // save aij
-                    ramWriteEnable <= 1;
-                    ramWriteAddress <= rowAddress[i] + j;
-                    ramWriteData <= aij;
-                    
-                    luStage <= 17;
-                
-                end else if (luStage == 17) begin
-                    ramWriteEnable <= 0;
-                    
-                    j = j + 1;
-                    
-                    if (j < dimension) begin
-                        luStage <= 12;
-                    
-                    end else begin
-                        i <= i + 1;
-                        j <= 0;
-                        luStage <= 0;
-                        
-                    end
-                end
-               
-            end else begin
-                // oh we are done
-                // start to multiply diagonal
-                if (k < dimension) begin
-                    /*
-                        Diagonal stage
-                        0 - fetch akk
-                        1 - fetch latency
-                        2 - multiply
-                        3 - multiply latency
-                        4 - loop check
-                    */                    
-                    if (diagonalStage == 0) begin
-                        ramReadEnable <= 1;
-                        ramWriteAddress <= rowAddress[k] + k;
-                        
-                        diagonalStage <= 1;
-                    
-                    end else if (diagonalStage == 1) begin
-                        ramReadEnable <= 0;
-                        diagonalStage <= 2;
-                    
-                    end else if (diagonalStage == 2) begin
-                        mulDataa <= finalResult;
-                        mulDataa <= ramReadData;
-                        
-                        counter <= MULTPLIER_LATENCY;
-                        
-                        diagonalStage <= 3;
-                        
-                    end else if (diagonalStage == 3) begin
-                        if (counter) begin
-                            counter <= counter - 1;
-                            
-                        end else begin
-                            diagonalStage <= 4;
-                        end
-                    
-                    end else if (diagonalStage == 4) begin
-                        finalResult <= mulResult;
-                        
-                        k <= k+1;
-                        diagonalStage <= 0;
-                        
-                    end
-                
-                end else begin
-                    if (negateSign) begin
-                        finalResult[31] = ~finalResult[31];
-                    end
-                    
-                    irq <= 1;
-                    stage <= 3;
-                
-                end
-                
-            end
+			stage <= 3;		// stage 3, waiting for interrupt to be cleared
+				
+			finalResult <= -1;		// RAISE AN INTERRUPT
+			irq <= 1;
 		
 			// Avalon master
 			read <= 0;
 			write <= 0;
 			address <= 0;
 			writedata <= 0;
-				
+			
+		
 		end else if (stage == 3) begin
 			if (start) begin		// invalid start - we are not ready
 				result <= 3;
@@ -694,7 +321,7 @@ module fp_det_nios (
 			if (result_read) begin
 				result_readdata <= finalResult;
 				irq <= 0;
-				forceReset <= 1;		// force reset
+				forceReset <= 1;		// reset to zero
 			end
 		end	
 	end

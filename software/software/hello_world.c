@@ -348,6 +348,11 @@ int main(){
 	previous_notch = status_notch;
 
 	// invoke part I
+	status_det = fp_det_check();
+	gcvt(status_det, 10, buffer);
+	alt_putstr("Det Ready = "); alt_putstr(buffer); alt_putstr("\n");	// should be FP_DET_ACCEPTED
+	previous_det = status_det;
+
 	status_det = fp_det_interrupt((void *) matrix, DIMENSION, det_done);
 	gcvt(status_det, 10, buffer);
 	alt_putstr("Det Invocation = "); alt_putstr(buffer); alt_putstr("\n");	// should be FP_DET_ACCEPTED

@@ -1,3 +1,4 @@
+// This module supports AT MOST 32 x 32 matrices
 /*
 	Status return Code
 		0 - ready
@@ -36,6 +37,7 @@ module fp_det_nios (
     parameter DIVIDER_LATENCY = 6;
     parameter MAX_DIMENSION = 32;
     parameter NaN = 32'h7FC00000;
+	
 	parameter FLOAT_ONE = 32'h3f800000;
 	
 	reg [5:0] dimension = DEFAULT_DIMENSION;
@@ -52,7 +54,7 @@ module fp_det_nios (
 		2 - Passing control off to calculate, when done, output
 	*/
 	reg [1:0] stage = 0;		// stage of computation
-	reg [31:0] finalResult = 0;
+	reg [31:0] finalResult = FLOAT_ONE;
 	
 	/*
         Doolittle's algorithm's registers
@@ -65,7 +67,6 @@ module fp_det_nios (
     reg [5:0] j;
     reg [5:0] p;
     reg [5:0] k;
-	reg [5:0] r;
     
     reg [9:0] luStage = 0;
     reg [9:0] pStage = 0;
@@ -80,8 +81,8 @@ module fp_det_nios (
     // row swap related
     reg [5:0] swapCount = 0;
     reg negateSign = 0;
-
-
+    
+	
 	// instantiate ram
     reg [9:0] ramReadAddress;
 	reg [9:0] ramWriteAddress;
@@ -162,13 +163,11 @@ module fp_det_nios (
 
     
     // clock edged triggered
-	
-
 	always @ (posedge clk) begin
 			
 		// we get a reset command
-		if (reset /*|| forceReset*/) begin
-            //forceReset <= 0;
+		if (/*reset ||*/ forceReset) begin
+            forceReset <= 0;
             
 			stage <= 0;
 			done <= 0;
@@ -201,7 +200,6 @@ module fp_det_nios (
             j <= 0;
             p <= 0;
             k <= 0;
-			r <= 0;
             
             luStage <= 0;
             diagonalStage <= 0;
@@ -214,7 +212,7 @@ module fp_det_nios (
 					sdReadAddress <= dataa[23:0];
 					sdReadBase <= dataa[23:0];
 					if (datab != 0) begin
-						dimension <= datab[5:0];
+						dimension <= datab[7:0];
 					end else begin
 						dimension <= DEFAULT_DIMENSION;
 					end
@@ -223,26 +221,16 @@ module fp_det_nios (
 					startSdRead <= 1;
 					ramWriteDone <= 0;
 					
-					done <= 1;
+					//done <= 1;
 					result <= 99;
 			end else if (start && datab <= 1) begin		// send dimension <= 1 to check for ready status
-				done <= -1;
-				result <= 0;
+				done <= 1;
+				result <= -1;
 			end else begin
 				done <= 0;
 				result <= 0;
 			end
 			
-			// Avalon master
-			read <= 0;
-			write <= 0;
-			
-			// RAM stuff
-			ramReadAddress <= 0;
-			ramWriteAddress <= 0;
-			ramWriteData <= 0;
-			ramWriteEnable <= 0;
-			ramReadEnable <= 0;
 			
 		end else if (stage == 1) begin  // read from SDRAM
 		
@@ -289,18 +277,21 @@ module fp_det_nios (
 				ramWriteEnable <= 0;
 			end
 			
-			
 			// initialise row address
-            if (r < dimension) begin
-                rowAddress[r] <= r*dimension;
-                r <= r+1;
+            if (i < dimension) begin
+                rowAddress[i] <= i*dimension;
+                i <= i+1;
 				
-            end 
-
-			if (ramWriteDone) begin		// start calculating
+            end else if (ramWriteDone) begin		// start calculating
 				stage <= 2;
-                
-
+				
+				ramReadAddress <= 0;
+				ramWriteAddress <= 0;
+				ramWriteData <= 0;
+				ramWriteEnable <= 0;
+				ramReadEnable <= 0;
+				
+				i <= 0;
 			end
 			
 		end else if (stage == 2) begin	// calculating
@@ -313,6 +304,30 @@ module fp_det_nios (
 			
 			end
 			
+			// begin LU decomposition
+            /*
+                LU stages
+                    0 - Fetch ajj
+                    1 - ajj latency
+                    2 - receive ajj
+                    3 - swap rows, if necessary
+                    4 - fetch aij
+                    5 - aij latency
+                    6 - receive aij 
+                    7 - p Loop
+                    8 - divide aij/ajj
+                    9 - divider latency
+                    10 - write aij
+                    11 - loop back or continue
+                    
+                    
+                    12 - fetch aij
+                    13 - aij latency
+                    14 - receive aij
+                    15 - p loop
+                    16 - write aij
+                    17 - increment j or i
+            */
 			if (i < dimension) begin
                
                 if (luStage == 0) begin
@@ -598,7 +613,7 @@ module fp_det_nios (
                 end
                
             end else begin
-				// oh we are done
+                // oh we are done
                 // start to multiply diagonal
                 if (k < dimension) begin
                     /*
@@ -652,7 +667,15 @@ module fp_det_nios (
                     stage <= 3;
                 
                 end
-			end
+                
+            end
+		
+			// Avalon master
+			read <= 0;
+			write <= 0;
+			address <= 0;
+			writedata <= 0;
+			
 		
 		end else if (stage == 3) begin
 			if (start) begin		// invalid start - we are not ready
@@ -668,6 +691,7 @@ module fp_det_nios (
 				result_readdata <= finalResult;
 				irq <= 0;
 				stage <= 0;		// reset to zero
+				forceReset <= 1;
 			end
 		end	
 	end

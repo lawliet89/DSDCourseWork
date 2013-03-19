@@ -63,7 +63,7 @@ module fp_det_nios (
     reg [9:0] rowAddress[4:0]; 
     
     // loop indices
-    reg [5:0] i;
+    //reg [5:0] i;
     reg [5:0] j;
     reg [5:0] p;
     reg [5:0] k;
@@ -72,6 +72,7 @@ module fp_det_nios (
     reg [9:0] pStage = 0;
     reg [9:0] diagonalStage = 0;
     reg [9:0] counter;
+	reg [9:0] calcStage = 0;
     
     reg [31:0] ajj;
     reg [31:0] aij;
@@ -81,7 +82,22 @@ module fp_det_nios (
     // row swap related
     reg [5:0] swapCount = 0;
     reg negateSign = 0;
-    
+	
+	// simple calculation
+	reg [31:0] a;
+    reg [31:0] b;
+	reg [31:0] c;
+	reg [31:0] d;
+	reg [31:0] e;
+	reg [31:0] f;
+	reg [31:0] g;
+	reg [31:0] h;
+	reg [31:0] i;
+	
+	reg [31:0] temp1;
+	reg [31:0] temp2;
+	reg [31:0] temp3;
+	
 	
 	// instantiate ram
     reg [9:0] ramReadAddress;
@@ -140,6 +156,25 @@ module fp_det_nios (
         .nan(mulNan),
         .result(mulResult),
         .zero(mulZero)    
+    );
+	
+	// instantiate FP multiplier
+    // 5 cycles latency
+    reg [31:0] mul2Dataa;
+    reg [31:0] mul2Datab;
+    wire mul2Nan;
+    wire [31:0] mul2Result;
+    wire mul2Zero;
+    
+    fp_mult mul2(
+        .aclr(reset),
+        .clk_en(clk_en),
+        .clock(clk),
+        .dataa(mul2Dataa),
+        .datab(mul2Datab),
+        .nan(mul2Nan),
+        .result(mul2Result),
+        .zero(mul2Zero)    
     );
 	
     // instantiate FP divider
@@ -205,6 +240,7 @@ module fp_det_nios (
             diagonalStage <= 0;
 			swapCount <= 0;
             negateSign <= 0;
+			calcStage <= 0;
 
 		end else if (stage == 0) begin   // idle state. doing nothing
 			if (start && datab > 1) begin  // start
@@ -273,6 +309,19 @@ module fp_det_nios (
 				if (ramLoadAddress == dimension*dimension-1) begin
 					ramWriteDone <= 1;
 				end
+				
+				case (ramLoadAddress)
+					0: a <= readdata;
+					1: b <= readdata;
+					2: c <= readdata;
+					3: d <= readdata;
+					4: e <= readdata;
+					5: f <= readdata;
+					6: g <= readdata;
+					7: h <= readdata;
+					8: i <= readdata;
+
+				endcase
 			
 			end else if (!readdatavalid) begin
 				ramWriteEnable <= 0;
@@ -284,7 +333,7 @@ module fp_det_nios (
                 i <= i+1;
 				
             end else if (ramWriteDone) begin		// start calculating
-				stage <= 3;
+				stage <= 2;
 				
 				ramReadAddress <= 0;
 				ramWriteAddress <= 0;
@@ -305,394 +354,155 @@ module fp_det_nios (
 			
 			end
 			
-			// begin LU decomposition
-            /*
-                LU stages
-                    0 - Fetch ajj
-                    1 - ajj latency
-                    2 - receive ajj
-                    3 - swap rows, if necessary
-                    4 - fetch aij
-                    5 - aij latency
-                    6 - receive aij 
-                    7 - p Loop
-                    8 - divide aij/ajj
-                    9 - divider latency
-                    10 - write aij
-                    11 - loop back or continue
-                    
-                    
-                    12 - fetch aij
-                    13 - aij latency
-                    14 - receive aij
-                    15 - p loop
-                    16 - write aij
-                    17 - increment j or i
-            */
-			if (i < dimension) begin
-               
-                if (luStage == 0) begin
-					if (i == 0) begin
-						luStage <= 12;
-					
-					end else begin
-					
-						ramReadAddress <= rowAddress[j] + j;
-						ramReadEnable <= 1;
-						
-						luStage <= 1;
-						
-					end
-                
-                end else if (luStage == 1) begin
-                    // latency
-                    // optimise?
-                    ramReadEnable <= 0;
-                    luStage <= 2;
-                
-                end else if (luStage == 2) begin
-                    ajj = ramReadData;
-                    
-                    if (ajj == 0) begin
-                        luStage <= 3;
-                    end else begin
-                        luStage <= 4;
-                    end
-                    
-                end else if (luStage == 3) begin
-                    // swap
-                    
-                    if (swapCount > dimension) begin    // NaN
-                        finalResult <= NaN;
-                        irq <= 1;
-                        stage <= 4;
-                    end else begin
-                        // find row to swap
-                        // TODO Row swapping
-                        
-                        
-                        luStage <= 4;
-                    end
-                
-                end else if (luStage == 4) begin    // fetch aij
-                    ramReadAddress <= rowAddress[i] + j;
-                    ramReadEnable <= 1;
-                    luStage <= 5;
-                    
-                end else if (luStage == 5) begin // latency
-                    ramReadEnable <= 0;
-                    luStage <= 6;
-                
-                end else if (luStage == 6) begin
-                    aij <= ramReadData;
-                    
-                    p <= 0;
-                    pStage <= 0;
-                    luStage <= 7;
-           
-                end else if (luStage == 7) begin
-                    if (p < j) begin
-                        
-                        /*  
-                            pStage
-                                0 - fetch aip
-                                1 - fetch apj
-                                2 - receive aip
-                                3 - receive apj
-                                4 - multiply latency
-                                5 - subtract start
-                                6 - adder latency
-                        */
-                        if (pStage == 0) begin
-                            ramReadAddress <= rowAddress[i] + p;
-                            ramReadEnable <= 1;
-                            pStage <= 1;
-                            
-                        end else if (pStage == 1) begin
-                            ramReadAddress <= rowAddress[p] + j;
-                            pStage <= 2;
-                            
-                        end else if (pStage == 2) begin
-                            aip <= ramReadData;
-                            ramReadEnable <= 0; 
-                            pStage <= 3;
-                        end else if (pStage == 3) begin
-                            apj = ramReadData;
-                            
-                            // start multiplication
-                            counter <= MULTPLIER_LATENCY;
-                            mulDataa <= aip;
-                            mulDatab <= apj;
-                            
-                            pStage <= 4;
-                            
-                        end else if (pStage == 4) begin
-                            
-                            if (counter) begin
-                                counter <= counter - 1;
-                                
-                            end else begin
-                                pStage <= 5;
-                            end
-                            
-                        end else if (pStage == 5) begin
-                            adderMode <= 0;
-                            adderDataa <= aij;
-                            adderDatab <= mulResult;
-                            
-                            counter <= ADDER_LATENCY;
-                            
-                            pStage <= 6;
-                            
-                        end else if (pStage == 6) begin
-                            if (counter) begin
-                                counter <= counter - 1;
-                                
-                            end else begin
-                                pStage <= 7;
-                            end
-                        
-                        end else if (pStage == 7) begin
-                            aij <= adderResult;
-                            
-                            p <= p + 1;
-                            pStage <= 0;
-                        
-                        end
-                    
-                    end else begin
-                        
-                        luStage <= 8;
-                    end
-                
-                end else if (luStage == 8) begin
-                    divNumerator <= aij;
-                    divDenominator <= ajj;
-                    
-                    counter <= DIVIDER_LATENCY;
-                    
-                    luStage <= 9;
-                
-                end else if (luStage == 9) begin
-                    if (counter) begin
-                        counter <= counter - 1;
-                        
-                    end else begin
-                        luStage <= 10;
-                    end
-                
-                end else if (luStage == 10) begin
-                    // save aij
-                    ramWriteEnable <= 1;
-                    ramWriteAddress <= rowAddress[i] + j;
-                    ramWriteData <= divResult;
-                    
-                    luStage <= 11;
-                
-                end else if (luStage == 11) begin
-                    j = j + 1;
-                    
-                    if (j < i) begin
-                        luStage <= 0;
-                        
-                    end else begin
-                        luStage <= 12;
-                        
-                    end
-                    
-                end else if (luStage == 12) begin
-                    ramReadAddress <= rowAddress[i] + j;
-                    ramReadEnable <= 1;
-                    
-					luStage <= 13;
-				                
-                end else if (luStage == 13) begin
-                    ramReadEnable <= 0;
-                    luStage <= 14;
-                end else if (luStage == 14) begin
-					aij <= ramReadData;
-                    
-                    p <= 0;
-                    pStage <= 0;
-                    
-                    luStage <= 15;
-                
-                end else if (luStage == 15) begin
-                    if (p < i) begin
-                        
-                        /*  
-                            pStage
-                                0 - fetch aip
-                                1 - fetch apj
-                                2 - receive aip
-                                3 - receive apj
-                                4 - multiply latency
-                                5 - subtract start
-                                6 - adder latency
-                        */
-                        if (pStage == 0) begin
-                            ramReadAddress <= rowAddress[i] + p;
-                            ramReadEnable <= 1;
-                            pStage <= 1;
-                            
-                        end else if (pStage == 1) begin
-                            ramReadAddress <= rowAddress[p] + j;
-                            pStage <= 2;
-                            
-                        end else if (pStage == 2) begin
-                            aip <= ramReadData;
-                            ramReadEnable <= 0; 
-                            pStage <= 3;
-                        end else if (pStage == 3) begin
-                            apj = ramReadData;
-                            
-                            // start multiplication
-                            counter <= MULTPLIER_LATENCY;
-                            mulDataa <= aip;
-                            mulDatab <= apj;
-                            
-                            pStage <= 4;
-                            
-                        end else if (pStage == 4) begin
-                            
-                            if (counter) begin
-                                counter <= counter - 1;
-                                
-                            end else begin
-                                pStage <= 5;
-                            end
-                            
-                        end else if (pStage == 5) begin
-                            adderMode <= 0;
-                            adderDataa <= aij;
-                            adderDatab <= mulResult;
-                            
-                            counter <= ADDER_LATENCY;
-                            
-                            pStage <= 6;
-                            
-                        end else if (pStage == 6) begin
-                            if (counter) begin
-                                counter <= counter - 1;
-                                
-                            end else begin
-                                pStage <= 7;
-                            end
-                        
-                        end else if (pStage == 7) begin
-                            aij <= adderResult;
-                            
-                            p <= p + 1;
-                            pStage <= 0;
-                        
-                        end
-                    
-                    end else begin
-                        
-                        luStage <= 16;
-                   
-                   end
-                
-                end else if (luStage == 16) begin
-                    // save aij
-                    ramWriteEnable <= 1;
-                    ramWriteAddress <= rowAddress[i] + j;
-                    ramWriteData <= aij;
-                    
-                    luStage <= 17;
-                
-                end else if (luStage == 17) begin
-                    ramWriteEnable <= 0;
-                    
-                    j = j + 1;
-                    
-                    if (j < dimension) begin
-                        luStage <= 12;
-                    
-                    end else begin
-                        i <= i + 1;
-                        j <= 0;
-                        luStage <= 0;
-                        
-                    end
-                end
-               
-            end else begin
-                stage <= 3;
-                
-            end
-		
-		end else if (stage == 3) begin
-		
-			if (start) begin		// invalid start - we are not ready
-				result <= 3;
+			if (calcStage == 0) begin	// e*i & h*f
+				mulDataa <= e;
+				mulDatab <= i;
+				
+				mul2Dataa <= h;
+				mul2Datab <= f;
+				
+				calcStage <= 1;
+				
+			end else if (calcStage == 1) begin  // d*i & g*f
+				mulDataa <= d;
+				mulDatab <= i;
+				
+				mul2Dataa <= g;
+				mul2Datab <= f;
+				
+				calcStage <= 2;
+				
+			end else if (calcStage == 2) begin  // d*h & e*g
+				mulDataa <= d;
+				mulDatab <= h;
+				
+				mul2Dataa <= e;
+				mul2Datab <= g;
+				
+				calcStage <= 3;
+				
+				counter <= 3;
+			end else if (calcStage == 3) begin  
+				// latency
+				
+				if (counter)
+					counter <= counter - 1;
+				else
+					calcStage <= 4;
+				
+			end else if (calcStage == 4) begin  //a*e*i & a*h*f
 				done <= 1;
-			end else begin
-				result <= 0;
-				done <= 0;
+				result <= mulResult;
 			
+				mulDataa <= a;
+				mulDatab <= mulResult;
+				
+				mul2Dataa <= a;
+				mul2Datab <= mul2Result;
+				
+				calcStage <= 5;
+				
+			end else if (calcStage == 5) begin  //b*d*i & b*g*f
+				mulDataa <= b;
+				mulDatab <= mulResult;
+				
+				mul2Dataa <= b;
+				mul2Datab <= mul2Result;
+				
+				calcStage <= 6;
+				
+			end else if (calcStage == 6) begin  // c*d*h & c*e*g
+				mulDataa <= c;
+				mulDatab <= mulResult;
+				
+				mul2Dataa <= c;
+				mul2Datab <= mul2Result;
+				
+				calcStage <= 7;
+				counter <= 3;
+				
+			end else if (calcStage == 7) begin  
+				// latency
+				
+				if (counter)
+					counter <= counter - 1;
+				else
+					calcStage <= 8;
+				
+			end else if (calcStage == 8) begin // aef + ahf
+				adderMode <= 1;
+				adderDataa <= mulResult;
+				adderDatab <= mul2Result;
+				
+				calcStage <= 9;
+				
+			end else if (calcStage == 9) begin // bdi + bgf
+				adderMode <= 1;
+				adderDataa <= mulResult;
+				adderDatab <= mul2Result;
+				
+				calcStage <= 10;
+				
+			end else if (calcStage == 10) begin // c*d*h + c*e*g
+				adderMode <= 1;
+				adderDataa <= mulResult;
+				adderDatab <= mul2Result;
+				
+				calcStage <= 11;
+				counter <= 5;
+				
+			end else if (calcStage == 11) begin 
+				// latency
+				if (counter)
+					counter <= counter - 1;
+				else
+					calcStage <= 12;
+				
+			end else if (calcStage == 12) begin 	// aef + ahf done
+				temp1 <= adderResult;
+				
+				calcStage <= 13;
+				
+			end else if (calcStage == 13) begin // aef + ahf - (bdi + bgf)
+				adderMode <= 0;
+				adderDataa <= temp1;
+				adderDatab <= adderResult;
+				calcStage <= 14;
+				
+			end else if (calcStage == 14) begin // c*d*h + c*e*g done
+				temp2 <= adderResult;
+			
+				calcStage <= 15;
+				
+				counter <= 6;
+				
+			end else if (calcStage == 15) begin 
+				// latency
+				if (counter)
+					counter <= counter - 1;
+				else
+					calcStage <= 16;
+					
+			end else if (calcStage == 16) begin 
+				adderMode <= 1;
+				adderDataa <= temp2;
+				adderDatab <= adderResult;
+				calcStage <= 17;
+				
+				counter <= 7;
+				
+			end else if (calcStage == 17) begin 
+				// latency
+				if (counter)
+					counter <= counter - 1;
+				else
+					calcStage <= 18;
+					
+			end else if (calcStage == 18) begin
+				finalResult <= adderResult;
 			end
-		
-			// oh we are done
-			// start to multiply diagonal
-			if (k < dimension) begin
-				/*
-					Diagonal stage
-					0 - fetch akk
-					1 - fetch latency
-					2 - multiply
-					3 - multiply latency
-					4 - loop check
-				*/                    
-				if (diagonalStage == 0) begin
-					ramReadEnable <= 1;
-					ramReadAddress <= rowAddress[k] + k;
-					
-					diagonalStage <= 1;
-				
-				end else if (diagonalStage == 1) begin
-					ramReadEnable <= 0;
-					diagonalStage <= 2;
-				
-				end else if (diagonalStage == 2) begin
-					done <= 1;
-					result <= finalResult;
-				
-					mulDataa <= finalResult;
-					mulDatab <= ramReadData;
-					
-					counter <= MULTPLIER_LATENCY+1;
-					
-					diagonalStage <= 3;
-					
-				end else if (diagonalStage == 3) begin
-					if (counter) begin
-						counter <= counter - 1;
-						
-					end else begin
-						diagonalStage <= 4;
-					end
-				
-				end else if (diagonalStage == 4) begin
-					finalResult <= mulResult;
-					
-					k <= k+1;
-					diagonalStage <= 0;
-					
-				end
-			
-			end else begin
-				if (negateSign) begin
-					finalResult[31] = ~finalResult[31];
-				end
-				
-				irq <= 1;
-				stage <= 4;
-			
-			end
-			
-		
-		end else if (stage == 4) begin
+
+		end else if (stage == 3) begin
 			if (start) begin		// invalid start - we are not ready
 				result <= 3;
 				done <= 1;

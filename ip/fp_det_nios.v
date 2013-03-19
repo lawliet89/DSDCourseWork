@@ -598,9 +598,60 @@ module fp_det_nios (
                 end
                
             end else begin
-				irq <= 1;
-				stage <= 3;
-				finalResult <= i;	
+				// oh we are done
+                // start to multiply diagonal
+                if (k < dimension) begin
+                    /*
+                        Diagonal stage
+                        0 - fetch akk
+                        1 - fetch latency
+                        2 - multiply
+                        3 - multiply latency
+                        4 - loop check
+                    */                    
+                    if (diagonalStage == 0) begin
+                        ramReadEnable <= 1;
+                        ramReadAddress <= rowAddress[k] + k;
+                        
+                        diagonalStage <= 1;
+                    
+                    end else if (diagonalStage == 1) begin
+                        ramReadEnable <= 0;
+                        diagonalStage <= 2;
+                    
+                    end else if (diagonalStage == 2) begin
+                        mulDataa <= finalResult;
+                        mulDatab <= ramReadData;
+                        
+                        counter <= MULTPLIER_LATENCY;
+                        
+                        diagonalStage <= 3;
+                        
+                    end else if (diagonalStage == 3) begin
+                        if (counter) begin
+                            counter <= counter - 1;
+                            
+                        end else begin
+                            diagonalStage <= 4;
+                        end
+                    
+                    end else if (diagonalStage == 4) begin
+                        finalResult <= mulResult;
+                        
+                        k <= k+1;
+                        diagonalStage <= 0;
+                        
+                    end
+                
+                end else begin
+                    if (negateSign) begin
+                        finalResult[31] = ~finalResult[31];
+                    end
+                    
+                    irq <= 1;
+                    stage <= 3;
+                
+                end
 			end
 		
 		end else if (stage == 3) begin

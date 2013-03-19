@@ -61,10 +61,10 @@ module fp_det_nios (
     reg [9:0] rowAddress[4:0]; 
     
     // loop indices
-    reg [4:0] i;
-    reg [4:0] j;
-    reg [4:0] p;
-    reg [4:0] k;
+    reg [5:0] i;
+    reg [5:0] j;
+    reg [5:0] p;
+    reg [5:0] k;
     
     reg [9:0] luStage = 0;
     reg [9:0] pStage = 0;
@@ -74,10 +74,10 @@ module fp_det_nios (
     reg [31:0] ajj;
     reg [31:0] aij;
     reg [31:0] aip;
-    reg [31:0] apj
+    reg [31:0] apj;
     
     // row swap related
-    reg [4:0] swapCount = 0;
+    reg [5:0] swapCount = 0;
     reg negateSign = 0;
     
 	
@@ -164,7 +164,7 @@ module fp_det_nios (
 	always @ (posedge clk) begin
 			
 		// we get a reset command
-		if (reset || forceReset) begin
+		if (/*reset ||*/ forceReset) begin
             forceReset <= 0;
             
 			stage <= 0;
@@ -219,11 +219,11 @@ module fp_det_nios (
 					startSdRead <= 1;
 					ramWriteDone <= 0;
 					
-					done <= 1;
-					result <= 99;
+					//done <= 1;
+					//result <= 99;
 			end else if (start && datab <= 1) begin		// send dimension <= 1 to check for ready status
 				done <= 1;
-				result <= 0;
+				result <= -1;
 			end else begin
 				done <= 0;
 				result <= 0;
@@ -248,7 +248,6 @@ module fp_det_nios (
 				result <= 1;
 				done <= 1;
 			end else begin
-				result <= 0;
 				done <= 0;
 			
 			end
@@ -297,6 +296,9 @@ module fp_det_nios (
 				stage <= 2;
 				
 				i <= 0; // reset i
+				
+				done <= 1;
+				result <= rowAddress[2];
 			end
 			
 		end else if (stage == 2) begin	// calculating
@@ -304,9 +306,7 @@ module fp_det_nios (
 				result <= 2;
 				done <= 1;
 			end else begin
-				result <= 0;
 				done <= 0;
-			
 			end
 			
             // begin LU decomposition
@@ -338,7 +338,9 @@ module fp_det_nios (
                 if (luStage == 0) begin
                     ramReadAddress <= rowAddress[j] + j;
                     ramReadEnable <= 1;
-                    luStage <= 1;
+                    
+					//luStage <= 1;
+					luStage <= 11;
                 
                 end else if (luStage == 1) begin
                     // latency
@@ -499,7 +501,10 @@ module fp_det_nios (
                 end else if (luStage == 12) begin
                     ramReadAddress <= rowAddress[i] + j;
                     ramReadEnable <= 1;
-                    luStage <= 13;
+                    
+					//luStage <= 13;
+					
+					luStage <= 17;
                 
                 end else if (luStage == 13) begin
                     ramReadEnable <= 0;
@@ -588,7 +593,7 @@ module fp_det_nios (
                    
                    end
                 
-                end else begin (luStage == 16) begin
+                end else if (luStage == 16) begin
                     // save aij
                     ramWriteEnable <= 1;
                     ramWriteAddress <= rowAddress[i] + j;
@@ -596,7 +601,7 @@ module fp_det_nios (
                     
                     luStage <= 17;
                 
-                end else begin (luStage == 17) begin
+                end else if (luStage == 17) begin
                     ramWriteEnable <= 0;
                     
                     j = j + 1;
@@ -630,7 +635,7 @@ module fp_det_nios (
                         
                         diagonalStage <= 1;
                     
-                    end else begin (diagonalStage == 1) begin
+                    end else if (diagonalStage == 1) begin
                         ramReadEnable <= 0;
                         diagonalStage <= 2;
                     

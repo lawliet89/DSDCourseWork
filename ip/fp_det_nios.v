@@ -79,27 +79,7 @@ module fp_det_nios (
     // row swap related
     reg [5:0] swapCount = 0;
     reg negateSign = 0;
-	
-    // instantiate ram
-	reg [9:0] ramReadAddress;
-	reg [9:0] ramWriteAddress;
-	wire [31:0] ramReadData;
-	reg [31:0] ramWriteData;
-	reg ramWriteEnable;
-	reg ramReadEnable;
-	
-	
-	ram_det ram_inst(
-		.clock(clk),
-		.data(ramWriteData),
-		.rdaddress(ramReadAddress),
-		.wraddress(ramWriteAddress),
-		.wren(ramWriteEnable),
-		.rden(ramReadEnable),
-		.q(ramReadData)	
-	);
-	
-	
+
 
 	// instantiate ram
     reg [9:0] ramReadAddress;
@@ -254,10 +234,6 @@ module fp_det_nios (
 			// Avalon master
 			read <= 0;
 			write <= 0;
-			address <= 0;
-			writedata <= 0;
-			
-			detStart <= 0;
 			
 			// RAM stuff
 			ramReadAddress <= 0;

@@ -177,8 +177,7 @@ module fp_det_nios (
 			write <= 0;
 			address <= 0;
 			writedata <= 0;
-			
-			detStart <= 0;
+		
 			
 			// RAM stuff
 			ramReadAddress <= 0;
@@ -235,8 +234,6 @@ module fp_det_nios (
 			write <= 0;
 			address <= 0;
 			writedata <= 0;
-			
-			detStart <= 0;
 			
 			// RAM stuff
 			ramReadAddress <= 0;
@@ -297,7 +294,6 @@ module fp_det_nios (
 			end
 			
 			if (ramWriteDone) begin		// start calculating
-				detStart <= 1;
 				stage <= 2;
 				
 				i <= 0; // reset i
@@ -679,9 +675,7 @@ module fp_det_nios (
 			write <= 0;
 			address <= 0;
 			writedata <= 0;
-			
-			detStart <= 0;
-		
+				
 		end else if (stage == 3) begin
 			if (start) begin		// invalid start - we are not ready
 				result <= 3;

@@ -46,7 +46,7 @@ module fp_det_nios (
 	reg [9:0] ramLoadAddress;
 	reg startSdRead = 0;
 	reg ramWriteDone = 0;
-    reg forceReset = FLOAT_ONE;
+    reg forceReset = 1;
 	
 	/* Stages:
 		0 - Idle, waiting for CPU start
@@ -167,7 +167,7 @@ module fp_det_nios (
 			
 		// we get a reset command
 		if (/*reset ||*/ forceReset) begin
-            forceReset <= FLOAT_ONE;
+            forceReset <= 0;
             
 			stage <= 0;
 			done <= 0;
@@ -225,7 +225,7 @@ module fp_det_nios (
 					result <= 99;
 			end else if (start && datab <= 1) begin		// send dimension <= 1 to check for ready status
 				done <= 1;
-				result <= 0;
+				result <= -1;
 			end else begin
 				done <= 0;
 				result <= 0;
@@ -626,7 +626,7 @@ module fp_det_nios (
                     */                    
                     if (diagonalStage == 0) begin
                         ramReadEnable <= 1;
-                        ramWriteAddress <= rowAddress[k] + k;
+                        ramReadAddress <= rowAddress[k] + k;
                         
                         diagonalStage <= 1;
                     
@@ -636,7 +636,7 @@ module fp_det_nios (
                     
                     end else if (diagonalStage == 2) begin
                         mulDataa <= finalResult;
-                        mulDataa <= ramReadData;
+                        mulDatab <= ramReadData;
                         
                         counter <= MULTPLIER_LATENCY;
                         

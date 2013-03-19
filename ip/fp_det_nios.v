@@ -65,6 +65,7 @@ module fp_det_nios (
     reg [5:0] j;
     reg [5:0] p;
     reg [5:0] k;
+	reg [5:0] r;
     
     reg [9:0] luStage = 0;
     reg [9:0] pStage = 0;
@@ -200,6 +201,7 @@ module fp_det_nios (
             j <= 0;
             p <= 0;
             k <= 0;
+			r <= 0;
             
             luStage <= 0;
             diagonalStage <= 0;
@@ -287,6 +289,14 @@ module fp_det_nios (
 				ramWriteEnable <= 0;
 			end
 			
+			
+			// initialise row address
+            if (r < dimension) begin
+                rowAddress[r] <= r*dimension;
+                r <= r+1;
+				
+            end 
+
 			if (ramWriteDone) begin		// start calculating
 				stage <= 2;
                 
@@ -303,7 +313,7 @@ module fp_det_nios (
 			
 			end
 			
-            finalResult <= FLOAT_ONE;
+            finalResult <= rowAddress[4];
             irq <= 1;
             stage <= 3;
 		

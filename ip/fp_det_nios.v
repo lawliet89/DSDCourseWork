@@ -166,7 +166,7 @@ module fp_det_nios (
 	always @ (posedge clk) begin
 			
 		// we get a reset command
-		if (/*reset ||*/ forceReset) begin
+		if (reset || forceReset) begin
             forceReset <= 0;
             
 			stage <= 0;
@@ -194,7 +194,7 @@ module fp_det_nios (
 			ramLoadAddress <= 0;
 			
 			dimension <= DEFAULT_DIMENSION;
-			finalResult <= FLOAT_ONE;
+			finalResult <= 32'h3F800000;
             
             i <= 0;
             j <= 0;
@@ -273,6 +273,7 @@ module fp_det_nios (
 				if (ramLoadAddress == dimension*dimension-1) begin
 					ramWriteDone <= 1;
 				end
+			
 			end else if (!readdatavalid) begin
 				ramWriteEnable <= 0;
 			end
@@ -331,11 +332,17 @@ module fp_det_nios (
 			if (i < dimension) begin
                
                 if (luStage == 0) begin
-                    ramReadAddress <= rowAddress[j] + j;
-                    ramReadEnable <= 1;
-                    
-					//luStage <= 1;
-					luStage <= 11;
+					if (i == 0) begin
+						luStage <= 12;
+					
+					end else begin
+					
+						ramReadAddress <= rowAddress[j] + j;
+						ramReadEnable <= 1;
+						
+						luStage <= 1;
+						
+					end
                 
                 end else if (luStage == 1) begin
                     // latency
@@ -497,14 +504,15 @@ module fp_det_nios (
                     ramReadAddress <= rowAddress[i] + j;
                     ramReadEnable <= 1;
                     
-					//luStage <= 13;
-					
-					luStage <= 17;
-                
+					luStage <= 13;
+				                
                 end else if (luStage == 13) begin
                     ramReadEnable <= 0;
                     luStage <= 14;
                 end else if (luStage == 14) begin
+					done <= 1;
+					result <= ramReadData;
+				
                     aij <= ramReadData;
                     
                     p <= 0;

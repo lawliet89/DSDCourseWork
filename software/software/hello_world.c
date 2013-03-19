@@ -40,6 +40,13 @@
 #define NOTCH_READY -1
 #define NOTCH_DATA_START (SDRAM_BASE + SDRAM_SPAN/2)
 
+#define NOTCH_WRITE_INDEX 0
+#define NOTCH_A1 1
+#define NOTCH_A2 2
+#define NOTCH_B0 3
+#define NOTCH_B1 4
+#define NOTCH_B2 5
+
 /************************ prototypes ************************************/
 /** program stuff **/
 float* randomMatrix(int dimension);  // generate matrix
@@ -78,6 +85,18 @@ volatile int _fp_det_done = 0;
 void _notch_isr(void* context);
 int _notch_status_read(int i);
 int notch_read(int offset);
+
+/*
+ * Set values
+ * 0 - write to results or not (1 bit)
+ * 1 - A1 (16 bit)
+ * 2 - A2 (16 bit)
+ * 3 - B0 (16 bit)
+ * 4 - B1 (16 bit)
+ * 5 - B2 (16 bit)
+ *
+ */
+void notch_set(int index, short value);
 
 int _notch_done = 0;
 int _notch_result = 0;
@@ -294,6 +313,11 @@ void notch_diagnostic(){
 
 }
 
+void notch_set(int index, int value){
+	IOWR(NOTCH_0_BASE,index, value);
+
+}
+
 /******************* main ******************/
 
 
@@ -317,10 +341,16 @@ int main(){
 	//gcvt(status, 10, buffer);
 	//alt_putstr("ISR = "); alt_putstr(buffer); alt_putstr("\n"); // zero is good
 
-	// setup things - malloc space for output
-	//wav = (int *) calloc(NOTCH_SIZE, sizeof(int));
+	// setup notch filter
 	// ask to overwrite results
-	IOWR(NOTCH_0_BASE,0,1);
+	notch_set(NOTCH_WRITE_INDEX, 1);
+
+	// set notch coefficients
+	notch_set(NOTCH_A1, (short) -31035);
+	notch_set(NOTCH_A2, (short) 14969);
+	notch_set(NOTCH_B0, (short) 8275);
+	notch_set(NOTCH_B1, (short) -16383);
+	notch_set(NOTCH_B1, (short) 8275);
 
 	// setup things - generate matrix
 	matrix = randomMatrix(DIMENSION);	// generate random matrix

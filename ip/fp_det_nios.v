@@ -500,6 +500,9 @@ module fp_det_nios (
 					
 			end else if (calcStage == 18) begin
 				finalResult <= adderResult;
+				
+				stage <= 3;
+				irq <= 1;
 			end
 
 		end else if (stage == 3) begin

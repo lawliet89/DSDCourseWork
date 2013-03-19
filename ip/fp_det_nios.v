@@ -53,8 +53,8 @@ module fp_det_nios (
 		1 - Reading from SDRAM
 		2 - Passing control off to calculate, when done, output
 	*/
-	reg [1:0] stage = 0;		// stage of computation
-	reg [31:0] finalResult = FLOAT_ONE;
+	reg [3:0] stage = 0;		// stage of computation
+	reg [31:0] finalResult = 32'h3f800000;
 	
 	/*
         Doolittle's algorithm's registers
@@ -284,7 +284,7 @@ module fp_det_nios (
                 i <= i+1;
 				
             end else if (ramWriteDone) begin		// start calculating
-				stage <= 2;
+				stage <= 3;
 				
 				ramReadAddress <= 0;
 				ramWriteAddress <= 0;
@@ -365,7 +365,7 @@ module fp_det_nios (
                     if (swapCount > dimension) begin    // NaN
                         finalResult <= NaN;
                         irq <= 1;
-                        stage <= 3;
+                        stage <= 4;
                     end else begin
                         // find row to swap
                         // TODO Row swapping
@@ -510,10 +510,7 @@ module fp_det_nios (
                     ramReadEnable <= 0;
                     luStage <= 14;
                 end else if (luStage == 14) begin
-					done <= 1;
-					result <= ramReadData;
-				
-                    aij <= ramReadData;
+					aij <= ramReadData;
                     
                     p <= 0;
                     pStage <= 0;
@@ -621,71 +618,81 @@ module fp_det_nios (
                 end
                
             end else begin
-                // oh we are done
-                // start to multiply diagonal
-                if (k < dimension) begin
-                    /*
-                        Diagonal stage
-                        0 - fetch akk
-                        1 - fetch latency
-                        2 - multiply
-                        3 - multiply latency
-                        4 - loop check
-                    */                    
-                    if (diagonalStage == 0) begin
-                        ramReadEnable <= 1;
-                        ramReadAddress <= rowAddress[k] + k;
-                        
-                        diagonalStage <= 1;
-                    
-                    end else if (diagonalStage == 1) begin
-                        ramReadEnable <= 0;
-                        diagonalStage <= 2;
-                    
-                    end else if (diagonalStage == 2) begin
-                        mulDataa <= finalResult;
-                        mulDatab <= ramReadData;
-                        
-                        counter <= MULTPLIER_LATENCY;
-                        
-                        diagonalStage <= 3;
-                        
-                    end else if (diagonalStage == 3) begin
-                        if (counter) begin
-                            counter <= counter - 1;
-                            
-                        end else begin
-                            diagonalStage <= 4;
-                        end
-                    
-                    end else if (diagonalStage == 4) begin
-                        finalResult <= mulResult;
-                        
-                        k <= k+1;
-                        diagonalStage <= 0;
-                        
-                    end
-                
-                end else begin
-                    if (negateSign) begin
-                        finalResult[31] = ~finalResult[31];
-                    end
-                    
-                    irq <= 1;
-                    stage <= 3;
-                
-                end
+                stage <= 3;
                 
             end
 		
-			// Avalon master
-			read <= 0;
-			write <= 0;
-			address <= 0;
-			writedata <= 0;
+		end else if (stage == 3) begin
+		
+			if (start) begin		// invalid start - we are not ready
+				result <= 3;
+				done <= 1;
+			end else begin
+				result <= 0;
+				done <= 0;
+			
+			end
+		
+			// oh we are done
+			// start to multiply diagonal
+			if (k < dimension) begin
+				/*
+					Diagonal stage
+					0 - fetch akk
+					1 - fetch latency
+					2 - multiply
+					3 - multiply latency
+					4 - loop check
+				*/                    
+				if (diagonalStage == 0) begin
+					ramReadEnable <= 1;
+					ramReadAddress <= rowAddress[k] + k;
+					
+					diagonalStage <= 1;
+				
+				end else if (diagonalStage == 1) begin
+					ramReadEnable <= 0;
+					diagonalStage <= 2;
+				
+				end else if (diagonalStage == 2) begin
+					done <= 1;
+					result <= finalResult;
+				
+					mulDataa <= finalResult;
+					mulDatab <= ramReadData;
+					
+					counter <= MULTPLIER_LATENCY+1;
+					
+					diagonalStage <= 3;
+					
+				end else if (diagonalStage == 3) begin
+					if (counter) begin
+						counter <= counter - 1;
+						
+					end else begin
+						diagonalStage <= 4;
+					end
+				
+				end else if (diagonalStage == 4) begin
+					finalResult <= mulResult;
+					
+					k <= k+1;
+					diagonalStage <= 0;
+					
+				end
+			
+			end else begin
+				if (negateSign) begin
+					finalResult[31] = ~finalResult[31];
+				end
+				
+				irq <= 1;
+				stage <= 4;
+			
+			end
 			
 		
-		end else if (stage == 3) begin
+		end else if (stage == 4) begin
 			if (start) begin		// invalid start - we are not ready
 				result <= 3;
 				done <= 1;

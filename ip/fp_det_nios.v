@@ -223,7 +223,7 @@ module fp_det_nios (
 					result <= 99;
 			end else if (start && datab <= 1) begin		// send dimension <= 1 to check for ready status
 				done <= 1;
-				result <= -1;
+				result <= 0;
 			end else begin
 				done <= 0;
 				result <= 0;
@@ -275,10 +275,16 @@ module fp_det_nios (
 				ramWriteEnable <= 0;
 			end
 			
+			// initialise row address
+            if (i < dimension) begin
+                rowAddress[i] <= i*dimension;
+                i <= i+1;
+            end
+			
 			if (ramWriteDone) begin		// start calculating
 				stage <= 2;
 				
-				// reset ram controls to zero
+				// RAM stuff - connect RAM controls with determinant module
 				ramReadAddress <= 0;
 				ramWriteAddress <= 0;
 				ramWriteData <= 0;
@@ -298,7 +304,7 @@ module fp_det_nios (
 			
 			stage <= 3;		// stage 3, waiting for interrupt to be cleared
 				
-			finalResult <= -1;		// RAISE AN INTERRUPT
+			finalResult <= rowAddress[2];		// RAISE AN INTERRUPT
 			irq <= 1;
 		
 			// Avalon master
@@ -321,7 +327,8 @@ module fp_det_nios (
 			if (result_read) begin
 				result_readdata <= finalResult;
 				irq <= 0;
-				forceReset <= 1;		// reset to zero
+				stage <= 0;		// reset to zero
+				forceReset <= 1;
 			end
 		end	
 	end

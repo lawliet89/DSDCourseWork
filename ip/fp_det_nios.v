@@ -279,17 +279,17 @@ module fp_det_nios (
             if (i < dimension) begin
                 rowAddress[i] <= i*dimension;
                 i <= i+1;
-            end
-			
-			if (ramWriteDone) begin		// start calculating
+				
+            end else if (ramWriteDone) begin		// start calculating
 				stage <= 2;
 				
-				// RAM stuff - connect RAM controls with determinant module
 				ramReadAddress <= 0;
 				ramWriteAddress <= 0;
 				ramWriteData <= 0;
 				ramWriteEnable <= 0;
 				ramReadEnable <= 0;
+				
+				i <= 0;
 			end
 			
 		end else if (stage == 2) begin	// calculating

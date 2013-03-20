@@ -7,8 +7,8 @@
 #include <boost/circular_buffer.hpp>
 
 #define NO_SAMPLES 963144       // no of samples
-#define SAMPLE_SCALING 2147483647
-#define COEFF_SCALING 17297
+#define SAMPLE_SCALING 128
+#define COEFF_SCALING 1073741824
 
 #define N 2    // order - DO NOT CHANGE. Higher orders with quantisation errors cause filter to become unstable
 
@@ -33,11 +33,11 @@ int main()
     ifstream coeff(COEFF, ifstream::in);
     
         
-    vector<int> samples(NO_SAMPLES, 0);   // samples
-    vector<short> a(N+1, 0);        // a coeff
-    vector<short> b(N+1, 0); // b coeff
+    vector<char> samples(NO_SAMPLES, 0);   // samples
+    vector<int> a(N+1, 0);        // a coeff
+    vector<int> b(N+1, 0); // b coeff
     
-    boost::circular_buffer<long long> outputBuffer(N, 0);
+    boost::circular_buffer<char> outputBuffer(N, 0);
     
     
     // read a coefficients
@@ -46,7 +46,7 @@ int main()
     {
         double temp;
         coeff >> temp;
-        a.at(i) = (short) (temp*COEFF_SCALING);
+        a.at(i) = (int) (temp*COEFF_SCALING);
         cout << a.at(i) << " ";
     }
     cout << endl;
@@ -57,7 +57,7 @@ int main()
     {
         double temp;
         coeff >> temp;
-        b.at(i) = (short) (temp*COEFF_SCALING);
+        b.at(i) = (int) (temp*COEFF_SCALING);
         cout << b.at(i) << " ";
     }
     cout << endl;
@@ -67,9 +67,9 @@ int main()
     for (int i = 0; i < NO_SAMPLES; i++){
         double temp;
         input >> temp;
-        samples.at(i) = (int) (temp*SAMPLE_SCALING);
+        samples.at(i) = (char) (temp*SAMPLE_SCALING);
 
-        scaledInput << samples.at(i)  << "\n";
+        scaledInput << int(samples.at(i))  << "\n";
     }
     
     cout << "Performing IIR Filtering (Direct Form I)" << endl;
@@ -97,29 +97,13 @@ int main()
         y /= COEFF_SCALING;
         
         // push to front of circular buffer
-        outputBuffer.push_front(y);
+        outputBuffer.push_front(char(y));
         
-        scaledOutput << y << "\n";
+        scaledOutput << int(y) << "\n";
         
-        double scaled = double(y)/SAMPLE_SCALING;
+        double scaled = double(char(y))/SAMPLE_SCALING;
         output << scaled << "\n";
     }
     
-    /*
-    // Let's perform the IIR filtering
-    for (int i = 0; i < NO_SAMPLES; i++){
-        int y = 0;
-        y = int (  v[0] + b[0]*samples[i] );
-        
-        for (int j = 0; j < N-2; j++){
-            v[j] = v[j+1] + b[j+1]*samples[i] - a[j+1]*y;
-        }
-        v[N-2] = b[N-1]*samples[i] - a[N-1]*y;
-        
-        scaledOutput << y << "\n";
-        
-        double scaled = double(y)/SAMPLE_SCALING;
-        output << scaled << "\n";
-    }*/
     cout << "Done" << endl;
 }

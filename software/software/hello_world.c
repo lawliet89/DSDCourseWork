@@ -25,7 +25,7 @@
 #define _fp_det_invoke(A,B) __builtin_custom_inpi(ALT_CI_FP_DET_NIOS_0_N,(A),(B))
 #define _fp_det_check() _fp_det_invoke(NULL, 0)
 
-#define FP_DET_READY 0
+#define FP_DET_READY -1
 #define FP_DET_ACCEPTED 99
 #define FP_DET_READ_SDRAM 1
 #define FP_DET_CALCULATING 2
@@ -410,10 +410,10 @@ int main(){
 	}
 
 	gcvt(det, 10, buffer);
-	alt_putstr("Richard calculates = "); alt_putstr(buffer); alt_putstr("\n");
+	alt_putstr("FP Det calculates = "); alt_putstr(buffer); alt_putstr("\n");
 
 	gcvt(_notch_result, 10, buffer);
-	alt_putstr("Notch calculates = "); alt_putstr(buffer); alt_putstr("\n");
+	alt_putstr("Notch Samples Processed = "); alt_putstr(buffer); alt_putstr("\n");
 
 	exec_t1 = times(NULL); // get system time before starting the process
 	for (i = 0; i < 100; i++){

@@ -37,7 +37,7 @@ int main()
     vector<short> a(N+1, 0);        // a coeff
     vector<short> b(N+1, 0); // b coeff
     
-    boost::circular_buffer<long long> outputBuffer(N, 0);
+    boost::circular_buffer<int> outputBuffer(N, 0);
     
     
     // read a coefficients
@@ -97,11 +97,11 @@ int main()
         y /= COEFF_SCALING;
         
         // push to front of circular buffer
-        outputBuffer.push_front(y);
+        outputBuffer.push_front( (int) y);
         
-        scaledOutput << y << "\n";
+        scaledOutput << int(y) << "\n";
         
-        double scaled = double(y)/SAMPLE_SCALING;
+        double scaled = double(int(y))/SAMPLE_SCALING;
         output << scaled << "\n";
     }
     

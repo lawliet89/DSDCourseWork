@@ -63,8 +63,8 @@ module notch (
 	reg [63:0] yAccumulateIntermediate2;
 
 	
-	reg [63:0] y_n1 = 0;		// y(n-1)
-	reg [63:0] y_n2 = 0;		// y(n-2)
+	reg [31:0] y_n1 = 0;		// y(n-1)
+	reg [31:0] y_n2 = 0;		// y(n-2)
 	
 	
 	reg [1:0] stage = 0;
@@ -177,11 +177,11 @@ module notch (
     /*
         Multipliers Instantiation
     */
-	reg [63:0] mul_a1_a;
+	reg [31:0] mul_a1_a;
 	reg [15:0] mul_a1_b;
-	wire [79:0] mul_a1_result;
+	wire [47:0] mul_a1_result;
 	
-	mul_64	mul_64_a1 (
+	mul_32	mul_32_a1 (
 		.clock ( clk ),
 		.dataa ( mul_a1_a ),
 		.datab ( mul_a1_b ),
@@ -189,11 +189,11 @@ module notch (
 	);
 	
 
-	reg [63:0] mul_a2_a;
+	reg [31:0] mul_a2_a;
 	reg [15:0] mul_a2_b;
-	wire [79:0] mul_a2_result;
+	wire [47:0] mul_a2_result;
 	
-	mul_64	mul_64_a2 (
+	mul_32	mul_32_a2 (
 		.clock ( clk ),
 		.dataa ( mul_a2_a ),
 		.datab ( mul_a2_b ),
@@ -523,8 +523,8 @@ module notch (
 				//yIntermediate <= $signed($signed(mul_b0_result) + $signed(mul_b1_result));
 				//yAccumulateIntermediate1 <=  $signed($signed(mul_b2_result) - $signed(mul_a1_result[63:0]));
 				yIntermediate <= { {17{mul_b0_result[47]}}, mul_b0_result[46:0] }  + { {17{mul_b1_result[47]}}, mul_b1_result[46:0] };
-				yAccumulateIntermediate1 <= { {17{mul_b2_result[47]}}, mul_b2_result[46:0] } - mul_a1_result[63:0];
-				yAccumulateIntermediate2 <= mul_a2_result[63:0];
+				yAccumulateIntermediate1 <= { {17{mul_b2_result[47]}}, mul_b2_result[46:0] } - { {17{mul_a1_result[47]}}, mul_a1_result[46:0] };
+				yAccumulateIntermediate2 <= { {17{mul_a2_result[47]}}, mul_a2_result[46:0] };
 				
 				calculationStage <= 6;
 			
@@ -555,7 +555,7 @@ module notch (
 					
 					// get quotient
 					y_n2 <= y_n1;
-					y_n1 <= dividerQuotient;			// potential optimisation?
+					y_n1 <= dividerQuotient[31:0];			// potential optimisation?
 					
 				end
 			
@@ -566,7 +566,7 @@ module notch (
                     writeFifoWriteRequest <= 1;
 					
 					if (writeToResult)
-						writeFifoWrite <= y_n1[31:0];
+						writeFifoWrite <= y_n1;
 					
                     else 
 						writeFifoWrite <= x_n;

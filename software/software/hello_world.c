@@ -313,7 +313,7 @@ void notch_diagnostic(){
 
 }
 
-void notch_set(int index, int value){
+void notch_set(int index, short value){
 	IOWR(NOTCH_0_BASE,index, value);
 
 }
@@ -350,7 +350,7 @@ int main(){
 	notch_set(NOTCH_A2, (short) 14969);
 	notch_set(NOTCH_B0, (short) 8275);
 	notch_set(NOTCH_B1, (short) -16383);
-	notch_set(NOTCH_B1, (short) 8275);
+	notch_set(NOTCH_B2, (short) 8275);
 
 	// setup things - generate matrix
 	matrix = randomMatrix(DIMENSION);	// generate random matrix

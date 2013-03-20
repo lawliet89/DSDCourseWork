@@ -1,5 +1,11 @@
 // Sign extension: http://stackoverflow.com/questions/4176556/how-to-sign-extend-a-number-in-verilog
 
+/*
+    TODO:
+        - FIFO word length --> 8
+        
+*/
+
 module notch (
 	    input  wire        avalon_clk,    //                    clock_sink.clk
         input  wire        avalon_reset,  //                    reset_sink.reset
@@ -59,10 +65,10 @@ module notch (
 	reg [7:0] x_n1 = 0;	// x(n-1)
 	reg [7:0] x_n2 = 0;	// x(n-2)
 		
-	reg [39:0] yIntermediate = 0;	// y(n)
+	reg [40:0] yIntermediate = 0;	// y(n)
 	
-	reg [39:0] yAccumulateIntermediate1;	// accumulator intermediate
-	reg [39:0] yAccumulateIntermediate2;
+	reg [40:0] yAccumulateIntermediate1;	// accumulator intermediate
+	reg [40:0] yAccumulateIntermediate2;
 
 	
 	reg [7:0] y_n1 = 0;		// y(n-1)
@@ -90,14 +96,14 @@ module notch (
     /* 
         FIFO Instantiation
     */
-	reg [31:0] reqFifoWrite = NO_SAMPLES;	// write jibberish. doesn't matter
+	reg [7:0] reqFifoWrite = NO_SAMPLES;	// write jibberish. doesn't matter
 	reg reqFifoReadRequest = 0;
 	reg reqFifoClear = 0;
 	reg reqFifoWriteRequest = 0;
 	wire reqFifoEmpty;
 	wire reqFifoFull;
 	wire reqFifoAlmostFull;
-	wire [31:0] reqFifoOutput;
+	wire [7:0] reqFifoOutput;
 	wire [4:0] reqFifoUsed;
 	
 	fifo_32	reqFifo (
@@ -113,14 +119,14 @@ module notch (
 		.usedw ( reqFifoUsed )
 		);	
 
-	reg [31:0] readFifoWrite;
+	reg [7:0] readFifoWrite;
 	reg readFifoReadRequest = 0;
 	reg readFifoClear = 0;
 	reg readFifoWriteRequest = 0;
 	wire readFifoEmpty;
 	wire readFifoFull;
 	wire readFifoAlmostFull;
-	wire [31:0] readFifoOutput;
+	wire [7:0] readFifoOutput;
 	wire [4:0] readFifoUsed;
 	
 	fifo_32	readFifo (
@@ -136,14 +142,14 @@ module notch (
 		.usedw ( readFifoUsed )
 		);
 	
-	reg [31:0] writeFifoWrite;
+	reg [7:0] writeFifoWrite;
 	reg writeFifoReadRequest = 0;
 	reg writeFifoClear = 0;
 	reg writeFifoWriteRequest = 0;
 	wire writeFifoAlmostFull;
 	wire writeFifoEmpty;
 	wire writeFifoFull;
-	wire [31:0] writeFifoOutput;
+	wire [7:0] writeFifoOutput;
 	wire [4:0] writeFifoUsed;
 		
 	fifo_32	writeFifo (
@@ -507,18 +513,15 @@ module notch (
 			
 			end else if (calculationStage == 5) begin	
 				// start to accumulate
-				//yIntermediate <= $signed($signed(mul_b0_result) + $signed(mul_b1_result));
-				//yAccumulateIntermediate1 <=  $signed($signed(mul_b2_result) - $signed(mul_a1_result[63:0]));
-				yIntermediate <= mul_b0_result + mul_b1_result;
-				yAccumulateIntermediate1 <= mul_b2_result - mul_a1_result;
-				yAccumulateIntermediate2 <= mul_a2_result;
+				yIntermediate <= { {1{mul_b0_result[39]}}, mul_b0_result[38:0] }  + { {1{mul_b1_result[39]}}, mul_b1_result[38:0] };
+				yAccumulateIntermediate1 <= { {1{mul_b2_result[39]}}, mul_b2_result[38:0] } - { {1{mul_a1_result[39]}}, mul_a1_result[38:0] };
+				yAccumulateIntermediate2 <= { {1{mul_a2_result[39]}}, mul_a2_result[38:0] };
 				
 				calculationStage <= 6;
 			
 				
 			end else if (calculationStage == 6) begin		
-				// final accumulation
-				//yIntermediate <= $signed($signed(yIntermediate) + $signed(yAccumulateIntermediate1) - $signed(yAccumulateIntermediate2));
+				// final accumulation				//yIntermediate <= $signed($signed(yIntermediate) + $signed(yAccumulateIntermediate1) - $signed(yAccumulateIntermediate2));
 				yIntermediate <= yIntermediate + yAccumulateIntermediate1 - yAccumulateIntermediate2;
 				
 				calculationStage <= 7;
@@ -539,7 +542,7 @@ module notch (
 						writeFifoWrite <= { {25{y_n1[7]}}, y_n1[6:0] };
 					
                     else 
-						writeFifoWrite <= x_n;
+						writeFifoWrite <= { {25{x_n[7]}}, x_n[6:0] };
 						
 					calculationStage <= 10;
 	

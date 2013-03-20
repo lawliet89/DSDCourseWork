@@ -96,10 +96,12 @@ int notch_read(int offset);
  * 5 - B2 (16 bit)
  *
  */
-void notch_set(int index, short value);
+void notch_set(int index, int value);
 
 int _notch_done = 0;
 int _notch_result = 0;
+
+clock_t notch_start, notch_end;
 
 /*************************** functions ***********************************/
 /* Software Determinant Stuff */
@@ -227,6 +229,7 @@ int fp_det_check(){
 
 /** NOTCH STUFF **/
 void _notch_isr(void* context){
+	notch_end = times(NULL); // get system time after it is finished
 	_notch_done = 1;
 	_notch_result = IORD(NOTCH_0_BASE, 0);
 }
@@ -313,7 +316,7 @@ void notch_diagnostic(){
 
 }
 
-void notch_set(int index, short value){
+void notch_set(int index, int value){
 	IOWR(NOTCH_0_BASE,index, value);
 
 }
@@ -343,14 +346,14 @@ int main(){
 
 	// setup notch filter
 	// ask to overwrite results
-	notch_set(NOTCH_WRITE_INDEX, 1);
+	//notch_set(NOTCH_WRITE_INDEX, 1);
 
 	// set notch coefficients
-	notch_set(NOTCH_A1, (short) -31035);
-	notch_set(NOTCH_A2, (short) 14969);
-	notch_set(NOTCH_B0, (short) 8275);
-	notch_set(NOTCH_B1, (short) -16383);
-	notch_set(NOTCH_B2, (short) 8275);
+	notch_set(NOTCH_A1,  -2034054015);
+	notch_set(NOTCH_A2,  981124992);
+	notch_set(NOTCH_B0,  542364246);
+	notch_set(NOTCH_B1,  -1073741824);
+	notch_set(NOTCH_B2,  542364246);
 
 	// setup things - generate matrix
 	matrix = randomMatrix(DIMENSION);	// generate random matrix
@@ -366,6 +369,7 @@ int main(){
 	alt_putstr("]\n");
 
 	// invoke Part II
+	notch_start = times(NULL); // get system time before starting the process
 	status_notch = hw_notch(0);
 	gcvt(status_notch, 10, buffer);
 	alt_putstr("Notch Ready = "); alt_putstr(buffer); alt_putstr("\n"); // should be NOTCH_ACCEPTED
@@ -420,14 +424,16 @@ int main(){
 		det = determinant( matrix, DIMENSION);
 	}
 	exec_t2 = times(NULL); // get system time after finishing the process
-	gcvt(((double)exec_t2-(double)exec_t1) / alt_ticks_per_second(), 10, buffer);
-	alt_putstr(" software time = "); alt_putstr(buffer); alt_putstr(" seconds \n");
 	alt_putstr("software calculation = ");
 	gcvt(det, 10, buffer);
 	alt_putstr(buffer);
 	alt_putstr("\n");
 
-	//notch_diagnostic();
+	gcvt(((double)notch_end-(double)notch_start) / alt_ticks_per_second(), 10, buffer);
+	alt_putstr("notch time = "); alt_putstr(buffer); alt_putstr(" seconds \n");
+
+	gcvt(((double)exec_t2-(double)exec_t1) / alt_ticks_per_second(), 10, buffer);
+	alt_putstr("software det time = "); alt_putstr(buffer); alt_putstr(" seconds \n");
 
 	alt_putstr("Outputs:\n");
 	for (i = 0; i < 30; i++){

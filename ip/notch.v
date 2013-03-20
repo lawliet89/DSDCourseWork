@@ -35,8 +35,7 @@ module notch (
    
 	parameter N = 2;		// order
 	parameter NO_SAMPLES = 963144;
-	parameter SAMPLE_SCALING = 2147483647;
-	parameter COEFF_SCALING = 16383;
+	parameter COEFF_SCALING = 30;		// bit shifts
 	parameter DIVIDER_LATENCY = 16;
 	parameter SDRAM_WORD_SKIP = 4;
 	
@@ -45,26 +44,29 @@ module notch (
     // default coefficients
     //a = 1	-1.89436042308807	0.913743853569031
     //b = 0.505116066895425	-1	0.505116066895425
+	// a = 1073741824 -2034054015 981124992
+	// b = 542364246 -1073741824 542364246
+
     // the parameters below are scaled versions   
-    reg [15:0] a1 = 16'h86C5; // -31035
-    reg [15:0] a2 = 16'd14969;
-    reg [15:0] b0 = 16'd8275;
-    reg [15:0] b1 = 16'hC001; // -16383
-    reg [15:0] b2 = 16'd8275;
+    reg [31:0] a1 = 32'h86C2CC81; // -2034054079
+    reg [31:0] a2 = 32'd981124992;
+    reg [31:0] b0 = 32'd542364246;
+    reg [31:0] b1 = 32'hC0000000; // -2,034,054,079
+    reg [31:0] b2 = 32'd542364246;
 	
 	
-	reg [31:0] x_n = 0;		// x(N)
-	reg [31:0] x_n1 = 0;	// x(n-1)
-	reg [31:0] x_n2 = 0;	// x(n-2)
+	reg [7:0] x_n = 0;		// x(N)
+	reg [7:0] x_n1 = 0;	// x(n-1)
+	reg [7:0] x_n2 = 0;	// x(n-2)
 		
-	reg [63:0] yIntermediate = 0;	// y(n)
+	reg [39:0] yIntermediate = 0;	// y(n)
 	
-	reg [63:0] yAccumulateIntermediate1;	// accumulator intermediate
-	reg [63:0] yAccumulateIntermediate2;
+	reg [39:0] yAccumulateIntermediate1;	// accumulator intermediate
+	reg [39:0] yAccumulateIntermediate2;
 
 	
-	reg [63:0] y_n1 = 0;		// y(n-1)
-	reg [63:0] y_n2 = 0;		// y(n-2)
+	reg [7:0] y_n1 = 0;		// y(n-1)
+	reg [7:0] y_n2 = 0;		// y(n-2)
 	
 	
 	reg [1:0] stage = 0;
@@ -157,31 +159,16 @@ module notch (
 		.usedw ( writeFifoUsed )
 		);	
 		
-	
-    /*
-        Divider Instantiation
-    */
-	reg [63:0] dividerNumerator;
-	reg [15:0] dividerDenominator;
-	wire [63:0] dividerQuotient;
-	wire [15:0] dividerRemainder;
-	
-	div_64	divider (
-		.clock ( clk ),
-		.denom ( dividerDenominator ),
-		.numer ( dividerNumerator ),
-		.quotient ( dividerQuotient ),
-		.remain ( dividerRemainder )
-	);
+
 	
     /*
         Multipliers Instantiation
     */
-	reg [63:0] mul_a1_a;
-	reg [15:0] mul_a1_b;
-	wire [79:0] mul_a1_result;
+	reg [31:0] mul_a1_a;
+	reg [7:0] mul_a1_b;
+	wire [39:0] mul_a1_result;
 	
-	mul_64	mul_64_a1 (
+	mul_32	mul_32_a1 (
 		.clock ( clk ),
 		.dataa ( mul_a1_a ),
 		.datab ( mul_a1_b ),
@@ -189,11 +176,11 @@ module notch (
 	);
 	
 
-	reg [63:0] mul_a2_a;
-	reg [15:0] mul_a2_b;
-	wire [79:0] mul_a2_result;
+	reg [31:0] mul_a2_a;
+	reg [7:0] mul_a2_b;
+	wire [39:0] mul_a2_result;
 	
-	mul_64	mul_64_a2 (
+	mul_32	mul_32_a2 (
 		.clock ( clk ),
 		.dataa ( mul_a2_a ),
 		.datab ( mul_a2_b ),
@@ -201,8 +188,8 @@ module notch (
 	);
 	
 	reg [31:0] mul_b0_a;
-	reg [15:0] mul_b0_b;
-	wire [47:0] mul_b0_result;
+	reg [7:0] mul_b0_b;
+	wire [39:0] mul_b0_result;
 	
 	mul_32	mul_32_b0 (
 		.clock ( clk ),
@@ -212,8 +199,8 @@ module notch (
 	);
 	
 	reg [31:0] mul_b1_a;
-	reg [15:0] mul_b1_b;
-	wire [47:0] mul_b1_result;
+	reg [7:0] mul_b1_b;
+	wire [39:0] mul_b1_result;
 	
 	mul_32	mul_32_b1 (
 		.clock ( clk ),
@@ -223,15 +210,15 @@ module notch (
 	);
 	
 	reg [31:0] mul_b2_a;
-	reg [15:0] mul_b2_b;
-	wire [47:0] mul_b2_result;
+	reg [7:0] mul_b2_b;
+	wire [39:0] mul_b2_result;
 	
 	mul_32	mul_32_b2 (
 		.clock ( clk ),
 		.dataa ( mul_b2_a ),
 		.datab ( mul_b2_b ),
 		.result ( mul_b2_result )
-	);	
+	);
 	
     /*
         Processing
@@ -260,11 +247,11 @@ module notch (
         end else if (slave_write) begin
 			case (slave_address)
 				0:		writeToResult <= slave_writedata[0];
-				1:		a1 <= slave_writedata[15:0];
-				2:		a2 <= slave_writedata[15:0];
-				3:		b0 <= slave_writedata[15:0];
-				4:		b1 <= slave_writedata[15:0];
-				5:		b2 <= slave_writedata[15:0];
+				1:		a1 <= slave_writedata;
+				2:		a2 <= slave_writedata;
+				3:		b0 <= slave_writedata;
+				4:		b1 <= slave_writedata;
+				5:		b2 <= slave_writedata;
 			endcase
 		end
    
@@ -482,7 +469,7 @@ module notch (
 				
 			end else if (calculationStage == 2) begin	
 				
-				x_n <= readFifoOutput;
+				x_n <= readFifoOutput[7:0];
 				x_n1 <= x_n;			// optimisation potential
 				x_n2 <= x_n1;
 							
@@ -492,25 +479,25 @@ module notch (
 				// let the multiplications begin
 				
 				// a1
-				mul_a1_a <= y_n1;
-				mul_a1_b <= a1;
+				mul_a1_a <= a1;
+				mul_a1_b <= y_n1;
 				
 				// a2
-				mul_a2_a <= y_n2;
-				mul_a2_b <= a2;
+				mul_a2_a <= a2;
+				mul_a2_b <= y_n2;
 				
 				//b0
-				mul_b0_a <= x_n;
-				mul_b0_b <= b0;
+				mul_b0_a <= b0;
+				mul_b0_b <= x_n;
 				
 				//b1
-				mul_b1_a <= x_n1;
-				mul_b1_b <= b1;
+				mul_b1_a <= b1;
+				mul_b1_b <= x_n1;
 				
 				
 				//b2
-				mul_b2_a <= x_n2;
-				mul_b2_b <= b2;
+				mul_b2_a <= b2;
+				mul_b2_b <= x_n2;
 				
 				calculationStage <= 4;
 			
@@ -522,9 +509,9 @@ module notch (
 				// start to accumulate
 				//yIntermediate <= $signed($signed(mul_b0_result) + $signed(mul_b1_result));
 				//yAccumulateIntermediate1 <=  $signed($signed(mul_b2_result) - $signed(mul_a1_result[63:0]));
-				yIntermediate <= { {17{mul_b0_result[47]}}, mul_b0_result[46:0] }  + { {17{mul_b1_result[47]}}, mul_b1_result[46:0] };
-				yAccumulateIntermediate1 <= { {17{mul_b2_result[47]}}, mul_b2_result[46:0] } - mul_a1_result[63:0];
-				yAccumulateIntermediate2 <= mul_a2_result[63:0];
+				yIntermediate <= mul_b0_result + mul_b1_result;
+				yAccumulateIntermediate1 <= mul_b2_result - mul_a1_result;
+				yAccumulateIntermediate2 <= mul_a2_result;
 				
 				calculationStage <= 6;
 			
@@ -537,28 +524,11 @@ module notch (
 				calculationStage <= 7;
 				
 			end else if (calculationStage == 7) begin  // get rid of coefficient scaling
-			
-				dividerNumerator <= yIntermediate;
-				dividerDenominator <= COEFF_SCALING;
+				y_n2 <= y_n1;
+				y_n1 <= yIntermediate[37:30];			// potential optimisation?
 				
-				divideCounter <= DIVIDER_LATENCY;
 				
-				calculationStage <= 8;
-				
-			end else if (calculationStage == 8) begin
-				// divider latency
-				if (divideCounter != 0) begin
-					divideCounter <= divideCounter - 5'd1;
-				
-				end else begin		
-					calculationStage <= 9;
-					
-					// get quotient
-					y_n2 <= y_n1;
-					y_n1 <= dividerQuotient;			// potential optimisation?
-					
-				end
-			
+				calculationStage <= 9;
 				
 			end else if (calculationStage == 9) begin
 				if (!writeFifoAlmostFull) begin
@@ -566,17 +536,12 @@ module notch (
                     writeFifoWriteRequest <= 1;
 					
 					if (writeToResult)
-						writeFifoWrite <= y_n1[31:0];
+						writeFifoWrite <= { {25{y_n1[7]}}, y_n1[6:0] };
 					
                     else 
 						writeFifoWrite <= x_n;
 						
 					calculationStage <= 10;
-					
-					/*if (calculationCount == 2) begin
-						done <= 1;
-						result <= y_n1[31:0];
-					end*/
 	
                 end 			
 			end else if (calculationStage == 10) begin	// reset

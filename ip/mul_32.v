@@ -44,11 +44,11 @@ module mul_32 (
 
 	input	  clock;
 	input	[31:0]  dataa;
-	input	[15:0]  datab;
-	output	[47:0]  result;
+	input	[7:0]  datab;
+	output	[39:0]  result;
 
-	wire [47:0] sub_wire0;
-	wire [47:0] result = sub_wire0[47:0];
+	wire [39:0] sub_wire0;
+	wire [39:0] result = sub_wire0[39:0];
 
 	lpm_mult	lpm_mult_component (
 				.clock (clock),
@@ -64,8 +64,8 @@ module mul_32 (
 		lpm_mult_component.lpm_representation = "SIGNED",
 		lpm_mult_component.lpm_type = "LPM_MULT",
 		lpm_mult_component.lpm_widtha = 32,
-		lpm_mult_component.lpm_widthb = 16,
-		lpm_mult_component.lpm_widthp = 48;
+		lpm_mult_component.lpm_widthb = 8,
+		lpm_mult_component.lpm_widthp = 40;
 
 
 endmodule
@@ -73,7 +73,7 @@ endmodule
 // ============================================================
 // CNX file retrieval info
 // ============================================================
-// Retrieval info: PRIVATE: AutoSizeResult NUMERIC "0"
+// Retrieval info: PRIVATE: AutoSizeResult NUMERIC "1"
 // Retrieval info: PRIVATE: B_isConstant NUMERIC "0"
 // Retrieval info: PRIVATE: ConstantB NUMERIC "0"
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Cyclone III"
@@ -84,8 +84,8 @@ endmodule
 // Retrieval info: PRIVATE: USE_MULT NUMERIC "1"
 // Retrieval info: PRIVATE: ValidConstant NUMERIC "0"
 // Retrieval info: PRIVATE: WidthA NUMERIC "32"
-// Retrieval info: PRIVATE: WidthB NUMERIC "16"
-// Retrieval info: PRIVATE: WidthP NUMERIC "48"
+// Retrieval info: PRIVATE: WidthB NUMERIC "8"
+// Retrieval info: PRIVATE: WidthP NUMERIC "40"
 // Retrieval info: PRIVATE: aclr NUMERIC "0"
 // Retrieval info: PRIVATE: clken NUMERIC "0"
 // Retrieval info: PRIVATE: new_diagram STRING "1"
@@ -96,16 +96,16 @@ endmodule
 // Retrieval info: CONSTANT: LPM_REPRESENTATION STRING "SIGNED"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "LPM_MULT"
 // Retrieval info: CONSTANT: LPM_WIDTHA NUMERIC "32"
-// Retrieval info: CONSTANT: LPM_WIDTHB NUMERIC "16"
-// Retrieval info: CONSTANT: LPM_WIDTHP NUMERIC "48"
+// Retrieval info: CONSTANT: LPM_WIDTHB NUMERIC "8"
+// Retrieval info: CONSTANT: LPM_WIDTHP NUMERIC "40"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
 // Retrieval info: USED_PORT: dataa 0 0 32 0 INPUT NODEFVAL "dataa[31..0]"
-// Retrieval info: USED_PORT: datab 0 0 16 0 INPUT NODEFVAL "datab[15..0]"
-// Retrieval info: USED_PORT: result 0 0 48 0 OUTPUT NODEFVAL "result[47..0]"
+// Retrieval info: USED_PORT: datab 0 0 8 0 INPUT NODEFVAL "datab[7..0]"
+// Retrieval info: USED_PORT: result 0 0 40 0 OUTPUT NODEFVAL "result[39..0]"
 // Retrieval info: CONNECT: @clock 0 0 0 0 clock 0 0 0 0
 // Retrieval info: CONNECT: @dataa 0 0 32 0 dataa 0 0 32 0
-// Retrieval info: CONNECT: @datab 0 0 16 0 datab 0 0 16 0
-// Retrieval info: CONNECT: result 0 0 48 0 @result 0 0 48 0
+// Retrieval info: CONNECT: @datab 0 0 8 0 datab 0 0 8 0
+// Retrieval info: CONNECT: result 0 0 40 0 @result 0 0 40 0
 // Retrieval info: GEN_FILE: TYPE_NORMAL mul_32.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL mul_32.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL mul_32.cmp FALSE

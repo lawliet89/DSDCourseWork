@@ -11,7 +11,7 @@ NFFT = 2^nextpow2(L);
 Y = fft(calculated,NFFT)/L;
 f = fs/2*linspace(0,1,NFFT/2+1);
 plot(f,2*abs(Y(1:NFFT/2+1)),'r') 
-title('Single-Sided Amplitude Spectrum of beeth5\_noise(t)')
+title('Single-Sided Amplitude Spectrum of Matlab Implementation vs C++ Simulation');
 xlabel('Frequency (Hz)')
 ylabel('|beeth5\_noise(f)|')
 
@@ -22,9 +22,9 @@ NFFT = 2^nextpow2(L);
 Y = fft(out,NFFT)/L;
 f = fs/2*linspace(0,1,NFFT/2+1);
 plot(f,2*abs(Y(1:NFFT/2+1))) 
-title('Single-Sided Amplitude Spectrum of beeth5\_noise(t) and beeth5\_recovered(t)');
+title('Single-Sided Amplitude Spectrum of Matlab Implementation vs C++ Simulation');
 xlabel('Frequency (Hz)');
 ylabel('|signal(f)|');
 
-legend('Calculated', 'Matlab');
+legend('C++', 'Matlab');
 

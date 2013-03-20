@@ -199,18 +199,987 @@ Ease of implementation
 \begin_layout Standard
 However, care must be taken during quantisation and scaling so as not to
  cause the filter to become unstable.
+ A second order IIR filter is chosen to be implemented for sake of simplicity.
+ The difference equation for the 
+\begin_inset Formula $k$
+\end_inset
+
+
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+th
+\end_layout
+
+\end_inset
+
+ output 
+\begin_inset Formula $y(k)$
+\end_inset
+
+ based on the 
+\begin_inset Formula $k$
+\end_inset
+
+
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+th 
+\end_layout
+
+\end_inset
+
+input 
+\begin_inset Formula $x(k)$
+\end_inset
+
+ is given by:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y(k)=b_{0}x(k)+b_{1}x(k-1)+b_{2}x(k-2)-a_{1}y(k-1)-a_{2}y(k-2)\label{eq:iir-diff-eq}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $a_{0},a_{1},b_{0},b_{1},b_{2}$
+\end_inset
+
+ are coefficients to be designed.
+ 
 \end_layout
 
 \begin_layout Subsection
 Quantisation Considerations
 \end_layout
 
+\begin_layout Standard
+In order to quantise the range of the input sound file accurately, the input
+ and output was chosen to be 32 bits, and the coefficients are represented
+ with 16 bits.
+ For a second order, the coefficients are of the range 
+\begin_inset Formula $-2\leqslant a_{i},b_{i}\leqslant2$
+\end_inset
+
+ and are thus scaled by the scaling constant 
+\begin_inset Formula $S_{c}=16383$
+\end_inset
+
+.
+ The inputs are in the range 
+\begin_inset Formula $-1\leqslant x(k)\leqslant1$
+\end_inset
+
+ and are thus scaled by the scaling constant 
+\begin_inset Formula $S_{x}=2147483647$
+\end_inset
+
+.
+ Based on 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:iir-diff-eq"
+
+\end_inset
+
+, the bit lengths of the intermediate values are then computed using interval
+ arithmetic, and are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:interval-arith"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="5">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Quantity
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Symbol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lower Interval
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Upper Interval
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No.
+ of Bits
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{x}x(k)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-2147483647 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2147483647 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Output
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{x}y(k)$
+\end_inset
+
+ (expected)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-2147483647 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2147483647 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coefficients
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{c}a_{i}$
+\end_inset
+
+ or 
+\begin_inset Formula $S_{c}b_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-32766
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32766
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Multiplication with 
+\begin_inset Formula $a$
+\end_inset
+
+ coefficients
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{y}y(k)\times S_{c}a_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-7.03644\times10^{13}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7.03644\times10^{13}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Accumulation of 
+\begin_inset Formula $a_{i}y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \sum}_{i=1}^{2}S_{y}y(k-i)\times S_{c}a_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1.40729\times10^{14}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.40729\times10^{14}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+48
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Multiplication with 
+\begin_inset Formula $b$
+\end_inset
+
+ coefficients
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{x}x(k)\times S_{c}b_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-7.03644\times10^{13}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-7.03644\times10^{13}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Accumulation of 
+\begin_inset Formula $b_{i}x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \sum}_{i=0}^{2}S_{x}x(k-i)\times S_{c}b_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2.11093\times10^{14}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.11093\times10^{14}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+49
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Calculation of 
+\begin_inset Formula $y(k)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{c}S_{x}y(k)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-3.51822\times10^{14}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.51822\times10^{14}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{x}y(k)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-21474836474 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21474836474 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+36
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:interval-arith"
+
+\end_inset
+
+Number of bits for the various intermediate quantities during computation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It can be seen from 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:interval-arith"
+
+\end_inset
+
+ that the output, after dividing with 
+\begin_inset Formula $S_{c}$
+\end_inset
+
+ still requires 36 bits to fully represent its value.
+ We will be truncating that in the output, or the number of bits required
+ will increase exponentially as computation goes on.
+ 
+\end_layout
+
 \begin_layout Subsection
 Filter Design
 \end_layout
 
+\begin_layout Standard
+Based on the FFT of the input noisy signal, it is calculated that an attenuation
+ of about 50 dB at 1000 Hz would be sufficient to almost zero the noise.
+ However, this is difficult to acheive with a second order filter.
+ Using Matlab to tweak the specifications using various design algorithms,
+ the following coefficients were chosen to be implemented: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+a_{1} & =-1.894360482169740.913743852992773,a_{2}=0.913743852992773,\\
+b_{0} & =0.956871926496387,b_{1}=-1.89436048216974,b_{2}=0.956871926496387
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and their scaled versions are given by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+S_{c}a_{1}=-31035,S_{c}a_{2}=14969,S_{c}b_{0}=1576,S_{c}b_{1}=-31035,S_{c}b_{2}=15676\label{eq:coeff-scaled}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename iir-matlab.png
+	lyxscale 50
+	scale 46
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:freqz-dp"
+
+\end_inset
+
+Frequency Response of Matlab designed filter, calculated at double precision.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename iir-matlab-fft.png
+	lyxscale 50
+	scale 46
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:fft-dp"
+
+\end_inset
+
+FFT comparison of the original sound file and the filtered version.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Matlab designed second order filter response
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The frequency response of the filter calculated with double precision in
+ Matlab is given in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:freqz-dp"
+
+\end_inset
+
+, and the comparison of the DFTs of the original signal and the filtered
+ signal can be seen in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:fft-dp"
+
+\end_inset
+
+.
+ It can be seen that this filter performs sufficiently well in removing
+ the 1 kHz tone.
+ In listening test, the tone is almost inaudible.
+ 
+\end_layout
+
 \begin_layout Subsection
 Quantisation Tests
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename iir-simulate.png
+	lyxscale 50
+	scale 46
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:c++-simulated"
+
+\end_inset
+
+Comparison of the FFT between the Matlab computation (double precision)
+ and C++ simulation (fixed point)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to test the effects of calculating in fixed point rather than double-pr
+evision floating point, a simple C++ program was written to calculate the
+ expected output, along with the bit truncation that occurs.
+ The code can be found in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:C++-Simulation-Code"
+
+\end_inset
+
+.
+ The FFT comparison between the Matlab filtered version and the C++ version
+ can be found in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:c++-simulated"
+
+\end_inset
+
+.
+ It can be seen that the 1 kHz frequency bin is not attenuated as much.
+ From listening tests, the tone is only faintly audible, a drastic improvement
+ over the original noise corrupted input.
 \end_layout
 
 \begin_layout Section
@@ -227,6 +1196,12 @@ Hardware Operation
 
 \begin_layout Section
 \start_of_appendix
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:C++-Simulation-Code"
+
+\end_inset
+
 C++ Simulation Code
 \end_layout
 

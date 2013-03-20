@@ -590,7 +590,7 @@ module notch (
 		end else if (stage == 2) begin      // wait for IRQ to be serviced
 			if (start) begin	// handle request checks
 				done <= 1;
-				result <= stage;
+				result <= -2;
 			end else begin
 				done <= 0;
 			end

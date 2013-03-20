@@ -1113,7 +1113,7 @@ Quantisation Tests
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -1186,29 +1186,989 @@ reference "fig:c++-simulated"
 Hardware Implementation
 \end_layout
 
+\begin_layout Standard
+The hardware filter block is implemented to interact with the NIOS process
+ via means of a NIOS custom instruction slave.
+ It will read and write from the SDRAM using an Avalon master interface.
+ Finally, it offers an Avalon Slave interface for its settings (coefficients)
+ to be changed and status of calculation to be checked.
+ Finally, it implements an Avalon interrupt to notify the NIOS processor
+ that is done processing.The Verilog code for its implementation can be found
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Verilog-Implementation"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 Hardware Interface
+\end_layout
+
+\begin_layout Standard
+The input and output signals of the hardware block can be seen in 
+\series bold
+INSERT FIGURE HERE
+\series default
+.
+ Its connection in Qsys with the rest of the components can be seen in 
+\series bold
+ANOTHER FIGURE HERE PLEASE
+\end_layout
+
+\begin_layout Subsubsection
+NIOS Custom Instruction Slave
+\end_layout
+
+\begin_layout Standard
+The computation of the filtering is done via an invocation of a custom instructi
+on through the NIOS Custom Instruction Slave.
+ The custom instruction only expects one argument: the address where the
+ first sample is stored at.
+ When the hardware block is ready and has accepted the invocation to start
+ computation, it will return a value of 
+\begin_inset Quotes eld
+\end_inset
+
+99
+\begin_inset Quotes erd
+\end_inset
+
+ to the CPU.
+ This should be taken as the sign that computation has begun.
+ If the argument has a value of zero, a number indicating the status of
+ the system will be returned to the CPU.
+ If the system is idle and ready to accept new invocations, it will return
+ 
+\begin_inset Quotes eld
+\end_inset
+
+-1
+\begin_inset Quotes erd
+\end_inset
+
+.
+ If the hardware block is in the process of computation, it will return
+ the sample number that has been written back to SDRAM successfully.
+ If the hardware block is waiting for its interrupt request (IRQ) to be
+ serviced, it will return the number 
+\begin_inset Quotes eld
+\end_inset
+
+-2
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Avalon Master
+\end_layout
+
+\begin_layout Standard
+An Avalon Master is implemented to read and write results to the SDRAM.
+ Samples are expected to be stored in 32 bit signed integers with little
+ endian byte ordering.
+ The number of samples is provided via a write to the Avalon Slave (see
+ below), and the address to process the samples from is provided via an
+ invocation through the NIOS Custom Instruction Slave (above).
+ Samples are read, computed, and overwritten with the results 
+\emph on
+in situ
+\emph default
+.
+ A flag, writable through the Avalon Slave, can instruct the hardware to
+ actually write the results or to simply compute them and discard them.
+\end_layout
+
+\begin_layout Subsubsection
+Avalon Slave & Avalon Interrupt
+\end_layout
+
+\begin_layout Standard
+The Avalon Slave allows for settings to be changed, and for internal status
+ flags to be checked.
+ The full list can be seen in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:Avalon-Slave"
+
+\end_inset
+
+.
+ The meanings of the various internal flags will be described later.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="15" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Address
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Read
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Write
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of samples requested from SDRAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Overwrite Result Flag
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Request FIFO Usage
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{c}a_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Read FIFO Usage
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{c}a_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of samples read from SDRAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{c}b_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Samples discarded form SDRAM (should always be zero)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{c}b_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Calculation stage
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{c}b_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of samples computed
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N/A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of samples written to SDRAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N/A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Write FIFO Usage
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N/A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(Avalon Master) read
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N/A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(Avalon Master) waitrequest
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N/A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(Avalon Master) write
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N/A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stage of operation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N/A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Overwrite Result Flag
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N/A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Avalon-Slave"
+
+\end_inset
+
+Avalon Slave read and write contents at various addresses.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An Avalon Interrupt interface is implemented to interrupt the NIOS processor
+ to notify it that computation of all samples are complete.
+ The interrupt service routine should then perform a read on the slave to
+ clear the IRQ.
+ It does not matter which content is read.
 \end_layout
 
 \begin_layout Subsection
 Hardware Operation
 \end_layout
 
+\begin_layout Subsubsection
+Idle State
+\end_layout
+
+\begin_layout Standard
+The hardware exists at the top level as a finite state machine with three
+ states (c.f.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Stage of operation
+\begin_inset Quotes erd
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:Avalon-Slave"
+
+\end_inset
+
+).
+ The first state (stage 0) is the idle state where the hardware is ready
+ to compute.
+ If invoked with a non-zero address via the Custom Instruction slave intercace,
+ the hardware will proceed to the second state and return 
+\begin_inset Quotes eld
+\end_inset
+
+99
+\begin_inset Quotes erd
+\end_inset
+
+ to the processor.
+ If invoked with a zero address, it will return 
+\begin_inset Quotes eld
+\end_inset
+
+-1
+\begin_inset Quotes erd
+\end_inset
+
+ to the processor to indicate its idle status.
+\end_layout
+
+\begin_layout Subsubsection
+Computation State
+\end_layout
+
+\begin_layout Standard
+Four operations need to be completed during the computation state (stage
+ 1): requesting a fetch from the SDRAM (
+\begin_inset Quotes eld
+\end_inset
+
+request pipeline
+\begin_inset Quotes erd
+\end_inset
+
+), receive sample from the SDRAM (
+\begin_inset Quotes eld
+\end_inset
+
+receive pipeline
+\begin_inset Quotes erd
+\end_inset
+
+), calculate the output (
+\begin_inset Quotes eld
+\end_inset
+
+calculate pipeline
+\begin_inset Quotes erd
+\end_inset
+
+), and write the output (
+\begin_inset Quotes eld
+\end_inset
+
+write pipeline
+\begin_inset Quotes erd
+\end_inset
+
+).
+ Due to the fact that each of these processes take different amount of time
+ to complete, and in the case of SDRAM operations, the amount of time can
+ be unspecified, these processes are implemented as four separate pipelines,
+ analogous to four different threads.
+ 
+\end_layout
+
+\begin_layout Standard
+These four pipelines communicate with each other via three different FIFO
+ buffers: 
+\begin_inset Quotes eld
+\end_inset
+
+request FIFO
+\begin_inset Quotes erd
+\end_inset
+
+ between the request and calculate pipeline, 
+\begin_inset Quotes eld
+\end_inset
+
+read FIFO
+\begin_inset Quotes erd
+\end_inset
+
+ between the receive and calculate pipeline, and 
+\begin_inset Quotes eld
+\end_inset
+
+write FIFO
+\begin_inset Quotes erd
+\end_inset
+
+ between the calculate and write pipeline.
+ These FIFO buffers serve to pass data from one pipeline to the other.
+ Data generally flows from the request, to receive, to calculate and finally
+ to the write pipeline.
+ The FIFO buffers also serve to block the upstream process if buffers are
+ full.
+ 
+\end_layout
+
+\begin_layout Standard
+In general, the calculation pipeline would be expected to take the most
+ amount of computation time, and the SDRAM read and writes should be sufficientl
+y quick, barring any high load on the SDRAM from other components in the
+ system.
+ Thus, it is expected that the receive and read FIFO would be filled most
+ of the time, and the request and receive pipeline would thus be more likely
+ to be blocked.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Request Pipeline
+\end_layout
+
+\begin_layout Standard
+The request pipeline sends request to the SDRAM to read data.
+ As per the Avalon interface specification, when the 
+\begin_inset Quotes eld
+\end_inset
+
+waitrequest
+\begin_inset Quotes erd
+\end_inset
+
+ signal goes low, the pipeline would take it as a sign that the request
+ has been accepted by the Avalon slave.
+ At the same time, it fills the request FIFO.
+ If the request FIFO is not full, it will proceed to request the next sample.
+ Otherwise, it yields the 
+\begin_inset Quotes eld
+\end_inset
+
+read
+\begin_inset Quotes erd
+\end_inset
+
+ signal, and stops requesting for new samples.
+ When request FIFO is not full, and a 
+\begin_inset Quotes eld
+\end_inset
+
+write
+\begin_inset Quotes erd
+\end_inset
+
+ operation is not taking place, it will restart the requests.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Receive Pipeline
+\end_layout
+
+\begin_layout Standard
+Due to the fact that it can take an unspecified number of cycles between
+ requesting and receiving a sample, the receive pipeline is necessary.
+ When the 
+\begin_inset Quotes eld
+\end_inset
+
+readdatavalid
+\begin_inset Quotes erd
+\end_inset
+
+ signal is high, the receive pipeline will fill the read FIFO with the data.
+ If the FIFO is full, it will discard the data.
+ This is not likely to happen due to the use of the request FIFO, and is
+ simply a safeguard.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Calculate Pipeline
+\end_layout
+
+\begin_layout Standard
+The calculate pipeline exists as a state machine for the various stages
+ of the calculation (see calculation stage in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:Avalon-Slave"
+
+\end_inset
+
+).
+ In its idle state, if the read FIFO is not empty, it will drain the read
+ FIFO.
+ Also, it will drain the request FIFO so that the request pipeline can request
+ for new samples.
+ It then calculates the output over several clock cycles according to 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:iir-diff-eq"
+
+\end_inset
+
+.
+ Finally, it will wait for the write FIFO to not be full and write to it.
+ It will then return to its idle state.
+\end_layout
+
+\begin_layout Subsubsection*
+Write Pipeline
+\end_layout
+
+\begin_layout Standard
+The write pipeline exists as a state machine for various stages of write.
+ In its idle state, it will watch if the write FIFO has any content.
+ It will then drain the value from the FIFO.
+ Next, it will check to see if a 
+\begin_inset Quotes eld
+\end_inset
+
+read
+\begin_inset Quotes erd
+\end_inset
+
+ operation is taking place, before starting its 
+\begin_inset Quotes eld
+\end_inset
+
+write
+\begin_inset Quotes erd
+\end_inset
+
+ operation.
+ Once 
+\begin_inset Quotes eld
+\end_inset
+
+waitrequest
+\begin_inset Quotes erd
+\end_inset
+
+ goes low, it will go back to its idle state.
+\end_layout
+
+\begin_layout Standard
+When all the samples have been calculated and written, and IRQ will be asserted,
+ and the hardware will wait for an Avalon slave read to be performed (stage
+ 3) before going back to its idle state (stage 0).
+\end_layout
+
+\begin_layout Subsubsection*
+Reader Priority
+\end_layout
+
+\begin_layout Standard
+Due to the long latency in calculation, and the fact that only one read
+ or write operation can be performed on the SDRAM at any time, the request
+ pipeline is given priorty over the write pipeline.
+ This is so that the necessary buffers can be filled up first so that calculatio
+n can take place as the writing is essentially much faster.
+ The request pipeline will only yield when the buffers are full.
+ Care was also taken to prevent deadlocks when both reads and writes are
+ waiting on each other to complete.
+ 
+\end_layout
+
+\begin_layout Subsection
+Performance Evaluation
+\end_layout
+
+\begin_layout Subsection
+Further Enhancements
+\end_layout
+
+\begin_layout Standard
+The calculation pipeline can itself be further pipelined to increase its
+ throughput.
+ While the latency will not be reduced, it can be further improved to yield
+ a higher throughput.
+ The hardware block can also be designed to act as a biquad filter with
+ cascaded second order IIR filters.
+ This, however, can increase the requirements for the bit widths of the
+ intermediates and increase complexity as the values have to be multipled
+ with yet another gain value in between the second order IIR filter blocks.
+\end_layout
+
 \begin_layout Section
 \start_of_appendix
+NIOS C File
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "D:/Code/Git/DSDCourseWork/software/software/hello_world.c"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:C++-Simulation-Code"
 
 \end_inset
 
-C++ Simulation Code
+Notch Filter C++ Simulation Code
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
 filename "D:/Code/Git/DSDCourseWork/notch_files/test/test.cpp"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Verilog-Implementation"
+
+\end_inset
+
+Notch Filter Verilog Implementation
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "D:/Code/Git/DSDCourseWork/ip/notch.v"
+lstparams "language=Verilog"
 
 \end_inset
 

@@ -8,7 +8,7 @@
 
 #define NO_SAMPLES 963144       // no of samples
 #define SAMPLE_SCALING 128
-#define SAMPLE_DESCALE 1024
+#define SAMPLE_DESCALE 128
 #define COEFF_SCALING 1073741824
 
 #define N 2    // order - DO NOT CHANGE. Higher orders with quantisation errors cause filter to become unstable
@@ -102,7 +102,7 @@ int main()
         
         scaledOutput << short(y) << "\n";
         
-        double scaled = double(short(y))/SAMPLE_DESCALE;
+        double scaled = double(char(y))/SAMPLE_DESCALE;
         output << scaled << "\n";
     }
     

@@ -270,19 +270,11 @@ In order to quantise the range of the input sound file accurately, the input
 \end_inset
 
  and are thus scaled by the scaling constant 
-\begin_inset Formula $S_{c}=16383$
+\begin_inset Formula $S_{c}=2^{30}$
 \end_inset
 
 .
- The inputs are in the range 
-\begin_inset Formula $-1\leqslant x(k)\leqslant1$
-\end_inset
-
- and are thus scaled by the scaling constant 
-\begin_inset Formula $S_{x}=2147483647$
-\end_inset
-
-.
+ The inputs are 8 bits integers.
  Based on 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -309,8 +301,10 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="10" columns="5">
+<lyxtabular version="3" rows="7" columns="5">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0pt">
 <column alignment="left" valignment="top" width="0">
@@ -370,7 +364,7 @@ No.
 \begin_inset Text
 
 \begin_layout Plain Layout
-Input
+Input (and delayed inputs)
 \end_layout
 
 \end_inset
@@ -379,7 +373,8 @@ Input
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $S_{x}x(k)$
+e.g 
+\begin_inset Formula $x(k)$
 \end_inset
 
 
@@ -391,7 +386,7 @@ Input
 \begin_inset Text
 
 \begin_layout Plain Layout
--2147483647 
+-128
 \end_layout
 
 \end_inset
@@ -400,7 +395,7 @@ Input
 \begin_inset Text
 
 \begin_layout Plain Layout
-2147483647 
+127 
 \end_layout
 
 \end_inset
@@ -409,7 +404,7 @@ Input
 \begin_inset Text
 
 \begin_layout Plain Layout
-32
+8
 \end_layout
 
 \end_inset
@@ -420,7 +415,7 @@ Input
 \begin_inset Text
 
 \begin_layout Plain Layout
-Output
+Delayed outputs
 \end_layout
 
 \end_inset
@@ -429,10 +424,11 @@ Output
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $S_{x}y(k)$
+e.g 
+\begin_inset Formula $y(k-1)$
 \end_inset
 
- (expected)
+
 \end_layout
 
 \end_inset
@@ -441,7 +437,7 @@ Output
 \begin_inset Text
 
 \begin_layout Plain Layout
--2147483647 
+-128
 \end_layout
 
 \end_inset
@@ -450,7 +446,7 @@ Output
 \begin_inset Text
 
 \begin_layout Plain Layout
-2147483647 
+127 
 \end_layout
 
 \end_inset
@@ -459,7 +455,7 @@ Output
 \begin_inset Text
 
 \begin_layout Plain Layout
-32
+8
 \end_layout
 
 \end_inset
@@ -495,7 +491,7 @@ Coefficients
 \begin_inset Text
 
 \begin_layout Plain Layout
--32766
+-2147483648 
 \end_layout
 
 \end_inset
@@ -504,7 +500,7 @@ Coefficients
 \begin_inset Text
 
 \begin_layout Plain Layout
-32766
+2147483647 
 \end_layout
 
 \end_inset
@@ -513,7 +509,7 @@ Coefficients
 \begin_inset Text
 
 \begin_layout Plain Layout
-16
+32
 \end_layout
 
 \end_inset
@@ -524,11 +520,7 @@ Coefficients
 \begin_inset Text
 
 \begin_layout Plain Layout
-Multiplication with 
-\begin_inset Formula $a$
-\end_inset
-
- coefficients
+Multiplication with coefficients
 \end_layout
 
 \end_inset
@@ -537,10 +529,12 @@ Multiplication with
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $S_{y}y(k)\times S_{c}a_{i}$
+e.g.
+ 
+\begin_inset Formula $S_{c}a_{i}x(k)$
 \end_inset
 
-
+ 
 \end_layout
 
 \end_inset
@@ -549,43 +543,7 @@ Multiplication with
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $-7.03644\times10^{13}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $7.03644\times10^{13}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-47
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Accumulation of 
-\begin_inset Formula $a_{i}y$
+\begin_inset Formula $-2.7273\times10^{11}$
 \end_inset
 
 
@@ -597,31 +555,7 @@ Accumulation of
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula ${\displaystyle \sum}_{i=1}^{2}S_{y}y(k-i)\times S_{c}a_{i}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-1.40729\times10^{14}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $1.40729\times10^{14}$
+\begin_inset Formula $2.7273\times10^{11}$
 \end_inset
 
 
@@ -633,7 +567,7 @@ Accumulation of
 \begin_inset Text
 
 \begin_layout Plain Layout
-48
+39
 \end_layout
 
 \end_inset
@@ -644,11 +578,7 @@ Accumulation of
 \begin_inset Text
 
 \begin_layout Plain Layout
-Multiplication with 
-\begin_inset Formula $b$
-\end_inset
-
- coefficients
+Accumulation of multiplication
 \end_layout
 
 \end_inset
@@ -657,19 +587,7 @@ Multiplication with
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $S_{x}x(k)\times S_{c}b_{i}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-7.03644\times10^{13}$
+\begin_inset Formula $S_{c}y(k)$
 \end_inset
 
 
@@ -681,7 +599,19 @@ Multiplication with
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $-7.03644\times10^{13}$
+\begin_inset Formula $-8.24634\times10^{11}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.24634\times10^{11}$
 \end_inset
 
 
@@ -693,78 +623,26 @@ Multiplication with
 \begin_inset Text
 
 \begin_layout Plain Layout
-47
+41
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Accumulation of 
-\begin_inset Formula $b_{i}x$
-\end_inset
-
-
+Output
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula ${\displaystyle \sum}_{i=0}^{2}S_{x}x(k-i)\times S_{c}b_{i}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-2.11093\times10^{14}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.11093\times10^{14}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-49
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Calculation of 
 \begin_inset Formula $y(k)$
 \end_inset
 
@@ -773,58 +651,11 @@ Calculation of
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $S_{c}S_{x}y(k)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-3.51822\times10^{14}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $3.51822\times10^{14}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-50
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
 <cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+-767
 \end_layout
 
 \end_inset
@@ -833,28 +664,7 @@ Calculation of
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $S_{x}y(k)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
--21474836474 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-21474836474 
+768 
 \end_layout
 
 \end_inset
@@ -863,7 +673,7 @@ Calculation of
 \begin_inset Text
 
 \begin_layout Plain Layout
-36
+11
 \end_layout
 
 \end_inset
@@ -911,14 +721,24 @@ reference "tab:interval-arith"
 \begin_inset Formula $S_{c}$
 \end_inset
 
- still requires 36 bits to fully represent its value.
- We will be truncating that in the output, or the number of bits required
- will increase exponentially as computation goes on.
+ still requires 11 bits to fully represent its value.
+ We will be truncating this to 8 bits in the delayed outputs buffer and
+ the actual output, or the number of bits required will increase exponentially
+ as computation goes on.
  
 \end_layout
 
 \begin_layout Subsection
 Filter Design
+\end_layout
+
+\begin_layout Standard
+balance between Q and attenuation
+\end_layout
+
+\begin_layout Standard
+say why 32 bits coeff .
+ high q output?
 \end_layout
 
 \begin_layout Standard
@@ -948,7 +768,7 @@ and their scaled versions are given by
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-S_{c}a_{1}=-31035,S_{c}a_{2}=14969,S_{c}b_{0}=1576,S_{c}b_{1}=-31035,S_{c}b_{2}=15676\label{eq:coeff-scaled}
+S_{c}a_{1}=-2034054015,S_{c}a_{2}=981124992,S_{c}b_{0}=542364246,S_{c}b_{1}=-1073741824,S_{c}b_{2}=542364246\label{eq:coeff-scaled}
 \end{equation}
 
 \end_inset
@@ -1105,6 +925,36 @@ reference "fig:fft-dp"
  
 \end_layout
 
+\begin_layout Standard
+With the scaling, the filter's difference equation 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:iir-diff-eq"
+
+\end_inset
+
+ has become 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+S_{c}y(k)=S_{c}\left[b_{0}x(k)+b_{1}x(k-1)+b_{2}x(k-2)-a_{1}y(k-1)-a_{2}y(k-2)\right]\label{eq:iir-diff-scaled}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is thus necessary to divide the output by the factor 
+\begin_inset Formula $S_{c}$
+\end_inset
+
+ before storing it into the delay buffer for further computation.
+\end_layout
+
 \begin_layout Subsection
 Quantisation Tests
 \end_layout
@@ -1209,14 +1059,114 @@ Hardware Interface
 \end_layout
 
 \begin_layout Standard
+\begin_inset Wrap figure
+lines 0
+placement O
+overhang 0in
+width "50col%"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename iir-block.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:notch-signals"
+
+\end_inset
+
+The input and output signals of the hardware block, grouped by their interfaces.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename qsys-interconnect.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:qsys-all"
+
+\end_inset
+
+Interconnection of all the components in QSys, for parts I and II.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 The input and output signals of the hardware block can be seen in 
-\series bold
-INSERT FIGURE HERE
-\series default
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:notch-signals"
+
+\end_inset
+
 .
  Its connection in Qsys with the rest of the components can be seen in 
-\series bold
-ANOTHER FIGURE HERE PLEASE
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:qsys-all"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1272,8 +1222,11 @@ Avalon Master
 
 \begin_layout Standard
 An Avalon Master is implemented to read and write results to the SDRAM.
- Samples are expected to be stored in 32 bit signed integers with little
- endian byte ordering.
+ Samples are expected to be stored, and are written in 32 bit signed integers
+ with little endian byte ordering.
+ This decision stemmed primarily to allow ease of analysis using the software
+ written for the NIOS processor, and can be further optimised as described
+ later.
  The number of samples is provided via a write to the Avalon Slave (see
  below), and the address to process the samples from is provided via an
  invocation through the NIOS Custom Instruction Slave (above).
@@ -1309,7 +1262,7 @@ reference "tab:Avalon-Slave"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -1947,6 +1900,13 @@ y quick, barring any high load on the SDRAM from other components in the
  Thus, it is expected that the receive and read FIFO would be filled most
  of the time, and the request and receive pipeline would thus be more likely
  to be blocked.
+ The FIFOs were chosen to be 32 words deep to balance between FPGA resource
+ usage and pipeline saturation.
+ The calculation pipeline is much slower than the rest and increasing the
+ depth of the FIFO would not increase throughput and only waste resources.
+ Reducing the FIFO to being too shallow might cause starvation to the calculatio
+n pipeline as the SDRAM reads might be too slow, due to the variable amount
+ of time it takes to read, and write.
  
 \end_layout
 
@@ -2032,12 +1992,12 @@ reference "tab:Avalon-Slave"
  It then calculates the output over several clock cycles according to 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "eq:iir-diff-eq"
+reference "eq:iir-diff-scaled"
 
 \end_inset
 
 .
- Finally, it will wait for the write FIFO to not be full and write to it.
+ Finally, it will wait for the write FIFO to not be full, and write to it.
  It will then return to its idle state.
 \end_layout
 
@@ -2100,7 +2060,85 @@ n can take place as the writing is essentially much faster.
 \end_layout
 
 \begin_layout Subsection
-Performance Evaluation
+Evaluation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename iir-fpga-fft.png
+	lyxscale 46
+	scale 46
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:fpga-notch-fft"
+
+\end_inset
+
+Comparison of the DFT for the Matlab output against the output from the
+ hardware implementation.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A comparison of the DFT of the output from the hatrdware implementation
+ with that of Matlab can be found in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:fpga-notch-fft"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Throughput
+\end_layout
+
+\begin_layout Standard
+The notch filter takes 0.376 seconds to process 963144 samples.
+ Thus, it has an average throughput of 
+\begin_inset Formula ${\textstyle \nicefrac{963144}{0.376}\approx2561553}$
+\end_inset
+
+ samples per second.
+ Further enhancements can be made to increase the throughput, and will be
+ described below.
+ The filter performs very quickly and can perform real-time filtering, even
+ with a sampling rate of 44.1 kHz.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -2109,14 +2147,30 @@ Further Enhancements
 
 \begin_layout Standard
 The calculation pipeline can itself be further pipelined to increase its
- throughput.
- While the latency will not be reduced, it can be further improved to yield
- a higher throughput.
- The hardware block can also be designed to act as a biquad filter with
- cascaded second order IIR filters.
+ throughput by interleaving several calculations.
+ While the latency will not be reduced, it can yield a higher throughput.
+ 
+\end_layout
+
+\begin_layout Standard
+The hardware block can also be designed to act as a biquad filter with cascaded
+ second order IIR filters.
  This, however, can increase the requirements for the bit widths of the
  intermediates and increase complexity as the values have to be multipled
  with yet another gain value in between the second order IIR filter blocks.
+ 
+\end_layout
+
+\begin_layout Standard
+Each sample could also have been stored as 8 bits signed integers in the
+ SDRAM rather than as 32 bits signed integers.
+ This would allow a single word read from SDRAM operation to obtain four
+ samples at one go, rather than one at a time.
+ This could increase throughput by up to four times.
+ The samples could also have been written to result as 8 bits signed integers,
+ and thus allow four samples to be stored per word in the SDRAM.
+ This would also increase the complexity in the logic for the receive and
+ write pipeline.
 \end_layout
 
 \begin_layout Section

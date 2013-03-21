@@ -8,6 +8,7 @@
 
 #define NO_SAMPLES 963144       // no of samples
 #define SAMPLE_SCALING 128
+#define SAMPLE_DESCALE 1024
 #define COEFF_SCALING 1073741824
 
 #define N 2    // order - DO NOT CHANGE. Higher orders with quantisation errors cause filter to become unstable
@@ -69,7 +70,7 @@ int main()
         input >> temp;
         samples.at(i) = (char) (temp*SAMPLE_SCALING);
 
-        scaledInput << int(samples.at(i))  << "\n";
+        scaledInput << short(samples.at(i))  << "\n";
     }
     
     cout << "Performing IIR Filtering (Direct Form I)" << endl;
@@ -99,9 +100,9 @@ int main()
         // push to front of circular buffer
         outputBuffer.push_front(char(y));
         
-        scaledOutput << int(y) << "\n";
+        scaledOutput << short(y) << "\n";
         
-        double scaled = double(char(y))/SAMPLE_SCALING;
+        double scaled = double(short(y))/SAMPLE_DESCALE;
         output << scaled << "\n";
     }
     

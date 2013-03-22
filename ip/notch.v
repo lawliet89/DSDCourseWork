@@ -446,7 +446,7 @@ module notch (
 					
 				end else begin
 					readFifoWriteRequest <= 1;	// save to calculation pipeline
-					readFifoWrite <= sdreaddata;
+					readFifoWrite <= sdreaddata[7:0]];
 				
 					sdReceiveCount <= sdReceiveCount + 1;
 				end

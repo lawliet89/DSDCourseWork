@@ -136,16 +136,1153 @@ LatexCommand tableofcontents
 
 \end_layout
 
-\begin_layout Section
-Introduction
-\end_layout
-
 \begin_layout Part
 Determinant
 \end_layout
 
 \begin_layout Section
-Something about you
+Setting up NIOS II
+\end_layout
+
+\begin_layout Standard
+Nios II is a 32-bit embedded softcore microprocessor (a microprocessor than
+ can be implemented by logic synthesis on an FPGA) Setting up the NIOS II
+ system, was a relatively trivial task –following the tutorial correctly
+ was all that was required.
+ We first performed this on the DE2-70 board, and then later on the DE0
+ board.
+ As we were one of the first groups to do this – we found there was an issue
+ with the compiling of Quartus projects on the lab computers – they have
+ to be compiled on the H:/ drive rather than the mapped 
+\backslash
+
+\backslash
+ic.ac.uk
+\backslash
+homes
+\backslash
+ drive.
+ Once this issue was overcome we proceeded on to the next problem.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Nios2bdf.png
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Top level entity block diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The system was then tested using count binary and the hello_world example
+ files set out in the NIOS II Eclipse software.
+ 
+\end_layout
+
+\begin_layout Section
+Determinant Square Matrix in Software 
+\end_layout
+
+\begin_layout Standard
+The determinant of a 3x3 Matrix performed in software was done on the NIOS
+ II.
+ We used the LU Decomposition method to find the determinant of the matrix.
+ In practice the amount of computer time used to calculate the speed of
+ a program is proportional to the arithmetic and storage operations used
+ to calculate the result.
+ Using this measure we can calculate the LU decomposition of an NXN matrix
+ to be 
+\begin_inset Formula $O(n^{3})$
+\end_inset
+
+ .
+ However a recursive method for finding the determinant of an NxN matrix
+ is 
+\begin_inset Formula $O(n!)$
+\end_inset
+
+.
+ (K Eriksson – Computational Differential Equations 1996).
+ The number of operations as the determinant size goes up is illustrated
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:complexity"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The algorithm used to calculate the determinant is the LU decomposition
+ with Doolittle algorithm.
+ (The pseudo-code used can be found at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://vismor.com/documents/network_analysis/matrix_algorithms/S4.SS2.php
+\end_layout
+
+\end_inset
+
+) The reason for this using this algorithm is stated above – the recursive
+ (and probably simplest to implement) is 
+\begin_inset Formula $O(n!)$
+\end_inset
+
+ and whereas LU decomposition is 
+\begin_inset Formula $O(n^{3})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename xcubed- xfactorial.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:complexity"
+
+\end_inset
+
+The complexity comparison of the two big-O notations.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The algorithm is implemented in the listing below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+float determinant(float *matrix, int dimension){
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i, j, p;
+\end_layout
+
+\begin_layout Plain Layout
+
+	float a, result;
+\end_layout
+
+\begin_layout Plain Layout
+
+	float *m;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	// Let us copy the matrix first
+\end_layout
+
+\begin_layout Plain Layout
+
+	m = (float *) malloc( sizeof(float)*dimension*dimension );
+\end_layout
+
+\begin_layout Plain Layout
+
+	memcpy(m, matrix, sizeof(float)*dimension*dimension );
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	// First step: perform LU Decomposition using Doolittle's Method
+\end_layout
+
+\begin_layout Plain Layout
+
+    // This algorithm will return, in the same matrix, a lower unit triangular
+ matrix
+\end_layout
+
+\begin_layout Plain Layout
+
+	// (i.e.
+ diagonals one)
+\end_layout
+
+\begin_layout Plain Layout
+
+	// and an upper trangular matrix
+\end_layout
+
+\begin_layout Plain Layout
+
+	// https://vismor.com/documents/network_analysis/matrix_algorithms/S4.SS2.php
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (i = 0; i < dimension; i++){
+\end_layout
+
+\begin_layout Plain Layout
+
+		for (j = 0; j < i; j++){
+\end_layout
+
+\begin_layout Plain Layout
+
+			a = getAt(m, i, j, dimension);
+\end_layout
+
+\begin_layout Plain Layout
+
+			for (p = 0; p < j; p++){
+\end_layout
+
+\begin_layout Plain Layout
+
+				a -= getAt(m, i, p, dimension) * getAt(m, p, j, dimension);
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			putAt(m, i, j, dimension, a/getAt(m, j, j, dimension));
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		for (j = i; j < dimension; j++){
+\end_layout
+
+\begin_layout Plain Layout
+
+			a = getAt(m, i, j, dimension);
+\end_layout
+
+\begin_layout Plain Layout
+
+			for (p = 0; p < i; p++){
+\end_layout
+
+\begin_layout Plain Layout
+
+				a -= getAt(m, i, p, dimension) * getAt(m, p, j, dimension);
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			putAt(m, i, j, dimension, a);
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	// Second step is to find the determinant.
+\end_layout
+
+\begin_layout Plain Layout
+
+	// Because the lower triangle is a unit triangular matrix
+\end_layout
+
+\begin_layout Plain Layout
+
+	// the determinant is simply a product of all the upper triangle diagonal
+\end_layout
+
+\begin_layout Plain Layout
+
+	// which in this case is exactly the diagonal of m
+\end_layout
+
+\begin_layout Plain Layout
+
+	result = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (i = 0; i < dimension; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+		result *= getAt(m, i, i, dimension);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	free(m);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	return result;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// Based on i and j, and a float pointer, get the value at row i column
+ j
+\end_layout
+
+\begin_layout Plain Layout
+
+float getAt(float *m, int i, int j, int dimension){
+\end_layout
+
+\begin_layout Plain Layout
+
+	return *(m + i*dimension + j);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// Based on i and j, and a float pointer, put the value at row i column
+ j
+\end_layout
+
+\begin_layout Plain Layout
+
+void putAt(float *m, int i, int j, int dimension, float value){
+\end_layout
+
+\begin_layout Plain Layout
+
+	*(m + i*dimension + j) = value;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In its most basic form, the calculation of the determinant of a 3 x 3 matrix
+ for 10 iterations took 0.009s.
+ Further improvements to the performance can be done.
+\end_layout
+
+\begin_layout Subsection
+SDRAM Implementation
+\end_layout
+
+\begin_layout Standard
+A SDRAM controller was added to the processor and the resulting connection
+ in Qsys can be seen in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:QSys-connection-with"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename SDRAM qsys.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:QSys-connection-with"
+
+\end_inset
+
+QSys connection with SDRAM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The SDRAM caused a slow down in the performance due to it being slower than
+ on-chip memory.
+\end_layout
+
+\begin_layout Itemize
+3x3 Matrix 100 iterations: 0.077 s 
+\end_layout
+
+\begin_layout Itemize
+6x6 Matrix 100 iterations 0.537 s 
+\end_layout
+
+\begin_layout Itemize
+8x8 Matrix 100 iterations 1.245 s 
+\end_layout
+
+\begin_layout Itemize
+10x10 Matrix 100 iterations 2.494 s 
+\end_layout
+
+\begin_layout Itemize
+20x20 Matrix 100 iterations 20.343 s 
+\end_layout
+
+\begin_layout Standard
+As the SDRAM is very sensitive to clock variations we added a PLL with a
+ time-shift of 2.55ns.
+ A PLL is a phase-locked loop, this is a closed loop feedback system based
+ on the difference in phase between the clock input and a clock signal of
+ a controlled oscillator.
+ 
+\end_layout
+
+\begin_layout Standard
+The resource usage on the FPGA at this stage can be seen in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Resource-usage-on-sdram"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename SDRAM-size.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Resource-usage-on-sdram"
+
+\end_inset
+
+Resource usage on the board.
+ NIOS2 and SDRAM with a PLL takes up 20% of the logic elements and 6% of
+ the total memory.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Embedded Multipliers
+\end_layout
+
+\begin_layout Standard
+Embedded Multipliers Embedded Multipliers are configured as either one 18
+ x 18 multiplier or two 9 x 9 Multipliers, the Cyclone III chip on the DE0
+ board has 112 Embedded 19x19 multipliers.
+ 
+\end_layout
+
+\begin_layout Standard
+The embedded multipliers improved the performance of the determinant calculation.
+\end_layout
+
+\begin_layout Itemize
+3x3 Matrix 100 iterations 0.044s 
+\end_layout
+
+\begin_layout Itemize
+6x6 Matrix 100 iterations 0.283s 
+\end_layout
+
+\begin_layout Itemize
+8x8 Matrix 100 iterations 0.658s 
+\end_layout
+
+\begin_layout Itemize
+10x10 Matrix 100 iterations 1.278s 
+\end_layout
+
+\begin_layout Itemize
+20x20 Matrix 100 iterations 10.669s 
+\end_layout
+
+\begin_layout Standard
+The resource usage can be seen in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Resource-usage-with-embedded-mul"
+
+\end_inset
+
+.Using Embedded Multipliers uses 1% (212) more logic elements on the board,
+ and uses an additional 4 Embedded Multipliers.
+ It uses 248 more registers.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename SDRAM-EmbeddedMultipliers-size.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Resource-usage-with-embedded-mul"
+
+\end_inset
+
+Resource usage with embedded mulitplier.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+LUT – based Multipliers 
+\end_layout
+
+\begin_layout Standard
+In addition to embedded multipliers, there are also look-up tables on the
+ cyclone II chip created from M9K memory blocks.
+ Look-up tables are implemented using very small amounts of RAM, and are
+ used to implement combinational logic – for example an N-input LUT can
+ implement any Boolean function of N inputs.
+ 
+\end_layout
+
+\begin_layout Itemize
+3x3 Matrix 0.045s
+\end_layout
+
+\begin_layout Itemize
+6x6 Matrix 0.286s
+\end_layout
+
+\begin_layout Itemize
+8x8 Matrix 0.666s
+\end_layout
+
+\begin_layout Itemize
+10x10 Matrix 1.293s
+\end_layout
+
+\begin_layout Itemize
+20x20 Matrix 10.72s
+\end_layout
+
+\begin_layout Standard
+Using LUTs uses 2% more logic elements than the SDRAM alone, 281 more registers.
+ See 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Resource-usage-with-lut"
+
+\end_inset
+
+ for the resource usage.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename SDRam-LUT-size.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Resource-usage-with-lut"
+
+\end_inset
+
+Resource usage with LUT-based multipliers.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From the data and the graph it can be seen that the SDRAM alone is the slowest
+ for all Matrix dimensions and Embedded Multipliers are the fastest.
+ However there are only a few tens of milliseconds difference over 100 iteration
+s between the LUT and Embedded Multipliers, this will make a minimal difference
+ over 1 iteration – however if we were to want to do one million iterations
+ of a 20x20 matrix would make a 510 second difference between using LUTs
+ and Embedded Multipliers, so in terms of speed it makes sense to use Embedded
+ Multipliers.
+ 
+\end_layout
+
+\begin_layout Standard
+However on the DE0 board there are only 112 Embedded multipliers, but 15000
+ Lookup tables – so if a larger project was undertaken then it would be
+ sensible to put the most time sensitive calculations onto Embedded Multipliers
+ and the rest on to the Lookup tables.
+ 
+\end_layout
+
+\begin_layout Subsection
+External Floating Point Hardware Accelerator
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Floating Point Bdf.png
+	lyxscale 50
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Block diagram of the floating point ALU
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To create the floating point custom instruction hardware, the megawizard
+ function blocks were used.
+ The exponent and mantissa widths were set to 8 bits and 23bits respectively
+ for all blocks.
+ The latency for the floating point blocks were 5, 6 and 7 cycles for the
+ floating point multiply, divide and add/subtract block respectively.
+ As we are not trying to overclock the NIOS2 CPU clock to over 50MHz choosing
+ the lowest latency will not cause any problems.
+ The lowest latency also uses the smallest size on the FPGA so for our requireme
+nts this seems to be the optimal design choice – smallest size and fastest
+ operation.
+ However if we had wanted to increase the frequency of the clock we would
+ have had to choose a higher latency to allow for more pipelines states
+ within the Floating point unit to shorten the critical path.
+ The hardware is invoked in NIOS via a NIOS custom instruction slave interface.
+\end_layout
+
+\begin_layout Standard
+As an extension to this Floating Point ALU a bypass operation was added
+ in for 0, 1, NAN and infinity as they are neutral, or absorbent, elements
+ in addition and multiplication, according to the floating point standard.
+ This extension was implemented in the Verilog file fp_alu_improved.v which
+ can be seen in the 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:fp-alu"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The ALU improved the performance significantly:
+\end_layout
+
+\begin_layout Itemize
+3x3 Matrix 100 iterations 0.016s
+\end_layout
+
+\begin_layout Itemize
+6x6 Matrix 100 iterations 0.035s
+\end_layout
+
+\begin_layout Itemize
+8x8 Matrix100 iterations 0.058s
+\end_layout
+
+\begin_layout Itemize
+10x10 Matrix 100 iterations 0.09s
+\end_layout
+
+\begin_layout Itemize
+20x20 Matrix 100 iterations 0.489s
+\end_layout
+
+\begin_layout Standard
+The resource usage can be seen in Adding a floating point Arithmetic and
+ Logic unit to calculate the determinant of the matrix has increased the
+ number of logic elements by 9% of the total available.
+ The total memory usage increased by 1% and the number of embedded multipliers
+ used has increased by 19 elements (17%).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename fp_determinant-size.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Reosurce usage with dedicated floating point ALU hardware.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Performance Comparison
+\end_layout
+
+\begin_layout Standard
+A comparison of the performance for all the various implementations above
+ can be seen in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Performance"
+
+\end_inset
+
+.
+ It can be seen that even with running the code on the SDRAM, the dedicated
+ floating point ALU unit has performance that far exceeds all the rest.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename performance-chart.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Performance"
+
+\end_inset
+
+Performance comparison of all the different implementataions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+External Determinant Hardware Accelerator
+\end_layout
+
+\begin_layout Subsection
+Hardware Design
+\end_layout
+
+\begin_layout Standard
+Due to the nature of the LU Decomposition modifying the values of the matrix
+ in situ for further computation later on there is no way to simply cache
+ any particular column or row of the matrix we used the RAM to cache the
+ entire matrix, which is instantiated using an M9K memory block.
+ 
+\end_layout
+
+\begin_layout Subsection
+Hardware Implementation
+\end_layout
+
+\begin_layout Standard
+The Verilog implementation uses a state machine consisting of 5 states.
+ 
+\end_layout
+
+\begin_layout Standard
+The first state (state 0) is the idle state where the hardware is ready
+ to compute.
+ If invoked with a non-zero address via the Custom Instruction slave interface,
+ the hardware will proceed to the second state and return “99” to the processor.
+ If the dimension of the matrix is less than one it will return “-1” to
+ the processor to indicate its idle status.
+ 
+\end_layout
+
+\begin_layout Standard
+The second state (state 1) is the read from SDRAM state where data is read
+ from the word addressed SDRAM addressed (so the next word is found by adding
+ 4 to the address – 4 bytes to a word).
+ There is just one cycle latency in reading from SDRAM, this is achieved
+ by using the Avalon slave which co-ordinates the reading data from SDRAM
+ – to request a new address from RAM we wait for the waitRequest signal
+ to go low (a sign that Avalon Slave has received our previous request)
+ and the read signal to be high.
+ We can then increment to the next address.
+ To receive the data from the address we wait for the readdatavalid signal
+ to be high and the ramwritedone signal must remain low.
+ The reason for separate request and receive states as there is could be
+ an indeterminate amount of time between requesting and receiving so it
+ will be more efficient these two issues.
+ Due to the nature of the Avalon bus we therefore know that the request
+ and then receive will be sent in the correct order.
+ When this data is read from SDRAM it is moved to RAM generated by an M9K
+ memory block.
+ 
+\end_layout
+
+\begin_layout Standard
+The third state (state 2) – is the Doolittle’s LU Decomposition algorithm
+ state, there are many stages due to the 
+\end_layout
+
+\begin_layout Standard
+Instead of swapping the contents of memory locations when row swapping is
+ required we instead swap the memory addresses of the data, which is faster
+ than memory swaps.
+ 
+\end_layout
+
+\begin_layout Standard
+The fourth state (state 3) – is the Diagonal Multiplication state – where
+ diagonals of the matrix are multiplied.
+ 
+\end_layout
+
+\begin_layout Standard
+The fifth and final state (state 4) is the result output state – the done
+ values are set high and the result is passed to the Avalon slave.
+ 
+\end_layout
+
+\begin_layout Standard
+For small dimension sizes (less than 4X4), it may be faster to do the matrix
+ calculations in software if you had a data caches as NIOS could then perform
+ single cycle reads which will be significantly faster than reading from
+ SDRAM in the hardware determinant implementation.
+ However once we get past these small sizes of MATRIX the hardware determinant
+ implementation will always be faster, providing we have enough memory to
+ perform the calculations.
+ 4 M9Ks are enough to store one 32x 32 matrix, and 16M9Ks are required to
+ store one 64X64 matrix.
+ It can be seen that as the matrix size doubles the number of M9Ks required
+ squares.
+ This is gets close to the limit of space that available on the DE0 board.
+\end_layout
+
+\begin_layout Subsection
+Possible extensions to the project
+\end_layout
+
+\begin_layout Standard
+Multiple NIOS II on the FPGA – should in theory be able to get 4 NIOS II
+ on the FPGA.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Part
@@ -2145,67 +3282,15 @@ Evaluation
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename iir-fpga-fft.png
-	lyxscale 46
-	scale 46
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:fpga-notch-fft"
-
-\end_inset
-
-Comparison of the DFT for the Matlab output against the output from the
- hardware implementation.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-A comparison of the DFT of the output from the hatrdware implementation
- with that of Matlab can be found in 
+The output of the notch filter is comparable with that of the C++ simulation
+ as seen in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "fig:fpga-notch-fft"
+reference "fig:c++-simulated"
 
 \end_inset
 
-.
- 
-\end_layout
-
-\begin_layout Subsubsection
-Throughput
+ with the same quantisation issues.
 \end_layout
 
 \begin_layout Standard
@@ -2257,6 +3342,117 @@ Each sample could also have been stored as 8 bits signed integers in the
 \begin_layout Standard
 \start_of_appendix
 \begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Description of Files Submitted
+\end_layout
+
+\begin_layout Standard
+The files for Part I and Part II are combined together in one archive as
+ they are integrated together.
+ The C file will invoke both the components together.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Hardware Block Files
+\end_layout
+
+\begin_layout Itemize
+ip/fp_alu.bdf
+\series bold
+ - Block Diagram for the FP ALU
+\end_layout
+
+\begin_layout Itemize
+ip/fp_alu_improved.v 
+\series bold
+- Bypass improvement for the FP ALU
+\end_layout
+
+\begin_layout Itemize
+ip/fp_det_nios.v 
+\series bold
+- Verilog code for the determinant component
+\end_layout
+
+\begin_layout Itemize
+ip/notch.v
+\series bold
+ - Notch filter Verilog code
+\end_layout
+
+\begin_layout Subsection*
+C Files
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Eclipse Projects
+\series default
+: software/
+\end_layout
+
+\begin_layout Itemize
+software/software/hello_world.c - 
+\series bold
+NIOS Code
+\end_layout
+
+\begin_layout Itemize
+notch_files/test/test.cpp - 
+\series bold
+Notch simluation of fixed point notch filter
+\end_layout
+
+\begin_layout Itemize
+notch_files/test/coeff.txt - 
+\series bold
+Coefficients Loaded by the Simulation
+\end_layout
+
+\begin_layout Itemize
+notch_files/test/wav.txt - 
+\series bold
+Input samples
+\end_layout
+
+\begin_layout Standard
+In addition, the entire code base can be found on a Git repository at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/lawliet89/DSDCourseWork
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:fp-alu"
+
+\end_inset
+
+Improved Floating Point ALU Verilog Implementation
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "../ip/fp_alu_improved.v"
+lstparams "language=Verilog"
+
 \end_inset
 
 

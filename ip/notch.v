@@ -406,7 +406,7 @@ module notch (
 				
 				end else if (writeStage == 3) begin
 					sdwrite <= 1;
-					sdwritedata <= writeFifoOutput;
+					sdwritedata <= { {25{writeFifoOutput[7]}}, writeFifoOutput[6:0] };
 					sdaddress <= writeAddress;
 					writeStage <= 4;
 				

@@ -1113,21 +1113,6 @@ Comparison of the FFT between the Matlab computation (double precision)
 
 \end_layout
 
-\begin_layout Standard
-The FFT comparison between the Matlab filtered version and the C++ version
- can be found in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:c++-simulated"
-
-\end_inset
-
-.
- It can be seen that the 1 kHz frequency bin is not attenuated as much.
- From listening tests, the tone is only faintly audible, a drastic improvement
- over the original noise corrupted input.
-\end_layout
-
 \begin_layout Section
 Hardware Implementation
 \end_layout
@@ -2284,7 +2269,7 @@ NIOS C File
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "D:/Code/Git/DSDCourseWork/software/software/hello_world.c"
+filename "../software/software/hello_world.c"
 
 \end_inset
 
@@ -2304,7 +2289,7 @@ Notch Filter C++ Simulation Code
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "D:/Code/Git/DSDCourseWork/notch_files/test/test.cpp"
+filename "../notch_files/test/test.cpp"
 
 \end_inset
 
@@ -2324,7 +2309,7 @@ Notch Filter Verilog Implementation
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "D:/Code/Git/DSDCourseWork/ip/notch.v"
+filename "../ip/notch.v"
 lstparams "language=Verilog"
 
 \end_inset

@@ -221,7 +221,7 @@ module fp_det_nios (
 					startSdRead <= 1;
 					ramWriteDone <= 0;
 					
-					//done <= 1;
+					done <= 1;
 					result <= 99;
 			end else if (start && datab <= 1) begin		// send dimension <= 1 to check for ready status
 				done <= 1;
@@ -284,7 +284,7 @@ module fp_det_nios (
                 i <= i+1;
 				
             end else if (ramWriteDone) begin		// start calculating
-				stage <= 3;
+				stage <= 2;
 				
 				ramReadAddress <= 0;
 				ramWriteAddress <= 0;

@@ -221,7 +221,7 @@ module fp_det_nios (
 					startSdRead <= 1;
 					ramWriteDone <= 0;
 					
-					//done <= 1;
+					done <= 1;
 					result <= 99;
 			end else if (start && datab <= 1) begin		// send dimension <= 1 to check for ready status
 				done <= 1;

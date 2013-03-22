@@ -539,10 +539,10 @@ module notch (
                     writeFifoWriteRequest <= 1;
 					
 					if (writeToResult)
-						writeFifoWrite <= { {25{y_n1[37]}}, yIntermediate[36:30] };
+						writeFifoWrite <= yIntermediate[37:30];
 					
                     else 
-						writeFifoWrite <= { {25{x_n[7]}}, x_n[6:0] };
+						writeFifoWrite <= x_n[7:0];
 						
 					calculationStage <= 10;
 	

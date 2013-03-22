@@ -146,9 +146,12 @@ Setting up NIOS II
 
 \begin_layout Standard
 Nios II is a 32-bit embedded softcore microprocessor (a microprocessor than
- can be implemented by logic synthesis on an FPGA) Setting up the NIOS II
- system, was a relatively trivial task –following the tutorial correctly
- was all that was required.
+ can be implemented by logic synthesis on an FPGA).
+\end_layout
+
+\begin_layout Standard
+Setting up the NIOS II system, was a relatively trivial task –following
+ the tutorial correctly was all that was required.
  We first performed this on the DE2-70 board, and then later on the DE0
  board.
  As we were one of the first groups to do this – we found there was an issue
@@ -162,7 +165,7 @@ ic.ac.uk
 homes
 \backslash
  drive.
- Once this issue was overcome we proceeded on to the next problem.
+ Once this issue was overcome we proceeded on with the task at hand.
  
 \end_layout
 
@@ -201,7 +204,7 @@ Top level entity block diagram
 \end_layout
 
 \begin_layout Standard
-The system was then tested using count binary and the hello_world example
+The system was then tested using the count binary and the hello_world example
  files set out in the NIOS II Eclipse software.
  
 \end_layout
@@ -212,11 +215,15 @@ Determinant Square Matrix in Software
 
 \begin_layout Standard
 The determinant of a 3x3 Matrix performed in software was done on the NIOS
- II.
+ II softcore processor.
  We used the LU Decomposition method to find the determinant of the matrix.
- In practice the amount of computer time used to calculate the speed of
- a program is proportional to the arithmetic and storage operations used
- to calculate the result.
+ 
+\end_layout
+
+\begin_layout Standard
+In practice the amount of computer time used to calculate the speed of a
+ program is proportional to the arithmetic and storage operations used to
+ calculate the result.
  Using this measure we can calculate the LU decomposition of an NXN matrix
  to be 
 \begin_inset Formula $O(n^{3})$
@@ -230,7 +237,7 @@ The determinant of a 3x3 Matrix performed in software was done on the NIOS
 
 .
  (K Eriksson – Computational Differential Equations 1996).
- The number of operations as the determinant size goes up is illustrated
+ The number of operations as the determinant size increases is illustrated
  in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -303,10 +310,6 @@ The complexity comparison of the two big-O notations.
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -602,7 +605,8 @@ void putAt(float *m, int i, int j, int dimension, float value){
 \begin_layout Standard
 In its most basic form, the calculation of the determinant of a 3 x 3 matrix
  for 10 iterations took 0.009s.
- Further improvements to the performance can be done.
+ Further improvements to the performance can be done by adding hardware
+ external to the NIOS II processor.
 \end_layout
 
 \begin_layout Subsection
@@ -666,8 +670,8 @@ QSys connection with SDRAM
 \end_layout
 
 \begin_layout Standard
-The SDRAM caused a slow down in the performance due to it being slower than
- on-chip memory.
+The SDRAM caused a slight slow down in the performance due to it being slower
+ than on-chip memory.
 \end_layout
 
 \begin_layout Itemize
@@ -746,10 +750,6 @@ Resource usage on the board.
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -842,10 +842,6 @@ Resource usage with embedded mulitplier.
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -885,7 +881,8 @@ In addition to embedded multipliers, there are also look-up tables on the
 \end_layout
 
 \begin_layout Standard
-Using LUTs uses 2% more logic elements than the SDRAM alone, 281 more registers.
+Using LUTs uses 2% more logic elements than the SDRAM alone and 281 more
+ registers.
  See 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -931,10 +928,6 @@ Resource usage with LUT-based multipliers.
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -946,9 +939,9 @@ From the data and the graph it can be seen that the SDRAM alone is the slowest
  However there are only a few tens of milliseconds difference over 100 iteration
 s between the LUT and Embedded Multipliers, this will make a minimal difference
  over 1 iteration – however if we were to want to do one million iterations
- of a 20x20 matrix would make a 510 second difference between using LUTs
- and Embedded Multipliers, so in terms of speed it makes sense to use Embedded
- Multipliers.
+ of this operation on a 20x20 matrix would make a 510 second difference
+ between using LUTs and Embedded Multipliers, so in terms of speed it makes
+ sense to use Embedded Multipliers.
  
 \end_layout
 
@@ -991,10 +984,6 @@ Block diagram of the floating point ALU
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1265,17 +1254,7 @@ For small dimension sizes (less than 4X4), it may be faster to do the matrix
  store one 64X64 matrix.
  It can be seen that as the matrix size doubles the number of M9Ks required
  squares.
- This is gets close to the limit of space that available on the DE0 board.
-\end_layout
-
-\begin_layout Subsection
-Possible extensions to the project
-\end_layout
-
-\begin_layout Standard
-Multiple NIOS II on the FPGA – should in theory be able to get 4 NIOS II
- on the FPGA.
- 
+ This is close to the limit of space that available on the DE0 board.
 \end_layout
 
 \begin_layout Standard
@@ -1304,7 +1283,7 @@ Design Consideration
 \begin_layout Standard
 Two classes of filters are available for implementation: Finite Impulse
  Response (FIR) or Infinite Impulse Response (IIR) filters.
- FIR filters have the advantage of being stable and not subjected to feedback.
+ FIR filters have the advantage of being stable and not subject to feedback.
  FIR filters also have linear phase, which is simply a group delay of the
  input and will not cause any non-linear phase shifts in the output.
  However, to acheive a sharp roll-off, particularly when we only want to
@@ -1320,8 +1299,8 @@ Two classes of filters are available for implementation: Finite Impulse
 \end_layout
 
 \begin_layout Standard
-An IIR filter was eventually chosen for implementation.
- This was chosen primarily for:
+An IIR filter was eventually chosen for implementation for the following
+ reasons:
 \end_layout
 
 \begin_layout Itemize
@@ -1340,7 +1319,7 @@ Ease of implementation
 \begin_layout Standard
 However, care must be taken during quantisation and scaling so as not to
  cause the filter to become unstable.
- A second order IIR filter is chosen to be implemented for sake of simplicity.
+ A second order IIR filter was chosen to be implemented for sake of simplicity.
  The difference equation for the 
 \begin_inset Formula $k$
 \end_inset
@@ -1897,7 +1876,7 @@ Quantisation Tests
 
 \begin_layout Standard
 In order to test the effects of calculating in fixed point rather than double-pr
-evision floating point, a simple C++ program was written to calculate the
+ecision floating point, a simple C++ program was written to calculate the
  expected output, along with the bit truncation that occurs.
  The code can be found in 
 \begin_inset CommandInset ref
@@ -1920,7 +1899,7 @@ reference "eq:iir-diff-scaled"
 \end_inset
 
 , and then unscales the output accordingly.
- This program was then used to aid in the design of filter coefficients
+ This program was then used to aid in the design of filter coefficients.
 \end_layout
 
 \begin_layout Subsection
@@ -3008,7 +2987,7 @@ reference "tab:Avalon-Slave"
 ).
  The first state (stage 0) is the idle state where the hardware is ready
  to compute.
- If invoked with a non-zero address via the Custom Instruction slave intercace,
+ If invoked with a non-zero address via the Custom Instruction slave interface,
  the hardware will proceed to the second state and return 
 \begin_inset Quotes eld
 \end_inset
@@ -3133,7 +3112,7 @@ Request Pipeline
 \end_layout
 
 \begin_layout Standard
-The request pipeline sends request to the SDRAM to read data.
+The request pipeline sends a request to the SDRAM to read data.
  As per the Avalon interface specification, when the 
 \begin_inset Quotes eld
 \end_inset

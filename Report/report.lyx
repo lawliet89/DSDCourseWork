@@ -136,12 +136,16 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Section
+Introduction
+\end_layout
+
 \begin_layout Part
 Determinant
 \end_layout
 
-\begin_layout Standard
-yada
+\begin_layout Section
+Something about you
 \end_layout
 
 \begin_layout Part
@@ -262,9 +266,9 @@ Quantisation Considerations
 \end_layout
 
 \begin_layout Standard
-In order to quantise the range of the input sound file accurately, the input
- and output was chosen to be 32 bits, and the coefficients are represented
- with 16 bits.
+The inputs are 8 bits, and the output was thus chosen to be 8 bits as well.
+ In order to reduce quantisation errors, the coefficients are represented
+ with 32 bits.
  For a second order, the coefficients are of the range 
 \begin_inset Formula $-2\leqslant a_{i},b_{i}\leqslant2$
 \end_inset
@@ -274,7 +278,6 @@ In order to quantise the range of the input sound file accurately, the input
 \end_inset
 
 .
- The inputs are 8 bits integers.
  Based on 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -298,7 +301,7 @@ reference "tab:interval-arith"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -728,52 +731,193 @@ reference "tab:interval-arith"
  
 \end_layout
 
-\begin_layout Subsection
-Filter Design
-\end_layout
-
 \begin_layout Standard
-balance between Q and attenuation
-\end_layout
-
-\begin_layout Standard
-say why 32 bits coeff .
- high q output?
-\end_layout
-
-\begin_layout Standard
-Based on the FFT of the input noisy signal, it is calculated that an attenuation
- of about 50 dB at 1000 Hz would be sufficient to almost zero the noise.
- However, this is difficult to acheive with a second order filter.
- Using Matlab to tweak the specifications using various design algorithms,
- the following coefficients were chosen to be implemented: 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{align*}
-a_{1} & =-1.894360482169740.913743852992773,a_{2}=0.913743852992773,\\
-b_{0} & =0.956871926496387,b_{1}=-1.89436048216974,b_{2}=0.956871926496387
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-and their scaled versions are given by
+After scaling the coefficients, the difference equation becomes: 
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-S_{c}a_{1}=-2034054015,S_{c}a_{2}=981124992,S_{c}b_{0}=542364246,S_{c}b_{1}=-1073741824,S_{c}b_{2}=542364246\label{eq:coeff-scaled}
+S_{c}y(k)=S_{c}\left[b_{0}x(k)+b_{1}x(k-1)+b_{2}x(k-2)-a_{1}y(k-1)-a_{2}y(k-2)\right]\label{eq:iir-diff-scaled}
 \end{equation}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+and the calculated output has to be divided by 
+\begin_inset Formula $S_{c}$
+\end_inset
+
+ first before writing.
+\end_layout
+
+\begin_layout Subsection
+Quantisation Tests
+\end_layout
+
+\begin_layout Standard
+In order to test the effects of calculating in fixed point rather than double-pr
+evision floating point, a simple C++ program was written to calculate the
+ expected output, along with the bit truncation that occurs.
+ The code can be found in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:C++-Simulation-Code"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The C++ program reads in the normalised samples and coefficients from text
+ input files, scales them accordingly, performs the sum described in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:iir-diff-scaled"
+
+\end_inset
+
+, and then unscales the output accordingly.
+ This program was then used to aid in the design of filter coefficients
+\end_layout
+
+\begin_layout Subsection
+Filter Design
+\end_layout
+
+\begin_layout Standard
+The design of the coefficients involves the selection of the proper 
+\begin_inset Formula $Q$
+\end_inset
+
+-factor.
+ A high 
+\begin_inset Formula $Q$
+\end_inset
+
+-factor will cause a sharper drop-off at the notch frequency (resulting
+ in a smaller 3 dB bandwidth) while attenuating the output less.
+ A low 
+\begin_inset Formula $Q$
+\end_inset
+
+-factor will cause more attenuation at the notch frequency while causing
+ the drop-off to be less (i.e.
+ a bigger 3 dB bandwidth).
+ Given the Nyquist frequency 
+\begin_inset Formula $\nicefrac{f_{s}}{2}=22050\unit{Hz}$
+\end_inset
+
+ and the notch frequency at 
+\begin_inset Formula $\omega_{0}=1000\unit{Hz}$
+\end_inset
+
+.
+ Then, given the 
+\begin_inset Formula $Q$
+\end_inset
+
+-factor 
+\begin_inset Formula $q$
+\end_inset
+
+, the 3 dB bandwidth is given by 
+\begin_inset Formula $\omega_{3dB}=\nicefrac{\omega_{0}}{q}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename fft-noise.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:noisy-dft"
+
+\end_inset
+
+DFT of noisy signal.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The DFT of the noisy signal is given in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:noisy-dft"
+
+\end_inset
+
+.
+ It can be seen that to reduce the tone at 1 kHz to an acceptable level,
+ approximately 30 dB of attenuation is needed.
+ The 
+\begin_inset Formula $Q$
+\end_inset
+
+-factor was chosen to be 13.75 for this purpose, as it acheives the right
+ balance between attenuation and 3 dB bandwidth minimisation.
+ The frequency response of the filter is given in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:freqz-dp"
+
+\end_inset
+
+, and the filtered signal (in double precision) compared against the original
+ signal is given in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:fft-dp"
+
+\end_inset
+
+.
+ It can be seen that it acheives the appropriate attenuation, and the listening
+ tests confirms this.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -821,10 +965,6 @@ Frequency Response of Matlab designed filter, calculated at double precision.
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -869,10 +1009,6 @@ FFT comparison of the original sound file and the filtered version.
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -892,71 +1028,46 @@ Matlab designed second order filter response
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-The frequency response of the filter calculated with double precision in
- Matlab is given in 
+The coefficients are then put through the C++ program (described above)
+ to test the effects of quantisation.
+ The results are given in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "fig:freqz-dp"
-
-\end_inset
-
-, and the comparison of the DFTs of the original signal and the filtered
- signal can be seen in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:fft-dp"
+reference "fig:c++-simulated"
 
 \end_inset
 
 .
- It can be seen that this filter performs sufficiently well in removing
- the 1 kHz tone.
- In listening test, the tone is almost inaudible.
- 
-\end_layout
+ It can be seen that quantisation has introduced additional noise and caused
+ attenuation of the lower frequencies.
+ Further tests show that a higher 
+\begin_inset Formula $Q$
+\end_inset
 
-\begin_layout Standard
-With the scaling, the filter's difference equation 
+-factor will cause even more noise to be generated as the coefficients need
+ more precision and quantisation has removed some these precision, potentially
+ causing the poles of the filter to become unstable.
+ However, a low 
+\begin_inset Formula $Q$
+\end_inset
+
+-factor with its higher attenuation and higher 3 dB bandwidth combined with
+ quantisation errors caused more of the frequency components around 1 kHz
+ to be attentuated.
+ Since most of the sound is about 1 kHz (see 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "eq:iir-diff-eq"
+reference "fig:noisy-dft"
 
 \end_inset
 
- has become 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-S_{c}y(k)=S_{c}\left[b_{0}x(k)+b_{1}x(k-1)+b_{2}x(k-2)-a_{1}y(k-1)-a_{2}y(k-2)\right]\label{eq:iir-diff-scaled}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-It is thus necessary to divide the output by the factor 
-\begin_inset Formula $S_{c}$
-\end_inset
-
- before storing it into the delay buffer for further computation.
-\end_layout
-
-\begin_layout Subsection
-Quantisation Tests
+), this causes the output to be adversely affected.
 \end_layout
 
 \begin_layout Standard
@@ -997,28 +1108,13 @@ Comparison of the FFT between the Matlab computation (double precision)
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-In order to test the effects of calculating in fixed point rather than double-pr
-evision floating point, a simple C++ program was written to calculate the
- expected output, along with the bit truncation that occurs.
- The code can be found in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:C++-Simulation-Code"
-
-\end_inset
-
-.
- The FFT comparison between the Matlab filtered version and the C++ version
+The FFT comparison between the Matlab filtered version and the C++ version
  can be found in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -1043,8 +1139,8 @@ The hardware filter block is implemented to interact with the NIOS process
  Finally, it offers an Avalon Slave interface for its settings (coefficients)
  to be changed and status of calculation to be checked.
  Finally, it implements an Avalon interrupt to notify the NIOS processor
- that is done processing.The Verilog code for its implementation can be found
- in 
+ that is done processing (to allow the processor to perform other tasks).The
+ Verilog code for its implementation can be found in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Verilog-Implementation"
@@ -2173,8 +2269,15 @@ Each sample could also have been stored as 8 bits signed integers in the
  write pipeline.
 \end_layout
 
-\begin_layout Section
+\begin_layout Standard
 \start_of_appendix
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 NIOS C File
 \end_layout
 

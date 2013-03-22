@@ -1011,6 +1011,17 @@ nts this seems to be the optimal design choice – smallest size and fastest
 \end_layout
 
 \begin_layout Standard
+The Floating point Arithmetic and Logic Unit implements add, subtract, multiply
+ and divide, the data is read into all the of the blocks arithmetic blocks
+ concurrently.
+ The done value is set by the output of the floating point down-counter,
+ which dependent on the select input of the mux on its input, counts down
+ the number of clock cycles required for the arithmetic blocks to return
+ a value.
+ Once the done signal is raised the data can be read from result signal.
+\end_layout
+
+\begin_layout Standard
 As an extension to this Floating Point ALU a bypass operation was added
  in for 0, 1, NAN and infinity as they are neutral, or absorbent, elements
  in addition and multiplication, according to the floating point standard.

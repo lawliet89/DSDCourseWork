@@ -803,8 +803,8 @@ reference "fig:Resource-usage-with-embedded-mul"
 \end_inset
 
 .
- Using Embedded Multipliers uses 1% (212) more logic elements on the board,
- and uses an additional 4 Embedded Multipliers.
+ Using Embedded Multipliers uses 1% (212) more logic elements on the board
+ than SDRAM and NIOSII alone, and uses an additional 4 Embedded Multipliers.
  It uses 248 more registers.
 \end_layout
 
@@ -942,8 +942,9 @@ Resource usage with LUT-based multipliers.
 \end_layout
 
 \begin_layout Standard
-From the data and the graph it can be seen that the SDRAM alone is the slowest
- for all Matrix dimensions and Embedded Multipliers are the fastest.
+From the data and the graph below it can be seen that the SDRAM alone is
+ the slowest for all Matrix dimensions and Embedded Multipliers are the
+ fastest.
  However there are only a few tens of milliseconds difference over 100 iteration
 s between the LUT and Embedded Multipliers implementations, this will make
  a minimal difference over 1 iteration – however if we were to want to do
@@ -1007,15 +1008,16 @@ To create the floating point custom instruction hardware, the megawizard
  for all blocks.
  The latency for the floating point blocks were 5, 6 and 7 cycles for the
  floating point multiply, divide and add/subtract block respectively.
- As we are not trying to overclock the NIOS2 CPU clock to over 50MHz choosing
- the lowest latency will not cause any problems.
+ As overclocking the NIOS2 CPU clock to over 50MHz it outside of the scope
+ of this project - choosing the lowest latency will not cause any problems.
  The lowest latency also uses the smallest size on the FPGA so for our requireme
 nts this seems to be the optimal design choice – smallest size and fastest
  operation.
- However if we had wanted to increase the frequency of the clock we would
- have had to choose a higher latency to allow for more pipelines states
- within the Floating point unit to shorten the critical path.
- The hardware is invoked in NIOS via a NIOS custom instruction slave interface.
+ However if it was necessary increase the frequency of the clock it would
+ be necessary to choose a higher latency to allow for more pipelines states
+ within the floating point unit to shorten the critical path.
+ The floating point ALU hardware was invoked in NIOS via a NIOS custom instructi
+on slave interface.
 \end_layout
 
 \begin_layout Standard
@@ -1023,15 +1025,15 @@ The Floating point Arithmetic and Logic Unit implements add, subtract, multiply
  and divide, the data is read into all the of the blocks arithmetic blocks
  concurrently.
  The done value is set by the output of the floating point down-counter,
- which dependent on the select input of the mux on its input, counts down
+ which, dependent on the select input of the mux on its input, counts down
  the number of clock cycles required for the arithmetic blocks to return
  a value.
- Once the done signal is raised the data can be read from result signal.
+ Once the done signal is raised the data can be read from result bus.
 \end_layout
 
 \begin_layout Standard
 As an extension to this Floating Point ALU a bypass operation was added
- in for 0, 1, NAN and infinity as they are neutral, or absorbent, elements
+ for 0, 1, NAN and infinity as they are neutral, or absorbent, elements
  in addition and multiplication, according to the floating point standard.
  This extension was implemented in the Verilog file fp_alu_improved.v which
  can be seen in the 
@@ -1069,11 +1071,12 @@ The ALU improved the performance significantly:
 \end_layout
 
 \begin_layout Standard
-The resource usage can be seen in Adding a floating point Arithmetic and
- Logic unit to calculate the determinant of the matrix has increased the
- number of logic elements by 9% of the total available.
+Adding a floating point arithmetic and logic unit to calculate the determinant
+ of the matrix has increased the number of logic elements used by 9% of
+ the total available.
  The total memory usage increased by 1% and the number of embedded multipliers
- used has increased by 19 elements (17%).
+ used has increased by 19 elements (17%) compared to SDRAM with embedded
+ multipliers.
  
 \end_layout
 
@@ -1203,7 +1206,7 @@ Hardware Design
 \begin_layout Standard
 Due to the nature of the LU Decomposition modifying the values of the matrix
  in situ for further computation later on there is no way to simply cache
- any particular column or row of the matrix we used the megafunction RAM
+ any particular column or row of the matrix we used the RAM megafunction
  (which uses the on chip M9K memory) to cache the entire matrix.
  
 \end_layout
@@ -1256,8 +1259,8 @@ The first state (state 0) is the idle state where the hardware is ready
 The second state (state 1) is where data is read from the SDRAM and stored
  in the RAM.
  The request and receiving of data from the SDRAM is done independently,
- due to the indeterminate number of cycles before the SDRAM acknowledging
- the request and then returning the data.
+ due to the indeterminate number of cycles before the SDRAM acknowledges
+ the request and then returns the data.
  The "read" signal to the SDRAM is asserted, along with the address to read.
  When the "waitrequest" signal goes low, the SDRAM has accepted the request,
  and the address is incremented to the next word.

@@ -802,7 +802,8 @@ reference "fig:Resource-usage-with-embedded-mul"
 
 \end_inset
 
-.Using Embedded Multipliers uses 1% (212) more logic elements on the board,
+.
+ Using Embedded Multipliers uses 1% (212) more logic elements on the board,
  and uses an additional 4 Embedded Multipliers.
  It uses 248 more registers.
 \end_layout
@@ -1184,6 +1185,17 @@ Performance comparison of all the different implementataions.
 External Determinant Hardware Accelerator
 \end_layout
 
+\begin_layout Standard
+The code for the implementation can be found in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:fp-alu"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 Hardware Design
 \end_layout
@@ -1191,8 +1203,30 @@ Hardware Design
 \begin_layout Standard
 Due to the nature of the LU Decomposition modifying the values of the matrix
  in situ for further computation later on there is no way to simply cache
- any particular column or row of the matrix we used the RAM to cache the
- entire matrix, which is instantiated using an M9K memory block.
+ any particular column or row of the matrix we used the megafunction RAM
+ (which uses the on chip M9K memory) to cache the entire matrix.
+ 
+\end_layout
+
+\begin_layout Standard
+Row swapping operations are also required for LU decomposition in case any
+ of the elements on the principal diagonal of the matrix is zero.
+ Instead of moving the data between rows, a more efficient manner can be
+ implemented.
+ A separate array storing the address of the first element of each row in
+ the RAM cache is first instantiated.
+ When a row swap is required, the row address are simply swapped.
+\end_layout
+
+\begin_layout Subsection
+Hardware Interface
+\end_layout
+
+\begin_layout Standard
+The hardware block implements an Avalon Master interface to read from the
+ SDRAM, an Avalon Slave interface to allow for interrupts and reading of
+ the result, and a NIOS custom instruction slave to allow the NIOS processor
+ to invoke the hardware block.
  
 \end_layout
 
@@ -1208,16 +1242,19 @@ The Verilog implementation uses a state machine consisting of 5 states.
 \begin_layout Standard
 The first state (state 0) is the idle state where the hardware is ready
  to compute.
- If invoked with a non-zero address via the Custom Instruction slave interface,
- the hardware will proceed to the second state and return “99” to the processor.
+ Invocation from NIOS takes two arguments: the address for the first element
+ in the matrix and the dimension of the matrix.If invoked with a non-zero
+ dimension via the Custom Instruction slave interface, the hardware will
+ proceed to the second state and return “99” to the processor to signify
+ that it has begun calculation.
  If the dimension of the matrix is less than one it will return “-1” to
  the processor to indicate its idle status.
  
 \end_layout
 
 \begin_layout Standard
-The second state is where data is read from the SDRAM and stored in the
- RAM.
+The second state (state 1) is where data is read from the SDRAM and stored
+ in the RAM.
  The request and receiving of data from the SDRAM is done independently,
  due to the indeterminate number of cycles before the SDRAM acknowledging
  the request and then returning the data.
@@ -1229,62 +1266,72 @@ The second state is where data is read from the SDRAM and stored in the
  The Avalon Memory Mapped interface guarantees that the data is received
  in the order it was requested, and thus this is a valid operation.
  The data is then saved to the RAM.
+ When all the data has been requested, received, and saved to the RAM, the
+ state machine moves on to the next state.
 \end_layout
 
 \begin_layout Standard
-The third state (state 2) – is the Doolittle’s LU Decomposition algorithm
- state, there are many states due to the pseudo-code containing loops within
- loops, and having to allow for latencies involved with fetching values
- from RAM.
- 
+The third state (state 2) involves the LU decomposition of the Matrix according
+ the Doolittle algorithm.
+ Due to the iterative nature of the algorithm, various loop counters are
+ used to keep track of the overall calculation progress, and additional
+ state machines are used to keep track of the stage of calculation for each
+ iteration of the loops.
+ When the algorithm is done, the state machine moves on to the next state.
 \end_layout
 
 \begin_layout Standard
-To reduce some of the algorithm over head in this state, instead of swapping
- the contents of memory locations when row swapping is required, the memory
- addresses of the data are swapped instead, which are faster than memory
- content swaps.
- 
+The fourth state (state 3) is where principal diagonal of the decomposed
+ matrix is multiplied.
+ If any row swaps were performed in the previous states, the sign of the
+ final output would be negated as necessary.
+ When the multiplication is done, the interrupt output signal is asserted
+ and the state machine moves to the next state
 \end_layout
 
 \begin_layout Standard
-The fourth state (state 3) – is the Diagonal Multiplication state – where
- diagonals of the matrix are multiplied.
- 
+The final state (state 4) involves the state machine waiting for its interrupt
+ request to be serviced via a read to its Avalon slave interface.
+ When a read is done, it will return the value of the determinant calculated
+ and then return back to idle state.
+\end_layout
+
+\begin_layout Subsection
+Performance Evaluation
 \end_layout
 
 \begin_layout Standard
-The fifth and final state (state 4) is the result output state – the done
- values are set high and the result is passed to the Avalon slave.
- 
-\end_layout
-
-\begin_layout Standard
-For small dimension sizes (less than 4X4), it may be faster to do the matrix
- calculations in software if you had a data caches as NIOS could then perform
- single cycle reads which will be significantly faster than reading from
- SDRAM in the hardware determinant implementation.
- However once we get past these small sizes of MATRIX the hardware determinant
- implementation will always be faster, providing we have enough memory to
- perform the calculations.
+For small dimension sizes (less than 4 by 4), it may be faster to do the
+ matrix calculations in software if NIOS was instantiated with data caches,
+ as it could then perform single cycle reads which will be significantly
+ faster than reading from SDRAM in the hardware determinant implementation.
+ However once we get past these small sizes of the matrix, the hardware
+ determinant implementation will always be faster, providedwe have enough
+ resources to store the matrix.
  4 M9Ks are enough to store one 32x 32 matrix, and 16M9Ks are required to
  store one 64X64 matrix.
- It can be seen that as the matrix size doubles the number of M9Ks required
+ It can be seen that as the matrix size doubles, the number of M9Ks required
  squares.
  This is close to the limit of space that available on the DE0 board.
- Due to this we can say that our hardware implementation will always be
- faster than software for dimensions of 4 or more - however we are limited
- by the amount of space on the DE0 board, so space is the limiting factor
- as we increase our Matrix dimension to be greater than 32.
+ Due to this, we can say that our hardware implementation will always be
+ faster than software for dimensions of 4 or more, only limited by the amount
+ of resources on the DE0 board, so resources are the limiting factor as
+ we increase our Matrix dimension to be greater than 32.
  
 \end_layout
 
 \begin_layout Standard
-It is important to note that despite a significant amount of debugging the
- Hardware determinant implentation did not work despite it being successfully
- integrated into the rest of the system.
- This was due to time constraints on the coursework and given a day or two
- more design time it would have worked.
+The throughput calculation for the LU decomposition of the matrix can be
+ significantly improved if the process is pipelined.
+ The current code does not attempt to perform such pipelining and simply
+ calculates in a linear iterative fashion.
+\end_layout
+
+\begin_layout Standard
+It is important to note that despite a significant amount of debugging,
+ and being successfully integrated into the rest of the system, the hardware
+ determinant implentation did not work.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -3434,11 +3481,11 @@ Input samples
 \begin_layout Standard
 In addition, the entire code base can be found on a Git repository at 
 \begin_inset Flex URL
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
-https://github.com/lawliet89/DSDCourseWork
+https://github.com/lawliet89/DSDCourseWork.git
 \end_layout
 
 \end_inset
